@@ -1,0 +1,92 @@
+1. 	Micro SD, HC, class 6, 4GB
+	sdcard.metaData.manufacturerID: 0 	(Non-Sandisk)
+	sdcard.metaData.oemID: 0x2020
+	sdcard.metaData.productName: N/A  
+	sdcard.metaData.productRevisionMajor: 1
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0xd7107791
+	sdcard.metaData.productionYear: 2016
+	sdcard.metaData.productionMonth: 10
+
+/* +--------------------------------------------------------+ */
+/* +---------------------- Kingston ------------------------+ */
+/* +--------------------------------------------------------+ */
+1. 	Micro SD, HC, class 4, 8GB
+	sdcard.metaData.manufacturerID: 2
+	sdcard.metaData.oemID: 0x544d
+	sdcard.metaData.productName: SA08G
+	sdcard.metaData.productRevisionMajor: 0
+	sdcard.metaData.productRevisionMinor: 4
+	sdcard.metaData.productSerial: 0x9c000067
+	sdcard.metaData.productionYear: 2010
+	sdcard.metaData.productionMonth: 6
+/* +--------------------------------------------------------+ */
+/* +---------------------- Kingston ------------------------+ */
+/* +--------------------------------------------------------+ */
+
+
+/* +-------------------------------------------------------+ */
+/* +---------------------- Sandisk ------------------------+ */
+/* +-------------------------------------------------------+ */
+1.	Micro SD, HC I, class 4, 8GB
+	sdcard.metaData.manufacturerID: 3	(Sandisk)
+	sdcard.metaData.oemID: 0x5344
+	sdcard.metaData.productName: SS08G
+	sdcard.metaData.productRevisionMajor: 8
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0x22a359b3
+	sdcard.metaData.productionYear: 2013
+	sdcard.metaData.productionMonth: 11
+
+2.	Micro SD, HC, class 4, 16GB
+	sdcard.metaData.manufacturerID: 3	(Sandisk)
+	sdcard.metaData.oemID: 0x5344
+	sdcard.metaData.productName: SU16G
+	sdcard.metaData.productRevisionMajor: 8
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0x8e5b909
+	sdcard.metaData.productionYear: 2013
+	sdcard.metaData.productionMonth: 9
+
+3.	Micro SD, HC I, class 10 A1, 16GB
+	sdcard.metaData.manufacturerID: 3	(Sandisk Ultra)
+	sdcard.metaData.oemID: 0x5344
+	sdcard.metaData.productName: SC16G
+	sdcard.metaData.productRevisionMajor: 8
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0x1da21779
+	sdcard.metaData.productionYear: 2018
+	sdcard.metaData.productionMonth: 7
+
+4.	Micro SD, HC I, class 10 A1, 32GB
+	sdcard.metaData.manufacturerID: 3 	(Sandisk Ultra)
+	sdcard.metaData.oemID: 0x5344
+	sdcard.metaData.productName: SC32G
+	sdcard.metaData.productRevisionMajor: 8
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0xbb604a2c
+	sdcard.metaData.productionYear: 2018
+	sdcard.metaData.productionMonth: 7
+
+5.	Micro SD, HC I, class 10 A1, 32GB
+	sdcard.metaData.manufacturerID: 3 	(Sandisk Ultra)
+	sdcard.metaData.oemID: 0x5344
+	sdcard.metaData.productName: SC32G
+	sdcard.metaData.productRevisionMajor: 8
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0xbb5f4b23
+	sdcard.metaData.productionYear: 2018
+	sdcard.metaData.productionMonth: 7
+
+6.	Micro SD, XC I, class 10, 64GB
+	sdcard.metaData.manufacturerID: 3 	(Sandisk Ultra)
+	sdcard.metaData.oemID: 0x5344
+	sdcard.metaData.productName: SL64G
+	sdcard.metaData.productRevisionMajor: 8
+	sdcard.metaData.productRevisionMinor: 0
+	sdcard.metaData.productSerial: 0x751741bb
+	sdcard.metaData.productionYear: 2016
+	sdcard.metaData.productionMonth: 11
+/* +-------------------------------------------------------+ */
+/* +---------------------- Sandisk ------------------------+ */
+/* +-------------------------------------------------------+ */
