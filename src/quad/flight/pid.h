@@ -59,6 +59,12 @@ typedef struct pidConfig_s {
     uint8_t pid_process_denom;                      // Processing denominator for PID controller vs gyro sampling frequency
 }pidConfig_t;
 
+/* Initialisations */
+void pidSetTargetLooptime(uint32_t pidLooptime);
+void pidInitFilters(const pidProfile_t *pidProfile);
+void pidInitConfig(const pidProfile_t *pidProfile)
+
+/* PID control algorithms */
 void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
 
 #endif	// __PID_H

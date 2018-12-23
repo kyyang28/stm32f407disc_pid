@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.24.2.0
 Copyright (C) 2017 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: Yankun Yang, Yang, LIC=50DY8-345T3-EY5VT-RXH7L-73GTW-2IM23
+License Information: Yankun Yang, Yang, LIC=EPP8T-RCFC3-C0FN2-9IQ27-DGA9R-Y97X5
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.24.1
-Toolchain Path:  E:\Keil_v5\ARM\ARMCC\Bin
+Toolchain Path:  F:\Keil_v5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 5 (build 528)
 Assembler:       Armasm.exe V5.06 update 5 (build 528)
 Linker/Locator:  ArmLink.exe V5.06 update 5 (build 528)
@@ -21,19 +21,1226 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.1.0
 Dialog DLL:      TCM.DLL V1.32.0.0
  
 <h2>Project:</h2>
-E:\Quadcopter\STM32\STM32F407 Discovery\Projects\Git\13-PID\13-PID.uvprojx
-Project File Date:  12/21/2018
+D:\Kent\PhD\3-QUADCOPTER\STM32\STM32F407 Discovery\Projects\Git\13-PID\13-PID.uvprojx
+Project File Date:  12/22/2018
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'E:\Keil_v5\ARM\ARMCC\Bin'
-Build target 'STM32F407VG-Discovery'
+*** Using Compiler 'V5.06 update 5 (build 528)', folder: 'F:\Keil_v5\ARM\ARMCC\Bin'
+Rebuild target 'STM32F407VG-Discovery'
+assembling startup_stm32f407xx.s...
+compiling stm32f4xx_pwr.c...
+compiling stm32f4xx_exti.c...
+compiling misc.c...
+compiling stm32f4xx_dma.c...
+compiling stm32f4xx_gpio.c...
+compiling stm32f4xx_flash.c...
+compiling stm32f4xx_rcc.c...
+compiling stm32f4xx_spi.c...
+compiling main.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\target\13-PID\main.c: 1 warning, 30 errors
+compiling stm32f4xx_syscfg.c...
+compiling stm32f4xx_usart.c...
+compiling system_stm32f4xx.c...
+compiling system.c...
+compiling target.c...
+compiling accgyro_mpu.c...
+compiling stm32f4xx_tim.c...
+compiling dma_stm32f4xx.c...
+src\quad\drivers\dma_stm32f4xx.c(12): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream0, 0,  DMA1_Stream0_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(13): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream1, 6,  DMA1_Stream1_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(14): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream2, 16, DMA1_Stream2_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(15): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream3, 22, DMA1_Stream3_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(16): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream4, 32, DMA1_Stream4_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(17): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream5, 38, DMA1_Stream5_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(18): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream6, 48, DMA1_Stream6_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(19): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA1, DMA1_Stream7, 54, DMA1_Stream7_IRQn, RCC_AHB1Periph_DMA1),
+src\quad\drivers\dma_stm32f4xx.c(21): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream0, 0,  DMA2_Stream0_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(22): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream1, 6,  DMA2_Stream1_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(23): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream2, 16, DMA2_Stream2_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(24): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream3, 22, DMA2_Stream3_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(25): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream4, 32, DMA2_Stream4_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(26): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream5, 38, DMA2_Stream5_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(27): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream6, 48, DMA2_Stream6_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(28): warning:  #188-D: enumerated type mixed with another type
+  	DEFINE_DMA_CHANNEL(DMA2, DMA2_Stream7, 54, DMA2_Stream7_IRQn, RCC_AHB1Periph_DMA2),
+src\quad\drivers\dma_stm32f4xx.c(56): warning:  #188-D: enumerated type mixed with another type
+  			return i;
+src\quad\drivers\dma_stm32f4xx.c(60): warning:  #188-D: enumerated type mixed with another type
+  	return 0;
+src\quad\drivers\dma_stm32f4xx.c: 18 warnings, 0 errors
+compiling exti.c...
+compiling gyro_sync.c...
+compiling gps.c...
+compiling button.c...
+compiling accgyro_spi_mpu9250.c...
+compiling bus_spi.c...
+src\quad\drivers\bus_spi.c(15): warning:  #1296-D: extended constant initialiser used
+  	{ .dev = 
+PI1, .nss = (uint8_t)
+O_NONE, .sck = IO_TAG(SPI1_SCK_PIN), .miso = IO_TAG(SPI1_MISO_PIN), .mosi = IO_TAG(SPI1_MOSI_PIN), .rcc = RCC_APB2(SPI1), .af = GPIO_AF_SPI1, false },
+src\quad\drivers\bus_spi.c(15): warning:  #767-D: conversion from pointer to smaller integer
+  	{ .dev = 
+PI1, .nss = (uint8_t)
+O_NONE, .sck = IO_TAG(SPI1_SCK_PIN), .miso = IO_TAG(SPI1_MISO_PIN), .mosi = IO_TAG(SPI1_MOSI_PIN), .rcc = RCC_APB2(SPI1), .af = GPIO_AF_SPI1, false },
+src\quad\drivers\bus_spi.c(16): warning:  #1296-D: extended constant initialiser used
+      { .dev = 
+PI2, .nss = (uint8_t)
+O_NONE, .sck = IO_TAG(SPI2_SCK_PIN), .miso = IO_TAG(SPI2_MISO_PIN), .mosi = IO_TAG(SPI2_MOSI_PIN), .rcc = RCC_APB1(SPI2), .af = GPIO_AF_SPI2, false },
+src\quad\drivers\bus_spi.c(16): warning:  #767-D: conversion from pointer to smaller integer
+      { .dev = 
+PI2, .nss = (uint8_t)
+O_NONE, .sck = IO_TAG(SPI2_SCK_PIN), .miso = IO_TAG(SPI2_MISO_PIN), .mosi = IO_TAG(SPI2_MOSI_PIN), .rcc = RCC_APB1(SPI2), .af = GPIO_AF_SPI2, false },
+src\quad\drivers\bus_spi.c(254): warning:  #68-D: integer conversion resulted in a change of sign
+  		return -1;
+src\quad\drivers\bus_spi.c: 5 warnings, 0 errors
+compiling io.c...
+src\quad\drivers\io.c(133): warning:  #188-D: enumerated type mixed with another type
+  		.GPIO_Mode      = (cfg >> 0) & 0x03,
+src\quad\drivers\io.c(134): warning:  #188-D: enumerated type mixed with another type
+  		.GPIO_Speed		= (cfg >> 2) & 0x03,
+src\quad\drivers\io.c(135): warning:  #188-D: enumerated type mixed with another type
+  		.GPIO_OType		= (cfg >> 4) & 0x01,
+src\quad\drivers\io.c(136): warning:  #188-D: enumerated type mixed with another type
+  		.GPIO_PuPd		= (cfg >> 5) & 0x03,
+src\quad\drivers\io.c(153): warning:  #188-D: enumerated type mixed with another type
+          .GPIO_Mode = (cfg >> 0) & 0x03,
+src\quad\drivers\io.c(154): warning:  #188-D: enumerated type mixed with another type
+          .GPIO_Speed = (cfg >> 2) & 0x03,
+src\quad\drivers\io.c(155): warning:  #188-D: enumerated type mixed with another type
+          .GPIO_OType = (cfg >> 4) & 0x01,
+src\quad\drivers\io.c(156): warning:  #188-D: enumerated type mixed with another type
+          .GPIO_PuPd = (cfg >> 5) & 0x03,
+src\quad\drivers\io.c: 8 warnings, 0 errors
+compiling rcc.c...
+compiling rxSerial1Test.c...
+compiling rxSerial6Test.c...
+compiling led.c...
+compiling pwm_output.c...
+src\quad\drivers\pwm_output.c(40): warning:  #177-D: function "pwmOutConfigKhz"  was declared but never referenced
+  static void pwmOutConfigKhz(pwmOutputPort_t *port, const timerHardware_t *timerHardware, uint8_t khz, uint16_t period, uint16_t value)
+src\quad\drivers\pwm_output.c: 1 warning, 0 errors
+compiling rxSerial3Test.c...
+compiling rx_pwm.c...
+compiling sdcard_standard.c...
+compiling sdcard.c...
+src\quad\drivers\sdcard.c(883): warning:  #111-D: statement is unreachable
+  					break;
+src\quad\drivers\sdcard.c: 1 warning, 0 errors
 compiling config.c...
-src\quad\fc\config.c(537): warning:  #177-D: variable "samplingTime"  was declared but never referenced
-  	float samplingTime = 0.000125f;			// 1 / 8000 (gyro sampling frequency 8K) = 0.000125 
-src\quad\fc\config.c: 1 warning, 0 errors
-linking...
-Program Size: Code=32648 RO-data=1904 RW-data=4864 ZI-data=9992  
-".\Objects\13-PID.axf" - 0 Error(s), 1 Warning(s).
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\fc\config.c: 1 warning, 30 errors
+compiling fc_core.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\fc\fc_core.c: 1 warning, 30 errors
+compiling timer_stm32f4xx.c...
+compiling sound_beeper.c...
+compiling serial_uart.c...
+src\quad\drivers\serial_uart.c(308): warning:  #111-D: statement is unreachable
+  	if (s->port.rxBufferHead >= s->port.rxBufferTail) {
+src\quad\drivers\serial_uart.c(314): warning:  #111-D: statement is unreachable
+  	return (uint32_t)-1;
+src\quad\drivers\serial_uart.c: 2 warnings, 0 errors
+compiling serial_uart_stm32f4xx.c...
+compiling serial.c...
+compiling timer.c...
+src\quad\drivers\timer.c(89): warning:  #111-D: statement is unreachable
+  		
+CASE(1);
+src\quad\drivers\timer.c(92): warning:  #111-D: statement is unreachable
+  		
+CASE(2);
+src\quad\drivers\timer.c(95): warning:  #111-D: statement is unreachable
+  		
+CASE(3);
+src\quad\drivers\timer.c(98): warning:  #111-D: statement is unreachable
+  		
+CASE(4);
+src\quad\drivers\timer.c(110): warning:  #111-D: statement is unreachable
+  		
+CASE(8);
+src\quad\drivers\timer.c(116): warning:  #111-D: statement is unreachable
+  		
+CASE(10);
+src\quad\drivers\timer.c: 6 warnings, 0 errors
+compiling runtime_config.c...
+compiling fat_standard.c...
+compiling asyncfatfs.c...
+src\quad\io\asyncfatfs\asyncfatfs.c(879): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(929): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(1998): warning:  #111-D: statement is unreachable
+  				break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2002): warning:  #111-D: statement is unreachable
+  				break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2051): warning:  #111-D: statement is unreachable
+  					break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2058): warning:  #111-D: statement is unreachable
+  					break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2107): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2118): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2200): warning:  #68-D: integer conversion resulted in a change of sign
+  			afatfs_assert(afatfs_fseekAtomic(directory, -
+FATFS_SECTOR_SIZE * (afatfs.sectorsPerCluster - 1)));
+src\quad\io\asyncfatfs\asyncfatfs.c(2203): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2214): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2225): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2412): warning:  #111-D: statement is unreachable
+  			break;
+src\quad\io\asyncfatfs\asyncfatfs.c(2458): warning:  #111-D: statement is unreachable
+  						break;
+src\quad\io\asyncfatfs\asyncfatfs.c(3018): warning:  #111-D: statement is unreachable
+          break;
+src\quad\io\asyncfatfs\asyncfatfs.c(3029): warning:  #111-D: statement is unreachable
+          break;
+src\quad\io\asyncfatfs\asyncfatfs.c: 16 warnings, 0 errors
+compiling fc_rc.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\fc\fc_rc.c: 1 warning, 30 errors
+compiling fc_tasks.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\fc\fc_tasks.c: 1 warning, 30 errors
+compiling rc_controls.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\fc\rc_controls.c: 1 warning, 30 errors
+compiling mixer.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\flight\mixer.c: 1 warning, 30 errors
+compiling pid.c...
+src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+src\quad\flight\mixer.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum mixerMode {
+src\quad\flight\mixer.h(12): error:  #20: identifier "MIXER_TRI" is undefined
+      MIXER_TRI = 1,
+src\quad\flight\mixer.h(13): error:  #20: identifier "MIXER_QUADP" is undefined
+      MIXER_QUADP = 2,
+src\quad\flight\mixer.h(14): error:  #20: identifier "MIXER_QUADX" is undefined
+      MIXER_QUADX = 3,
+src\quad\flight\mixer.h(15): error:  #20: identifier "MIXER_BICOPTER" is undefined
+      MIXER_BICOPTER = 4,
+src\quad\flight\mixer.h(16): error:  #20: identifier "MIXER_GIMBAL" is undefined
+      MIXER_GIMBAL = 5,
+src\quad\flight\mixer.h(17): error:  #20: identifier "MIXER_Y6" is undefined
+      MIXER_Y6 = 6,
+src\quad\flight\mixer.h(18): error:  #20: identifier "MIXER_HEX6" is undefined
+      MIXER_HEX6 = 7,
+src\quad\flight\mixer.h(19): error:  #20: identifier "MIXER_FLYING_WING" is undefined
+      MIXER_FLYING_WING = 8,
+src\quad\flight\mixer.h(20): error:  #20: identifier "MIXER_Y4" is undefined
+      MIXER_Y4 = 9,
+src\quad\flight\mixer.h(21): error:  #20: identifier "MIXER_HEX6X" is undefined
+      MIXER_HEX6X = 10,
+src\quad\flight\mixer.h(22): error:  #20: identifier "MIXER_OCTOX8" is undefined
+      MIXER_OCTOX8 = 11,
+src\quad\flight\mixer.h(23): error:  #20: identifier "MIXER_OCTOFLATP" is undefined
+      MIXER_OCTOFLATP = 12,
+src\quad\flight\mixer.h(24): error:  #20: identifier "MIXER_OCTOFLATX" is undefined
+      MIXER_OCTOFLATX = 13,
+src\quad\flight\mixer.h(25): error:  #20: identifier "MIXER_AIRPLANE" is undefined
+      MIXER_AIRPLANE = 14,        // airplane / singlecopter / dualcopter (not yet properly supported)
+src\quad\flight\mixer.h(26): error:  #20: identifier "MIXER_HELI_120_CCPM" is undefined
+      MIXER_HELI_120_CCPM = 15,
+src\quad\flight\mixer.h(27): error:  #20: identifier "MIXER_HELI_90_DEG" is undefined
+      MIXER_HELI_90_DEG = 16,
+src\quad\flight\mixer.h(28): error:  #20: identifier "MIXER_VTAIL4" is undefined
+      MIXER_VTAIL4 = 17,
+src\quad\flight\mixer.h(29): error:  #20: identifier "MIXER_HEX6H" is undefined
+      MIXER_HEX6H = 18,
+src\quad\flight\mixer.h(30): error:  #20: identifier "MIXER_PPM_TO_SERVO" is undefined
+      MIXER_PPM_TO_SERVO = 19,    // PPM -> servo relay
+src\quad\flight\mixer.h(31): error:  #20: identifier "MIXER_DUALCOPTER" is undefined
+      MIXER_DUALCOPTER = 20,
+src\quad\flight\mixer.h(32): error:  #20: identifier "MIXER_SINGLECOPTER" is undefined
+      MIXER_SINGLECOPTER = 21,
+src\quad\flight\mixer.h(33): error:  #20: identifier "MIXER_ATAIL4" is undefined
+      MIXER_ATAIL4 = 22,
+src\quad\flight\mixer.h(34): error:  #20: identifier "MIXER_CUSTOM" is undefined
+      MIXER_CUSTOM = 23,
+src\quad\flight\mixer.h(35): error:  #20: identifier "MIXER_CUSTOM_AIRPLANE" is undefined
+      MIXER_CUSTOM_AIRPLANE = 24,
+src\quad\flight\mixer.h(36): error:  #20: identifier "MIXER_CUSTOM_TRI" is undefined
+      MIXER_CUSTOM_TRI = 25,
+src\quad\flight\mixer.h(37): error:  #20: identifier "MIXER_QUADX_1234" is undefined
+      MIXER_QUADX_1234 = 26
+src\quad\flight\mixer.h(38): error:  #65: expected a ";"
+  }mixerMode_e;
+src\quad\flight\mixer.h(38): error:  #77-D: this declaration has no storage class or type specifier
+  }mixerMode_e;
+src\quad\flight\mixer.h(71): error:  #757: variable "mixerMode_e"  is not a type name
+  void mixerInit(mixerMode_e mixerMode, motorMixer_t *initialCustomMixers);
+src\quad\flight\pid.c: 1 warning, 30 errors
+compiling beeper.c...
+compiling config_eeprom.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\config\config_eeprom.c: 1 warning, 30 errors
+compiling feature.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\config\feature.c: 1 warning, 30 errors
+compiling filter.c...
+compiling maths.c...
+compiling acceleration.c...
+src\quad\sensors\acceleration.c(89): warning:  #188-D: enumerated type mixed with another type
+  	if (!accDetect(&acc.dev, accelerometerConfig->acc_hardware)) {
+src\quad\sensors\acceleration.c: 1 warning, 0 errors
+compiling debug.c...
+compiling initialisation.c...
+compiling gyro.c...
+compiling pwm.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\rx\pwm.c: 1 warning, 30 errors
+compiling rx.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\rx\rx.c: 1 warning, 30 errors
+compiling blackbox.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\blackbox\blackbox.c: 1 warning, 30 errors
+compiling sbus.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\rx\sbus.c: 1 warning, 30 errors
+compiling blackbox_io.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\blackbox\blackbox_io.c: 1 warning, 30 errors
+compiling scheduler.c...
+.\src\quad\flight\pid.h(68): error:  #130: expected a "{"
+  void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);
+.\src\quad\fc\rc_controls.h(11): warning:  #12-D: parsing restarts here after previous syntax error
+  typedef enum {
+.\src\quad\fc\rc_controls.h(12): error:  #20: identifier "BOXARM" is undefined
+  	BOXARM = 0,
+.\src\quad\fc\rc_controls.h(13): error:  #20: identifier "BOXANGLE" is undefined
+  	BOXANGLE,
+.\src\quad\fc\rc_controls.h(14): error:  #20: identifier "BOXHORIZON" is undefined
+  	BOXHORIZON,
+.\src\quad\fc\rc_controls.h(15): error:  #20: identifier "BOXBARO" is undefined
+  	BOXBARO,
+.\src\quad\fc\rc_controls.h(16): error:  #20: identifier "BOXANTIGRAVITY" is undefined
+  	BOXANTIGRAVITY,
+.\src\quad\fc\rc_controls.h(17): error:  #20: identifier "BOXMAG" is undefined
+  	BOXMAG,
+.\src\quad\fc\rc_controls.h(18): error:  #20: identifier "BOXHEADFREE" is undefined
+  	BOXHEADFREE,
+.\src\quad\fc\rc_controls.h(19): error:  #20: identifier "BOXHEADADJ" is undefined
+  	BOXHEADADJ,
+.\src\quad\fc\rc_controls.h(20): error:  #20: identifier "BOXCAMSTAB" is undefined
+  	BOXCAMSTAB,
+.\src\quad\fc\rc_controls.h(21): error:  #20: identifier "BOXCAMTRIG" is undefined
+  	BOXCAMTRIG,
+.\src\quad\fc\rc_controls.h(22): error:  #20: identifier "BOXGPSHOME" is undefined
+  	BOXGPSHOME,
+.\src\quad\fc\rc_controls.h(23): error:  #20: identifier "BOXGPSHOLD" is undefined
+  	BOXGPSHOLD,
+.\src\quad\fc\rc_controls.h(24): error:  #20: identifier "BOXPASSTHRU" is undefined
+  	BOXPASSTHRU,
+.\src\quad\fc\rc_controls.h(25): error:  #20: identifier "BOXBEEPERON" is undefined
+  	BOXBEEPERON,
+.\src\quad\fc\rc_controls.h(26): error:  #20: identifier "BOXLEDMAX" is undefined
+  	BOXLEDMAX,
+.\src\quad\fc\rc_controls.h(27): error:  #20: identifier "BOXLEDLOW" is undefined
+  	BOXLEDLOW,
+.\src\quad\fc\rc_controls.h(28): error:  #20: identifier "BOXLLIGHTS" is undefined
+  	BOXLLIGHTS,
+.\src\quad\fc\rc_controls.h(29): error:  #20: identifier "BOXCALIB" is undefined
+  	BOXCALIB,
+.\src\quad\fc\rc_controls.h(30): error:  #20: identifier "BOXGOV" is undefined
+  	BOXGOV,
+.\src\quad\fc\rc_controls.h(31): error:  #20: identifier "BOXOSD" is undefined
+  	BOXOSD,
+.\src\quad\fc\rc_controls.h(32): error:  #20: identifier "BOXTELEMETRY" is undefined
+  	BOXTELEMETRY,
+.\src\quad\fc\rc_controls.h(33): error:  #20: identifier "BOXGTUNE" is undefined
+  	BOXGTUNE,
+.\src\quad\fc\rc_controls.h(34): error:  #20: identifier "BOXSONAR" is undefined
+  	BOXSONAR,
+.\src\quad\fc\rc_controls.h(35): error:  #20: identifier "BOXSERVO1" is undefined
+  	BOXSERVO1,
+.\src\quad\fc\rc_controls.h(36): error:  #20: identifier "BOXSERVO2" is undefined
+  	BOXSERVO2,
+.\src\quad\fc\rc_controls.h(37): error:  #20: identifier "BOXSERVO3" is undefined
+  	BOXSERVO3,
+.\src\quad\fc\rc_controls.h(38): error:  #20: identifier "BOXBLACKBOX" is undefined
+  	BOXBLACKBOX,
+.\src\quad\fc\rc_controls.h(39): error:  #20: identifier "BOXFAILSAFE" is undefined
+  	BOXFAILSAFE,
+.\src\quad\fc\rc_controls.h(40): error:  #20: identifier "BOXAIRMODE" is undefined
+  	BOXAIRMODE,
+src\quad\scheduler\scheduler.c: 1 warning, 30 errors
+".\Objects\13-PID.axf" - 480 Error(s), 74 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -44,10 +1251,11 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_STM32F407VG-Discovery
-  E:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  F:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:04
+Target not created.
+Build Time Elapsed:  00:00:12
 </pre>
 </body>
 </html>

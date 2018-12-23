@@ -55,6 +55,8 @@
 #include "blackbox.h"
 #include "blackbox_io.h"
 
+#include "pid.h"
+
 //#define GPIO_PA1_PIN				PA1
 //#define GPIO_PB8_PIN				PB8
 
@@ -334,6 +336,16 @@ int main(void)
 	beeperInit(BeeperConfig());
 #endif
 
+#if defined(BEEPER)
+	/* Board power on beeper */
+	for (int i = 0; i < 10; i++) {
+		delay(25);
+		BEEP_ON;
+		delay(25);
+		BEEP_OFF;
+	}
+#endif
+
 #ifdef USE_I2C			// USE_I2C is defined in target.h
 	/* Initialise I2C device */
 	i2cInit(I2C_DEVICE);
@@ -434,24 +446,21 @@ int main(void)
 #endif
 	
 	systemState |= SYSTEM_STATE_SENSORS_READY;
-	
-//	printf("Setup completed!\r\n");
-	
-//	gpioPA1Init();
-//	gpioPB8Init();
 
-
-#if defined(BEEPER)
-	/* Board power on beeper */
-	for (int i = 0; i < 10; i++) {
-		delay(25);
-		BEEP_ON;
-		delay(25);
-		BEEP_OFF;
-	}
-#endif
+	/* PID configurations
+	 * As gyro.targetLooptime is returned from gyroSetSampleRate() function of gyro_sync.c, so we can safely call pidSetTargetLooptime() function now
+	 */
+//	printf("gyro.targetLooptime: %u\r\n", gyro.targetLooptime);								// 125
+//	printf("PidConfig()->pid_process_denom: %u\r\n", PidConfig()->pid_process_denom);		// 4
 	
-//	delay(3000);
+	/* Initialise PID looptime */
+	pidSetTargetLooptime(gyro.targetLooptime * PidConfig()->pid_process_denom);		// PID looptime = 125 * 4 = 500 us (2 KHz)
+	
+	/* Initialise PID filters */
+	pidInitFilters(&currentProfile->pidProfile);
+	
+	/* Initialise PID configurations */
+	pidInitConfig(&currentProfile->pidProfile);
 
 	/* Testing standard deviation functions */
 //	stdev_t var;
@@ -501,7 +510,7 @@ int main(void)
 	
 //	printf("sizeof(master_t): %u\r\n", sizeof(master_t));			// sizeof(master_t): 868 so far
 
-    extern cfTask_t *taskQueueArray[TASK_COUNT + 1];
+//    extern cfTask_t *taskQueueArray[TASK_COUNT + 1];
 
     /* Initialise all the RTOS tasks */
     fcTasksInit();

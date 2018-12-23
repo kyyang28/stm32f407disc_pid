@@ -1,12 +1,12 @@
 .\objects\serial.o: src\quad\drivers\serial.c
-.\objects\serial.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\serial.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\serial.o: src\quad\drivers\serial.h
-.\objects\serial.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\serial.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\serial.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\serial.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\serial.o: src\quad\drivers\io.h
 .\objects\serial.o: src\quad\drivers\iodef.h
 .\objects\serial.o: .\src\quad\common\utils.h
-.\objects\serial.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\serial.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\serial.o: src\quad\drivers\IOTypes.h
 .\objects\serial.o: src\quad\drivers\io.h
 .\objects\serial.o: .\src\quad\target\13-PID\target.h
@@ -33,7 +33,7 @@
 .\objects\serial.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\serial.o: .\src\quad\drivers\bus_i2c.h
 .\objects\serial.o: .\src\quad\config\feature.h
-.\objects\serial.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\serial.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\serial.o: src\quad\drivers\io_def_generated.h
 .\objects\serial.o: src\quad\drivers\iodef.h
 .\objects\serial.o: src\quad\drivers\ioImpl.h
