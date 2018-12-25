@@ -50,3 +50,5 @@
 .\objects\pwm.o: .\src\quad\drivers\exti.h
 .\objects\pwm.o: .\src\quad\common\axis.h
 .\objects\pwm.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\pwm.o: .\src\quad\common\time.h
+.\objects\pwm.o: .\src\quad\drivers\rx_pwm.h

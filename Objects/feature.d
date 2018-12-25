@@ -56,3 +56,9 @@
 .\objects\feature.o: .\src\quad\io\motors.h
 .\objects\feature.o: .\src\quad\flight\mixer.h
 .\objects\feature.o: .\src\quad\flight\pid.h
+.\objects\feature.o: .\src\quad\build\platform.h
+.\objects\feature.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
+.\objects\feature.o: src\quad\config\config_profile.h
+.\objects\feature.o: .\src\quad\fc\config.h
+.\objects\feature.o: .\src\quad\drivers\sdcard.h
+.\objects\feature.o: .\src\quad\blackbox\blackbox.h

@@ -58,3 +58,14 @@
 .\objects\blackbox_io.o: .\src\quad\io\motors.h
 .\objects\blackbox_io.o: .\src\quad\flight\mixer.h
 .\objects\blackbox_io.o: .\src\quad\flight\pid.h
+.\objects\blackbox_io.o: .\src\quad\build\platform.h
+.\objects\blackbox_io.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
+.\objects\blackbox_io.o: .\src\quad\config\config_profile.h
+.\objects\blackbox_io.o: .\src\quad\fc\config.h
+.\objects\blackbox_io.o: .\src\quad\drivers\sdcard.h
+.\objects\blackbox_io.o: .\src\quad\blackbox\blackbox.h
+.\objects\blackbox_io.o: src\quad\blackbox\blackbox_io.h
+.\objects\blackbox_io.o: .\src\quad\io\asyncfatfs\asyncfatfs.h
+.\objects\blackbox_io.o: .\src\quad\io\asyncfatfs\fat_standard.h
+.\objects\blackbox_io.o: .\src\quad\common\maths.h
+.\objects\blackbox_io.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

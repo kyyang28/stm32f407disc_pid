@@ -462,6 +462,10 @@ int main(void)
 	/* Initialise PID configurations */
 	pidInitConfig(&currentProfile->pidProfile);
 
+	
+	/* MCU Support Package(MSP) initialisation */
+	mspFcInit();
+	
 	/* Testing standard deviation functions */
 //	stdev_t var;
 //	float dataset[] = {727.7, 1086.5, 1091.0, 1361.3, 1490.5, 1956.1};

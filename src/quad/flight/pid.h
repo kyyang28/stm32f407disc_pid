@@ -8,18 +8,26 @@
 #define PIDSUM_LIMIT					0.5f
 #define PIDSUM_LIMIT_YAW				0.5f
 
+/* 
+ * Scaling factors for Pids for better tunable range in configurator 2DOF PID controller. 
+ * The scaling is based on legacy pid controller or previous float
+ */
+#define PTERM_SCALE						0.032029f
+#define ITERM_SCALE						0.244381f
+#define DTERM_SCALE						0.000529f
+
 typedef enum {
-	PIDROLL,
-	PIDPITCH,
-	PIDYAW,
-	PIDALT,
-	PIDPOS,
-	PIDPOSR,
-	PIDNAVR,
-	PIDLEVEL,
-	PIDMAG,
-	PIDVEL,
-	PID_ITEM_COUNT
+	PIDROLL,				// 0
+	PIDPITCH,				// 1
+	PIDYAW,					// 2
+	PIDALT,					// 3
+	PIDPOS,					// 4
+	PIDPOSR,				// 5
+	PIDNAVR,				// 6
+	PIDLEVEL,				// 7
+	PIDMAG,					// 8
+	PIDVEL,					// 9
+	PID_ITEM_COUNT			// 10
 }pidIndex_e;
 
 typedef enum {
@@ -62,7 +70,7 @@ typedef struct pidConfig_s {
 /* Initialisations */
 void pidSetTargetLooptime(uint32_t pidLooptime);
 void pidInitFilters(const pidProfile_t *pidProfile);
-void pidInitConfig(const pidProfile_t *pidProfile)
+void pidInitConfig(const pidProfile_t *pidProfile);
 
 /* PID control algorithms */
 void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);

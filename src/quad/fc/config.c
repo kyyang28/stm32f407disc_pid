@@ -295,9 +295,11 @@ void ResetPwmConfig(pwmConfig_t *pwmConfig)
  */
 void targetConfiguration(master_t *config)
 {
-	/* USART1 */
-	int index = findSerialPortIndexByIdentifier(SERIAL_PORT_USART1);			// index = 0 (SERIAL_PORT_USART1)
-	config->serialConfig.portConfigs[index].functionMask = FUNCTION_RX_SERIAL;
+	int index;
+	
+	/* USART1 for MSP */
+	index = findSerialPortIndexByIdentifier(SERIAL_PORT_USART1);			// index = 0 (SERIAL_PORT_USART1)
+	config->serialConfig.portConfigs[index].functionMask = FUNCTION_MSP;
 
 	/* USART2 */
 //	index = findSerialPortIndexByIdentifier(SERIAL_PORT_USART2);
@@ -305,11 +307,12 @@ void targetConfiguration(master_t *config)
 	
 	/* USART3 */
 	index = findSerialPortIndexByIdentifier(SERIAL_PORT_USART3);		// index = 1 (serialPortIdentifiers[1] contains SERIAL_PORT_USART3 which is 2)
-	config->serialConfig.portConfigs[index].functionMask = FUNCTION_BLACKBOX;			// USART3 used for printf debugger
+	config->serialConfig.portConfigs[index].functionMask = FUNCTION_BLACKBOX;			// USART3 used for printf debugger JUST FOR TESTING PURPOSE NOW
 
 	/* USART6 */
 	index = findSerialPortIndexByIdentifier(SERIAL_PORT_USART6);		// index = 2 (serialPortIdentifiers[2] contains SERIAL_PORT_USART6 which is 5)
-	config->serialConfig.portConfigs[index].functionMask = FUNCTION_TELEMETRY_FRSKY;	// USART6 used for FRSKY TELEMETRY
+	config->serialConfig.portConfigs[index].functionMask = FUNCTION_RX_SERIAL;
+//	config->serialConfig.portConfigs[index].functionMask = FUNCTION_TELEMETRY_FRSKY;	// USART6 used for FRSKY TELEMETRY
 }
 
 #ifdef BEEPER
@@ -356,6 +359,10 @@ void createDefaultConfig(master_t *config)
 	uint32_t *featuresPtr = &config->enabledFeatures;
 	intFeatureClearAll(featuresPtr);
 	intFeatureSet(DEFAULT_RX_FEATURE, featuresPtr);
+
+#ifdef DEFAULT_FEATURES
+	intFeatureSet(DEFAULT_FEATURES, featuresPtr);		// Initialise default features including airmode right now.
+#endif
 	
 	/* Setup the debug mode for debugging purposes */
 	config->debug_mode = DEBUG_MODE;		// DEBUG_MODE default is DEBUG_NONE

@@ -3,6 +3,9 @@
 #include "rx.h"
 #include "configMaster.h"
 #include "maths.h"
+#include "fc_core.h"
+#include "scheduler.h"
+#include "rc_controls.h"
 
 #define THROTTLE_LOOKUP_LENGTH			12
 
@@ -10,6 +13,11 @@ static float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
 static float throttlePIDAttenuation;
 
 static int16_t lookupThrottleRC[THROTTLE_LOOKUP_LENGTH];		// lookup table for expo & mid THROTTLE
+
+float getSetpointRate(int axis)
+{
+	return setpointRate[axis];
+}
 
 float getThrottlePIDAttenuation(void)
 {
@@ -158,4 +166,22 @@ void updateRcCommands(void)
 	 * @1491, rcCommand[THROTTLE] = 1434
 	 */
 //	printf("rcCommand[THROTTLE]: %d, %s, %d\r\n", rcCommand[THROTTLE], __FUNCTION__, __LINE__);			// range [0;1000]
+}
+
+void processRcCommand(void)
+{
+	static uint16_t currentRxRefreshRate;
+	
+	/* isRXDataNew is set to TRUE in taskUpdateRxMain() task function */
+	if (isRXDataNew) {
+		/* Get the task runtime difference between the current time and last time
+		 *
+		 * currentRxRefreshRate is between 50Hz and 1KHz
+		 */
+		currentRxRefreshRate = constrain(getTaskDeltaTime(TASK_RX), 1000, 20000);		// units in microseconds (us)
+		
+		if (isAntiGravityModeActive()) {
+			
+		}
+	}
 }

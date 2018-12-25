@@ -37,7 +37,7 @@
 
 #define USE_UART1
 #ifdef USE_UART1
-#define UART1_RX_PIN        	PB7		// RX line for SBUS data of FrSKY X4R-SB receiver
+#define UART1_RX_PIN        	PB7
 #define UART1_TX_PIN        	PB6
 #endif
 
@@ -55,7 +55,7 @@
 
 #define USE_UART6
 #ifdef USE_UART6
-#define UART6_RX_PIN        	PC7
+#define UART6_RX_PIN        	PC7			// RX line for SBUS data of FrSKY X4R-SB receiver
 #define UART6_TX_PIN        	PC6
 #endif
 
@@ -201,8 +201,11 @@
 #define USE_SERIALRX_SBUS
 #endif
 
+/* Declare the default features */
 #ifndef DEFAULT_FEATURES
-#define DEFAULT_FEATURES		0			// could be members of features_e
+#define DEFAULT_FEATURES		0							// could be members of features_e
+//#define DEFAULT_FEATURES		(FEATURE_AIRMODE)			// could be members of features_e
+//#define DEFAULT_FEATURES		(FEATURE_AIRMODE | FEATURE_SDCARD | FEATURE_BLACKBOX)			// could be members of features_e
 #endif
 
 #ifndef DEFAULT_RX_FEATURE

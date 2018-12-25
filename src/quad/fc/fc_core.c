@@ -13,6 +13,7 @@
 #include "gyro.h"
 #include "configMaster.h"
 #include "pid.h"
+#include "fc_rc.h"
 
 uint8_t motorControlEnable = false;
 
@@ -73,6 +74,9 @@ void processRx(timeUs_t currentTimeUs)
 	
 	/* handle rc stick positions */
 	processRcStickPositions();
+	
+	/* update activated modes */
+	updateActivatedModes();
 }
 
 static void subTaskMotorUpdate(void)
@@ -115,6 +119,8 @@ static void subTaskMotorUpdate(void)
 
 static void subTaskMainSubprocesses(timeUs_t currentTimeUs)
 {
+	processRcCommand();
+	
 #ifdef USE_SDCARD
 	afatfs_poll();
 #endif

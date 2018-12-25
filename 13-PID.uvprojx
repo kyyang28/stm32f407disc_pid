@@ -630,6 +630,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\quad\fc\runtime_config.c</FilePath>
             </File>
+            <File>
+              <FileName>fc_msp.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\quad\fc\fc_msp.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

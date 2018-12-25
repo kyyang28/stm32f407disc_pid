@@ -9,39 +9,43 @@
 #define MAX_MODE_ACTIVATION_CONDITION_COUNT 				20
 
 typedef enum {
-	BOXARM = 0,
-	BOXANGLE,
-	BOXHORIZON,
-	BOXBARO,
-	BOXANTIGRAVITY,
-	BOXMAG,
-	BOXHEADFREE,
-	BOXHEADADJ,
-	BOXCAMSTAB,
-	BOXCAMTRIG,
-	BOXGPSHOME,
-	BOXGPSHOLD,
-	BOXPASSTHRU,
-	BOXBEEPERON,
-	BOXLEDMAX,
-	BOXLEDLOW,
-	BOXLLIGHTS,
-	BOXCALIB,
-	BOXGOV,
-	BOXOSD,
-	BOXTELEMETRY,
-	BOXGTUNE,
-	BOXSONAR,
-	BOXSERVO1,
-	BOXSERVO2,
-	BOXSERVO3,
-	BOXBLACKBOX,
-	BOXFAILSAFE,
-	BOXAIRMODE,
-	BOX3DDISABLESWITCH,
-	BOXFPVANGLEMIX,
-	CHECKBOX_ITEM_COUNT
+	BOXARM = 0,			// 0
+	BOXANGLE,			// 1
+	BOXHORIZON,			// 2
+	BOXBARO,			// 3
+	BOXANTIGRAVITY,		// 4
+	BOXMAG,				// 5
+	BOXHEADFREE,		// 6
+	BOXHEADADJ,			// 7
+	BOXCAMSTAB,			// 8
+	BOXCAMTRIG,			// 9
+	BOXGPSHOME,			// 10
+	BOXGPSHOLD,			// 11
+	BOXPASSTHRU,		// 12
+	BOXBEEPERON,		// 13
+	BOXLEDMAX,			// 14
+	BOXLEDLOW,			// 15
+	BOXLLIGHTS,			// 16
+	BOXCALIB,			// 17
+	BOXGOV,				// 18
+	BOXOSD,				// 19
+	BOXTELEMETRY,		// 20
+	BOXGTUNE,			// 21
+	BOXSONAR,			// 22
+	BOXSERVO1,			// 23
+	BOXSERVO2,			// 24
+	BOXSERVO3,			// 25
+	BOXBLACKBOX,		// 26
+	BOXFAILSAFE,		// 27
+	BOXAIRMODE,			// 28
+	BOX3DDISABLESWITCH,	// 29
+	BOXFPVANGLEMIX,		// 30
+	CHECKBOX_ITEM_COUNT	// 31
 }boxId_e;
+
+extern uint32_t rcModeActivationMask;
+#define IS_RC_MODE_ACTIVE(modeId)	((1 << (modeId)) & rcModeActivationMask)
+#define ACTIVATE_RC_MODE(modeId)	(rcModeActivationMask |= (1 << modeId))
 
 typedef enum rc_alias {
 	ROLL = 0,
@@ -121,6 +125,7 @@ typedef struct armingConfig_s {
 	uint8_t auto_disarm_delay;			// allow automatically disarming multicopters after auto_disarm_delay seconds of zero throttle. Disabled when 0.
 }armingConfig_t;
 
+bool isAntiGravityModeActive(void);
 void useRcControlsConfig(modeActivationCondition_t *modeActivationConditions, motorConfig_t *motorConfigToUse, pidProfile_t *pidProfileToUse);
 void processRcStickPositions(void);
 

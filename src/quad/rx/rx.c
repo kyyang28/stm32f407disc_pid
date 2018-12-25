@@ -150,7 +150,7 @@ void rxInit(const rxConfig_t *rxConfig, const modeActivationCondition_t *modeAct
 		}
 	}
 #endif
-	
+
 #if defined(USE_PWM)
 	if (feature(FEATURE_RX_PARALLEL_PWM)) {
 //		printf("FEATURE_RX_PARALLEL_PWM: %s, %d\r\n", __FUNCTION__, __LINE__);
@@ -286,7 +286,8 @@ static void readRxChannelsApplyRanges(void)
 		/* store sampled rx value to rcRaw array */
 		rcRaw[channel] = sample;
 
-#if 0
+#if 1
+#if 0		
 		if (channel == 0)		// Channel 1: Roll
 			printf("rcRaw[%d](Roll[Ail] stick): %u\r\n", channel, rcRaw[channel]);
 		else if (channel == 1)	// Channel 2: Pitch
@@ -295,13 +296,14 @@ static void readRxChannelsApplyRanges(void)
 			printf("rcRaw[%d](Yaw[Rud] stick): %u\r\n", channel, rcRaw[channel]);
 		else if (channel == 3)	// Channel 3: Throttle
 			printf("rcRaw[%d](Throttle stick): %u\r\n", channel, rcRaw[channel]);
-		else if (channel == 4)	// Channel 5: BOXARM (L04, logical switch) AUX1
+#endif
+		if (channel == 4)	// Channel 5: BOXARM (L04, logical switch) AUX1
 			printf("rcRaw[%d](BOXARM switch (L04)): %u\r\n", channel, rcRaw[channel]);
 		else if (channel == 5)	// Channel 6: Switch SB for BEEPER	AUX2
 			printf("rcRaw[%d](BEEPER switch (SB)): %u\r\n", channel, rcRaw[channel]);
-		else if (channel == 8)	// Channel 9: Switch SD for FLIGHT MODE	AUX3
+		else if (channel == 6)	// Channel 7: Switch SD for FLIGHT MODE	AUX3
 			printf("rcRaw[%d](FLIGHT MODE switch (SD)): %u\r\n", channel, rcRaw[channel]);
-		else if (channel == 9) { // Channel 10: Switch SG for AIR MODE	AUX4
+		else if (channel == 7) { // Channel 8: Switch SG for AIR MODE	AUX4
 			printf("rcRaw[%d](AIR MODE switch (SG)): %u\r\n", channel, rcRaw[channel]);
 			printf("\r\n");
 		}

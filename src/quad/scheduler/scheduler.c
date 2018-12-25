@@ -93,6 +93,18 @@ cfTask_t *queueNext(void)
     return taskQueueArray[++taskQueuePos];
 }
 
+/* Get the task runtime difference between the current time and last time */
+uint32_t getTaskDeltaTime(cfTaskId_e taskId)
+{
+	if (taskId == TASK_SELF) {
+		return currentTask->taskLatestDeltaTime;
+	} else if (taskId < TASK_COUNT) {
+		return cfTasks[taskId].taskLatestDeltaTime;
+	}
+	
+	return 0;
+}
+
 /*
  *  Remove task from queue if enabled is set to false,
  *  otherwise, add task to queue.

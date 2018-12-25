@@ -45,6 +45,7 @@
 ".\objects\fc_tasks.o"
 ".\objects\rc_controls.o"
 ".\objects\runtime_config.o"
+".\objects\fc_msp.o"
 ".\objects\beeper.o"
 ".\objects\asyncfatfs.o"
 ".\objects\fat_standard.o"

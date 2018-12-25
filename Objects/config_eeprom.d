@@ -58,3 +58,10 @@
 .\objects\config_eeprom.o: .\src\quad\io\motors.h
 .\objects\config_eeprom.o: .\src\quad\flight\mixer.h
 .\objects\config_eeprom.o: .\src\quad\flight\pid.h
+.\objects\config_eeprom.o: .\src\quad\build\platform.h
+.\objects\config_eeprom.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
+.\objects\config_eeprom.o: src\quad\config\config_profile.h
+.\objects\config_eeprom.o: .\src\quad\fc\config.h
+.\objects\config_eeprom.o: .\src\quad\drivers\sdcard.h
+.\objects\config_eeprom.o: .\src\quad\blackbox\blackbox.h
+.\objects\config_eeprom.o: src\quad\config\config_eeprom.h

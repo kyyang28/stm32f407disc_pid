@@ -56,3 +56,4 @@
 .\objects\scheduler.o: .\src\quad\drivers\exti.h
 .\objects\scheduler.o: .\src\quad\common\axis.h
 .\objects\scheduler.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\scheduler.o: .\src\quad\build\debug.h

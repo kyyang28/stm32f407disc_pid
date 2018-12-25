@@ -76,4 +76,6 @@ void setTaskEnabled(cfTaskId_e taskId, bool enabled);
 
 void taskSystem(timeUs_t currentTimeUs);
 
+uint32_t getTaskDeltaTime(cfTaskId_e taskId);
+
 #endif

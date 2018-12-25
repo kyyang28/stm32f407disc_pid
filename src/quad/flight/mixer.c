@@ -26,12 +26,31 @@ uint16_t motorOutputHigh, motorOutputLow;
 mixerMode_e currentMixerMode;
 static motorMixer_t currentMixer[MAX_SUPPORTED_MOTORS];
 
-/* throttle, roll, pitch, yaw */
+/* throttle, roll, pitch, yaw
+ * 
+ * / \
+ *  |
+ *  |
+ *	|  4CW   2CCW
+ *  |    \    /
+ *  |     \  /
+ *  |      \/
+ *  |      /\
+ *  |     /  \
+ *  |    /    \
+ *  |  3CCW   1CW
+ *	|____________________________>
+ * 
+ * throttle values for all four motors are always 1.0f
+ * For yaw, CW = -1.0f, CCW = 1.0f
+ * 
+ * See notes <<Motor Mixer>>
+ */
 static const motorMixer_t mixerQuadX[] = {
-	{ 1.0f, -1.0f, 1.0f, -1.0f },				// REAR_R
-	{ 1.0f, -1.0f, -1.0f, 1.0f },				// FRONT_R
-	{ 1.0f, 1.0f, 1.0f, 1.0f },					// REAR_L
-	{ 1.0f, 1.0f, -1.0f, -1.0f },				// FRONT_L
+	{ 1.0f, -1.0f, 1.0f, -1.0f },				// REAR_RIGHT MOTOR 	(MOTOR 1)
+	{ 1.0f, -1.0f, -1.0f, 1.0f },				// FRONT_RIGHT MOTOR	(MOTOR 2)
+	{ 1.0f, 1.0f, 1.0f, 1.0f },					// REAR_LEFT MOTOR		(MOTOR 3)
+	{ 1.0f, 1.0f, -1.0f, -1.0f },				// FRONT_LEFT MOTOR		(MOTOR 4)
 };
 
 void mixerUseConfigs(motorConfig_t *motorConfigToUse, mixerConfig_t *mixerConfigToUse, rxConfig_t *rxConfigToUse)

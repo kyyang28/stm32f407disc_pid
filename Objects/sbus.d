@@ -49,3 +49,6 @@
 .\objects\sbus.o: .\src\quad\drivers\exti.h
 .\objects\sbus.o: .\src\quad\common\axis.h
 .\objects\sbus.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\sbus.o: .\src\quad\common\time.h
+.\objects\sbus.o: .\src\quad\drivers\serial.h
+.\objects\sbus.o: .\src\quad\drivers\system.h
