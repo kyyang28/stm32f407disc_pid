@@ -49,6 +49,8 @@
 .\objects\fc_rc.o: .\src\quad\drivers\exti.h
 .\objects\fc_rc.o: .\src\quad\common\axis.h
 .\objects\fc_rc.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\fc_rc.o: .\src\quad\common\maths.h
+.\objects\fc_rc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\fc_rc.o: .\src\quad\common\time.h
 .\objects\fc_rc.o: .\src\quad\config\configMaster.h
 .\objects\fc_rc.o: .\src\quad\drivers\led.h
@@ -63,8 +65,6 @@
 .\objects\fc_rc.o: .\src\quad\fc\config.h
 .\objects\fc_rc.o: .\src\quad\drivers\sdcard.h
 .\objects\fc_rc.o: .\src\quad\blackbox\blackbox.h
-.\objects\fc_rc.o: .\src\quad\common\maths.h
-.\objects\fc_rc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\fc_rc.o: src\quad\fc\fc_core.h
 .\objects\fc_rc.o: .\src\quad\scheduler\scheduler.h
 .\objects\fc_rc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

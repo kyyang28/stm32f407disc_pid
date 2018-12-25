@@ -56,6 +56,6 @@
 .\objects\mixer.o: .\src\quad\drivers\exti.h
 .\objects\mixer.o: .\src\quad\common\axis.h
 .\objects\mixer.o: .\src\quad\drivers\accgyro_mpu.h
-.\objects\mixer.o: .\src\quad\common\time.h
 .\objects\mixer.o: .\src\quad\common\maths.h
 .\objects\mixer.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\mixer.o: .\src\quad\common\time.h

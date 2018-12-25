@@ -58,6 +58,8 @@
 .\objects\config.o: .\src\quad\io\motors.h
 .\objects\config.o: .\src\quad\flight\mixer.h
 .\objects\config.o: .\src\quad\flight\pid.h
+.\objects\config.o: .\src\quad\common\maths.h
+.\objects\config.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\config.o: .\src\quad\build\platform.h
 .\objects\config.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\config.o: .\src\quad\config\config_profile.h
@@ -72,7 +74,5 @@
 .\objects\config.o: .\src\quad\common\filter.h
 .\objects\config.o: .\src\quad\target\13-PID\common.h
 .\objects\config.o: .\src\quad\build\debug.h
-.\objects\config.o: .\src\quad\common\maths.h
-.\objects\config.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\config.o: src\quad\fc\fc_rc.h
 .\objects\config.o: .\src\quad\blackbox\blackbox_io.h

@@ -50,10 +50,10 @@
 .\objects\rx.o: .\src\quad\drivers\exti.h
 .\objects\rx.o: .\src\quad\common\axis.h
 .\objects\rx.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\rx.o: .\src\quad\common\maths.h
+.\objects\rx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\rx.o: .\src\quad\common\time.h
 .\objects\rx.o: .\src\quad\drivers\rx_pwm.h
 .\objects\rx.o: src\quad\rx\sbus.h
 .\objects\rx.o: .\src\quad\drivers\system.h
-.\objects\rx.o: .\src\quad\common\maths.h
-.\objects\rx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\rx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

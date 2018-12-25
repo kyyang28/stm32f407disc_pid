@@ -56,5 +56,7 @@
 .\objects\fc_tasks.o: .\src\quad\drivers\exti.h
 .\objects\fc_tasks.o: .\src\quad\common\axis.h
 .\objects\fc_tasks.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\fc_tasks.o: .\src\quad\common\maths.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\fc_tasks.o: .\src\quad\build\debug.h
 .\objects\fc_tasks.o: .\src\quad\drivers\led.h

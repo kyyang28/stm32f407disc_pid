@@ -59,6 +59,8 @@
 .\objects\main.o: .\src\quad\io\motors.h
 .\objects\main.o: .\src\quad\flight\mixer.h
 .\objects\main.o: .\src\quad\flight\pid.h
+.\objects\main.o: .\src\quad\common\maths.h
+.\objects\main.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: .\src\quad\build\platform.h
 .\objects\main.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\main.o: .\src\quad\config\config_profile.h
@@ -78,8 +80,6 @@
 .\objects\main.o: .\src\quad\sensors\barometer.h
 .\objects\main.o: .\src\quad\sensors\compass.h
 .\objects\main.o: .\src\quad\drivers\accgyro_spi_mpu9250.h
-.\objects\main.o: .\src\quad\common\maths.h
-.\objects\main.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\main.o: .\src\quad\drivers\mpu9250_soft_i2c.h
 .\objects\main.o: .\src\quad\drivers\pwm_output.h
 .\objects\main.o: .\src\quad\drivers\timer.h

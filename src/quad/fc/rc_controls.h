@@ -5,6 +5,7 @@
 #include <stdbool.h>
 #include "motors.h"
 #include "pid.h"
+#include "maths.h"
 
 #define MAX_MODE_ACTIVATION_CONDITION_COUNT 				20
 
@@ -48,18 +49,18 @@ extern uint32_t rcModeActivationMask;
 #define ACTIVATE_RC_MODE(modeId)	(rcModeActivationMask |= (1 << modeId))
 
 typedef enum rc_alias {
-	ROLL = 0,
+	ROLL = 0,		// Channel 0
 	PITCH,			// Channel 1
 	YAW,			// Channel 2
 	THROTTLE,		// Channel 3
 	AUX1,			// Channel 4
 	AUX2,			// Channel 5
-	AUX3,
-	AUX4,
-	AUX5,
-	AUX6,
-	AUX7,
-	AUX8
+	AUX3,			// Channel 6
+	AUX4,			// Channel 7
+	AUX5,			// Channel 8
+	AUX6,			// Channel 9
+	AUX7,			// Channel 10
+	AUX8			// Channel 11
 }rc_alias_e;
 
 typedef enum {
@@ -72,13 +73,19 @@ typedef enum {
 #define CHANNEL_RANGE_MIN								900
 #define CHANNEL_RANGE_MAX								2100
 
+#define MIN_MODE_RANGE_STEP								0
+#define MAX_MODE_RANGE_STEP								((CHANNEL_RANGE_MAX - CHANNEL_RANGE_MIN) / 25)		// (2100 - 900) / 25 = 48
+
 #define MODE_STEP_TO_CHANNEL_VALUE(step)				(CHANNEL_RANGE_MIN + 25 * step)
+#define CHANNEL_VALUE_TO_STEP(channelValue)				((constrain(channelValue, CHANNEL_RANGE_MIN, CHANNEL_RANGE_MAX) - CHANNEL_RANGE_MIN) / 25)
 
 /*
- * steps are 25 apart
+ * steps are 25 apart, actually it should be 24 apart
  * a value of 0 corresponds to a channel value of 900 or less
  * a value of 48 corresponds to a channel value of 2100 or more
  * 48 steps between 900 and 2100	( (2100 - 900) / 25 = 48 steps )
+ *
+ * In MODE section to setup the ARM, Flight modes, airmode and so on using AUX1, AUX2, AUX3, etc
  */
 typedef struct channelRange_s {
 	uint8_t startStep;

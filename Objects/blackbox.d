@@ -57,6 +57,8 @@
 .\objects\blackbox.o: .\src\quad\io\motors.h
 .\objects\blackbox.o: .\src\quad\flight\mixer.h
 .\objects\blackbox.o: .\src\quad\flight\pid.h
+.\objects\blackbox.o: .\src\quad\common\maths.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\blackbox.o: .\src\quad\build\platform.h
 .\objects\blackbox.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\blackbox.o: .\src\quad\config\config_profile.h

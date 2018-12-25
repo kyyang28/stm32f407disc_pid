@@ -286,7 +286,7 @@ static void readRxChannelsApplyRanges(void)
 		/* store sampled rx value to rcRaw array */
 		rcRaw[channel] = sample;
 
-#if 1
+#if 0
 #if 0		
 		if (channel == 0)		// Channel 1: Roll
 			printf("rcRaw[%d](Roll[Ail] stick): %u\r\n", channel, rcRaw[channel]);

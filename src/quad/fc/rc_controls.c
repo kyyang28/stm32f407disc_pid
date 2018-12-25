@@ -48,9 +48,9 @@ bool isRangeActive(uint8_t auxChannelIndex, channelRange_t *range)
 //	printf("auxChannelIndex: %u\r\n", auxChannelIndex + NON_AUX_CHANNEL_COUNT);
 //	printf("rcData: %u\r\n", rcData[auxChannelIndex + NON_AUX_CHANNEL_COUNT]);
 	
-//	uint16_t channelValue = constrain(rcData[auxChannelIndex + NON_AUX_CHANNEL_COUNT], CHANNEL_RANGE_MIN, CHANNEL_RANGE_MAX - 1);
-//	
-//	return (channelValue >= 900 + (range->startStep * 25) && channelValue < 900 + (range->endStep * 25));
+	uint16_t channelValue = constrain(rcData[auxChannelIndex + NON_AUX_CHANNEL_COUNT], CHANNEL_RANGE_MIN, CHANNEL_RANGE_MAX - 1);
+	
+	return (channelValue >= 900 + (range->startStep * 25) && channelValue < 900 + (range->endStep * 25));
 }
 
 /** Update activated modes (BOXARM, BOXAIRMODE and so on)
@@ -68,7 +68,8 @@ void updateActivatedModes(modeActivationCondition_t *modeActivationConditions)
 //		printf("startStep: %u\r\n", modeActivationCondition->range.startStep);
 //		printf("endStep: %u\r\n", modeActivationCondition->range.endStep);
 		if (isRangeActive(modeActivationCondition->auxChannelIndex, &modeActivationCondition->range)) {
-//			ACTIVATE_RC_MODE(modeActivationCondition->modeId);
+//			printf("modeId: %d\r\n", modeActivationCondition->modeId);
+			ACTIVATE_RC_MODE(modeActivationCondition->modeId);
 		}
 	}
 }
