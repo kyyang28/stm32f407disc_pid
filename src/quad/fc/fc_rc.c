@@ -6,6 +6,7 @@
 #include "fc_core.h"
 #include "scheduler.h"
 #include "rc_controls.h"
+#include "runtime_config.h"		// armingFlags, flightModeFlags, ENABLE_FLIGHT_MODE, DISABLE_FLIGHT_MODE, FLIGHT_MODE
 
 #define THROTTLE_LOOKUP_LENGTH			12
 
@@ -168,6 +169,12 @@ void updateRcCommands(void)
 //	printf("rcCommand[THROTTLE]: %d, %s, %d\r\n", rcCommand[THROTTLE], __FUNCTION__, __LINE__);			// range [0;1000]
 }
 
+/* Implement later for ANTI-GRAVITY mode */
+static void checkForThrottleErrorResetState(uint16_t rxRefreshRate)
+{
+	
+}
+
 void processRcCommand(void)
 {
 	static uint16_t currentRxRefreshRate;
@@ -181,7 +188,11 @@ void processRcCommand(void)
 		currentRxRefreshRate = constrain(getTaskDeltaTime(TASK_RX), 1000, 20000);		// units in microseconds (us)
 		
 		if (isAntiGravityModeActive()) {
-			
+			checkForThrottleErrorResetState(currentRxRefreshRate);
 		}
+	}
+	
+	if (RxConfig()->rcInterpolation || flightModeFlags) {
+		
 	}
 }

@@ -120,12 +120,18 @@ static void subTaskMotorUpdate(void)
 
 static void subTaskMainSubprocesses(timeUs_t currentTimeUs)
 {
+	/* Calculate throttle value for ANGLE or HORIZON modes */
+	
+	
+	/* Process RC commands */
 	processRcCommand();
 	
+	/* Polling SDcard data */
 #ifdef USE_SDCARD
 	afatfs_poll();
 #endif
 	
+	/* Store data to blackbox (SDcard) */
 #ifdef BLACKBOX
 	if (/*!cliMode && */feature(FEATURE_BLACKBOX)) {
 		handleBlackbox(currentTimeUs);

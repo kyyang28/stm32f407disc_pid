@@ -77,6 +77,8 @@ void updateActivatedModes(modeActivationCondition_t *modeActivationConditions)
 		if (isRangeActive(modeActivationCondition->auxChannelIndex, &modeActivationCondition->range)) {
 //			printf("modeId: %d\r\n", modeActivationCondition->modeId);
 			ACTIVATE_RC_MODE(modeActivationCondition->modeId);
+
+#if 0			
 			if (IS_RC_MODE_ACTIVE(BOXARM)) {
 				printf("Motors are ARMed!\r\n");
 			}
@@ -105,6 +107,7 @@ void updateActivatedModes(modeActivationCondition_t *modeActivationConditions)
 			if (IS_RC_MODE_ACTIVE(BOXAIRMODE)) {
 				printf("AIRMODE is ON!\r\n");
 			}
+#endif
 //			printf("rcModeActivationMask: %u\r\n", rcModeActivationMask);
 		}
 	}

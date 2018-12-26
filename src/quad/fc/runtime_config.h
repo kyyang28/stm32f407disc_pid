@@ -5,6 +5,7 @@
 #include <stdint.h>
 
 extern uint8_t armingFlags;
+extern uint16_t flightModeFlags;
 
 typedef enum {
 	OK_TO_ARM			= (1 << 0),
@@ -13,13 +14,34 @@ typedef enum {
 	WAS_EVER_ARMED		= (1 << 3)
 }armingFlag_e;
 
+typedef enum {
+	ANGLE_MODE			= (1 << 0),
+	HORIZON_MODE		= (1 << 1),
+	MAG_MODE			= (1 << 2),
+	BARO_MODE			= (1 << 3),
+	GPS_HOME_MODE		= (1 << 4),
+	GPS_HOLD_MODE		= (1 << 5),
+	HEADFREE_MODE		= (1 << 6),
+	UNUSED_MODE			= (1 << 7),		// old autotune
+	PASSTHRU_MODE		= (1 << 8),
+	SONAR_MODE			= (1 << 9),
+	FAILSAFE_MODE		= (1 << 10)
+}flightModeFlags_e;
+
 #define DISABLE_ARMING_FLAG(mask)			(armingFlags &= ~(mask))
 #define ENABLE_ARMING_FLAG(mask)			(armingFlags |= (mask))
 #define CHECK_ARMING_FLAG(mask)				(armingFlags & (mask))
+
+#define ENABLE_FLIGHT_MODE(mask)			enableFlightMode(mask)
+#define DISABLE_FLIGHT_MODE(mask)			disableFlightMode(mask)
+#define FLIGHT_MODE(mask)					(flightModeFlags & (mask))
 
 bool sensors(uint32_t mask);
 void sensorSet(uint32_t mask);
 void sensorClear(uint32_t mask);
 uint32_t sensorsMask(void);
+
+uint16_t enableFlightMode(flightModeFlags_e mask);
+uint16_t disableFlightMode(flightModeFlags_e mask);
 
 #endif	// __RUNTIME_CONFIG_H

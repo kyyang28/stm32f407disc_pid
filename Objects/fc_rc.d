@@ -68,3 +68,4 @@
 .\objects\fc_rc.o: src\quad\fc\fc_core.h
 .\objects\fc_rc.o: .\src\quad\scheduler\scheduler.h
 .\objects\fc_rc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\fc_rc.o: src\quad\fc\runtime_config.h

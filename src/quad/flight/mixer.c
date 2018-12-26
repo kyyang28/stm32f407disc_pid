@@ -205,6 +205,6 @@ void mixTable(void)
 	//		motor[i] = motorOutputMin;
 	//		printf("motor[%d]: %d\r\n", i, motor[i]);
 			motor[i] = 1000;
-		}		
+		}
 	}
 }
