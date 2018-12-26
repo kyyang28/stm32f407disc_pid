@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\13-PID.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\13-PID.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Dec 25 23:50:12 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Dec 26 01:34:30 2018
 <BR><P>
 <H3>Maximum Stack Usage =        552 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -589,6 +589,7 @@ Global Symbols
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu9250AccAndGyroInit
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu9250SpiDetect
 <LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rxInit
+<LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateActivatedModes
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_fseek
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_fileOperationContinue
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_assert
@@ -2454,7 +2455,7 @@ Global Symbols
 <LI><a href="#[156]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;blackboxSetState
 </UL>
 
-<P><STRONG><a name="[205]"></a>mixTable</STRONG> (Thumb, 28 bytes, Stack size 0 bytes, mixer.o(i.mixTable))
+<P><STRONG><a name="[205]"></a>mixTable</STRONG> (Thumb, 60 bytes, Stack size 0 bytes, mixer.o(i.mixTable))
 <BR><BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMainPidLoop
 </UL>
 
@@ -2699,8 +2700,9 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processRx
 </UL>
 
-<P><STRONG><a name="[1cd]"></a>processRx</STRONG> (Thumb, 18 bytes, Stack size 8 bytes, fc_core.o(i.processRx))
-<BR><BR>[Stack]<UL><LI>Max Depth = 84<LI>Call Chain = processRx &rArr; calculateRxChannelsAndUpdateFailsafe &rArr; detectAndApplySignalLossBehaviour &rArr; calculateNonDataDrivenChannel
+<P><STRONG><a name="[1cd]"></a>processRx</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, fc_core.o(i.processRx))
+<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
+<LI>Call Chain = processRx &rArr; updateActivatedModes &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateActivatedModes
 <LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processRcStickPositions
@@ -3203,6 +3205,7 @@ Global Symbols
 </UL>
 <BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[148]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;beeperInit
+<LI><a href="#[1ce]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateActivatedModes
 </UL>
 
 <P><STRONG><a name="[194]"></a>systemInit</STRONG> (Thumb, 70 bytes, Stack size 8 bytes, main.o(i.systemInit))
@@ -3267,7 +3270,8 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> fc_tasks.o(.data)
 </UL>
 <P><STRONG><a name="[6]"></a>taskUpdateRxMain</STRONG> (Thumb, 20 bytes, Stack size 8 bytes, fc_tasks.o(i.taskUpdateRxMain))
-<BR><BR>[Stack]<UL><LI>Max Depth = 92<LI>Call Chain = taskUpdateRxMain &rArr; processRx &rArr; calculateRxChannelsAndUpdateFailsafe &rArr; detectAndApplySignalLossBehaviour &rArr; calculateNonDataDrivenChannel
+<BR><BR>[Stack]<UL><LI>Max Depth = 168 + Unknown Stack Size
+<LI>Call Chain = taskUpdateRxMain &rArr; processRx &rArr; updateActivatedModes &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
 <BR>[Calls]<UL><LI><a href="#[207]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;updateRcCommands
 <LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processRx
@@ -3407,10 +3411,13 @@ Global Symbols
 </UL>
 <BR>[Address Reference Count : 1]<UL><LI> serial_uart.o(.constdata)
 </UL>
-<P><STRONG><a name="[1ce]"></a>updateActivatedModes</STRONG> (Thumb, 58 bytes, Stack size 24 bytes, rc_controls.o(i.updateActivatedModes))
-<BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = updateActivatedModes &rArr; isRangeActive
+<P><STRONG><a name="[1ce]"></a>updateActivatedModes</STRONG> (Thumb, 132 bytes, Stack size 24 bytes, rc_controls.o(i.updateActivatedModes))
+<BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
+<LI>Call Chain = updateActivatedModes &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
-<BR>[Calls]<UL><LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isRangeActive
+<BR>[Calls]<UL><LI><a href="#[149]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;systemBeep
+<LI><a href="#[223]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isRangeActive
+<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[1cd]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processRx
 </UL>

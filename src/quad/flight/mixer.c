@@ -192,11 +192,19 @@ void mixTable(void)
 	
 	/* Calculate voltage compensation */
 	
-	
-	/* TODO: modify this when finishing PID controllers */
-	for (uint32_t i = 0; i < motorCount; i++) {
-//		motor[i] = motorOutputMin;
-//		printf("motor[%d]: %d\r\n", i, motor[i]);
-		motor[i] = rcCommand[THROTTLE];
+
+	if (IS_RC_MODE_ACTIVE(BOXARM)) {
+		/* TODO: modify this when finishing PID controllers */
+		for (uint32_t i = 0; i < motorCount; i++) {
+	//		motor[i] = motorOutputMin;
+	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+			motor[i] = rcCommand[THROTTLE];
+		}
+	} else {
+		for (uint32_t i = 0; i < motorCount; i++) {
+	//		motor[i] = motorOutputMin;
+	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+			motor[i] = 1000;
+		}		
 	}
 }

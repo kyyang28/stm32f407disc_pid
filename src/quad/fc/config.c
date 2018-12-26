@@ -322,7 +322,7 @@ void targetConfiguration(master_t *config)
 	 *
 	 * ARMING is switched ON between the range of 900 to 1150.
 	 */
-	config->modeActivationProfile.modeActivationConditions[0].modeId			= BOXARM;
+	config->modeActivationProfile.modeActivationConditions[0].modeId			= BOXARM;			// BOXARM = 0
 	config->modeActivationProfile.modeActivationConditions[0].auxChannelIndex	= AUX1 - NON_AUX_CHANNEL_COUNT;	// AUX1 - NON_AUX_CHANNEL_COUNT = 4 - 4 = 0
 	config->modeActivationProfile.modeActivationConditions[0].range.startStep	= CHANNEL_VALUE_TO_STEP(900);
 	config->modeActivationProfile.modeActivationConditions[0].range.endStep		= CHANNEL_VALUE_TO_STEP(1150);	// Between 900 and 1150 is the ARMING range
@@ -331,7 +331,7 @@ void targetConfiguration(master_t *config)
 	 *
 	 * BEEPER is switched ON between the range of 900 to 1150.
 	 */
-	config->modeActivationProfile.modeActivationConditions[1].modeId			= BOXBEEPERON;
+	config->modeActivationProfile.modeActivationConditions[1].modeId			= BOXBEEPERON;		// BOXBEEPERON = 13
 	config->modeActivationProfile.modeActivationConditions[1].auxChannelIndex	= AUX2 - NON_AUX_CHANNEL_COUNT;	// AUX2 - NON_AUX_CHANNEL_COUNT = 5 - 4 = 1
 	config->modeActivationProfile.modeActivationConditions[1].range.startStep	= CHANNEL_VALUE_TO_STEP(900);
 	config->modeActivationProfile.modeActivationConditions[1].range.endStep		= CHANNEL_VALUE_TO_STEP(1150);	// Between 900 and 1150 is the BEEPER range
@@ -342,12 +342,12 @@ void targetConfiguration(master_t *config)
 	 * Channel value between 1350 and 1650 is setup to HORIZON mode.
 	 * Channel value between 1800 and 2100 is setup to ACRO(RATE) mode.
 	 */
-	config->modeActivationProfile.modeActivationConditions[2].modeId			= BOXANGLE;
+	config->modeActivationProfile.modeActivationConditions[2].modeId			= BOXANGLE;			// BOXANGLE = 1
 	config->modeActivationProfile.modeActivationConditions[2].auxChannelIndex	= AUX3 - NON_AUX_CHANNEL_COUNT;	// AUX3 - NON_AUX_CHANNEL_COUNT = 6 - 4 = 2
 	config->modeActivationProfile.modeActivationConditions[2].range.startStep	= CHANNEL_VALUE_TO_STEP(900);
 	config->modeActivationProfile.modeActivationConditions[2].range.endStep		= CHANNEL_VALUE_TO_STEP(1150);	// Between 900 and 1150 is the ANGLEMode range
 	
-	config->modeActivationProfile.modeActivationConditions[3].modeId			= BOXHORIZON;
+	config->modeActivationProfile.modeActivationConditions[3].modeId			= BOXHORIZON;		// BOXHORIZON = 2
 	config->modeActivationProfile.modeActivationConditions[3].auxChannelIndex	= AUX3 - NON_AUX_CHANNEL_COUNT;	// AUX3 - NON_AUX_CHANNEL_COUNT = 6 - 4 = 2
 	config->modeActivationProfile.modeActivationConditions[3].range.startStep	= CHANNEL_VALUE_TO_STEP(1350);
 	config->modeActivationProfile.modeActivationConditions[3].range.endStep		= CHANNEL_VALUE_TO_STEP(1650);	// Between 1350 and 1650 is the HORIZONMode range
@@ -356,7 +356,7 @@ void targetConfiguration(master_t *config)
 	 *
 	 * AIRMode is switched ON between the range of 900 to 1150.
 	 */
-	config->modeActivationProfile.modeActivationConditions[4].modeId			= BOXAIRMODE;
+	config->modeActivationProfile.modeActivationConditions[4].modeId			= BOXAIRMODE;		// BOXAIRMODE = 28
 	config->modeActivationProfile.modeActivationConditions[4].auxChannelIndex	= AUX4 - NON_AUX_CHANNEL_COUNT;	// AUX4 - NON_AUX_CHANNEL_COUNT = 7 - 4 = 3
 	config->modeActivationProfile.modeActivationConditions[4].range.startStep	= CHANNEL_VALUE_TO_STEP(900);
 	config->modeActivationProfile.modeActivationConditions[4].range.endStep		= CHANNEL_VALUE_TO_STEP(1150);

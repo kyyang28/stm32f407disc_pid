@@ -54,3 +54,4 @@
 .\objects\rc_controls.o: .\src\quad\common\time.h
 .\objects\rc_controls.o: src\quad\fc\runtime_config.h
 .\objects\rc_controls.o: .\src\quad\rx\rx.h
+.\objects\rc_controls.o: .\src\quad\drivers\sound_beeper.h

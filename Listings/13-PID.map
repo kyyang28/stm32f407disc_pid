@@ -735,6 +735,7 @@ Section Cross References
     fc_core.o(i.processRx) refers to rx.o(i.calculateRxChannelsAndUpdateFailsafe) for calculateRxChannelsAndUpdateFailsafe
     fc_core.o(i.processRx) refers to rc_controls.o(i.processRcStickPositions) for processRcStickPositions
     fc_core.o(i.processRx) refers to rc_controls.o(i.updateActivatedModes) for updateActivatedModes
+    fc_core.o(i.processRx) refers to config.o(.bss) for masterConfig
     fc_core.o(i.taskMainPidLoop) refers to fc_rc.o(i.processRcCommand) for processRcCommand
     fc_core.o(i.taskMainPidLoop) refers to asyncfatfs.o(i.afatfs_poll) for afatfs_poll
     fc_core.o(i.taskMainPidLoop) refers to feature.o(i.feature) for feature
@@ -789,6 +790,8 @@ Section Cross References
     rc_controls.o(i.processRcStickPositions) refers to fc_core.o(i.mwArm) for mwArm
     rc_controls.o(i.processRcStickPositions) refers to runtime_config.o(.data) for armingFlags
     rc_controls.o(i.updateActivatedModes) refers to rc_controls.o(i.isRangeActive) for isRangeActive
+    rc_controls.o(i.updateActivatedModes) refers to noretval__2printf.o(.text) for __2printf
+    rc_controls.o(i.updateActivatedModes) refers to sound_beeper.o(i.systemBeep) for systemBeep
     rc_controls.o(i.updateActivatedModes) refers to rc_controls.o(.data) for .data
     rc_controls.o(i.useRcControlsConfig) refers to rc_controls.o(i.isModeActivationConditionPresent) for isModeActivationConditionPresent
     rc_controls.o(i.useRcControlsConfig) refers to rc_controls.o(.data) for .data
@@ -1016,6 +1019,7 @@ Section Cross References
     mixer.o(i.getMotorMixRange) refers to mixer.o(.data) for .data
     mixer.o(i.initEscEndpoints) refers to mixer.o(.data) for .data
     mixer.o(i.mixTable) refers to rc_controls.o(.data) for rcCommand
+    mixer.o(i.mixTable) refers to rc_controls.o(.data) for rcModeActivationMask
     mixer.o(i.mixTable) refers to mixer.o(.data) for .data
     mixer.o(i.mixTable) refers to mixer.o(.bss) for .bss
     mixer.o(i.mixerConfigurationOutput) refers to mixer.o(i.mixerResetDisarmedMotors) for mixerResetDisarmedMotors
@@ -2784,239 +2788,239 @@ Image Symbol Table
     i.microsISR                              0x080057e0   Section        0  system.o(i.microsISR)
     i.millis                                 0x0800582c   Section        0  system.o(i.millis)
     i.mixTable                               0x08005838   Section        0  mixer.o(i.mixTable)
-    i.mixerConfigurationOutput               0x08005860   Section        0  mixer.o(i.mixerConfigurationOutput)
-    i.mixerInit                              0x08005898   Section        0  mixer.o(i.mixerInit)
-    i.mixerResetDisarmedMotors               0x080058a8   Section        0  mixer.o(i.mixerResetDisarmedMotors)
-    i.mixerUseConfigs                        0x080058c8   Section        0  mixer.o(i.mixerUseConfigs)
-    i.motorInit                              0x080058d4   Section        0  pwm_output.o(i.motorInit)
-    i.mpu9250AccAndGyroInit                  0x080059ec   Section        0  accgyro_spi_mpu9250.o(i.mpu9250AccAndGyroInit)
-    mpu9250AccAndGyroInit                    0x080059ed   Thumb Code   200  accgyro_spi_mpu9250.o(i.mpu9250AccAndGyroInit)
-    i.mpu9250ReadRegister                    0x08005b60   Section        0  accgyro_spi_mpu9250.o(i.mpu9250ReadRegister)
-    i.mpu9250ResetGyro                       0x08005ba0   Section        0  accgyro_spi_mpu9250.o(i.mpu9250ResetGyro)
-    i.mpu9250SlowReadRegister                0x08005bb4   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SlowReadRegister)
-    i.mpu9250SpiDetect                       0x08005c00   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SpiDetect)
-    i.mpu9250SpiGyroDetect                   0x08005c94   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroDetect)
-    i.mpu9250SpiGyroInit                     0x08005cc8   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroInit)
-    i.mpu9250WriteRegister                   0x08005d4c   Section        0  accgyro_spi_mpu9250.o(i.mpu9250WriteRegister)
-    i.mpuCheckDataReady                      0x08005d8c   Section        0  accgyro_mpu.o(i.mpuCheckDataReady)
-    i.mpuDetect                              0x08005da0   Section        0  accgyro_mpu.o(i.mpuDetect)
-    i.mpuGyroInit                            0x08005dec   Section        0  accgyro_mpu.o(i.mpuGyroInit)
-    i.mpuGyroRead                            0x08005e38   Section        0  accgyro_mpu.o(i.mpuGyroRead)
-    i.mpuIntExtiHandler                      0x08005e68   Section        0  accgyro_mpu.o(i.mpuIntExtiHandler)
-    mpuIntExtiHandler                        0x08005e69   Thumb Code    18  accgyro_mpu.o(i.mpuIntExtiHandler)
-    i.mspFcInit                              0x08005e7a   Section        0  fc_msp.o(i.mspFcInit)
-    i.mwArm                                  0x08005e80   Section        0  fc_core.o(i.mwArm)
-    i.nullFilterApply                        0x08005eb4   Section        0  filter.o(i.nullFilterApply)
-    i.nullFrameStatus                        0x08005eb6   Section        0  rx.o(i.nullFrameStatus)
-    nullFrameStatus                          0x08005eb7   Thumb Code     4  rx.o(i.nullFrameStatus)
-    i.nullReadRawRC                          0x08005eba   Section        0  rx.o(i.nullReadRawRC)
-    nullReadRawRC                            0x08005ebb   Thumb Code     4  rx.o(i.nullReadRawRC)
-    i.openSerialPort                         0x08005ec0   Section        0  serial.o(i.openSerialPort)
-    i.parseRcChannels                        0x08005f2c   Section        0  rx.o(i.parseRcChannels)
-    i.performGyroCalibration                 0x08005f64   Section        0  gyro.o(i.performGyroCalibration)
-    performGyroCalibration                   0x08005f65   Thumb Code   200  gyro.o(i.performGyroCalibration)
-    i.pidController                          0x08006038   Section        0  pid.o(i.pidController)
-    i.pidInitConfig                          0x08006054   Section        0  pid.o(i.pidInitConfig)
-    i.pidInitFilters                         0x080061a0   Section        0  pid.o(i.pidInitFilters)
-    i.pidSetTargetLooptime                   0x080062e8   Section        0  pid.o(i.pidSetTargetLooptime)
-    i.processRcCommand                       0x0800630c   Section        0  fc_rc.o(i.processRcCommand)
-    i.processRcStickPositions                0x08006340   Section        0  rc_controls.o(i.processRcStickPositions)
-    i.processRx                              0x08006354   Section        0  fc_core.o(i.processRx)
-    i.pt1FilterApply                         0x08006366   Section        0  filter.o(i.pt1FilterApply)
-    i.pt1FilterInit                          0x0800637c   Section        0  filter.o(i.pt1FilterInit)
-    i.pwmAreMotorsEnabled                    0x080063b0   Section        0  pwm_output.o(i.pwmAreMotorsEnabled)
-    i.pwmCompleteMotorUpdate                 0x080063bc   Section        0  pwm_output.o(i.pwmCompleteMotorUpdate)
-    i.pwmCompleteOneshotMotorUpdate          0x080063c8   Section        0  pwm_output.o(i.pwmCompleteOneshotMotorUpdate)
-    pwmCompleteOneshotMotorUpdate            0x080063c9   Thumb Code    52  pwm_output.o(i.pwmCompleteOneshotMotorUpdate)
-    i.pwmCompleteWriteUnused                 0x08006400   Section        0  pwm_output.o(i.pwmCompleteWriteUnused)
-    pwmCompleteWriteUnused                   0x08006401   Thumb Code     2  pwm_output.o(i.pwmCompleteWriteUnused)
-    i.pwmOutConfigMhz                        0x08006402   Section        0  pwm_output.o(i.pwmOutConfigMhz)
-    pwmOutConfigMhz                          0x08006403   Thumb Code   160  pwm_output.o(i.pwmOutConfigMhz)
-    i.pwmWriteMotor                          0x080064a4   Section        0  pwm_output.o(i.pwmWriteMotor)
-    i.pwmWriteStandard                       0x080064b0   Section        0  pwm_output.o(i.pwmWriteStandard)
-    pwmWriteStandard                         0x080064b1   Thumb Code    14  pwm_output.o(i.pwmWriteStandard)
-    i.pwmWriteUnused                         0x080064c4   Section        0  pwm_output.o(i.pwmWriteUnused)
-    pwmWriteUnused                           0x080064c5   Thumb Code     2  pwm_output.o(i.pwmWriteUnused)
-    i.queueAdd                               0x080064c8   Section        0  scheduler.o(i.queueAdd)
-    i.queueClear                             0x08006528   Section        0  scheduler.o(i.queueClear)
-    i.queueContains                          0x08006544   Section        0  scheduler.o(i.queueContains)
-    i.queueFirst                             0x08006570   Section        0  scheduler.o(i.queueFirst)
-    i.queueNext                              0x08006584   Section        0  scheduler.o(i.queueNext)
-    i.queueRemove                            0x0800659c   Section        0  scheduler.o(i.queueRemove)
-    i.readBitfield                           0x080065dc   Section        0  sdcard_standard.o(i.readBitfield)
-    i.readEEPROM                             0x08006618   Section        0  config_eeprom.o(i.readEEPROM)
-    i.readRxChannelsApplyRanges              0x08006634   Section        0  rx.o(i.readRxChannelsApplyRanges)
-    readRxChannelsApplyRanges                0x08006635   Thumb Code   110  rx.o(i.readRxChannelsApplyRanges)
-    i.rescheduleTask                         0x080066ac   Section        0  scheduler.o(i.rescheduleTask)
-    i.resetAllRxChannelRangeConfigurations   0x080066e0   Section        0  rx.o(i.resetAllRxChannelRangeConfigurations)
-    i.resetEEPROM                            0x080066f8   Section        0  config.o(i.resetEEPROM)
-    i.resetPidProfile                        0x08006710   Section        0  config.o(i.resetPidProfile)
-    resetPidProfile                          0x08006711   Thumb Code   190  config.o(i.resetPidProfile)
-    i.resetProfile                           0x080067d4   Section        0  config.o(i.resetProfile)
-    i.resetRcControlsConfig                  0x08006830   Section        0  config.o(i.resetRcControlsConfig)
-    i.rxInit                                 0x08006840   Section        0  rx.o(i.rxInit)
-    i.rxSerial3TestInit                      0x08006918   Section        0  rxserial3test.o(i.rxSerial3TestInit)
-    i.rxSerial3TestWrite                     0x08006944   Section        0  rxserial3test.o(i.rxSerial3TestWrite)
-    i.rxUpdateCheck                          0x08006954   Section        0  rx.o(i.rxUpdateCheck)
-    i.sbusDataReceiveCallBack                0x080069a8   Section        0  sbus.o(i.sbusDataReceiveCallBack)
-    sbusDataReceiveCallBack                  0x080069a9   Thumb Code    70  sbus.o(i.sbusDataReceiveCallBack)
-    i.sbusFrameStatus                        0x080069f8   Section        0  sbus.o(i.sbusFrameStatus)
-    sbusFrameStatus                          0x080069f9   Thumb Code   208  sbus.o(i.sbusFrameStatus)
-    i.sbusInit                               0x08006ad0   Section        0  sbus.o(i.sbusInit)
-    i.sbusReadRawRC                          0x08006b4c   Section        0  sbus.o(i.sbusReadRawRC)
-    sbusReadRawRC                            0x08006b4d   Thumb Code    22  sbus.o(i.sbusReadRawRC)
-    i.scaleRange                             0x08006b68   Section        0  maths.o(i.scaleRange)
-    i.scheduler                              0x08006b80   Section        0  scheduler.o(i.scheduler)
-    i.schedulerInit                          0x08006cf0   Section        0  scheduler.o(i.schedulerInit)
-    i.sdcardInsertionDetectInit              0x08006d10   Section        0  sdcard.o(i.sdcardInsertionDetectInit)
-    i.sdcard_beginWriteBlocks                0x08006d34   Section        0  sdcard.o(i.sdcard_beginWriteBlocks)
-    i.sdcard_deselect                        0x08006d9c   Section        0  sdcard.o(i.sdcard_deselect)
-    sdcard_deselect                          0x08006d9d   Thumb Code    26  sdcard.o(i.sdcard_deselect)
-    i.sdcard_endWriteBlocks                  0x08006dc0   Section        0  sdcard.o(i.sdcard_endWriteBlocks)
-    sdcard_endWriteBlocks                    0x08006dc1   Thumb Code    62  sdcard.o(i.sdcard_endWriteBlocks)
-    i.sdcard_fetchCSD                        0x08006e08   Section        0  sdcard.o(i.sdcard_fetchCSD)
-    sdcard_fetchCSD                          0x08006e09   Thumb Code   152  sdcard.o(i.sdcard_fetchCSD)
-    i.sdcard_init                            0x08006ea4   Section        0  sdcard.o(i.sdcard_init)
-    i.sdcard_isInserted                      0x08006f2c   Section        0  sdcard.o(i.sdcard_isInserted)
-    i.sdcard_poll                            0x08006f40   Section        0  sdcard.o(i.sdcard_poll)
-    i.sdcard_readBlock                       0x08007204   Section        0  sdcard.o(i.sdcard_readBlock)
-    i.sdcard_receiveCID                      0x08007264   Section        0  sdcard.o(i.sdcard_receiveCID)
-    sdcard_receiveCID                        0x08007265   Thumb Code   130  sdcard.o(i.sdcard_receiveCID)
-    i.sdcard_receiveDataBlock                0x080072ec   Section        0  sdcard.o(i.sdcard_receiveDataBlock)
-    sdcard_receiveDataBlock                  0x080072ed   Thumb Code    62  sdcard.o(i.sdcard_receiveDataBlock)
-    i.sdcard_reset                           0x08007330   Section        0  sdcard.o(i.sdcard_reset)
-    sdcard_reset                             0x08007331   Thumb Code    62  sdcard.o(i.sdcard_reset)
-    i.sdcard_select                          0x08007378   Section        0  sdcard.o(i.sdcard_select)
-    sdcard_select                            0x08007379   Thumb Code     8  sdcard.o(i.sdcard_select)
-    i.sdcard_sendAppCommand                  0x08007384   Section        0  sdcard.o(i.sdcard_sendAppCommand)
-    sdcard_sendAppCommand                    0x08007385   Thumb Code    26  sdcard.o(i.sdcard_sendAppCommand)
-    i.sdcard_sendCommand                     0x080073a0   Section        0  sdcard.o(i.sdcard_sendCommand)
-    sdcard_sendCommand                       0x080073a1   Thumb Code    78  sdcard.o(i.sdcard_sendCommand)
-    i.sdcard_waitForIdle                     0x080073fc   Section        0  sdcard.o(i.sdcard_waitForIdle)
-    sdcard_waitForIdle                       0x080073fd   Thumb Code    34  sdcard.o(i.sdcard_waitForIdle)
-    i.sdcard_waitForNonIdleByte              0x08007424   Section        0  sdcard.o(i.sdcard_waitForNonIdleByte)
-    sdcard_waitForNonIdleByte                0x08007425   Thumb Code    32  sdcard.o(i.sdcard_waitForNonIdleByte)
-    i.sdcard_writeBlock                      0x08007448   Section        0  sdcard.o(i.sdcard_writeBlock)
-    i.sensorSet                              0x080074ec   Section        0  runtime_config.o(i.sensorSet)
-    i.sensors                                0x080074fc   Section        0  runtime_config.o(i.sensors)
-    i.sensorsAutodetect                      0x08007510   Section        0  initialisation.o(i.sensorsAutodetect)
-    i.serialInit                             0x08007530   Section        0  serial.o(i.serialInit)
-    i.serialRxInit                           0x08007564   Section        0  rx.o(i.serialRxInit)
-    i.serialUART                             0x08007578   Section        0  serial_uart_stm32f4xx.o(i.serialUART)
-    i.serialUART1                            0x08007688   Section        0  serial_uart_stm32f4xx.o(i.serialUART1)
-    i.serialUART3                            0x08007694   Section        0  serial_uart_stm32f4xx.o(i.serialUART3)
-    i.serialUART6                            0x080076a0   Section        0  serial_uart_stm32f4xx.o(i.serialUART6)
-    i.serialWrite                            0x080076ac   Section        0  serial.o(i.serialWrite)
-    i.setProfile                             0x080076b4   Section        0  config.o(i.setProfile)
-    i.setTaskEnabled                         0x080076e8   Section        0  scheduler.o(i.setTaskEnabled)
-    i.spiDeviceByInstance                    0x0800771c   Section        0  bus_spi.o(i.spiDeviceByInstance)
-    i.spiGetErrorCounter                     0x0800774c   Section        0  bus_spi.o(i.spiGetErrorCounter)
-    i.spiInit                                0x08007768   Section        0  bus_spi.o(i.spiInit)
-    i.spiInitDevice                          0x08007784   Section        0  bus_spi.o(i.spiInitDevice)
-    i.spiIsBusBusy                           0x0800789c   Section        0  bus_spi.o(i.spiIsBusBusy)
-    i.spiResetErrorCounter                   0x080078bc   Section        0  bus_spi.o(i.spiResetErrorCounter)
-    i.spiSetDivisor                          0x080078d8   Section        0  bus_spi.o(i.spiSetDivisor)
-    i.spiTimeoutUserCallback                 0x08007964   Section        0  bus_spi.o(i.spiTimeoutUserCallback)
-    i.spiTransfer                            0x08007988   Section        0  bus_spi.o(i.spiTransfer)
-    i.spiTransferByte                        0x08007a50   Section        0  bus_spi.o(i.spiTransferByte)
-    i.startBlackbox                          0x08007aa4   Section        0  blackbox.o(i.startBlackbox)
-    i.systemBeep                             0x08007adc   Section        0  sound_beeper.o(i.systemBeep)
-    i.systemInit                             0x08007af4   Section        0  main.o(i.systemInit)
-    i.targetConfiguration                    0x08007b44   Section        0  config.o(i.targetConfiguration)
-    i.taskLed3                               0x08007c7e   Section        0  led.o(i.taskLed3)
-    i.taskLed4                               0x08007c84   Section        0  led.o(i.taskLed4)
-    i.taskLed5                               0x08007c8a   Section        0  led.o(i.taskLed5)
-    i.taskLed6                               0x08007c90   Section        0  led.o(i.taskLed6)
-    i.taskMainPidLoop                        0x08007c98   Section        0  fc_core.o(i.taskMainPidLoop)
-    i.taskSystem                             0x08007d24   Section        0  scheduler.o(i.taskSystem)
-    i.taskUpdateRxMain                       0x08007d44   Section        0  fc_tasks.o(i.taskUpdateRxMain)
-    i.timCCxHandler                          0x08007d5c   Section        0  timer.o(i.timCCxHandler)
-    timCCxHandler                            0x08007d5d   Thumb Code   122  timer.o(i.timCCxHandler)
-    i.timerChCCR                             0x08007dd6   Section        0  timer.o(i.timerChCCR)
-    i.timerClockDivisor                      0x08007de0   Section        0  timer_stm32f4xx.o(i.timerClockDivisor)
-    i.timerForceOverflow                     0x08007e1c   Section        0  timer.o(i.timerForceOverflow)
-    i.timerGetByTag                          0x08007e50   Section        0  timer.o(i.timerGetByTag)
-    i.timerInit                              0x08007e8c   Section        0  timer.o(i.timerInit)
-    i.timerOCInit                            0x08007f10   Section        0  timer.o(i.timerOCInit)
-    i.timerOCPreloadConfig                   0x08007f38   Section        0  timer.o(i.timerOCPreloadConfig)
-    i.timerRCC                               0x08007f60   Section        0  timer.o(i.timerRCC)
-    i.uartIrqHandler                         0x08007f84   Section        0  serial_uart_stm32f4xx.o(i.uartIrqHandler)
-    i.uartOpen                               0x0800801c   Section        0  serial_uart.o(i.uartOpen)
-    i.uartRead                               0x08008190   Section        0  serial_uart.o(i.uartRead)
-    i.uartReconfigure                        0x080081bc   Section        0  serial_uart.o(i.uartReconfigure)
-    uartReconfigure                          0x080081bd   Thumb Code   140  serial_uart.o(i.uartReconfigure)
-    i.uartSetBaudRate                        0x08008248   Section        0  serial_uart.o(i.uartSetBaudRate)
-    i.uartSetMode                            0x0800824e   Section        0  serial_uart.o(i.uartSetMode)
-    i.uartStartTxDMA                         0x08008254   Section        0  serial_uart.o(i.uartStartTxDMA)
-    i.uartTotalRxBytesWaiting                0x0800829e   Section        0  serial_uart.o(i.uartTotalRxBytesWaiting)
-    i.uartTotalTxBytesFree                   0x080082b6   Section        0  serial_uart.o(i.uartTotalTxBytesFree)
-    i.uartWrite                              0x080082dc   Section        0  serial_uart.o(i.uartWrite)
-    i.updateActivatedModes                   0x0800830c   Section        0  rc_controls.o(i.updateActivatedModes)
-    i.updateRcCommands                       0x0800834c   Section        0  fc_rc.o(i.updateRcCommands)
-    i.useRcControlsConfig                    0x08008478   Section        0  rc_controls.o(i.useRcControlsConfig)
-    i.validateAndFixConfig                   0x08008494   Section        0  config.o(i.validateAndFixConfig)
-    i.validateAndFixGyroConfig               0x080084d4   Section        0  config.o(i.validateAndFixGyroConfig)
-    i.validateBlackboxConfig                 0x08008500   Section        0  blackbox.o(i.validateBlackboxConfig)
-    i.verifyMPU9250WriteRegister             0x08008550   Section        0  accgyro_spi_mpu9250.o(i.verifyMPU9250WriteRegister)
-    i.writeMotors                            0x08008590   Section        0  mixer.o(i.writeMotors)
-    locale$$code                             0x080085c4   Section       44  lc_ctype_c.o(locale$$code)
-    x$fpl$ffixr                              0x080085f0   Section       14  ffix.o(x$fpl$ffixr)
-    $v0                                      0x080085f0   Number         0  ffix.o(x$fpl$ffixr)
-    x$fpl$fnaninf                            0x080085fe   Section      140  fnaninf.o(x$fpl$fnaninf)
-    $v0                                      0x080085fe   Number         0  fnaninf.o(x$fpl$fnaninf)
-    x$fpl$fpinit                             0x0800868a   Section       10  fpinit.o(x$fpl$fpinit)
-    $v0                                      0x0800868a   Number         0  fpinit.o(x$fpl$fpinit)
-    x$fpl$frnd                               0x08008694   Section       96  frnd.o(x$fpl$frnd)
-    $v0                                      0x08008694   Number         0  frnd.o(x$fpl$frnd)
-    .constdata                               0x080086f4   Section        5  main.o(.constdata)
-    x$fpl$usenofp                            0x080086f4   Section        0  usenofp.o(x$fpl$usenofp)
-    __FUNCTION__                             0x080086f4   Data           5  main.o(.constdata)
-    .constdata                               0x080086fc   Section      168  target.o(.constdata)
-    .constdata                               0x080087a4   Section       41  accgyro_spi_mpu9250.o(.constdata)
-    __FUNCTION__                             0x080087a4   Data          22  accgyro_spi_mpu9250.o(.constdata)
-    __FUNCTION__                             0x080087ba   Data          19  accgyro_spi_mpu9250.o(.constdata)
-    .constdata                               0x080087cd   Section       26  bus_spi.o(.constdata)
-    __FUNCTION__                             0x080087cd   Data          14  bus_spi.o(.constdata)
-    __FUNCTION__                             0x080087db   Data          12  bus_spi.o(.constdata)
-    .constdata                               0x080087e7   Section       23  exti.o(.constdata)
-    extiGroupIRQn                            0x080087e7   Data           7  exti.o(.constdata)
-    extiGroups                               0x080087ee   Data          16  exti.o(.constdata)
-    .constdata                               0x080087fe   Section       22  io.o(.constdata)
-    ioDefUsedOffset                          0x080087fe   Data           5  io.o(.constdata)
-    ioDefUsedMask                            0x0800880a   Data          10  io.o(.constdata)
-    .constdata                               0x08008814   Section        3  serial.o(.constdata)
-    .constdata                               0x08008818   Section       40  serial_uart.o(.constdata)
-    .constdata                               0x08008840   Section      112  timer_stm32f4xx.o(.constdata)
-    .constdata                               0x080088b0   Section       56  asyncfatfs.o(.constdata)
-    __FUNCTION__                             0x080088b0   Data          14  asyncfatfs.o(.constdata)
-    __FUNCTION__                             0x080088be   Data          13  asyncfatfs.o(.constdata)
-    __FUNCTION__                             0x080088cb   Data          29  asyncfatfs.o(.constdata)
-    .constdata                               0x080088e8   Section       64  mixer.o(.constdata)
-    mixerQuadX                               0x080088e8   Data          64  mixer.o(.constdata)
-    .constdata                               0x08008928   Section        1  gyro.o(.constdata)
-    mpuIntExtiConfig                         0x08008928   Data           1  gyro.o(.constdata)
-    .constdata                               0x08008929   Section       28  rx.o(.constdata)
-    __FUNCTION__                             0x08008929   Data           7  rx.o(.constdata)
-    .constdata                               0x08008945   Section       23  blackbox_io.o(.constdata)
-    __FUNCTION__                             0x08008945   Data          23  blackbox_io.o(.constdata)
-    .constdata                               0x0800895c   Section       40  _printf_hex_int.o(.constdata)
-    uc_hextab                                0x0800895c   Data          20  _printf_hex_int.o(.constdata)
-    lc_hextab                                0x08008970   Data          20  _printf_hex_int.o(.constdata)
-    .constdata                               0x08008984   Section       64  log2f.o(.constdata)
-    logahi                                   0x08008984   Data          32  log2f.o(.constdata)
-    logalo                                   0x080089a4   Data          32  log2f.o(.constdata)
-    .constdata                               0x080089c4   Section      320  powf.o(.constdata)
-    table                                    0x080089c4   Data         128  powf.o(.constdata)
-    powersof2to1over16top                    0x08008a44   Data          64  powf.o(.constdata)
-    powersof2to1over16bot                    0x08008a84   Data          64  powf.o(.constdata)
-    powersof2to1over16all                    0x08008ac4   Data          64  powf.o(.constdata)
-    .constdata                               0x08008b04   Section       32  rredf.o(.constdata)
-    twooverpi                                0x08008b04   Data          32  rredf.o(.constdata)
-    .conststring                             0x08008b24   Section       55  fc_tasks.o(.conststring)
-    locale$$data                             0x08008b7c   Section      272  lc_ctype_c.o(locale$$data)
-    __lcctype_c_name                         0x08008b80   Data           2  lc_ctype_c.o(locale$$data)
-    __lcctype_c_start                        0x08008b88   Data           0  lc_ctype_c.o(locale$$data)
-    __lcctype_c_end                          0x08008c8c   Data           0  lc_ctype_c.o(locale$$data)
+    i.mixerConfigurationOutput               0x08005884   Section        0  mixer.o(i.mixerConfigurationOutput)
+    i.mixerInit                              0x080058bc   Section        0  mixer.o(i.mixerInit)
+    i.mixerResetDisarmedMotors               0x080058cc   Section        0  mixer.o(i.mixerResetDisarmedMotors)
+    i.mixerUseConfigs                        0x080058ec   Section        0  mixer.o(i.mixerUseConfigs)
+    i.motorInit                              0x080058f8   Section        0  pwm_output.o(i.motorInit)
+    i.mpu9250AccAndGyroInit                  0x08005a10   Section        0  accgyro_spi_mpu9250.o(i.mpu9250AccAndGyroInit)
+    mpu9250AccAndGyroInit                    0x08005a11   Thumb Code   200  accgyro_spi_mpu9250.o(i.mpu9250AccAndGyroInit)
+    i.mpu9250ReadRegister                    0x08005b84   Section        0  accgyro_spi_mpu9250.o(i.mpu9250ReadRegister)
+    i.mpu9250ResetGyro                       0x08005bc4   Section        0  accgyro_spi_mpu9250.o(i.mpu9250ResetGyro)
+    i.mpu9250SlowReadRegister                0x08005bd8   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SlowReadRegister)
+    i.mpu9250SpiDetect                       0x08005c24   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SpiDetect)
+    i.mpu9250SpiGyroDetect                   0x08005cb8   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroDetect)
+    i.mpu9250SpiGyroInit                     0x08005cec   Section        0  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroInit)
+    i.mpu9250WriteRegister                   0x08005d70   Section        0  accgyro_spi_mpu9250.o(i.mpu9250WriteRegister)
+    i.mpuCheckDataReady                      0x08005db0   Section        0  accgyro_mpu.o(i.mpuCheckDataReady)
+    i.mpuDetect                              0x08005dc4   Section        0  accgyro_mpu.o(i.mpuDetect)
+    i.mpuGyroInit                            0x08005e10   Section        0  accgyro_mpu.o(i.mpuGyroInit)
+    i.mpuGyroRead                            0x08005e5c   Section        0  accgyro_mpu.o(i.mpuGyroRead)
+    i.mpuIntExtiHandler                      0x08005e8c   Section        0  accgyro_mpu.o(i.mpuIntExtiHandler)
+    mpuIntExtiHandler                        0x08005e8d   Thumb Code    18  accgyro_mpu.o(i.mpuIntExtiHandler)
+    i.mspFcInit                              0x08005e9e   Section        0  fc_msp.o(i.mspFcInit)
+    i.mwArm                                  0x08005ea4   Section        0  fc_core.o(i.mwArm)
+    i.nullFilterApply                        0x08005ed8   Section        0  filter.o(i.nullFilterApply)
+    i.nullFrameStatus                        0x08005eda   Section        0  rx.o(i.nullFrameStatus)
+    nullFrameStatus                          0x08005edb   Thumb Code     4  rx.o(i.nullFrameStatus)
+    i.nullReadRawRC                          0x08005ede   Section        0  rx.o(i.nullReadRawRC)
+    nullReadRawRC                            0x08005edf   Thumb Code     4  rx.o(i.nullReadRawRC)
+    i.openSerialPort                         0x08005ee4   Section        0  serial.o(i.openSerialPort)
+    i.parseRcChannels                        0x08005f50   Section        0  rx.o(i.parseRcChannels)
+    i.performGyroCalibration                 0x08005f88   Section        0  gyro.o(i.performGyroCalibration)
+    performGyroCalibration                   0x08005f89   Thumb Code   200  gyro.o(i.performGyroCalibration)
+    i.pidController                          0x0800605c   Section        0  pid.o(i.pidController)
+    i.pidInitConfig                          0x08006078   Section        0  pid.o(i.pidInitConfig)
+    i.pidInitFilters                         0x080061c4   Section        0  pid.o(i.pidInitFilters)
+    i.pidSetTargetLooptime                   0x0800630c   Section        0  pid.o(i.pidSetTargetLooptime)
+    i.processRcCommand                       0x08006330   Section        0  fc_rc.o(i.processRcCommand)
+    i.processRcStickPositions                0x08006364   Section        0  rc_controls.o(i.processRcStickPositions)
+    i.processRx                              0x08006378   Section        0  fc_core.o(i.processRx)
+    i.pt1FilterApply                         0x08006390   Section        0  filter.o(i.pt1FilterApply)
+    i.pt1FilterInit                          0x080063a8   Section        0  filter.o(i.pt1FilterInit)
+    i.pwmAreMotorsEnabled                    0x080063dc   Section        0  pwm_output.o(i.pwmAreMotorsEnabled)
+    i.pwmCompleteMotorUpdate                 0x080063e8   Section        0  pwm_output.o(i.pwmCompleteMotorUpdate)
+    i.pwmCompleteOneshotMotorUpdate          0x080063f4   Section        0  pwm_output.o(i.pwmCompleteOneshotMotorUpdate)
+    pwmCompleteOneshotMotorUpdate            0x080063f5   Thumb Code    52  pwm_output.o(i.pwmCompleteOneshotMotorUpdate)
+    i.pwmCompleteWriteUnused                 0x0800642c   Section        0  pwm_output.o(i.pwmCompleteWriteUnused)
+    pwmCompleteWriteUnused                   0x0800642d   Thumb Code     2  pwm_output.o(i.pwmCompleteWriteUnused)
+    i.pwmOutConfigMhz                        0x0800642e   Section        0  pwm_output.o(i.pwmOutConfigMhz)
+    pwmOutConfigMhz                          0x0800642f   Thumb Code   160  pwm_output.o(i.pwmOutConfigMhz)
+    i.pwmWriteMotor                          0x080064d0   Section        0  pwm_output.o(i.pwmWriteMotor)
+    i.pwmWriteStandard                       0x080064dc   Section        0  pwm_output.o(i.pwmWriteStandard)
+    pwmWriteStandard                         0x080064dd   Thumb Code    14  pwm_output.o(i.pwmWriteStandard)
+    i.pwmWriteUnused                         0x080064f0   Section        0  pwm_output.o(i.pwmWriteUnused)
+    pwmWriteUnused                           0x080064f1   Thumb Code     2  pwm_output.o(i.pwmWriteUnused)
+    i.queueAdd                               0x080064f4   Section        0  scheduler.o(i.queueAdd)
+    i.queueClear                             0x08006554   Section        0  scheduler.o(i.queueClear)
+    i.queueContains                          0x08006570   Section        0  scheduler.o(i.queueContains)
+    i.queueFirst                             0x0800659c   Section        0  scheduler.o(i.queueFirst)
+    i.queueNext                              0x080065b0   Section        0  scheduler.o(i.queueNext)
+    i.queueRemove                            0x080065c8   Section        0  scheduler.o(i.queueRemove)
+    i.readBitfield                           0x08006608   Section        0  sdcard_standard.o(i.readBitfield)
+    i.readEEPROM                             0x08006644   Section        0  config_eeprom.o(i.readEEPROM)
+    i.readRxChannelsApplyRanges              0x08006660   Section        0  rx.o(i.readRxChannelsApplyRanges)
+    readRxChannelsApplyRanges                0x08006661   Thumb Code   110  rx.o(i.readRxChannelsApplyRanges)
+    i.rescheduleTask                         0x080066d8   Section        0  scheduler.o(i.rescheduleTask)
+    i.resetAllRxChannelRangeConfigurations   0x0800670c   Section        0  rx.o(i.resetAllRxChannelRangeConfigurations)
+    i.resetEEPROM                            0x08006724   Section        0  config.o(i.resetEEPROM)
+    i.resetPidProfile                        0x0800673c   Section        0  config.o(i.resetPidProfile)
+    resetPidProfile                          0x0800673d   Thumb Code   190  config.o(i.resetPidProfile)
+    i.resetProfile                           0x08006800   Section        0  config.o(i.resetProfile)
+    i.resetRcControlsConfig                  0x0800685c   Section        0  config.o(i.resetRcControlsConfig)
+    i.rxInit                                 0x0800686c   Section        0  rx.o(i.rxInit)
+    i.rxSerial3TestInit                      0x08006944   Section        0  rxserial3test.o(i.rxSerial3TestInit)
+    i.rxSerial3TestWrite                     0x08006970   Section        0  rxserial3test.o(i.rxSerial3TestWrite)
+    i.rxUpdateCheck                          0x08006980   Section        0  rx.o(i.rxUpdateCheck)
+    i.sbusDataReceiveCallBack                0x080069d4   Section        0  sbus.o(i.sbusDataReceiveCallBack)
+    sbusDataReceiveCallBack                  0x080069d5   Thumb Code    70  sbus.o(i.sbusDataReceiveCallBack)
+    i.sbusFrameStatus                        0x08006a24   Section        0  sbus.o(i.sbusFrameStatus)
+    sbusFrameStatus                          0x08006a25   Thumb Code   208  sbus.o(i.sbusFrameStatus)
+    i.sbusInit                               0x08006afc   Section        0  sbus.o(i.sbusInit)
+    i.sbusReadRawRC                          0x08006b78   Section        0  sbus.o(i.sbusReadRawRC)
+    sbusReadRawRC                            0x08006b79   Thumb Code    22  sbus.o(i.sbusReadRawRC)
+    i.scaleRange                             0x08006b94   Section        0  maths.o(i.scaleRange)
+    i.scheduler                              0x08006bac   Section        0  scheduler.o(i.scheduler)
+    i.schedulerInit                          0x08006d1c   Section        0  scheduler.o(i.schedulerInit)
+    i.sdcardInsertionDetectInit              0x08006d3c   Section        0  sdcard.o(i.sdcardInsertionDetectInit)
+    i.sdcard_beginWriteBlocks                0x08006d60   Section        0  sdcard.o(i.sdcard_beginWriteBlocks)
+    i.sdcard_deselect                        0x08006dc8   Section        0  sdcard.o(i.sdcard_deselect)
+    sdcard_deselect                          0x08006dc9   Thumb Code    26  sdcard.o(i.sdcard_deselect)
+    i.sdcard_endWriteBlocks                  0x08006dec   Section        0  sdcard.o(i.sdcard_endWriteBlocks)
+    sdcard_endWriteBlocks                    0x08006ded   Thumb Code    62  sdcard.o(i.sdcard_endWriteBlocks)
+    i.sdcard_fetchCSD                        0x08006e34   Section        0  sdcard.o(i.sdcard_fetchCSD)
+    sdcard_fetchCSD                          0x08006e35   Thumb Code   152  sdcard.o(i.sdcard_fetchCSD)
+    i.sdcard_init                            0x08006ed0   Section        0  sdcard.o(i.sdcard_init)
+    i.sdcard_isInserted                      0x08006f58   Section        0  sdcard.o(i.sdcard_isInserted)
+    i.sdcard_poll                            0x08006f6c   Section        0  sdcard.o(i.sdcard_poll)
+    i.sdcard_readBlock                       0x08007230   Section        0  sdcard.o(i.sdcard_readBlock)
+    i.sdcard_receiveCID                      0x08007290   Section        0  sdcard.o(i.sdcard_receiveCID)
+    sdcard_receiveCID                        0x08007291   Thumb Code   130  sdcard.o(i.sdcard_receiveCID)
+    i.sdcard_receiveDataBlock                0x08007318   Section        0  sdcard.o(i.sdcard_receiveDataBlock)
+    sdcard_receiveDataBlock                  0x08007319   Thumb Code    62  sdcard.o(i.sdcard_receiveDataBlock)
+    i.sdcard_reset                           0x0800735c   Section        0  sdcard.o(i.sdcard_reset)
+    sdcard_reset                             0x0800735d   Thumb Code    62  sdcard.o(i.sdcard_reset)
+    i.sdcard_select                          0x080073a4   Section        0  sdcard.o(i.sdcard_select)
+    sdcard_select                            0x080073a5   Thumb Code     8  sdcard.o(i.sdcard_select)
+    i.sdcard_sendAppCommand                  0x080073b0   Section        0  sdcard.o(i.sdcard_sendAppCommand)
+    sdcard_sendAppCommand                    0x080073b1   Thumb Code    26  sdcard.o(i.sdcard_sendAppCommand)
+    i.sdcard_sendCommand                     0x080073cc   Section        0  sdcard.o(i.sdcard_sendCommand)
+    sdcard_sendCommand                       0x080073cd   Thumb Code    78  sdcard.o(i.sdcard_sendCommand)
+    i.sdcard_waitForIdle                     0x08007428   Section        0  sdcard.o(i.sdcard_waitForIdle)
+    sdcard_waitForIdle                       0x08007429   Thumb Code    34  sdcard.o(i.sdcard_waitForIdle)
+    i.sdcard_waitForNonIdleByte              0x08007450   Section        0  sdcard.o(i.sdcard_waitForNonIdleByte)
+    sdcard_waitForNonIdleByte                0x08007451   Thumb Code    32  sdcard.o(i.sdcard_waitForNonIdleByte)
+    i.sdcard_writeBlock                      0x08007474   Section        0  sdcard.o(i.sdcard_writeBlock)
+    i.sensorSet                              0x08007518   Section        0  runtime_config.o(i.sensorSet)
+    i.sensors                                0x08007528   Section        0  runtime_config.o(i.sensors)
+    i.sensorsAutodetect                      0x0800753c   Section        0  initialisation.o(i.sensorsAutodetect)
+    i.serialInit                             0x0800755c   Section        0  serial.o(i.serialInit)
+    i.serialRxInit                           0x08007590   Section        0  rx.o(i.serialRxInit)
+    i.serialUART                             0x080075a4   Section        0  serial_uart_stm32f4xx.o(i.serialUART)
+    i.serialUART1                            0x080076b4   Section        0  serial_uart_stm32f4xx.o(i.serialUART1)
+    i.serialUART3                            0x080076c0   Section        0  serial_uart_stm32f4xx.o(i.serialUART3)
+    i.serialUART6                            0x080076cc   Section        0  serial_uart_stm32f4xx.o(i.serialUART6)
+    i.serialWrite                            0x080076d8   Section        0  serial.o(i.serialWrite)
+    i.setProfile                             0x080076e0   Section        0  config.o(i.setProfile)
+    i.setTaskEnabled                         0x08007714   Section        0  scheduler.o(i.setTaskEnabled)
+    i.spiDeviceByInstance                    0x08007748   Section        0  bus_spi.o(i.spiDeviceByInstance)
+    i.spiGetErrorCounter                     0x08007778   Section        0  bus_spi.o(i.spiGetErrorCounter)
+    i.spiInit                                0x08007794   Section        0  bus_spi.o(i.spiInit)
+    i.spiInitDevice                          0x080077b0   Section        0  bus_spi.o(i.spiInitDevice)
+    i.spiIsBusBusy                           0x080078c8   Section        0  bus_spi.o(i.spiIsBusBusy)
+    i.spiResetErrorCounter                   0x080078e8   Section        0  bus_spi.o(i.spiResetErrorCounter)
+    i.spiSetDivisor                          0x08007904   Section        0  bus_spi.o(i.spiSetDivisor)
+    i.spiTimeoutUserCallback                 0x08007990   Section        0  bus_spi.o(i.spiTimeoutUserCallback)
+    i.spiTransfer                            0x080079b4   Section        0  bus_spi.o(i.spiTransfer)
+    i.spiTransferByte                        0x08007a7c   Section        0  bus_spi.o(i.spiTransferByte)
+    i.startBlackbox                          0x08007ad0   Section        0  blackbox.o(i.startBlackbox)
+    i.systemBeep                             0x08007b08   Section        0  sound_beeper.o(i.systemBeep)
+    i.systemInit                             0x08007b20   Section        0  main.o(i.systemInit)
+    i.targetConfiguration                    0x08007b70   Section        0  config.o(i.targetConfiguration)
+    i.taskLed3                               0x08007caa   Section        0  led.o(i.taskLed3)
+    i.taskLed4                               0x08007cb0   Section        0  led.o(i.taskLed4)
+    i.taskLed5                               0x08007cb6   Section        0  led.o(i.taskLed5)
+    i.taskLed6                               0x08007cbc   Section        0  led.o(i.taskLed6)
+    i.taskMainPidLoop                        0x08007cc4   Section        0  fc_core.o(i.taskMainPidLoop)
+    i.taskSystem                             0x08007d50   Section        0  scheduler.o(i.taskSystem)
+    i.taskUpdateRxMain                       0x08007d70   Section        0  fc_tasks.o(i.taskUpdateRxMain)
+    i.timCCxHandler                          0x08007d88   Section        0  timer.o(i.timCCxHandler)
+    timCCxHandler                            0x08007d89   Thumb Code   122  timer.o(i.timCCxHandler)
+    i.timerChCCR                             0x08007e02   Section        0  timer.o(i.timerChCCR)
+    i.timerClockDivisor                      0x08007e0c   Section        0  timer_stm32f4xx.o(i.timerClockDivisor)
+    i.timerForceOverflow                     0x08007e48   Section        0  timer.o(i.timerForceOverflow)
+    i.timerGetByTag                          0x08007e7c   Section        0  timer.o(i.timerGetByTag)
+    i.timerInit                              0x08007eb8   Section        0  timer.o(i.timerInit)
+    i.timerOCInit                            0x08007f3c   Section        0  timer.o(i.timerOCInit)
+    i.timerOCPreloadConfig                   0x08007f64   Section        0  timer.o(i.timerOCPreloadConfig)
+    i.timerRCC                               0x08007f8c   Section        0  timer.o(i.timerRCC)
+    i.uartIrqHandler                         0x08007fb0   Section        0  serial_uart_stm32f4xx.o(i.uartIrqHandler)
+    i.uartOpen                               0x08008048   Section        0  serial_uart.o(i.uartOpen)
+    i.uartRead                               0x080081bc   Section        0  serial_uart.o(i.uartRead)
+    i.uartReconfigure                        0x080081e8   Section        0  serial_uart.o(i.uartReconfigure)
+    uartReconfigure                          0x080081e9   Thumb Code   140  serial_uart.o(i.uartReconfigure)
+    i.uartSetBaudRate                        0x08008274   Section        0  serial_uart.o(i.uartSetBaudRate)
+    i.uartSetMode                            0x0800827a   Section        0  serial_uart.o(i.uartSetMode)
+    i.uartStartTxDMA                         0x08008280   Section        0  serial_uart.o(i.uartStartTxDMA)
+    i.uartTotalRxBytesWaiting                0x080082ca   Section        0  serial_uart.o(i.uartTotalRxBytesWaiting)
+    i.uartTotalTxBytesFree                   0x080082e2   Section        0  serial_uart.o(i.uartTotalTxBytesFree)
+    i.uartWrite                              0x08008308   Section        0  serial_uart.o(i.uartWrite)
+    i.updateActivatedModes                   0x08008338   Section        0  rc_controls.o(i.updateActivatedModes)
+    i.updateRcCommands                       0x08008424   Section        0  fc_rc.o(i.updateRcCommands)
+    i.useRcControlsConfig                    0x08008550   Section        0  rc_controls.o(i.useRcControlsConfig)
+    i.validateAndFixConfig                   0x0800856c   Section        0  config.o(i.validateAndFixConfig)
+    i.validateAndFixGyroConfig               0x080085ac   Section        0  config.o(i.validateAndFixGyroConfig)
+    i.validateBlackboxConfig                 0x080085d8   Section        0  blackbox.o(i.validateBlackboxConfig)
+    i.verifyMPU9250WriteRegister             0x08008628   Section        0  accgyro_spi_mpu9250.o(i.verifyMPU9250WriteRegister)
+    i.writeMotors                            0x08008668   Section        0  mixer.o(i.writeMotors)
+    locale$$code                             0x0800869c   Section       44  lc_ctype_c.o(locale$$code)
+    x$fpl$ffixr                              0x080086c8   Section       14  ffix.o(x$fpl$ffixr)
+    $v0                                      0x080086c8   Number         0  ffix.o(x$fpl$ffixr)
+    x$fpl$fnaninf                            0x080086d6   Section      140  fnaninf.o(x$fpl$fnaninf)
+    $v0                                      0x080086d6   Number         0  fnaninf.o(x$fpl$fnaninf)
+    x$fpl$fpinit                             0x08008762   Section       10  fpinit.o(x$fpl$fpinit)
+    $v0                                      0x08008762   Number         0  fpinit.o(x$fpl$fpinit)
+    x$fpl$frnd                               0x0800876c   Section       96  frnd.o(x$fpl$frnd)
+    $v0                                      0x0800876c   Number         0  frnd.o(x$fpl$frnd)
+    .constdata                               0x080087cc   Section        5  main.o(.constdata)
+    x$fpl$usenofp                            0x080087cc   Section        0  usenofp.o(x$fpl$usenofp)
+    __FUNCTION__                             0x080087cc   Data           5  main.o(.constdata)
+    .constdata                               0x080087d4   Section      168  target.o(.constdata)
+    .constdata                               0x0800887c   Section       41  accgyro_spi_mpu9250.o(.constdata)
+    __FUNCTION__                             0x0800887c   Data          22  accgyro_spi_mpu9250.o(.constdata)
+    __FUNCTION__                             0x08008892   Data          19  accgyro_spi_mpu9250.o(.constdata)
+    .constdata                               0x080088a5   Section       26  bus_spi.o(.constdata)
+    __FUNCTION__                             0x080088a5   Data          14  bus_spi.o(.constdata)
+    __FUNCTION__                             0x080088b3   Data          12  bus_spi.o(.constdata)
+    .constdata                               0x080088bf   Section       23  exti.o(.constdata)
+    extiGroupIRQn                            0x080088bf   Data           7  exti.o(.constdata)
+    extiGroups                               0x080088c6   Data          16  exti.o(.constdata)
+    .constdata                               0x080088d6   Section       22  io.o(.constdata)
+    ioDefUsedOffset                          0x080088d6   Data           5  io.o(.constdata)
+    ioDefUsedMask                            0x080088e2   Data          10  io.o(.constdata)
+    .constdata                               0x080088ec   Section        3  serial.o(.constdata)
+    .constdata                               0x080088f0   Section       40  serial_uart.o(.constdata)
+    .constdata                               0x08008918   Section      112  timer_stm32f4xx.o(.constdata)
+    .constdata                               0x08008988   Section       56  asyncfatfs.o(.constdata)
+    __FUNCTION__                             0x08008988   Data          14  asyncfatfs.o(.constdata)
+    __FUNCTION__                             0x08008996   Data          13  asyncfatfs.o(.constdata)
+    __FUNCTION__                             0x080089a3   Data          29  asyncfatfs.o(.constdata)
+    .constdata                               0x080089c0   Section       64  mixer.o(.constdata)
+    mixerQuadX                               0x080089c0   Data          64  mixer.o(.constdata)
+    .constdata                               0x08008a00   Section        1  gyro.o(.constdata)
+    mpuIntExtiConfig                         0x08008a00   Data           1  gyro.o(.constdata)
+    .constdata                               0x08008a01   Section       28  rx.o(.constdata)
+    __FUNCTION__                             0x08008a01   Data           7  rx.o(.constdata)
+    .constdata                               0x08008a1d   Section       23  blackbox_io.o(.constdata)
+    __FUNCTION__                             0x08008a1d   Data          23  blackbox_io.o(.constdata)
+    .constdata                               0x08008a34   Section       40  _printf_hex_int.o(.constdata)
+    uc_hextab                                0x08008a34   Data          20  _printf_hex_int.o(.constdata)
+    lc_hextab                                0x08008a48   Data          20  _printf_hex_int.o(.constdata)
+    .constdata                               0x08008a5c   Section       64  log2f.o(.constdata)
+    logahi                                   0x08008a5c   Data          32  log2f.o(.constdata)
+    logalo                                   0x08008a7c   Data          32  log2f.o(.constdata)
+    .constdata                               0x08008a9c   Section      320  powf.o(.constdata)
+    table                                    0x08008a9c   Data         128  powf.o(.constdata)
+    powersof2to1over16top                    0x08008b1c   Data          64  powf.o(.constdata)
+    powersof2to1over16bot                    0x08008b5c   Data          64  powf.o(.constdata)
+    powersof2to1over16all                    0x08008b9c   Data          64  powf.o(.constdata)
+    .constdata                               0x08008bdc   Section       32  rredf.o(.constdata)
+    twooverpi                                0x08008bdc   Data          32  rredf.o(.constdata)
+    .conststring                             0x08008bfc   Section       55  fc_tasks.o(.conststring)
+    locale$$data                             0x08008c54   Section      272  lc_ctype_c.o(locale$$data)
+    __lcctype_c_name                         0x08008c58   Data           2  lc_ctype_c.o(locale$$data)
+    __lcctype_c_start                        0x08008c60   Data           0  lc_ctype_c.o(locale$$data)
+    __lcctype_c_end                          0x08008d64   Data           0  lc_ctype_c.o(locale$$data)
     .data                                    0x20000000   Section       16  stm32f4xx_rcc.o(.data)
     APBAHBPrescTable                         0x20000000   Data          16  stm32f4xx_rcc.o(.data)
     .data                                    0x20000010   Section        1  main.o(.data)
@@ -3655,143 +3659,143 @@ Image Symbol Table
     micros                                   0x0800578d   Thumb Code    74  system.o(i.micros)
     microsISR                                0x080057e1   Thumb Code    72  system.o(i.microsISR)
     millis                                   0x0800582d   Thumb Code     6  system.o(i.millis)
-    mixTable                                 0x08005839   Thumb Code    28  mixer.o(i.mixTable)
-    mixerConfigurationOutput                 0x08005861   Thumb Code    44  mixer.o(i.mixerConfigurationOutput)
-    mixerInit                                0x08005899   Thumb Code    10  mixer.o(i.mixerInit)
-    mixerResetDisarmedMotors                 0x080058a9   Thumb Code    24  mixer.o(i.mixerResetDisarmedMotors)
-    mixerUseConfigs                          0x080058c9   Thumb Code     8  mixer.o(i.mixerUseConfigs)
-    motorInit                                0x080058d5   Thumb Code   252  pwm_output.o(i.motorInit)
-    mpu9250ReadRegister                      0x08005b61   Thumb Code    54  accgyro_spi_mpu9250.o(i.mpu9250ReadRegister)
-    mpu9250ResetGyro                         0x08005ba1   Thumb Code    20  accgyro_spi_mpu9250.o(i.mpu9250ResetGyro)
-    mpu9250SlowReadRegister                  0x08005bb5   Thumb Code    66  accgyro_spi_mpu9250.o(i.mpu9250SlowReadRegister)
-    mpu9250SpiDetect                         0x08005c01   Thumb Code   112  accgyro_spi_mpu9250.o(i.mpu9250SpiDetect)
-    mpu9250SpiGyroDetect                     0x08005c95   Thumb Code    36  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroDetect)
-    mpu9250SpiGyroInit                       0x08005cc9   Thumb Code    84  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroInit)
-    mpu9250WriteRegister                     0x08005d4d   Thumb Code    54  accgyro_spi_mpu9250.o(i.mpu9250WriteRegister)
-    mpuCheckDataReady                        0x08005d8d   Thumb Code    18  accgyro_mpu.o(i.mpuCheckDataReady)
-    mpuDetect                                0x08005da1   Thumb Code    54  accgyro_mpu.o(i.mpuDetect)
-    mpuGyroInit                              0x08005ded   Thumb Code    72  accgyro_mpu.o(i.mpuGyroInit)
-    mpuGyroRead                              0x08005e39   Thumb Code    48  accgyro_mpu.o(i.mpuGyroRead)
-    mspFcInit                                0x08005e7b   Thumb Code     4  fc_msp.o(i.mspFcInit)
-    mwArm                                    0x08005e81   Thumb Code    46  fc_core.o(i.mwArm)
-    nullFilterApply                          0x08005eb5   Thumb Code     2  filter.o(i.nullFilterApply)
-    openSerialPort                           0x08005ec1   Thumb Code    94  serial.o(i.openSerialPort)
-    parseRcChannels                          0x08005f2d   Thumb Code    50  rx.o(i.parseRcChannels)
-    pidController                            0x08006039   Thumb Code    26  pid.o(i.pidController)
-    pidInitConfig                            0x08006055   Thumb Code   298  pid.o(i.pidInitConfig)
-    pidInitFilters                           0x080061a1   Thumb Code   306  pid.o(i.pidInitFilters)
-    pidSetTargetLooptime                     0x080062e9   Thumb Code    26  pid.o(i.pidSetTargetLooptime)
-    processRcCommand                         0x0800630d   Thumb Code    42  fc_rc.o(i.processRcCommand)
-    processRcStickPositions                  0x08006341   Thumb Code    14  rc_controls.o(i.processRcStickPositions)
-    processRx                                0x08006355   Thumb Code    18  fc_core.o(i.processRx)
-    pt1FilterApply                           0x08006367   Thumb Code    22  filter.o(i.pt1FilterApply)
-    pt1FilterInit                            0x0800637d   Thumb Code    46  filter.o(i.pt1FilterInit)
-    pwmAreMotorsEnabled                      0x080063b1   Thumb Code     6  pwm_output.o(i.pwmAreMotorsEnabled)
-    pwmCompleteMotorUpdate                   0x080063bd   Thumb Code     6  pwm_output.o(i.pwmCompleteMotorUpdate)
-    pwmWriteMotor                            0x080064a5   Thumb Code     6  pwm_output.o(i.pwmWriteMotor)
-    queueAdd                                 0x080064c9   Thumb Code    86  scheduler.o(i.queueAdd)
-    queueClear                               0x08006529   Thumb Code    20  scheduler.o(i.queueClear)
-    queueContains                            0x08006545   Thumb Code    34  scheduler.o(i.queueContains)
-    queueFirst                               0x08006571   Thumb Code    12  scheduler.o(i.queueFirst)
-    queueNext                                0x08006585   Thumb Code    16  scheduler.o(i.queueNext)
-    queueRemove                              0x0800659d   Thumb Code    54  scheduler.o(i.queueRemove)
-    readBitfield                             0x080065dd   Thumb Code    58  sdcard_standard.o(i.readBitfield)
-    readEEPROM                               0x08006619   Thumb Code    24  config_eeprom.o(i.readEEPROM)
-    rescheduleTask                           0x080066ad   Thumb Code    42  scheduler.o(i.rescheduleTask)
-    resetAllRxChannelRangeConfigurations     0x080066e1   Thumb Code    24  rx.o(i.resetAllRxChannelRangeConfigurations)
-    resetEEPROM                              0x080066f9   Thumb Code    18  config.o(i.resetEEPROM)
-    resetProfile                             0x080067d5   Thumb Code    92  config.o(i.resetProfile)
-    resetRcControlsConfig                    0x08006831   Thumb Code    16  config.o(i.resetRcControlsConfig)
-    rxInit                                   0x08006841   Thumb Code   180  rx.o(i.rxInit)
-    rxSerial3TestInit                        0x08006919   Thumb Code    40  rxserial3test.o(i.rxSerial3TestInit)
-    rxSerial3TestWrite                       0x08006945   Thumb Code    10  rxserial3test.o(i.rxSerial3TestWrite)
-    rxUpdateCheck                            0x08006955   Thumb Code    76  rx.o(i.rxUpdateCheck)
-    sbusInit                                 0x08006ad1   Thumb Code   104  sbus.o(i.sbusInit)
-    scaleRange                               0x08006b69   Thumb Code    24  maths.o(i.scaleRange)
-    scheduler                                0x08006b81   Thumb Code   364  scheduler.o(i.scheduler)
-    schedulerInit                            0x08006cf1   Thumb Code    22  scheduler.o(i.schedulerInit)
-    sdcardInsertionDetectInit                0x08006d11   Thumb Code    32  sdcard.o(i.sdcardInsertionDetectInit)
-    sdcard_beginWriteBlocks                  0x08006d35   Thumb Code    98  sdcard.o(i.sdcard_beginWriteBlocks)
-    sdcard_init                              0x08006ea5   Thumb Code   120  sdcard.o(i.sdcard_init)
-    sdcard_isInserted                        0x08006f2d   Thumb Code    16  sdcard.o(i.sdcard_isInserted)
-    sdcard_poll                              0x08006f41   Thumb Code   698  sdcard.o(i.sdcard_poll)
-    sdcard_readBlock                         0x08007205   Thumb Code    92  sdcard.o(i.sdcard_readBlock)
-    sdcard_writeBlock                        0x08007449   Thumb Code   154  sdcard.o(i.sdcard_writeBlock)
-    sensorSet                                0x080074ed   Thumb Code    10  runtime_config.o(i.sensorSet)
-    sensors                                  0x080074fd   Thumb Code    16  runtime_config.o(i.sensors)
-    sensorsAutodetect                        0x08007511   Thumb Code    26  initialisation.o(i.sensorsAutodetect)
-    serialInit                               0x08007531   Thumb Code    38  serial.o(i.serialInit)
-    serialRxInit                             0x08007565   Thumb Code    18  rx.o(i.serialRxInit)
-    serialUART                               0x08007579   Thumb Code   264  serial_uart_stm32f4xx.o(i.serialUART)
-    serialUART1                              0x08007689   Thumb Code    12  serial_uart_stm32f4xx.o(i.serialUART1)
-    serialUART3                              0x08007695   Thumb Code    12  serial_uart_stm32f4xx.o(i.serialUART3)
-    serialUART6                              0x080076a1   Thumb Code    12  serial_uart_stm32f4xx.o(i.serialUART6)
-    serialWrite                              0x080076ad   Thumb Code     6  serial.o(i.serialWrite)
-    setProfile                               0x080076b5   Thumb Code    42  config.o(i.setProfile)
-    setTaskEnabled                           0x080076e9   Thumb Code    44  scheduler.o(i.setTaskEnabled)
-    spiDeviceByInstance                      0x0800771d   Thumb Code    36  bus_spi.o(i.spiDeviceByInstance)
-    spiGetErrorCounter                       0x0800774d   Thumb Code    24  bus_spi.o(i.spiGetErrorCounter)
-    spiInit                                  0x08007769   Thumb Code    28  bus_spi.o(i.spiInit)
-    spiInitDevice                            0x08007785   Thumb Code   258  bus_spi.o(i.spiInitDevice)
-    spiIsBusBusy                             0x0800789d   Thumb Code    32  bus_spi.o(i.spiIsBusBusy)
-    spiResetErrorCounter                     0x080078bd   Thumb Code    22  bus_spi.o(i.spiResetErrorCounter)
-    spiSetDivisor                            0x080078d9   Thumb Code   138  bus_spi.o(i.spiSetDivisor)
-    spiTimeoutUserCallback                   0x08007965   Thumb Code    32  bus_spi.o(i.spiTimeoutUserCallback)
-    spiTransfer                              0x08007989   Thumb Code   146  bus_spi.o(i.spiTransfer)
-    spiTransferByte                          0x08007a51   Thumb Code    82  bus_spi.o(i.spiTransferByte)
-    startBlackbox                            0x08007aa5   Thumb Code    48  blackbox.o(i.startBlackbox)
-    systemBeep                               0x08007add   Thumb Code    18  sound_beeper.o(i.systemBeep)
-    systemInit                               0x08007af5   Thumb Code    70  main.o(i.systemInit)
-    targetConfiguration                      0x08007b45   Thumb Code   314  config.o(i.targetConfiguration)
-    taskLed3                                 0x08007c7f   Thumb Code     6  led.o(i.taskLed3)
-    taskLed4                                 0x08007c85   Thumb Code     6  led.o(i.taskLed4)
-    taskLed5                                 0x08007c8b   Thumb Code     6  led.o(i.taskLed5)
-    taskLed6                                 0x08007c91   Thumb Code     6  led.o(i.taskLed6)
-    taskMainPidLoop                          0x08007c99   Thumb Code   120  fc_core.o(i.taskMainPidLoop)
-    taskSystem                               0x08007d25   Thumb Code    28  scheduler.o(i.taskSystem)
-    taskUpdateRxMain                         0x08007d45   Thumb Code    20  fc_tasks.o(i.taskUpdateRxMain)
-    timerChCCR                               0x08007dd7   Thumb Code    10  timer.o(i.timerChCCR)
-    timerClockDivisor                        0x08007de1   Thumb Code    38  timer_stm32f4xx.o(i.timerClockDivisor)
-    timerForceOverflow                       0x08007e1d   Thumb Code    46  timer.o(i.timerForceOverflow)
-    timerGetByTag                            0x08007e51   Thumb Code    54  timer.o(i.timerGetByTag)
-    timerInit                                0x08007e8d   Thumb Code   120  timer.o(i.timerInit)
-    timerOCInit                              0x08007f11   Thumb Code    40  timer.o(i.timerOCInit)
-    timerOCPreloadConfig                     0x08007f39   Thumb Code    40  timer.o(i.timerOCPreloadConfig)
-    timerRCC                                 0x08007f61   Thumb Code    30  timer.o(i.timerRCC)
-    uartIrqHandler                           0x08007f85   Thumb Code   150  serial_uart_stm32f4xx.o(i.uartIrqHandler)
-    uartOpen                                 0x0800801d   Thumb Code   360  serial_uart.o(i.uartOpen)
-    uartRead                                 0x08008191   Thumb Code    44  serial_uart.o(i.uartRead)
-    uartSetBaudRate                          0x08008249   Thumb Code     6  serial_uart.o(i.uartSetBaudRate)
-    uartSetMode                              0x0800824f   Thumb Code     6  serial_uart.o(i.uartSetMode)
-    uartStartTxDMA                           0x08008255   Thumb Code    74  serial_uart.o(i.uartStartTxDMA)
-    uartTotalRxBytesWaiting                  0x0800829f   Thumb Code    24  serial_uart.o(i.uartTotalRxBytesWaiting)
-    uartTotalTxBytesFree                     0x080082b7   Thumb Code    38  serial_uart.o(i.uartTotalTxBytesFree)
-    uartWrite                                0x080082dd   Thumb Code    48  serial_uart.o(i.uartWrite)
-    updateActivatedModes                     0x0800830d   Thumb Code    58  rc_controls.o(i.updateActivatedModes)
-    updateRcCommands                         0x0800834d   Thumb Code   272  fc_rc.o(i.updateRcCommands)
-    useRcControlsConfig                      0x08008479   Thumb Code    22  rc_controls.o(i.useRcControlsConfig)
-    validateAndFixConfig                     0x08008495   Thumb Code    64  config.o(i.validateAndFixConfig)
-    validateAndFixGyroConfig                 0x080084d5   Thumb Code    38  config.o(i.validateAndFixGyroConfig)
-    validateBlackboxConfig                   0x08008501   Thumb Code    76  blackbox.o(i.validateBlackboxConfig)
-    verifyMPU9250WriteRegister               0x08008551   Thumb Code    64  accgyro_spi_mpu9250.o(i.verifyMPU9250WriteRegister)
-    writeMotors                              0x08008591   Thumb Code    44  mixer.o(i.writeMotors)
-    _get_lc_ctype                            0x080085c5   Thumb Code    44  lc_ctype_c.o(locale$$code)
-    _ffix_r                                  0x080085f1   Thumb Code    14  ffix.o(x$fpl$ffixr)
-    __fpl_fnaninf                            0x080085ff   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
-    _fp_init                                 0x0800868b   Thumb Code    10  fpinit.o(x$fpl$fpinit)
-    __fplib_config_fpu_vfp                   0x08008693   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    __fplib_config_pureend_doubles           0x08008693   Thumb Code     0  fpinit.o(x$fpl$fpinit)
-    _frnd                                    0x08008695   Thumb Code    96  frnd.o(x$fpl$frnd)
-    __I$use$fp                               0x080086f4   Number         0  usenofp.o(x$fpl$usenofp)
-    timerHardware                            0x080086fc   Data         168  target.o(.constdata)
-    ioPortDefs                               0x08008803   Data           6  io.o(.constdata)
-    serialPortIdentifiers                    0x08008814   Data           3  serial.o(.constdata)
-    uartVTable                               0x08008818   Data          40  serial_uart.o(.constdata)
-    timerDefinitions                         0x08008840   Data         112  timer_stm32f4xx.o(.constdata)
-    rcChannelLetters                         0x08008930   Data          21  rx.o(.constdata)
-    Region$$Table$$Base                      0x08008b5c   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08008b7c   Number         0  anon$$obj.o(Region$$Table)
-    __ctype                                  0x08008b89   Data           0  lc_ctype_c.o(locale$$data)
+    mixTable                                 0x08005839   Thumb Code    60  mixer.o(i.mixTable)
+    mixerConfigurationOutput                 0x08005885   Thumb Code    44  mixer.o(i.mixerConfigurationOutput)
+    mixerInit                                0x080058bd   Thumb Code    10  mixer.o(i.mixerInit)
+    mixerResetDisarmedMotors                 0x080058cd   Thumb Code    24  mixer.o(i.mixerResetDisarmedMotors)
+    mixerUseConfigs                          0x080058ed   Thumb Code     8  mixer.o(i.mixerUseConfigs)
+    motorInit                                0x080058f9   Thumb Code   252  pwm_output.o(i.motorInit)
+    mpu9250ReadRegister                      0x08005b85   Thumb Code    54  accgyro_spi_mpu9250.o(i.mpu9250ReadRegister)
+    mpu9250ResetGyro                         0x08005bc5   Thumb Code    20  accgyro_spi_mpu9250.o(i.mpu9250ResetGyro)
+    mpu9250SlowReadRegister                  0x08005bd9   Thumb Code    66  accgyro_spi_mpu9250.o(i.mpu9250SlowReadRegister)
+    mpu9250SpiDetect                         0x08005c25   Thumb Code   112  accgyro_spi_mpu9250.o(i.mpu9250SpiDetect)
+    mpu9250SpiGyroDetect                     0x08005cb9   Thumb Code    36  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroDetect)
+    mpu9250SpiGyroInit                       0x08005ced   Thumb Code    84  accgyro_spi_mpu9250.o(i.mpu9250SpiGyroInit)
+    mpu9250WriteRegister                     0x08005d71   Thumb Code    54  accgyro_spi_mpu9250.o(i.mpu9250WriteRegister)
+    mpuCheckDataReady                        0x08005db1   Thumb Code    18  accgyro_mpu.o(i.mpuCheckDataReady)
+    mpuDetect                                0x08005dc5   Thumb Code    54  accgyro_mpu.o(i.mpuDetect)
+    mpuGyroInit                              0x08005e11   Thumb Code    72  accgyro_mpu.o(i.mpuGyroInit)
+    mpuGyroRead                              0x08005e5d   Thumb Code    48  accgyro_mpu.o(i.mpuGyroRead)
+    mspFcInit                                0x08005e9f   Thumb Code     4  fc_msp.o(i.mspFcInit)
+    mwArm                                    0x08005ea5   Thumb Code    46  fc_core.o(i.mwArm)
+    nullFilterApply                          0x08005ed9   Thumb Code     2  filter.o(i.nullFilterApply)
+    openSerialPort                           0x08005ee5   Thumb Code    94  serial.o(i.openSerialPort)
+    parseRcChannels                          0x08005f51   Thumb Code    50  rx.o(i.parseRcChannels)
+    pidController                            0x0800605d   Thumb Code    26  pid.o(i.pidController)
+    pidInitConfig                            0x08006079   Thumb Code   298  pid.o(i.pidInitConfig)
+    pidInitFilters                           0x080061c5   Thumb Code   306  pid.o(i.pidInitFilters)
+    pidSetTargetLooptime                     0x0800630d   Thumb Code    26  pid.o(i.pidSetTargetLooptime)
+    processRcCommand                         0x08006331   Thumb Code    42  fc_rc.o(i.processRcCommand)
+    processRcStickPositions                  0x08006365   Thumb Code    14  rc_controls.o(i.processRcStickPositions)
+    processRx                                0x08006379   Thumb Code    20  fc_core.o(i.processRx)
+    pt1FilterApply                           0x08006391   Thumb Code    22  filter.o(i.pt1FilterApply)
+    pt1FilterInit                            0x080063a9   Thumb Code    46  filter.o(i.pt1FilterInit)
+    pwmAreMotorsEnabled                      0x080063dd   Thumb Code     6  pwm_output.o(i.pwmAreMotorsEnabled)
+    pwmCompleteMotorUpdate                   0x080063e9   Thumb Code     6  pwm_output.o(i.pwmCompleteMotorUpdate)
+    pwmWriteMotor                            0x080064d1   Thumb Code     6  pwm_output.o(i.pwmWriteMotor)
+    queueAdd                                 0x080064f5   Thumb Code    86  scheduler.o(i.queueAdd)
+    queueClear                               0x08006555   Thumb Code    20  scheduler.o(i.queueClear)
+    queueContains                            0x08006571   Thumb Code    34  scheduler.o(i.queueContains)
+    queueFirst                               0x0800659d   Thumb Code    12  scheduler.o(i.queueFirst)
+    queueNext                                0x080065b1   Thumb Code    16  scheduler.o(i.queueNext)
+    queueRemove                              0x080065c9   Thumb Code    54  scheduler.o(i.queueRemove)
+    readBitfield                             0x08006609   Thumb Code    58  sdcard_standard.o(i.readBitfield)
+    readEEPROM                               0x08006645   Thumb Code    24  config_eeprom.o(i.readEEPROM)
+    rescheduleTask                           0x080066d9   Thumb Code    42  scheduler.o(i.rescheduleTask)
+    resetAllRxChannelRangeConfigurations     0x0800670d   Thumb Code    24  rx.o(i.resetAllRxChannelRangeConfigurations)
+    resetEEPROM                              0x08006725   Thumb Code    18  config.o(i.resetEEPROM)
+    resetProfile                             0x08006801   Thumb Code    92  config.o(i.resetProfile)
+    resetRcControlsConfig                    0x0800685d   Thumb Code    16  config.o(i.resetRcControlsConfig)
+    rxInit                                   0x0800686d   Thumb Code   180  rx.o(i.rxInit)
+    rxSerial3TestInit                        0x08006945   Thumb Code    40  rxserial3test.o(i.rxSerial3TestInit)
+    rxSerial3TestWrite                       0x08006971   Thumb Code    10  rxserial3test.o(i.rxSerial3TestWrite)
+    rxUpdateCheck                            0x08006981   Thumb Code    76  rx.o(i.rxUpdateCheck)
+    sbusInit                                 0x08006afd   Thumb Code   104  sbus.o(i.sbusInit)
+    scaleRange                               0x08006b95   Thumb Code    24  maths.o(i.scaleRange)
+    scheduler                                0x08006bad   Thumb Code   364  scheduler.o(i.scheduler)
+    schedulerInit                            0x08006d1d   Thumb Code    22  scheduler.o(i.schedulerInit)
+    sdcardInsertionDetectInit                0x08006d3d   Thumb Code    32  sdcard.o(i.sdcardInsertionDetectInit)
+    sdcard_beginWriteBlocks                  0x08006d61   Thumb Code    98  sdcard.o(i.sdcard_beginWriteBlocks)
+    sdcard_init                              0x08006ed1   Thumb Code   120  sdcard.o(i.sdcard_init)
+    sdcard_isInserted                        0x08006f59   Thumb Code    16  sdcard.o(i.sdcard_isInserted)
+    sdcard_poll                              0x08006f6d   Thumb Code   698  sdcard.o(i.sdcard_poll)
+    sdcard_readBlock                         0x08007231   Thumb Code    92  sdcard.o(i.sdcard_readBlock)
+    sdcard_writeBlock                        0x08007475   Thumb Code   154  sdcard.o(i.sdcard_writeBlock)
+    sensorSet                                0x08007519   Thumb Code    10  runtime_config.o(i.sensorSet)
+    sensors                                  0x08007529   Thumb Code    16  runtime_config.o(i.sensors)
+    sensorsAutodetect                        0x0800753d   Thumb Code    26  initialisation.o(i.sensorsAutodetect)
+    serialInit                               0x0800755d   Thumb Code    38  serial.o(i.serialInit)
+    serialRxInit                             0x08007591   Thumb Code    18  rx.o(i.serialRxInit)
+    serialUART                               0x080075a5   Thumb Code   264  serial_uart_stm32f4xx.o(i.serialUART)
+    serialUART1                              0x080076b5   Thumb Code    12  serial_uart_stm32f4xx.o(i.serialUART1)
+    serialUART3                              0x080076c1   Thumb Code    12  serial_uart_stm32f4xx.o(i.serialUART3)
+    serialUART6                              0x080076cd   Thumb Code    12  serial_uart_stm32f4xx.o(i.serialUART6)
+    serialWrite                              0x080076d9   Thumb Code     6  serial.o(i.serialWrite)
+    setProfile                               0x080076e1   Thumb Code    42  config.o(i.setProfile)
+    setTaskEnabled                           0x08007715   Thumb Code    44  scheduler.o(i.setTaskEnabled)
+    spiDeviceByInstance                      0x08007749   Thumb Code    36  bus_spi.o(i.spiDeviceByInstance)
+    spiGetErrorCounter                       0x08007779   Thumb Code    24  bus_spi.o(i.spiGetErrorCounter)
+    spiInit                                  0x08007795   Thumb Code    28  bus_spi.o(i.spiInit)
+    spiInitDevice                            0x080077b1   Thumb Code   258  bus_spi.o(i.spiInitDevice)
+    spiIsBusBusy                             0x080078c9   Thumb Code    32  bus_spi.o(i.spiIsBusBusy)
+    spiResetErrorCounter                     0x080078e9   Thumb Code    22  bus_spi.o(i.spiResetErrorCounter)
+    spiSetDivisor                            0x08007905   Thumb Code   138  bus_spi.o(i.spiSetDivisor)
+    spiTimeoutUserCallback                   0x08007991   Thumb Code    32  bus_spi.o(i.spiTimeoutUserCallback)
+    spiTransfer                              0x080079b5   Thumb Code   146  bus_spi.o(i.spiTransfer)
+    spiTransferByte                          0x08007a7d   Thumb Code    82  bus_spi.o(i.spiTransferByte)
+    startBlackbox                            0x08007ad1   Thumb Code    48  blackbox.o(i.startBlackbox)
+    systemBeep                               0x08007b09   Thumb Code    18  sound_beeper.o(i.systemBeep)
+    systemInit                               0x08007b21   Thumb Code    70  main.o(i.systemInit)
+    targetConfiguration                      0x08007b71   Thumb Code   314  config.o(i.targetConfiguration)
+    taskLed3                                 0x08007cab   Thumb Code     6  led.o(i.taskLed3)
+    taskLed4                                 0x08007cb1   Thumb Code     6  led.o(i.taskLed4)
+    taskLed5                                 0x08007cb7   Thumb Code     6  led.o(i.taskLed5)
+    taskLed6                                 0x08007cbd   Thumb Code     6  led.o(i.taskLed6)
+    taskMainPidLoop                          0x08007cc5   Thumb Code   120  fc_core.o(i.taskMainPidLoop)
+    taskSystem                               0x08007d51   Thumb Code    28  scheduler.o(i.taskSystem)
+    taskUpdateRxMain                         0x08007d71   Thumb Code    20  fc_tasks.o(i.taskUpdateRxMain)
+    timerChCCR                               0x08007e03   Thumb Code    10  timer.o(i.timerChCCR)
+    timerClockDivisor                        0x08007e0d   Thumb Code    38  timer_stm32f4xx.o(i.timerClockDivisor)
+    timerForceOverflow                       0x08007e49   Thumb Code    46  timer.o(i.timerForceOverflow)
+    timerGetByTag                            0x08007e7d   Thumb Code    54  timer.o(i.timerGetByTag)
+    timerInit                                0x08007eb9   Thumb Code   120  timer.o(i.timerInit)
+    timerOCInit                              0x08007f3d   Thumb Code    40  timer.o(i.timerOCInit)
+    timerOCPreloadConfig                     0x08007f65   Thumb Code    40  timer.o(i.timerOCPreloadConfig)
+    timerRCC                                 0x08007f8d   Thumb Code    30  timer.o(i.timerRCC)
+    uartIrqHandler                           0x08007fb1   Thumb Code   150  serial_uart_stm32f4xx.o(i.uartIrqHandler)
+    uartOpen                                 0x08008049   Thumb Code   360  serial_uart.o(i.uartOpen)
+    uartRead                                 0x080081bd   Thumb Code    44  serial_uart.o(i.uartRead)
+    uartSetBaudRate                          0x08008275   Thumb Code     6  serial_uart.o(i.uartSetBaudRate)
+    uartSetMode                              0x0800827b   Thumb Code     6  serial_uart.o(i.uartSetMode)
+    uartStartTxDMA                           0x08008281   Thumb Code    74  serial_uart.o(i.uartStartTxDMA)
+    uartTotalRxBytesWaiting                  0x080082cb   Thumb Code    24  serial_uart.o(i.uartTotalRxBytesWaiting)
+    uartTotalTxBytesFree                     0x080082e3   Thumb Code    38  serial_uart.o(i.uartTotalTxBytesFree)
+    uartWrite                                0x08008309   Thumb Code    48  serial_uart.o(i.uartWrite)
+    updateActivatedModes                     0x08008339   Thumb Code   132  rc_controls.o(i.updateActivatedModes)
+    updateRcCommands                         0x08008425   Thumb Code   272  fc_rc.o(i.updateRcCommands)
+    useRcControlsConfig                      0x08008551   Thumb Code    22  rc_controls.o(i.useRcControlsConfig)
+    validateAndFixConfig                     0x0800856d   Thumb Code    64  config.o(i.validateAndFixConfig)
+    validateAndFixGyroConfig                 0x080085ad   Thumb Code    38  config.o(i.validateAndFixGyroConfig)
+    validateBlackboxConfig                   0x080085d9   Thumb Code    76  blackbox.o(i.validateBlackboxConfig)
+    verifyMPU9250WriteRegister               0x08008629   Thumb Code    64  accgyro_spi_mpu9250.o(i.verifyMPU9250WriteRegister)
+    writeMotors                              0x08008669   Thumb Code    44  mixer.o(i.writeMotors)
+    _get_lc_ctype                            0x0800869d   Thumb Code    44  lc_ctype_c.o(locale$$code)
+    _ffix_r                                  0x080086c9   Thumb Code    14  ffix.o(x$fpl$ffixr)
+    __fpl_fnaninf                            0x080086d7   Thumb Code   140  fnaninf.o(x$fpl$fnaninf)
+    _fp_init                                 0x08008763   Thumb Code    10  fpinit.o(x$fpl$fpinit)
+    __fplib_config_fpu_vfp                   0x0800876b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    __fplib_config_pureend_doubles           0x0800876b   Thumb Code     0  fpinit.o(x$fpl$fpinit)
+    _frnd                                    0x0800876d   Thumb Code    96  frnd.o(x$fpl$frnd)
+    __I$use$fp                               0x080087cc   Number         0  usenofp.o(x$fpl$usenofp)
+    timerHardware                            0x080087d4   Data         168  target.o(.constdata)
+    ioPortDefs                               0x080088db   Data           6  io.o(.constdata)
+    serialPortIdentifiers                    0x080088ec   Data           3  serial.o(.constdata)
+    uartVTable                               0x080088f0   Data          40  serial_uart.o(.constdata)
+    timerDefinitions                         0x08008918   Data         112  timer_stm32f4xx.o(.constdata)
+    rcChannelLetters                         0x08008a08   Data          21  rx.o(.constdata)
+    Region$$Table$$Base                      0x08008c34   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x08008c54   Number         0  anon$$obj.o(Region$$Table)
+    __ctype                                  0x08008c61   Data           0  lc_ctype_c.o(locale$$data)
     systemState                              0x20000010   Data           1  main.o(.data)
     __stdout                                 0x20000014   Data           4  main.o(.data)
     SystemCoreClock                          0x20000018   Data           4  system_stm32f4xx.o(.data)
@@ -3846,9 +3850,9 @@ Memory Map of the image
 
   Image Entry point : 0x08000189
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00009fe0, Max: 0x00100000, ABSOLUTE, COMPRESSED[0x00008e10])
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x0000a0b8, Max: 0x00100000, ABSOLUTE, COMPRESSED[0x00008ee8])
 
-    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00008c8c, Max: 0x00100000, ABSOLUTE)
+    Execution Region ER_IROM1 (Exec base: 0x08000000, Load base: 0x08000000, Size: 0x00008d64, Max: 0x00100000, ABSOLUTE)
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -4252,201 +4256,202 @@ Memory Map of the image
     0x0800578c   0x0800578c   0x00000054   Code   RO         2458    i.micros            system.o
     0x080057e0   0x080057e0   0x0000004c   Code   RO         2459    i.microsISR         system.o
     0x0800582c   0x0800582c   0x0000000c   Code   RO         2460    i.millis            system.o
-    0x08005838   0x08005838   0x00000028   Code   RO         5250    i.mixTable          mixer.o
-    0x08005860   0x08005860   0x00000038   Code   RO         5251    i.mixerConfigurationOutput  mixer.o
-    0x08005898   0x08005898   0x00000010   Code   RO         5252    i.mixerInit         mixer.o
-    0x080058a8   0x080058a8   0x00000020   Code   RO         5253    i.mixerResetDisarmedMotors  mixer.o
-    0x080058c8   0x080058c8   0x0000000c   Code   RO         5254    i.mixerUseConfigs   mixer.o
-    0x080058d4   0x080058d4   0x00000118   Code   RO         3402    i.motorInit         pwm_output.o
-    0x080059ec   0x080059ec   0x00000174   Code   RO         2624    i.mpu9250AccAndGyroInit  accgyro_spi_mpu9250.o
-    0x08005b60   0x08005b60   0x00000040   Code   RO         2625    i.mpu9250ReadRegister  accgyro_spi_mpu9250.o
-    0x08005ba0   0x08005ba0   0x00000014   Code   RO         2626    i.mpu9250ResetGyro  accgyro_spi_mpu9250.o
-    0x08005bb4   0x08005bb4   0x0000004c   Code   RO         2627    i.mpu9250SlowReadRegister  accgyro_spi_mpu9250.o
-    0x08005c00   0x08005c00   0x00000094   Code   RO         2628    i.mpu9250SpiDetect  accgyro_spi_mpu9250.o
-    0x08005c94   0x08005c94   0x00000034   Code   RO         2629    i.mpu9250SpiGyroDetect  accgyro_spi_mpu9250.o
-    0x08005cc8   0x08005cc8   0x00000084   Code   RO         2630    i.mpu9250SpiGyroInit  accgyro_spi_mpu9250.o
-    0x08005d4c   0x08005d4c   0x00000040   Code   RO         2631    i.mpu9250WriteRegister  accgyro_spi_mpu9250.o
-    0x08005d8c   0x08005d8c   0x00000012   Code   RO         2531    i.mpuCheckDataReady  accgyro_mpu.o
-    0x08005d9e   0x08005d9e   0x00000002   PAD
-    0x08005da0   0x08005da0   0x0000004c   Code   RO         2532    i.mpuDetect         accgyro_mpu.o
-    0x08005dec   0x08005dec   0x0000004c   Code   RO         2533    i.mpuGyroInit       accgyro_mpu.o
-    0x08005e38   0x08005e38   0x00000030   Code   RO         2534    i.mpuGyroRead       accgyro_mpu.o
-    0x08005e68   0x08005e68   0x00000012   Code   RO         2535    i.mpuIntExtiHandler  accgyro_mpu.o
-    0x08005e7a   0x08005e7a   0x00000004   Code   RO         4776    i.mspFcInit         fc_msp.o
-    0x08005e7e   0x08005e7e   0x00000002   PAD
-    0x08005e80   0x08005e80   0x00000034   Code   RO         4519    i.mwArm             fc_core.o
-    0x08005eb4   0x08005eb4   0x00000002   Code   RO         5723    i.nullFilterApply   filter.o
-    0x08005eb6   0x08005eb6   0x00000004   Code   RO         5861    i.nullFrameStatus   rx.o
-    0x08005eba   0x08005eba   0x00000004   Code   RO         5862    i.nullReadRawRC     rx.o
-    0x08005ebe   0x08005ebe   0x00000002   PAD
-    0x08005ec0   0x08005ec0   0x0000006c   Code   RO         3850    i.openSerialPort    serial.o
-    0x08005f2c   0x08005f2c   0x00000038   Code   RO         5863    i.parseRcChannels   rx.o
-    0x08005f64   0x08005f64   0x000000d4   Code   RO         5609    i.performGyroCalibration  gyro.o
-    0x08006038   0x08006038   0x0000001a   Code   RO         5335    i.pidController     pid.o
-    0x08006052   0x08006052   0x00000002   PAD
-    0x08006054   0x08006054   0x0000014c   Code   RO         5336    i.pidInitConfig     pid.o
-    0x080061a0   0x080061a0   0x00000148   Code   RO         5337    i.pidInitFilters    pid.o
-    0x080062e8   0x080062e8   0x00000024   Code   RO         5338    i.pidSetTargetLooptime  pid.o
-    0x0800630c   0x0800630c   0x00000034   Code   RO         4578    i.processRcCommand  fc_rc.o
-    0x08006340   0x08006340   0x00000014   Code   RO         4680    i.processRcStickPositions  rc_controls.o
-    0x08006354   0x08006354   0x00000012   Code   RO         4520    i.processRx         fc_core.o
-    0x08006366   0x08006366   0x00000016   Code   RO         5724    i.pt1FilterApply    filter.o
-    0x0800637c   0x0800637c   0x00000034   Code   RO         5726    i.pt1FilterInit     filter.o
-    0x080063b0   0x080063b0   0x0000000c   Code   RO         3403    i.pwmAreMotorsEnabled  pwm_output.o
-    0x080063bc   0x080063bc   0x0000000c   Code   RO         3404    i.pwmCompleteMotorUpdate  pwm_output.o
-    0x080063c8   0x080063c8   0x00000038   Code   RO         3405    i.pwmCompleteOneshotMotorUpdate  pwm_output.o
-    0x08006400   0x08006400   0x00000002   Code   RO         3406    i.pwmCompleteWriteUnused  pwm_output.o
-    0x08006402   0x08006402   0x000000a0   Code   RO         3407    i.pwmOutConfigMhz   pwm_output.o
-    0x080064a2   0x080064a2   0x00000002   PAD
-    0x080064a4   0x080064a4   0x0000000c   Code   RO         3409    i.pwmWriteMotor     pwm_output.o
-    0x080064b0   0x080064b0   0x00000014   Code   RO         3410    i.pwmWriteStandard  pwm_output.o
-    0x080064c4   0x080064c4   0x00000002   Code   RO         3411    i.pwmWriteUnused    pwm_output.o
-    0x080064c6   0x080064c6   0x00000002   PAD
-    0x080064c8   0x080064c8   0x00000060   Code   RO         6167    i.queueAdd          scheduler.o
-    0x08006528   0x08006528   0x0000001c   Code   RO         6168    i.queueClear        scheduler.o
-    0x08006544   0x08006544   0x0000002c   Code   RO         6169    i.queueContains     scheduler.o
-    0x08006570   0x08006570   0x00000014   Code   RO         6170    i.queueFirst        scheduler.o
-    0x08006584   0x08006584   0x00000018   Code   RO         6171    i.queueNext         scheduler.o
-    0x0800659c   0x0800659c   0x00000040   Code   RO         6172    i.queueRemove       scheduler.o
-    0x080065dc   0x080065dc   0x0000003a   Code   RO         3830    i.readBitfield      sdcard_standard.o
-    0x08006616   0x08006616   0x00000002   PAD
-    0x08006618   0x08006618   0x0000001c   Code   RO         5401    i.readEEPROM        config_eeprom.o
-    0x08006634   0x08006634   0x00000078   Code   RO         5864    i.readRxChannelsApplyRanges  rx.o
-    0x080066ac   0x080066ac   0x00000034   Code   RO         6173    i.rescheduleTask    scheduler.o
-    0x080066e0   0x080066e0   0x00000018   Code   RO         5865    i.resetAllRxChannelRangeConfigurations  rx.o
-    0x080066f8   0x080066f8   0x00000018   Code   RO         4337    i.resetEEPROM       config.o
-    0x08006710   0x08006710   0x000000c4   Code   RO         4338    i.resetPidProfile   config.o
-    0x080067d4   0x080067d4   0x0000005c   Code   RO         4339    i.resetProfile      config.o
-    0x08006830   0x08006830   0x00000010   Code   RO         4340    i.resetRcControlsConfig  config.o
-    0x08006840   0x08006840   0x000000d8   Code   RO         5866    i.rxInit            rx.o
-    0x08006918   0x08006918   0x0000002c   Code   RO         3630    i.rxSerial3TestInit  rxserial3test.o
-    0x08006944   0x08006944   0x00000010   Code   RO         3632    i.rxSerial3TestWrite  rxserial3test.o
-    0x08006954   0x08006954   0x00000054   Code   RO         5867    i.rxUpdateCheck     rx.o
-    0x080069a8   0x080069a8   0x00000050   Code   RO         5958    i.sbusDataReceiveCallBack  sbus.o
-    0x080069f8   0x080069f8   0x000000d8   Code   RO         5959    i.sbusFrameStatus   sbus.o
-    0x08006ad0   0x08006ad0   0x0000007c   Code   RO         5960    i.sbusInit          sbus.o
-    0x08006b4c   0x08006b4c   0x0000001c   Code   RO         5961    i.sbusReadRawRC     sbus.o
-    0x08006b68   0x08006b68   0x00000018   Code   RO         5783    i.scaleRange        maths.o
-    0x08006b80   0x08006b80   0x00000170   Code   RO         6174    i.scheduler         scheduler.o
-    0x08006cf0   0x08006cf0   0x00000020   Code   RO         6175    i.schedulerInit     scheduler.o
-    0x08006d10   0x08006d10   0x00000024   Code   RO         3706    i.sdcardInsertionDetectInit  sdcard.o
-    0x08006d34   0x08006d34   0x00000068   Code   RO         3707    i.sdcard_beginWriteBlocks  sdcard.o
-    0x08006d9c   0x08006d9c   0x00000024   Code   RO         3708    i.sdcard_deselect   sdcard.o
-    0x08006dc0   0x08006dc0   0x00000048   Code   RO         3709    i.sdcard_endWriteBlocks  sdcard.o
-    0x08006e08   0x08006e08   0x0000009c   Code   RO         3710    i.sdcard_fetchCSD   sdcard.o
-    0x08006ea4   0x08006ea4   0x00000088   Code   RO         3711    i.sdcard_init       sdcard.o
-    0x08006f2c   0x08006f2c   0x00000014   Code   RO         3712    i.sdcard_isInserted  sdcard.o
-    0x08006f40   0x08006f40   0x000002c4   Code   RO         3713    i.sdcard_poll       sdcard.o
-    0x08007204   0x08007204   0x00000060   Code   RO         3714    i.sdcard_readBlock  sdcard.o
-    0x08007264   0x08007264   0x00000088   Code   RO         3715    i.sdcard_receiveCID  sdcard.o
-    0x080072ec   0x080072ec   0x00000044   Code   RO         3716    i.sdcard_receiveDataBlock  sdcard.o
-    0x08007330   0x08007330   0x00000048   Code   RO         3717    i.sdcard_reset      sdcard.o
-    0x08007378   0x08007378   0x0000000c   Code   RO         3718    i.sdcard_select     sdcard.o
-    0x08007384   0x08007384   0x0000001a   Code   RO         3719    i.sdcard_sendAppCommand  sdcard.o
-    0x0800739e   0x0800739e   0x00000002   PAD
-    0x080073a0   0x080073a0   0x0000005c   Code   RO         3720    i.sdcard_sendCommand  sdcard.o
-    0x080073fc   0x080073fc   0x00000028   Code   RO         3721    i.sdcard_waitForIdle  sdcard.o
-    0x08007424   0x08007424   0x00000024   Code   RO         3722    i.sdcard_waitForNonIdleByte  sdcard.o
-    0x08007448   0x08007448   0x000000a4   Code   RO         3723    i.sdcard_writeBlock  sdcard.o
-    0x080074ec   0x080074ec   0x00000010   Code   RO         4736    i.sensorSet         runtime_config.o
-    0x080074fc   0x080074fc   0x00000014   Code   RO         4737    i.sensors           runtime_config.o
-    0x08007510   0x08007510   0x00000020   Code   RO         5679    i.sensorsAutodetect  initialisation.o
-    0x08007530   0x08007530   0x00000034   Code   RO         3851    i.serialInit        serial.o
-    0x08007564   0x08007564   0x00000012   Code   RO         5868    i.serialRxInit      rx.o
-    0x08007576   0x08007576   0x00000002   PAD
-    0x08007578   0x08007578   0x00000110   Code   RO         4017    i.serialUART        serial_uart_stm32f4xx.o
-    0x08007688   0x08007688   0x0000000c   Code   RO         4018    i.serialUART1       serial_uart_stm32f4xx.o
-    0x08007694   0x08007694   0x0000000c   Code   RO         4019    i.serialUART3       serial_uart_stm32f4xx.o
-    0x080076a0   0x080076a0   0x0000000c   Code   RO         4020    i.serialUART6       serial_uart_stm32f4xx.o
-    0x080076ac   0x080076ac   0x00000006   Code   RO         3853    i.serialWrite       serial.o
-    0x080076b2   0x080076b2   0x00000002   PAD
-    0x080076b4   0x080076b4   0x00000034   Code   RO         4344    i.setProfile        config.o
-    0x080076e8   0x080076e8   0x00000034   Code   RO         6176    i.setTaskEnabled    scheduler.o
-    0x0800771c   0x0800771c   0x00000030   Code   RO         2727    i.spiDeviceByInstance  bus_spi.o
-    0x0800774c   0x0800774c   0x0000001c   Code   RO         2728    i.spiGetErrorCounter  bus_spi.o
-    0x08007768   0x08007768   0x0000001c   Code   RO         2729    i.spiInit           bus_spi.o
-    0x08007784   0x08007784   0x00000118   Code   RO         2730    i.spiInitDevice     bus_spi.o
-    0x0800789c   0x0800789c   0x00000020   Code   RO         2731    i.spiIsBusBusy      bus_spi.o
-    0x080078bc   0x080078bc   0x0000001c   Code   RO         2732    i.spiResetErrorCounter  bus_spi.o
-    0x080078d8   0x080078d8   0x0000008a   Code   RO         2733    i.spiSetDivisor     bus_spi.o
-    0x08007962   0x08007962   0x00000002   PAD
-    0x08007964   0x08007964   0x00000024   Code   RO         2734    i.spiTimeoutUserCallback  bus_spi.o
-    0x08007988   0x08007988   0x000000c8   Code   RO         2735    i.spiTransfer       bus_spi.o
-    0x08007a50   0x08007a50   0x00000052   Code   RO         2736    i.spiTransferByte   bus_spi.o
-    0x08007aa2   0x08007aa2   0x00000002   PAD
-    0x08007aa4   0x08007aa4   0x00000038   Code   RO         6017    i.startBlackbox     blackbox.o
-    0x08007adc   0x08007adc   0x00000018   Code   RO         4090    i.systemBeep        sound_beeper.o
-    0x08007af4   0x08007af4   0x00000050   Code   RO         2106    i.systemInit        main.o
-    0x08007b44   0x08007b44   0x0000013a   Code   RO         4345    i.targetConfiguration  config.o
-    0x08007c7e   0x08007c7e   0x00000006   Code   RO         3335    i.taskLed3          led.o
-    0x08007c84   0x08007c84   0x00000006   Code   RO         3336    i.taskLed4          led.o
-    0x08007c8a   0x08007c8a   0x00000006   Code   RO         3337    i.taskLed5          led.o
-    0x08007c90   0x08007c90   0x00000006   Code   RO         3338    i.taskLed6          led.o
-    0x08007c96   0x08007c96   0x00000002   PAD
-    0x08007c98   0x08007c98   0x0000008c   Code   RO         4521    i.taskMainPidLoop   fc_core.o
-    0x08007d24   0x08007d24   0x00000020   Code   RO         6177    i.taskSystem        scheduler.o
-    0x08007d44   0x08007d44   0x00000018   Code   RO         4635    i.taskUpdateRxMain  fc_tasks.o
-    0x08007d5c   0x08007d5c   0x0000007a   Code   RO         4138    i.timCCxHandler     timer.o
-    0x08007dd6   0x08007dd6   0x0000000a   Code   RO         4140    i.timerChCCR        timer.o
-    0x08007de0   0x08007de0   0x0000003c   Code   RO         4289    i.timerClockDivisor  timer_stm32f4xx.o
-    0x08007e1c   0x08007e1c   0x00000034   Code   RO         4145    i.timerForceOverflow  timer.o
-    0x08007e50   0x08007e50   0x0000003c   Code   RO         4146    i.timerGetByTag     timer.o
-    0x08007e8c   0x08007e8c   0x00000084   Code   RO         4147    i.timerInit         timer.o
-    0x08007f10   0x08007f10   0x00000028   Code   RO         4150    i.timerOCInit       timer.o
-    0x08007f38   0x08007f38   0x00000028   Code   RO         4151    i.timerOCPreloadConfig  timer.o
-    0x08007f60   0x08007f60   0x00000024   Code   RO         4152    i.timerRCC          timer.o
-    0x08007f84   0x08007f84   0x00000096   Code   RO         4021    i.uartIrqHandler    serial_uart_stm32f4xx.o
-    0x0800801a   0x0800801a   0x00000002   PAD
-    0x0800801c   0x0800801c   0x00000174   Code   RO         3929    i.uartOpen          serial_uart.o
-    0x08008190   0x08008190   0x0000002c   Code   RO         3930    i.uartRead          serial_uart.o
-    0x080081bc   0x080081bc   0x0000008c   Code   RO         3931    i.uartReconfigure   serial_uart.o
-    0x08008248   0x08008248   0x00000006   Code   RO         3932    i.uartSetBaudRate   serial_uart.o
-    0x0800824e   0x0800824e   0x00000006   Code   RO         3933    i.uartSetMode       serial_uart.o
-    0x08008254   0x08008254   0x0000004a   Code   RO         3934    i.uartStartTxDMA    serial_uart.o
-    0x0800829e   0x0800829e   0x00000018   Code   RO         3935    i.uartTotalRxBytesWaiting  serial_uart.o
-    0x080082b6   0x080082b6   0x00000026   Code   RO         3936    i.uartTotalTxBytesFree  serial_uart.o
-    0x080082dc   0x080082dc   0x00000030   Code   RO         3937    i.uartWrite         serial_uart.o
-    0x0800830c   0x0800830c   0x00000040   Code   RO         4681    i.updateActivatedModes  rc_controls.o
-    0x0800834c   0x0800834c   0x0000012c   Code   RO         4579    i.updateRcCommands  fc_rc.o
-    0x08008478   0x08008478   0x0000001c   Code   RO         4682    i.useRcControlsConfig  rc_controls.o
-    0x08008494   0x08008494   0x00000040   Code   RO         4346    i.validateAndFixConfig  config.o
-    0x080084d4   0x080084d4   0x0000002c   Code   RO         4347    i.validateAndFixGyroConfig  config.o
-    0x08008500   0x08008500   0x00000050   Code   RO         6018    i.validateBlackboxConfig  blackbox.o
-    0x08008550   0x08008550   0x00000040   Code   RO         2632    i.verifyMPU9250WriteRegister  accgyro_spi_mpu9250.o
-    0x08008590   0x08008590   0x00000034   Code   RO         5255    i.writeMotors       mixer.o
-    0x080085c4   0x080085c4   0x0000002c   Code   RO         6500    locale$$code        c_w.l(lc_ctype_c.o)
-    0x080085f0   0x080085f0   0x0000000e   Code   RO         6441    x$fpl$ffixr         fz_wm.l(ffix.o)
-    0x080085fe   0x080085fe   0x0000008c   Code   RO         6502    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
-    0x0800868a   0x0800868a   0x0000000a   Code   RO         6567    x$fpl$fpinit        fz_wm.l(fpinit.o)
-    0x08008694   0x08008694   0x00000060   Code   RO         6444    x$fpl$frnd          fz_wm.l(frnd.o)
-    0x080086f4   0x080086f4   0x00000000   Code   RO         6448    x$fpl$usenofp       fz_wm.l(usenofp.o)
-    0x080086f4   0x080086f4   0x00000005   Data   RO         2107    .constdata          main.o
-    0x080086f9   0x080086f9   0x00000003   PAD
-    0x080086fc   0x080086fc   0x000000a8   Data   RO         2426    .constdata          target.o
-    0x080087a4   0x080087a4   0x00000029   Data   RO         2633    .constdata          accgyro_spi_mpu9250.o
-    0x080087cd   0x080087cd   0x0000001a   Data   RO         2737    .constdata          bus_spi.o
-    0x080087e7   0x080087e7   0x00000017   Data   RO         3018    .constdata          exti.o
-    0x080087fe   0x080087fe   0x00000016   Data   RO         3213    .constdata          io.o
-    0x08008814   0x08008814   0x00000003   Data   RO         3855    .constdata          serial.o
-    0x08008817   0x08008817   0x00000001   PAD
-    0x08008818   0x08008818   0x00000028   Data   RO         3938    .constdata          serial_uart.o
-    0x08008840   0x08008840   0x00000070   Data   RO         4290    .constdata          timer_stm32f4xx.o
-    0x080088b0   0x080088b0   0x00000038   Data   RO         4921    .constdata          asyncfatfs.o
-    0x080088e8   0x080088e8   0x00000040   Data   RO         5257    .constdata          mixer.o
-    0x08008928   0x08008928   0x00000001   Data   RO         5611    .constdata          gyro.o
-    0x08008929   0x08008929   0x0000001c   Data   RO         5871    .constdata          rx.o
-    0x08008945   0x08008945   0x00000017   Data   RO         6085    .constdata          blackbox_io.o
-    0x0800895c   0x0800895c   0x00000028   Data   RO         6276    .constdata          c_w.l(_printf_hex_int.o)
-    0x08008984   0x08008984   0x00000040   Data   RO         6362    .constdata          m_wm.l(log2f.o)
-    0x080089c4   0x080089c4   0x00000140   Data   RO         6376    .constdata          m_wm.l(powf.o)
-    0x08008b04   0x08008b04   0x00000020   Data   RO         6466    .constdata          m_wm.l(rredf.o)
-    0x08008b24   0x08008b24   0x00000037   Data   RO         4636    .conststring        fc_tasks.o
-    0x08008b5b   0x08008b5b   0x00000001   PAD
-    0x08008b5c   0x08008b5c   0x00000020   Data   RO         6642    Region$$Table       anon$$obj.o
-    0x08008b7c   0x08008b7c   0x00000110   Data   RO         6499    locale$$data        c_w.l(lc_ctype_c.o)
+    0x08005838   0x08005838   0x0000004c   Code   RO         5250    i.mixTable          mixer.o
+    0x08005884   0x08005884   0x00000038   Code   RO         5251    i.mixerConfigurationOutput  mixer.o
+    0x080058bc   0x080058bc   0x00000010   Code   RO         5252    i.mixerInit         mixer.o
+    0x080058cc   0x080058cc   0x00000020   Code   RO         5253    i.mixerResetDisarmedMotors  mixer.o
+    0x080058ec   0x080058ec   0x0000000c   Code   RO         5254    i.mixerUseConfigs   mixer.o
+    0x080058f8   0x080058f8   0x00000118   Code   RO         3402    i.motorInit         pwm_output.o
+    0x08005a10   0x08005a10   0x00000174   Code   RO         2624    i.mpu9250AccAndGyroInit  accgyro_spi_mpu9250.o
+    0x08005b84   0x08005b84   0x00000040   Code   RO         2625    i.mpu9250ReadRegister  accgyro_spi_mpu9250.o
+    0x08005bc4   0x08005bc4   0x00000014   Code   RO         2626    i.mpu9250ResetGyro  accgyro_spi_mpu9250.o
+    0x08005bd8   0x08005bd8   0x0000004c   Code   RO         2627    i.mpu9250SlowReadRegister  accgyro_spi_mpu9250.o
+    0x08005c24   0x08005c24   0x00000094   Code   RO         2628    i.mpu9250SpiDetect  accgyro_spi_mpu9250.o
+    0x08005cb8   0x08005cb8   0x00000034   Code   RO         2629    i.mpu9250SpiGyroDetect  accgyro_spi_mpu9250.o
+    0x08005cec   0x08005cec   0x00000084   Code   RO         2630    i.mpu9250SpiGyroInit  accgyro_spi_mpu9250.o
+    0x08005d70   0x08005d70   0x00000040   Code   RO         2631    i.mpu9250WriteRegister  accgyro_spi_mpu9250.o
+    0x08005db0   0x08005db0   0x00000012   Code   RO         2531    i.mpuCheckDataReady  accgyro_mpu.o
+    0x08005dc2   0x08005dc2   0x00000002   PAD
+    0x08005dc4   0x08005dc4   0x0000004c   Code   RO         2532    i.mpuDetect         accgyro_mpu.o
+    0x08005e10   0x08005e10   0x0000004c   Code   RO         2533    i.mpuGyroInit       accgyro_mpu.o
+    0x08005e5c   0x08005e5c   0x00000030   Code   RO         2534    i.mpuGyroRead       accgyro_mpu.o
+    0x08005e8c   0x08005e8c   0x00000012   Code   RO         2535    i.mpuIntExtiHandler  accgyro_mpu.o
+    0x08005e9e   0x08005e9e   0x00000004   Code   RO         4776    i.mspFcInit         fc_msp.o
+    0x08005ea2   0x08005ea2   0x00000002   PAD
+    0x08005ea4   0x08005ea4   0x00000034   Code   RO         4519    i.mwArm             fc_core.o
+    0x08005ed8   0x08005ed8   0x00000002   Code   RO         5723    i.nullFilterApply   filter.o
+    0x08005eda   0x08005eda   0x00000004   Code   RO         5861    i.nullFrameStatus   rx.o
+    0x08005ede   0x08005ede   0x00000004   Code   RO         5862    i.nullReadRawRC     rx.o
+    0x08005ee2   0x08005ee2   0x00000002   PAD
+    0x08005ee4   0x08005ee4   0x0000006c   Code   RO         3850    i.openSerialPort    serial.o
+    0x08005f50   0x08005f50   0x00000038   Code   RO         5863    i.parseRcChannels   rx.o
+    0x08005f88   0x08005f88   0x000000d4   Code   RO         5609    i.performGyroCalibration  gyro.o
+    0x0800605c   0x0800605c   0x0000001a   Code   RO         5335    i.pidController     pid.o
+    0x08006076   0x08006076   0x00000002   PAD
+    0x08006078   0x08006078   0x0000014c   Code   RO         5336    i.pidInitConfig     pid.o
+    0x080061c4   0x080061c4   0x00000148   Code   RO         5337    i.pidInitFilters    pid.o
+    0x0800630c   0x0800630c   0x00000024   Code   RO         5338    i.pidSetTargetLooptime  pid.o
+    0x08006330   0x08006330   0x00000034   Code   RO         4578    i.processRcCommand  fc_rc.o
+    0x08006364   0x08006364   0x00000014   Code   RO         4680    i.processRcStickPositions  rc_controls.o
+    0x08006378   0x08006378   0x00000018   Code   RO         4520    i.processRx         fc_core.o
+    0x08006390   0x08006390   0x00000016   Code   RO         5724    i.pt1FilterApply    filter.o
+    0x080063a6   0x080063a6   0x00000002   PAD
+    0x080063a8   0x080063a8   0x00000034   Code   RO         5726    i.pt1FilterInit     filter.o
+    0x080063dc   0x080063dc   0x0000000c   Code   RO         3403    i.pwmAreMotorsEnabled  pwm_output.o
+    0x080063e8   0x080063e8   0x0000000c   Code   RO         3404    i.pwmCompleteMotorUpdate  pwm_output.o
+    0x080063f4   0x080063f4   0x00000038   Code   RO         3405    i.pwmCompleteOneshotMotorUpdate  pwm_output.o
+    0x0800642c   0x0800642c   0x00000002   Code   RO         3406    i.pwmCompleteWriteUnused  pwm_output.o
+    0x0800642e   0x0800642e   0x000000a0   Code   RO         3407    i.pwmOutConfigMhz   pwm_output.o
+    0x080064ce   0x080064ce   0x00000002   PAD
+    0x080064d0   0x080064d0   0x0000000c   Code   RO         3409    i.pwmWriteMotor     pwm_output.o
+    0x080064dc   0x080064dc   0x00000014   Code   RO         3410    i.pwmWriteStandard  pwm_output.o
+    0x080064f0   0x080064f0   0x00000002   Code   RO         3411    i.pwmWriteUnused    pwm_output.o
+    0x080064f2   0x080064f2   0x00000002   PAD
+    0x080064f4   0x080064f4   0x00000060   Code   RO         6167    i.queueAdd          scheduler.o
+    0x08006554   0x08006554   0x0000001c   Code   RO         6168    i.queueClear        scheduler.o
+    0x08006570   0x08006570   0x0000002c   Code   RO         6169    i.queueContains     scheduler.o
+    0x0800659c   0x0800659c   0x00000014   Code   RO         6170    i.queueFirst        scheduler.o
+    0x080065b0   0x080065b0   0x00000018   Code   RO         6171    i.queueNext         scheduler.o
+    0x080065c8   0x080065c8   0x00000040   Code   RO         6172    i.queueRemove       scheduler.o
+    0x08006608   0x08006608   0x0000003a   Code   RO         3830    i.readBitfield      sdcard_standard.o
+    0x08006642   0x08006642   0x00000002   PAD
+    0x08006644   0x08006644   0x0000001c   Code   RO         5401    i.readEEPROM        config_eeprom.o
+    0x08006660   0x08006660   0x00000078   Code   RO         5864    i.readRxChannelsApplyRanges  rx.o
+    0x080066d8   0x080066d8   0x00000034   Code   RO         6173    i.rescheduleTask    scheduler.o
+    0x0800670c   0x0800670c   0x00000018   Code   RO         5865    i.resetAllRxChannelRangeConfigurations  rx.o
+    0x08006724   0x08006724   0x00000018   Code   RO         4337    i.resetEEPROM       config.o
+    0x0800673c   0x0800673c   0x000000c4   Code   RO         4338    i.resetPidProfile   config.o
+    0x08006800   0x08006800   0x0000005c   Code   RO         4339    i.resetProfile      config.o
+    0x0800685c   0x0800685c   0x00000010   Code   RO         4340    i.resetRcControlsConfig  config.o
+    0x0800686c   0x0800686c   0x000000d8   Code   RO         5866    i.rxInit            rx.o
+    0x08006944   0x08006944   0x0000002c   Code   RO         3630    i.rxSerial3TestInit  rxserial3test.o
+    0x08006970   0x08006970   0x00000010   Code   RO         3632    i.rxSerial3TestWrite  rxserial3test.o
+    0x08006980   0x08006980   0x00000054   Code   RO         5867    i.rxUpdateCheck     rx.o
+    0x080069d4   0x080069d4   0x00000050   Code   RO         5958    i.sbusDataReceiveCallBack  sbus.o
+    0x08006a24   0x08006a24   0x000000d8   Code   RO         5959    i.sbusFrameStatus   sbus.o
+    0x08006afc   0x08006afc   0x0000007c   Code   RO         5960    i.sbusInit          sbus.o
+    0x08006b78   0x08006b78   0x0000001c   Code   RO         5961    i.sbusReadRawRC     sbus.o
+    0x08006b94   0x08006b94   0x00000018   Code   RO         5783    i.scaleRange        maths.o
+    0x08006bac   0x08006bac   0x00000170   Code   RO         6174    i.scheduler         scheduler.o
+    0x08006d1c   0x08006d1c   0x00000020   Code   RO         6175    i.schedulerInit     scheduler.o
+    0x08006d3c   0x08006d3c   0x00000024   Code   RO         3706    i.sdcardInsertionDetectInit  sdcard.o
+    0x08006d60   0x08006d60   0x00000068   Code   RO         3707    i.sdcard_beginWriteBlocks  sdcard.o
+    0x08006dc8   0x08006dc8   0x00000024   Code   RO         3708    i.sdcard_deselect   sdcard.o
+    0x08006dec   0x08006dec   0x00000048   Code   RO         3709    i.sdcard_endWriteBlocks  sdcard.o
+    0x08006e34   0x08006e34   0x0000009c   Code   RO         3710    i.sdcard_fetchCSD   sdcard.o
+    0x08006ed0   0x08006ed0   0x00000088   Code   RO         3711    i.sdcard_init       sdcard.o
+    0x08006f58   0x08006f58   0x00000014   Code   RO         3712    i.sdcard_isInserted  sdcard.o
+    0x08006f6c   0x08006f6c   0x000002c4   Code   RO         3713    i.sdcard_poll       sdcard.o
+    0x08007230   0x08007230   0x00000060   Code   RO         3714    i.sdcard_readBlock  sdcard.o
+    0x08007290   0x08007290   0x00000088   Code   RO         3715    i.sdcard_receiveCID  sdcard.o
+    0x08007318   0x08007318   0x00000044   Code   RO         3716    i.sdcard_receiveDataBlock  sdcard.o
+    0x0800735c   0x0800735c   0x00000048   Code   RO         3717    i.sdcard_reset      sdcard.o
+    0x080073a4   0x080073a4   0x0000000c   Code   RO         3718    i.sdcard_select     sdcard.o
+    0x080073b0   0x080073b0   0x0000001a   Code   RO         3719    i.sdcard_sendAppCommand  sdcard.o
+    0x080073ca   0x080073ca   0x00000002   PAD
+    0x080073cc   0x080073cc   0x0000005c   Code   RO         3720    i.sdcard_sendCommand  sdcard.o
+    0x08007428   0x08007428   0x00000028   Code   RO         3721    i.sdcard_waitForIdle  sdcard.o
+    0x08007450   0x08007450   0x00000024   Code   RO         3722    i.sdcard_waitForNonIdleByte  sdcard.o
+    0x08007474   0x08007474   0x000000a4   Code   RO         3723    i.sdcard_writeBlock  sdcard.o
+    0x08007518   0x08007518   0x00000010   Code   RO         4736    i.sensorSet         runtime_config.o
+    0x08007528   0x08007528   0x00000014   Code   RO         4737    i.sensors           runtime_config.o
+    0x0800753c   0x0800753c   0x00000020   Code   RO         5679    i.sensorsAutodetect  initialisation.o
+    0x0800755c   0x0800755c   0x00000034   Code   RO         3851    i.serialInit        serial.o
+    0x08007590   0x08007590   0x00000012   Code   RO         5868    i.serialRxInit      rx.o
+    0x080075a2   0x080075a2   0x00000002   PAD
+    0x080075a4   0x080075a4   0x00000110   Code   RO         4017    i.serialUART        serial_uart_stm32f4xx.o
+    0x080076b4   0x080076b4   0x0000000c   Code   RO         4018    i.serialUART1       serial_uart_stm32f4xx.o
+    0x080076c0   0x080076c0   0x0000000c   Code   RO         4019    i.serialUART3       serial_uart_stm32f4xx.o
+    0x080076cc   0x080076cc   0x0000000c   Code   RO         4020    i.serialUART6       serial_uart_stm32f4xx.o
+    0x080076d8   0x080076d8   0x00000006   Code   RO         3853    i.serialWrite       serial.o
+    0x080076de   0x080076de   0x00000002   PAD
+    0x080076e0   0x080076e0   0x00000034   Code   RO         4344    i.setProfile        config.o
+    0x08007714   0x08007714   0x00000034   Code   RO         6176    i.setTaskEnabled    scheduler.o
+    0x08007748   0x08007748   0x00000030   Code   RO         2727    i.spiDeviceByInstance  bus_spi.o
+    0x08007778   0x08007778   0x0000001c   Code   RO         2728    i.spiGetErrorCounter  bus_spi.o
+    0x08007794   0x08007794   0x0000001c   Code   RO         2729    i.spiInit           bus_spi.o
+    0x080077b0   0x080077b0   0x00000118   Code   RO         2730    i.spiInitDevice     bus_spi.o
+    0x080078c8   0x080078c8   0x00000020   Code   RO         2731    i.spiIsBusBusy      bus_spi.o
+    0x080078e8   0x080078e8   0x0000001c   Code   RO         2732    i.spiResetErrorCounter  bus_spi.o
+    0x08007904   0x08007904   0x0000008a   Code   RO         2733    i.spiSetDivisor     bus_spi.o
+    0x0800798e   0x0800798e   0x00000002   PAD
+    0x08007990   0x08007990   0x00000024   Code   RO         2734    i.spiTimeoutUserCallback  bus_spi.o
+    0x080079b4   0x080079b4   0x000000c8   Code   RO         2735    i.spiTransfer       bus_spi.o
+    0x08007a7c   0x08007a7c   0x00000052   Code   RO         2736    i.spiTransferByte   bus_spi.o
+    0x08007ace   0x08007ace   0x00000002   PAD
+    0x08007ad0   0x08007ad0   0x00000038   Code   RO         6017    i.startBlackbox     blackbox.o
+    0x08007b08   0x08007b08   0x00000018   Code   RO         4090    i.systemBeep        sound_beeper.o
+    0x08007b20   0x08007b20   0x00000050   Code   RO         2106    i.systemInit        main.o
+    0x08007b70   0x08007b70   0x0000013a   Code   RO         4345    i.targetConfiguration  config.o
+    0x08007caa   0x08007caa   0x00000006   Code   RO         3335    i.taskLed3          led.o
+    0x08007cb0   0x08007cb0   0x00000006   Code   RO         3336    i.taskLed4          led.o
+    0x08007cb6   0x08007cb6   0x00000006   Code   RO         3337    i.taskLed5          led.o
+    0x08007cbc   0x08007cbc   0x00000006   Code   RO         3338    i.taskLed6          led.o
+    0x08007cc2   0x08007cc2   0x00000002   PAD
+    0x08007cc4   0x08007cc4   0x0000008c   Code   RO         4521    i.taskMainPidLoop   fc_core.o
+    0x08007d50   0x08007d50   0x00000020   Code   RO         6177    i.taskSystem        scheduler.o
+    0x08007d70   0x08007d70   0x00000018   Code   RO         4635    i.taskUpdateRxMain  fc_tasks.o
+    0x08007d88   0x08007d88   0x0000007a   Code   RO         4138    i.timCCxHandler     timer.o
+    0x08007e02   0x08007e02   0x0000000a   Code   RO         4140    i.timerChCCR        timer.o
+    0x08007e0c   0x08007e0c   0x0000003c   Code   RO         4289    i.timerClockDivisor  timer_stm32f4xx.o
+    0x08007e48   0x08007e48   0x00000034   Code   RO         4145    i.timerForceOverflow  timer.o
+    0x08007e7c   0x08007e7c   0x0000003c   Code   RO         4146    i.timerGetByTag     timer.o
+    0x08007eb8   0x08007eb8   0x00000084   Code   RO         4147    i.timerInit         timer.o
+    0x08007f3c   0x08007f3c   0x00000028   Code   RO         4150    i.timerOCInit       timer.o
+    0x08007f64   0x08007f64   0x00000028   Code   RO         4151    i.timerOCPreloadConfig  timer.o
+    0x08007f8c   0x08007f8c   0x00000024   Code   RO         4152    i.timerRCC          timer.o
+    0x08007fb0   0x08007fb0   0x00000096   Code   RO         4021    i.uartIrqHandler    serial_uart_stm32f4xx.o
+    0x08008046   0x08008046   0x00000002   PAD
+    0x08008048   0x08008048   0x00000174   Code   RO         3929    i.uartOpen          serial_uart.o
+    0x080081bc   0x080081bc   0x0000002c   Code   RO         3930    i.uartRead          serial_uart.o
+    0x080081e8   0x080081e8   0x0000008c   Code   RO         3931    i.uartReconfigure   serial_uart.o
+    0x08008274   0x08008274   0x00000006   Code   RO         3932    i.uartSetBaudRate   serial_uart.o
+    0x0800827a   0x0800827a   0x00000006   Code   RO         3933    i.uartSetMode       serial_uart.o
+    0x08008280   0x08008280   0x0000004a   Code   RO         3934    i.uartStartTxDMA    serial_uart.o
+    0x080082ca   0x080082ca   0x00000018   Code   RO         3935    i.uartTotalRxBytesWaiting  serial_uart.o
+    0x080082e2   0x080082e2   0x00000026   Code   RO         3936    i.uartTotalTxBytesFree  serial_uart.o
+    0x08008308   0x08008308   0x00000030   Code   RO         3937    i.uartWrite         serial_uart.o
+    0x08008338   0x08008338   0x000000ec   Code   RO         4681    i.updateActivatedModes  rc_controls.o
+    0x08008424   0x08008424   0x0000012c   Code   RO         4579    i.updateRcCommands  fc_rc.o
+    0x08008550   0x08008550   0x0000001c   Code   RO         4682    i.useRcControlsConfig  rc_controls.o
+    0x0800856c   0x0800856c   0x00000040   Code   RO         4346    i.validateAndFixConfig  config.o
+    0x080085ac   0x080085ac   0x0000002c   Code   RO         4347    i.validateAndFixGyroConfig  config.o
+    0x080085d8   0x080085d8   0x00000050   Code   RO         6018    i.validateBlackboxConfig  blackbox.o
+    0x08008628   0x08008628   0x00000040   Code   RO         2632    i.verifyMPU9250WriteRegister  accgyro_spi_mpu9250.o
+    0x08008668   0x08008668   0x00000034   Code   RO         5255    i.writeMotors       mixer.o
+    0x0800869c   0x0800869c   0x0000002c   Code   RO         6500    locale$$code        c_w.l(lc_ctype_c.o)
+    0x080086c8   0x080086c8   0x0000000e   Code   RO         6441    x$fpl$ffixr         fz_wm.l(ffix.o)
+    0x080086d6   0x080086d6   0x0000008c   Code   RO         6502    x$fpl$fnaninf       fz_wm.l(fnaninf.o)
+    0x08008762   0x08008762   0x0000000a   Code   RO         6567    x$fpl$fpinit        fz_wm.l(fpinit.o)
+    0x0800876c   0x0800876c   0x00000060   Code   RO         6444    x$fpl$frnd          fz_wm.l(frnd.o)
+    0x080087cc   0x080087cc   0x00000000   Code   RO         6448    x$fpl$usenofp       fz_wm.l(usenofp.o)
+    0x080087cc   0x080087cc   0x00000005   Data   RO         2107    .constdata          main.o
+    0x080087d1   0x080087d1   0x00000003   PAD
+    0x080087d4   0x080087d4   0x000000a8   Data   RO         2426    .constdata          target.o
+    0x0800887c   0x0800887c   0x00000029   Data   RO         2633    .constdata          accgyro_spi_mpu9250.o
+    0x080088a5   0x080088a5   0x0000001a   Data   RO         2737    .constdata          bus_spi.o
+    0x080088bf   0x080088bf   0x00000017   Data   RO         3018    .constdata          exti.o
+    0x080088d6   0x080088d6   0x00000016   Data   RO         3213    .constdata          io.o
+    0x080088ec   0x080088ec   0x00000003   Data   RO         3855    .constdata          serial.o
+    0x080088ef   0x080088ef   0x00000001   PAD
+    0x080088f0   0x080088f0   0x00000028   Data   RO         3938    .constdata          serial_uart.o
+    0x08008918   0x08008918   0x00000070   Data   RO         4290    .constdata          timer_stm32f4xx.o
+    0x08008988   0x08008988   0x00000038   Data   RO         4921    .constdata          asyncfatfs.o
+    0x080089c0   0x080089c0   0x00000040   Data   RO         5257    .constdata          mixer.o
+    0x08008a00   0x08008a00   0x00000001   Data   RO         5611    .constdata          gyro.o
+    0x08008a01   0x08008a01   0x0000001c   Data   RO         5871    .constdata          rx.o
+    0x08008a1d   0x08008a1d   0x00000017   Data   RO         6085    .constdata          blackbox_io.o
+    0x08008a34   0x08008a34   0x00000028   Data   RO         6276    .constdata          c_w.l(_printf_hex_int.o)
+    0x08008a5c   0x08008a5c   0x00000040   Data   RO         6362    .constdata          m_wm.l(log2f.o)
+    0x08008a9c   0x08008a9c   0x00000140   Data   RO         6376    .constdata          m_wm.l(powf.o)
+    0x08008bdc   0x08008bdc   0x00000020   Data   RO         6466    .constdata          m_wm.l(rredf.o)
+    0x08008bfc   0x08008bfc   0x00000037   Data   RO         4636    .conststring        fc_tasks.o
+    0x08008c33   0x08008c33   0x00000001   PAD
+    0x08008c34   0x08008c34   0x00000020   Data   RO         6642    Region$$Table       anon$$obj.o
+    0x08008c54   0x08008c54   0x00000110   Data   RO         6499    locale$$data        c_w.l(lc_ctype_c.o)
 
 
-    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08008c8c, Size: 0x00003b58, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x00000184])
+    Execution Region RW_IRAM1 (Exec base: 0x20000000, Load base: 0x08008d64, Size: 0x00003b58, Max: 0x00020000, ABSOLUTE, COMPRESSED[0x00000184])
 
     Exec Addr    Load Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -4547,7 +4552,7 @@ Image component sizes
        340         84          0        448          0      10364   dma_stm32f4xx.o
        312         32         23          7         64       7818   exti.o
        158          6          0          0          0       5233   fat_standard.o
-       238         32          0          9          0       3880   fc_core.o
+       244         36          0          9          0       3884   fc_core.o
        196          8          0          1         31       1735   fc_msp.o
        520         54          0          8         36       4888   fc_rc.o
         92          4         55        572          0       3207   fc_tasks.o
@@ -4562,11 +4567,11 @@ Image component sizes
        646        118          5          5          0      64352   main.o
        168         10          0          0          0       4095   maths.o
        120         14          0          0          0     316231   misc.o
-       276         66         64         32        240       7667   mixer.o
+       312         70         64         32        240       7739   mixer.o
        722         66          0         68        208       6016   pid.o
          0          0          0          0          0       2837   pwm.o
        556         56          0         12        320      10851   pwm_output.o
-       270         28          0         24          0       7809   rc_controls.o
+       442        126          0         24          0       7905   rc_controls.o
         72          0          0          0          0       1326   rcc.o
         36         10          0          5          0       1388   runtime_config.o
        990         90         28         32        220      14333   rx.o
@@ -4595,9 +4600,9 @@ Image component sizes
         60         22        112          0          0       2935   timer_stm32f4xx.o
 
     ----------------------------------------------------------------------
-     28028       2864       1096       4948      10148     795196   Object Totals
+     28244       2970       1096       4948      10148     795368   Object Totals
          0          0         32          0          0          0   (incl. Generated)
-        74          0          5         17          3          0   (incl. Padding)
+        76          0          5         17          3          0   (incl. Padding)
 
     ----------------------------------------------------------------------
 
@@ -4696,15 +4701,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     34156       3258       1824       4948      10244     758376   Grand Totals
-     34156       3258       1824        388      10244     758376   ELF Image Totals (compressed)
-     34156       3258       1824        388          0          0   ROM Totals
+     34372       3364       1824       4948      10244     758548   Grand Totals
+     34372       3364       1824        388      10244     758548   ELF Image Totals (compressed)
+     34372       3364       1824        388          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                35980 (  35.14kB)
+    Total RO  Size (Code + RO Data)                36196 (  35.35kB)
     Total RW  Size (RW Data + ZI Data)             15192 (  14.84kB)
-    Total ROM Size (Code + RO Data + RW Data)      36368 (  35.52kB)
+    Total ROM Size (Code + RO Data + RW Data)      36584 (  35.73kB)
 
 ==============================================================================
 

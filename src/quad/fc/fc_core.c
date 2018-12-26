@@ -74,9 +74,10 @@ void processRx(timeUs_t currentTimeUs)
 	
 	/* handle rc stick positions */
 	processRcStickPositions();
+//	processRcStickPositions(&masterConfig.rxConfig, throttleStatus, armingConfig()->disarm_kill_switch);
 	
 	/* update activated modes */
-	updateActivatedModes();
+	updateActivatedModes(ModeActivationProfile()->modeActivationConditions);
 }
 
 static void subTaskMotorUpdate(void)
