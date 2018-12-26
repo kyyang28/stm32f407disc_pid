@@ -131,4 +131,6 @@ bool rxUpdateCheck(timeUs_t currentTimeUs, timeDelta_t currentDeltaTime);
 
 void parseRcChannels(const char *input, rxConfig_t *rxConfig);
 
+uint16_t rxGetRefreshRate(void);
+
 #endif	// __RX_H

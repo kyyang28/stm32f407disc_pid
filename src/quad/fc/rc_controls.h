@@ -64,10 +64,10 @@ typedef enum rc_alias {
 }rc_alias_e;
 
 typedef enum {
-	RC_SMOOTHING_OFF = 0,
-	RC_SMOOTHING_DEFAULT,
-	RC_SMOOTHING_AUTO,
-	RC_SMOOTHING_MANUAL
+	RC_SMOOTHING_OFF = 0,			// 0
+	RC_SMOOTHING_DEFAULT,			// 1
+	RC_SMOOTHING_AUTO,				// 2
+	RC_SMOOTHING_MANUAL				// 3
 }rcSmoothing_t;
 
 #define CHANNEL_RANGE_MIN								900

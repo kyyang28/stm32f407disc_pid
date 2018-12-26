@@ -7,6 +7,7 @@
 #include "scheduler.h"
 #include "rc_controls.h"
 #include "runtime_config.h"		// armingFlags, flightModeFlags, ENABLE_FLIGHT_MODE, DISABLE_FLIGHT_MODE, FLIGHT_MODE
+#include "pid.h"
 
 #define THROTTLE_LOOKUP_LENGTH			12
 
@@ -110,6 +111,7 @@ void updateRcCommands(void)
 	 */
 	for (int axis = 0; axis < 3; axis++) {
 		/* non-coupled PID reduction scaler used in PID controller 1 and PID controller 2 */
+//		printf("rcData[%d]: %d\r\n", axis, rcData[axis]);
 		int32_t tmp = MIN(ABS(rcData[axis] - RxConfig()->midrc), 500);
 //		printf("tmp[%d]: %d\r\n", axis, tmp);
 		
@@ -178,6 +180,11 @@ static void checkForThrottleErrorResetState(uint16_t rxRefreshRate)
 void processRcCommand(void)
 {
 	static uint16_t currentRxRefreshRate;
+	static int16_t factor, rcInterpolationFactor;
+	static int16_t lastCommand[4] = { 0, 0, 0, 0 };
+	static int16_t deltaRC[4] = { 0, 0, 0, 0 };
+	const uint8_t interpolationChannels = RxConfig()->rcInterpolationChannels + 2;	// config->rxConfig.rcInterpolationChannels = 0; interpolationChannels = 0 + 2 = 2
+	uint16_t rxRefreshRate;
 	
 	/* isRXDataNew is set to TRUE in taskUpdateRxMain() task function */
 	if (isRXDataNew) {
@@ -192,7 +199,54 @@ void processRcCommand(void)
 		}
 	}
 	
+	/*
+	 * config->rxConfig.rcInterpolation = RC_SMOOTHING_AUTO;	rxConfig.rcInterpolation = 2
+	 */
 	if (RxConfig()->rcInterpolation || flightModeFlags) {
+		/* Set RC refresh rate for sampling and channels to filter */
+		switch (RxConfig()->rcInterpolation) {
+			case RC_SMOOTHING_AUTO:
+//				printf("currentRxRefreshRate: %u\r\n", currentRxRefreshRate);		// currentRxRefreshRate ~= 9000
+				rxRefreshRate = currentRxRefreshRate + 1000;		// Add slight overhead to prevent ramps
+				break;
+			
+			case RC_SMOOTHING_MANUAL:
+				/* config->rxConfig.rcInterpolationInterval = 19 */
+				rxRefreshRate = 1000 * RxConfig()->rcInterpolationInterval;		// rxRefreshRate = 1000 * 19 = 19000
+				break;
+			
+			case RC_SMOOTHING_OFF:
+			case RC_SMOOTHING_DEFAULT:
+			default:
+				rxRefreshRate = rxGetRefreshRate();
+		}
 		
+//		printf("rxRefreshRate: %u\r\n", rxRefreshRate);		// rxRefreshRate ~= 10000
+		
+		/*
+		 * IMPORTANT: As PID looptime is faster than the Rx data receiving.
+		 * rcInterpolation is a way to feed in the rx data to the PID loop more smoothly whenever there is no data coming from the transmitter. 
+		 */
+		if (isRXDataNew) {
+//			printf("targetPidLooptime: %u\r\n", targetPidLooptime);		// targetPidLooptime = 500
+			rcInterpolationFactor = rxRefreshRate / targetPidLooptime + 1;
+//			printf("rcInterpolationFactor: %d\r\n", rcInterpolationFactor);		// rcInterpolationFactor = rxRefreshRate / targetPidLooptime + 1 = 10000 / 500 + 1 ~= 20 or 21
+			
+			for (int channel = ROLL; channel < interpolationChannels; channel++) {
+#if 0
+				if (channel == ROLL) {
+					printf("rcCommand[ROLL]: %d\r\n", rcCommand[channel]);
+				} else if (channel == PITCH) {
+					printf("rcCommand[PITCH]: %d\r\n", rcCommand[channel]);
+				}
+#endif
+				deltaRC[channel] = rcCommand[channel] - (lastCommand[channel] - deltaRC[channel] * factor / rcInterpolationFactor);
+				lastCommand[channel] = rcCommand[channel];
+			}
+			
+			factor = rcInterpolationFactor - 1;
+		} else {
+			factor--;
+		}
 	}
 }

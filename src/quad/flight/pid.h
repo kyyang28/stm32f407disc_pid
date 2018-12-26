@@ -16,6 +16,8 @@
 #define ITERM_SCALE						0.244381f
 #define DTERM_SCALE						0.000529f
 
+extern uint32_t targetPidLooptime;
+
 typedef enum {
 	PIDROLL,				// 0
 	PIDPITCH,				// 1

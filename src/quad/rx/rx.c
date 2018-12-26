@@ -510,3 +510,8 @@ void parseRcChannels(const char *input, rxConfig_t *rxConfig)
 		}
 	}
 }
+
+uint16_t rxGetRefreshRate(void)
+{
+	return rxRuntimeConfig.rxRefreshRate;
+}
