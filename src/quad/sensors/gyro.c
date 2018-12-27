@@ -251,7 +251,7 @@ static void performGyroCalibration(uint8_t gyroMovementCalibrationThreshold)
 		gyroADC[axis] = 0;
 		gyroZero[axis] = 0;
 		
-//		printf("calibratingG: %u, %s, %d\r\n", calibratingG, __FUNCTION__, __LINE__);
+//		printf("calibratingG: %u\r\n", calibratingG);
 		if (isOnFinalGyroCalibrationCycle()) {
 			float dev = devStandardDeviation(&var[axis]);		// use standard deviation value to determine if the gyro is moved during the power up process, if so, re-calibrate the gyro again
 //			printf("dev[%d]: %f, moron threshold: %u, %s, %d\r\n", axis, dev, gyroMovementCalibrationThreshold, __FUNCTION__, __LINE__);

@@ -177,7 +177,7 @@ void taskMainPidLoop(timeUs_t currentTimeUs)
 	gyroUpdate();
     
 //    if (gyro.dev.mpuDetectionResult.sensor == MPU_9250_SPI && gyro.dev.calibrationFlag) {
-//        printf("MPU9250 (SPI) data - gyroADCfiltered[X]: %.4f, gyroADCfiltered[Y]: %.4f, gyroADCfiltered[Z]: %.4f\r\n", gyro.gyroADCf[X], gyro.gyroADCf[Y], gyro.gyroADCf[Z]);
+//        printf("gyroADC[X]: %.4f, gyroADC[Y]: %.4f, gyroADC[Z]: %.4f\r\n", gyro.gyroADCf[X], gyro.gyroADCf[Y], gyro.gyroADCf[Z]);
 //    }
     
 //    printf("pidUpdateProcessCountDown: %u\r\n", pidUpdateProcessCountDown);

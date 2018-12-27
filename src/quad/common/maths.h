@@ -4,13 +4,15 @@
 #include <math.h>
 
 // Use floating point M_PI instead explicitly.
-#define M_PIf       3.14159265358979323846f
+#define M_PIf       		3.14159265358979323846f
 
-#define RAD    (M_PIf / 180.0f)
+#define RAD    				(M_PIf / 180.0f)
 
-#define MIN(a, b) ((a) < (b) ? (a) : (b))
-#define MAX(a, b) ((a) > (b) ? (a) : (b))
-#define ABS(x) ((x) > 0 ? (x) : -(x))
+#define MIN(a, b) 			((a) < (b) ? (a) : (b))
+#define MAX(a, b) 			((a) > (b) ? (a) : (b))
+#define ABS(x) 				((x) > 0 ? (x) : -(x))
+
+#define POWER3(x)			((x) * (x) * (x))
 
 typedef struct stdev_s {
 	float m_oldM, m_newM, m_oldS, m_newS;

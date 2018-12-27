@@ -37,8 +37,8 @@
 
 #define USE_UART1
 #ifdef USE_UART1
-#define UART1_RX_PIN        	PB7
-#define UART1_TX_PIN        	PB6
+#define UART1_RX_PIN        	PB7			// MSP RX
+#define UART1_TX_PIN        	PB6			// MSP TX
 #endif
 
 //#define USE_UART2				// uncomment this line to use UART2

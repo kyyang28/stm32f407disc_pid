@@ -286,7 +286,7 @@ static void readRxChannelsApplyRanges(void)
 		/* store sampled rx value to rcRaw array */
 		rcRaw[channel] = sample;
 
-#if 0		
+#if 0
 		if (channel == 3)	// Channel 3: Throttle
 			printf("rcRaw[%d](Throttle stick): %u\r\n", channel, rcRaw[channel]);
 #endif

@@ -193,6 +193,16 @@ void mixTable(void)
 	/* Calculate voltage compensation */
 	
 
+#if 0
+	/* For motor calibration of F450 quadcopter */
+	for (uint32_t i = 0; i < motorCount; i++) {
+//		motor[i] = motorOutputMin;
+//		printf("motor[%d]: %d\r\n", i, motor[i]);
+		motor[i] = rcCommand[THROTTLE];
+	}
+#endif
+	
+#if 1
 	if (IS_RC_MODE_ACTIVE(BOXARM)) {
 		/* TODO: modify this when finishing PID controllers */
 		for (uint32_t i = 0; i < motorCount; i++) {
@@ -207,4 +217,5 @@ void mixTable(void)
 			motor[i] = 1000;
 		}
 	}
+#endif	
 }

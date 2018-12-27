@@ -11,6 +11,10 @@
 
 #define THROTTLE_LOOKUP_LENGTH			12
 
+/* Variables for setting setpoint */
+#define RC_RATE_INCREMENTAL				14.54f
+#define SETPOINT_RATE_LIMIT				1998.0f
+
 static float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
 static float throttlePIDAttenuation;
 
@@ -19,6 +23,16 @@ static int16_t lookupThrottleRC[THROTTLE_LOOKUP_LENGTH];		// lookup table for ex
 float getSetpointRate(int axis)
 {
 	return setpointRate[axis];
+}
+
+float getRcDeflection(int axis)
+{
+	return rcDeflection[axis];
+}
+
+float getRcDeflectionAbs(int axis)
+{
+	return rcDeflectionAbs[axis];
 }
 
 float getThrottlePIDAttenuation(void)
@@ -180,7 +194,102 @@ static void checkForThrottleErrorResetState(uint16_t rxRefreshRate)
 /* Calculate the setpoint rate for each axis (ROLL, PITCH and YAW) */
 static void calculateSetpointRate(int axis)
 {
+	uint8_t rcExpo;
+	float rcRate;
 	
+	if (axis != YAW) {
+		/* Handle ROLL and PITCH */
+		rcExpo = currentControlRateProfile->rcExpo8;				// rcExpo = rcExpo8 = 0
+		rcRate = currentControlRateProfile->rcRate8 / 100.0f;		// rcRate = rcRate8 / 100.0f = 100 / 100.0f = 1.0f
+	} else {
+		/* Handle YAW */
+		rcExpo = currentControlRateProfile->rcYawExpo8;				// rcExpo = rcYawExpo8 = 0
+		rcRate = currentControlRateProfile->rcYawRate8 / 100.0f;	// rcRate = rcYawRate8 / 100.0f = 100 / 100.0f = 1.0f
+	}
+	
+	if (rcRate > 2.0f) {
+		/*
+		 * RC_RATE_INCREMENTAL = 14.54f
+		 * SETPOINT_RATE_LIMIT = 1998.0f
+		 */
+		rcRate += RC_RATE_INCREMENTAL * (rcRate - 2.0f);
+	}
+	
+//	printf("rcCommand[%d]: %d\r\n", axis, rcCommand[axis]);
+	/** rcCommandf values for each axis
+	 *
+	 *			left		mid			right
+	 * ROLL	   -1.0f   to	0.0f   to	+1.0f
+	 *
+	 * 			top			mid			bottom
+     * PITCH   +1.0f   to	0.0f   to	-1.0f	
+	 *
+	 * 			left		mid			right
+     * YAW     +1.0f   to	0.0f   to	-1.0f	
+	 */
+	float rcCommandf = rcCommand[axis] / 500.0f;
+	
+	/** rcDefelction array stores the rcCommandf values for each axis
+	 *
+     *			left		mid			right
+	 * ROLL	   -1.0f   to	0.0f   to	+1.0f
+	 *
+	 * 			top			mid			bottom
+     * PITCH   +1.0f   to	0.0f   to	-1.0f	
+	 *
+	 * 			left		mid			right
+     * YAW     +1.0f   to	0.0f   to	-1.0f	
+	 */
+	rcDeflection[axis] = rcCommandf;
+//	printf("rcDeflection[%d]: %f\r\n", axis, rcDeflection[axis]);
+	
+	/* rcCommandf value ranges from -500 to +500
+	 * rcCommandAbs value takes the absolute value of rcCommandf
+	 */
+	const float rcCommandAbs = ABS(rcCommandf);
+	rcDeflectionAbs[axis] = rcCommandAbs;
+	
+	if (rcExpo) {
+		const float expof = rcExpo / 100.0f;
+//		printf("rcCommandAbs: %f\r\n", rcCommandAbs);		// rcCommandAbs ranges from 1.0f to 0.0f to 1.0f, always positive number.
+		/* rcCommandf is original rcCommand[axis] / 500.0f, which ranges from -1.0f to 0.0f to 1.0f or vice versa. */
+		rcCommandf = rcCommandf * POWER3(rcCommandAbs) * expof + rcCommandf * (1 - expof);
+//		if (axis == 0)
+//			printf("rcCommandf0: %f\r\n", rcCommandf);
+//		else if (axis == 1)
+//			printf("rcCommandf1: %f\r\n", rcCommandf);
+//		else if (axis == 2)
+//			printf("rcCommandf2: %f\r\n", rcCommandf);
+	}
+	
+	/* For example, rcRate = 1.0f, rcCommandf = 0.3 (150 [1700 rcData value])
+	 *
+	 * angleRate = 200.0f * rcRate * rcCommandf = 200.0f * 1.0f * 0.3 = 60.0f
+	 */
+	float angleRate = 200.0f * rcRate * rcCommandf;
+	
+	/* currentControlRateProfile->rates[axis] = 70 for each axis (ROLL, PITCH, YAW) */
+	if (currentControlRateProfile->rates[axis]) {
+		
+		/* For example, rates[ROLL] = rates[PITCH] = rates[YAW] = 70, rcCommandf = 0.3, rcCommandAbs = ABS(rcCommandf) = 0.3
+		 * rcSuperFactor = 1.0f / constrainf((1.0f - 0.3f * 70 / 100), 0.01f, 1.00f) = 1.0f / constrainf((1.0f - 0.21f), 0.01f, 1.00f)
+		 *				 = 1.0f / constrainf(0.79f, 0.01f, 1.00f) = 1.0f / 0.79f = 1.2658227848101265822784810126582
+		 */
+		const float rcSuperFactor = 1.0f / (constrainf(1.0f - (rcCommandAbs * (currentControlRateProfile->rates[axis] / 100.0f)), 0.01f, 1.00f));
+
+		/* angleRate = angleRate * rcSuperFactor = 60.0f * 1.2658227848101265822784810126582 = 75.949367088607594936708860759492 */
+		angleRate *= rcSuperFactor;
+	}
+	
+	/* SETPOINT_RATE_LIMIT = 1998.0f
+	 *
+	 * angleRate should be within [-1998.0f, 1998.0f]
+	 *
+	 * angleRate 75.949367088607594936708860759492 is calculated as above.
+	 */
+	setpointRate[axis] = constrainf(angleRate, -SETPOINT_RATE_LIMIT, SETPOINT_RATE_LIMIT);
+	
+//	printf("setpointRate[%d]: %f\r\n", axis, setpointRate[axis]);
 }
 
 /* Just for Angle and Horizon modes */

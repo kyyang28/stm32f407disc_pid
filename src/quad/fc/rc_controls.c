@@ -78,7 +78,7 @@ void updateActivatedModes(modeActivationCondition_t *modeActivationConditions)
 //			printf("modeId: %d\r\n", modeActivationCondition->modeId);
 			ACTIVATE_RC_MODE(modeActivationCondition->modeId);
 
-#if 0			
+#if 0
 			if (IS_RC_MODE_ACTIVE(BOXARM)) {
 				printf("Motors are ARMed!\r\n");
 			}

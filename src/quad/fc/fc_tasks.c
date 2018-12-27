@@ -103,7 +103,8 @@ void fcTasksInit(void)
     schedulerInit();
 
     /* Add GYRO, MOTOR, and PID TASK to the queue */
-    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(50));       // change the looptime for GYROPID TASK using the 2nd parameter
+    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(500));       	// 500Hz for standard ESC using PWM signals (on YQ450 quadcopter)
+//    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(2000));       	// 2Khz for racing quadcopter using oneshot125, oneshot42 or multishot motor protocols
     setTaskEnabled(TASK_GYROPID, true);
 
 #if 1
