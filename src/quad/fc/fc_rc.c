@@ -1,7 +1,7 @@
 
 #include <stdio.h>				// debugging purpose
 #include "rx.h"
-#include "configMaster.h"
+#include "configMaster.h"		// currentControlRateProfile, currentProfile, masterConfig
 #include "maths.h"
 #include "fc_core.h"
 #include "scheduler.h"
@@ -177,6 +177,18 @@ static void checkForThrottleErrorResetState(uint16_t rxRefreshRate)
 	
 }
 
+/* Calculate the setpoint rate for each axis (ROLL, PITCH and YAW) */
+static void calculateSetpointRate(int axis)
+{
+	
+}
+
+/* Just for Angle and Horizon modes */
+static void scaleRcCommandToFpvCamAngle(void)
+{
+	
+}
+
 void processRcCommand(void)
 {
 	static uint16_t currentRxRefreshRate;
@@ -184,6 +196,8 @@ void processRcCommand(void)
 	static int16_t lastCommand[4] = { 0, 0, 0, 0 };
 	static int16_t deltaRC[4] = { 0, 0, 0, 0 };
 	const uint8_t interpolationChannels = RxConfig()->rcInterpolationChannels + 2;	// config->rxConfig.rcInterpolationChannels = 0; interpolationChannels = 0 + 2 = 2
+	bool readyToCalculateRate = false;
+	uint8_t readyToCalculateRateAxisCnt = 0;
 	uint16_t rxRefreshRate;
 	
 	/* isRXDataNew is set to TRUE in taskUpdateRxMain() task function */
@@ -229,24 +243,55 @@ void processRcCommand(void)
 		 */
 		if (isRXDataNew) {
 //			printf("targetPidLooptime: %u\r\n", targetPidLooptime);		// targetPidLooptime = 500
+			/* rxRefreshRate ~= 10000 */
 			rcInterpolationFactor = rxRefreshRate / targetPidLooptime + 1;
 //			printf("rcInterpolationFactor: %d\r\n", rcInterpolationFactor);		// rcInterpolationFactor = rxRefreshRate / targetPidLooptime + 1 = 10000 / 500 + 1 ~= 20 or 21
 			
 			for (int channel = ROLL; channel < interpolationChannels; channel++) {
-#if 0
-				if (channel == ROLL) {
-					printf("rcCommand[ROLL]: %d\r\n", rcCommand[channel]);
-				} else if (channel == PITCH) {
-					printf("rcCommand[PITCH]: %d\r\n", rcCommand[channel]);
-				}
-#endif
+//				if (channel == ROLL) {
+//					printf("rcCommand[ROLL]: %d\r\n", rcCommand[channel]);
+//				} else if (channel == PITCH) {
+//					printf("rcCommand[PITCH]: %d\r\n", rcCommand[channel]);
+//				}
 				deltaRC[channel] = rcCommand[channel] - (lastCommand[channel] - deltaRC[channel] * factor / rcInterpolationFactor);
 				lastCommand[channel] = rcCommand[channel];
 			}
 			
 			factor = rcInterpolationFactor - 1;
 		} else {
-			factor--;
+			factor--;		// Whenever no data received from the transmitter, the factor is decreased by 1.
 		}
+		
+		/* Interpolate steps of rcCommand */
+		if (factor > 0) {
+			for (int channel = ROLL; channel < interpolationChannels; channel++) {
+				rcCommand[channel] = lastCommand[channel] - deltaRC[channel] * factor / rcInterpolationFactor;
+				/* Throttle channel does not require rate calculation */
+				readyToCalculateRateAxisCnt = MAX(channel, FD_YAW);
+				readyToCalculateRate = true;
+			}
+		} else {
+			factor = 0;
+		}
+	} else {
+		/* Reset factor in case of level modes flip flopping */
+		factor = 0;
+	}
+	
+	if (readyToCalculateRate || isRXDataNew) {
+		if (isRXDataNew) {
+			readyToCalculateRateAxisCnt = FD_YAW;
+		}
+		
+		for (int axis = 0; axis <= readyToCalculateRateAxisCnt; axis++) {
+			calculateSetpointRate(axis);
+		}
+		
+		/* Scaling of Angle rate to camera angle (i.e. Mixing Roll and Yaw) */
+		if (RxConfig()->fpvCamAngleDegrees && IS_RC_MODE_ACTIVE(BOXFPVANGLEMIX) && !FLIGHT_MODE(HEADFREE_MODE)) {
+			scaleRcCommandToFpvCamAngle();
+		}
+		
+		isRXDataNew = false;
 	}
 }

@@ -7,9 +7,9 @@
 
 /* See http://en.wikipedia.org/wiki/Flight_dynamics */
 typedef enum {
-	FD_ROLL = 0,
-	FD_PITCH,
-	FD_YAW
+	FD_ROLL = 0,		// 0
+	FD_PITCH,			// 1
+	FD_YAW				// 2
 }flight_dynamics_index_t;
 
 typedef enum {

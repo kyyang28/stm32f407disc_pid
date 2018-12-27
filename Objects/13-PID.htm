@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\13-PID.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\13-PID.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Wed Dec 26 23:26:35 2018
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Thu Dec 27 00:28:16 2018
 <BR><P>
 <H3>Maximum Stack Usage =        552 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -589,7 +589,6 @@ Global Symbols
 <LI><a href="#[1b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu9250AccAndGyroInit
 <LI><a href="#[1b7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;mpu9250SpiDetect
 <LI><a href="#[1a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rxInit
-<LI><a href="#[1c9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;processRcCommand
 <LI><a href="#[124]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_fseek
 <LI><a href="#[136]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_fileOperationContinue
 <LI><a href="#[10f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_assert
@@ -2682,15 +2681,13 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[9f]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[1c9]"></a>processRcCommand</STRONG> (Thumb, 230 bytes, Stack size 32 bytes, fc_rc.o(i.processRcCommand))
-<BR><BR>[Stack]<UL><LI>Max Depth = 160 + Unknown Stack Size
-<LI>Call Chain = processRcCommand &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
+<P><STRONG><a name="[1c9]"></a>processRcCommand</STRONG> (Thumb, 324 bytes, Stack size 40 bytes, fc_rc.o(i.processRcCommand))
+<BR><BR>[Stack]<UL><LI>Max Depth = 48<LI>Call Chain = processRcCommand &rArr; isAntiGravityModeActive
 </UL>
 <BR>[Calls]<UL><LI><a href="#[1cc]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;rxGetRefreshRate
 <LI><a href="#[193]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;isAntiGravityModeActive
 <LI><a href="#[1ca]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;getTaskDeltaTime
 <LI><a href="#[1cb]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;constrain
-<LI><a href="#[a7]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__2printf
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMainPidLoop
 </UL>
