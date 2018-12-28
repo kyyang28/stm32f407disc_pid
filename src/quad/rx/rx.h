@@ -123,7 +123,7 @@ typedef struct rxRuntimeConfig_s {
 	rcFrameStatusFnPtr rcFrameStatusFn;
 }rxRuntimeConfig_t;
 
-void rxInit(const rxConfig_t *rxConfig, const modeActivationCondition_t *modeActivationConditions);
+void rxInit(const rxConfig_t *rxConfig, const struct modeActivationCondition_s *modeActivationConditions);
 void resetAllRxChannelRangeConfigurations(rxChannelRangeConfiguration_t *rxChannelRangeConfiguration);
 void calculateRxChannelsAndUpdateFailsafe(timeUs_t currentTimeUs);
 

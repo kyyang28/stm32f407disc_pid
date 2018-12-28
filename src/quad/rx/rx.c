@@ -493,7 +493,7 @@ void calculateRxChannelsAndUpdateFailsafe(timeUs_t currentTimeUs)
 	}
 	
 	readRxChannelsApplyRanges();
-	detectAndApplySignalLossBehaviour(currentTimeUs);		// TODO: implement this function later
+	detectAndApplySignalLossBehaviour(currentTimeUs);
 	
 	rcSampleIndex++;
 }

@@ -96,13 +96,13 @@ static void resetControlRateConfig(controlRateConfig_t *controlRateConfig)
 {
 	controlRateConfig->rcRate8 = 100;
 	controlRateConfig->rcYawRate8 = 100;
-	controlRateConfig->rcExpo8 = 20;					// Just for testing
-//	controlRateConfig->rcExpo8 = 0;
+//	controlRateConfig->rcExpo8 = 20;					// Just for testing
+	controlRateConfig->rcExpo8 = 0;
 	controlRateConfig->thrMid8 = 50;
 	controlRateConfig->thrExpo8 = 0;
 	controlRateConfig->dynThrPID = 10;					// 10 / 100 = 0.10 (TPA percentage value in BF)
-	controlRateConfig->rcYawExpo8 = 20;					// Just for testing
-//	controlRateConfig->rcYawExpo8 = 0;
+//	controlRateConfig->rcYawExpo8 = 20;					// Just for testing
+	controlRateConfig->rcYawExpo8 = 0;
 	controlRateConfig->tpa_breakpoint = 1650;
 	
 	for (uint8_t axis = 0; axis < FLIGHT_DYNAMICS_INDEX_COUNT; axis++) {

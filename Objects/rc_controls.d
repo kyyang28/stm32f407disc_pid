@@ -50,8 +50,9 @@
 .\objects\rc_controls.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\rc_controls.o: .\src\quad\common\maths.h
 .\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
-.\objects\rc_controls.o: src\quad\fc\fc_core.h
-.\objects\rc_controls.o: .\src\quad\common\time.h
-.\objects\rc_controls.o: src\quad\fc\runtime_config.h
 .\objects\rc_controls.o: .\src\quad\rx\rx.h
+.\objects\rc_controls.o: .\src\quad\fc\rc_controls.h
+.\objects\rc_controls.o: .\src\quad\common\time.h
+.\objects\rc_controls.o: src\quad\fc\fc_core.h
+.\objects\rc_controls.o: src\quad\fc\runtime_config.h
 .\objects\rc_controls.o: .\src\quad\drivers\sound_beeper.h

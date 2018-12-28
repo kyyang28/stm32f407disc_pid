@@ -130,3 +130,13 @@ void processRcStickPositions(void)
 		mwArm();
 	}
 }
+
+//throttleStatus_e calculateThrottleStatus(rxConfig_t *rxConfig, uint16_t deadband3d_throttle)
+throttleStatus_e calculateThrottleStatus(rxConfig_t *rxConfig)
+{
+	/* rxConfig->mincheck = 1100 */
+	if (rcData[THROTTLE] < rxConfig->mincheck)
+		return THROTTLE_LOW;
+	
+	return THROTTLE_HIGH;
+}

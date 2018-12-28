@@ -58,4 +58,5 @@
 .\objects\mixer.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\mixer.o: .\src\quad\common\maths.h
 .\objects\mixer.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\mixer.o: .\src\quad\rx\rx.h
 .\objects\mixer.o: .\src\quad\common\time.h

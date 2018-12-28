@@ -61,6 +61,7 @@
 .\objects\pid.o: .\src\quad\rx\rx.h
 .\objects\pid.o: .\src\quad\fc\rc_controls.h
 .\objects\pid.o: .\src\quad\io\motors.h
+.\objects\pid.o: .\src\quad\rx\rx.h
 .\objects\pid.o: .\src\quad\build\platform.h
 .\objects\pid.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\pid.o: .\src\quad\config\config_profile.h

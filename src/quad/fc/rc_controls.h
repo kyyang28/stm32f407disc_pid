@@ -6,6 +6,7 @@
 #include "motors.h"
 #include "pid.h"
 #include "maths.h"
+#include "rx.h"
 
 #define MAX_MODE_ACTIVATION_CONDITION_COUNT 				20
 
@@ -132,8 +133,15 @@ typedef struct armingConfig_s {
 	uint8_t auto_disarm_delay;			// allow automatically disarming multicopters after auto_disarm_delay seconds of zero throttle. Disabled when 0.
 }armingConfig_t;
 
+typedef enum {
+	THROTTLE_LOW = 0,					// 0
+	THROTTLE_HIGH						// 1
+}throttleStatus_e;
+
 bool isAntiGravityModeActive(void);
 void useRcControlsConfig(modeActivationCondition_t *modeActivationConditions, motorConfig_t *motorConfigToUse, pidProfile_t *pidProfileToUse);
 void processRcStickPositions(void);
+
+throttleStatus_e calculateThrottleStatus(struct rxConfig_s *rxConfig);
 
 #endif	// __RC_CONTROLS_H

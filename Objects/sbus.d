@@ -51,6 +51,7 @@
 .\objects\sbus.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\sbus.o: .\src\quad\common\maths.h
 .\objects\sbus.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\sbus.o: .\src\quad\rx\rx.h
 .\objects\sbus.o: .\src\quad\common\time.h
 .\objects\sbus.o: .\src\quad\drivers\serial.h
 .\objects\sbus.o: .\src\quad\drivers\system.h

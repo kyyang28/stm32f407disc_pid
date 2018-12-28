@@ -1,7 +1,8 @@
 
-#include <stdio.h>		// testing purposes
+#include <stdio.h>			// testing purposes
 #include "platform.h"
-#include "rx.h"			// including time.h
+#include "rc_controls.h"	// including rx.h and time.h
+//#include "rx.h"				// including time.h
 #include "debug.h"
 #include "system.h"
 #include "pwm_output.h"
@@ -60,14 +61,14 @@ void processRx(timeUs_t currentTimeUs)
 {
 	calculateRxChannelsAndUpdateFailsafe(currentTimeUs);
 	
-	/* update RSSI */
+	/* update RSSI, IMPLEMENTATION LATER */
 	
 	
-	/* handle failsafe if necessary */
+	/* handle failsafe if necessary, IMPLEMENTATION LATER */
 	
 	
 	/* calculate throttle status */
-	
+	throttleStatus_e throttleStatus = calculateThrottleStatus(&masterConfig.rxConfig);
 	
 	/* handle AirMode at LOW throttle */
 	

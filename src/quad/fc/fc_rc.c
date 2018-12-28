@@ -183,6 +183,8 @@ void updateRcCommands(void)
 	 * @1491, rcCommand[THROTTLE] = 1434
 	 */
 //	printf("rcCommand[THROTTLE]: %d, %s, %d\r\n", rcCommand[THROTTLE], __FUNCTION__, __LINE__);			// range [0;1000]
+
+	/* Handle FLIGHT_MODE(HEADFREE_MODE) if necessary */
 }
 
 /* Implement later for ANTI-GRAVITY mode */

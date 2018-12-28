@@ -27,8 +27,7 @@
 .\objects\fc_core.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\fc_core.o: .\src\quad\config\feature.h
 .\objects\fc_core.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
-.\objects\fc_core.o: .\src\quad\rx\rx.h
-.\objects\fc_core.o: .\src\quad\fc\rc_controls.h
+.\objects\fc_core.o: src\quad\fc\rc_controls.h
 .\objects\fc_core.o: .\src\quad\io\motors.h
 .\objects\fc_core.o: .\src\quad\drivers\io.h
 .\objects\fc_core.o: .\src\quad\drivers\iodef.h
@@ -51,6 +50,8 @@
 .\objects\fc_core.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\fc_core.o: .\src\quad\common\maths.h
 .\objects\fc_core.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\fc_core.o: .\src\quad\rx\rx.h
+.\objects\fc_core.o: .\src\quad\fc\rc_controls.h
 .\objects\fc_core.o: .\src\quad\common\time.h
 .\objects\fc_core.o: .\src\quad\build\debug.h
 .\objects\fc_core.o: .\src\quad\drivers\system.h

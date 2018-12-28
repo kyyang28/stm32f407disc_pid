@@ -60,6 +60,7 @@
 .\objects\config.o: .\src\quad\flight\pid.h
 .\objects\config.o: .\src\quad\common\maths.h
 .\objects\config.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\config.o: .\src\quad\rx\rx.h
 .\objects\config.o: .\src\quad\build\platform.h
 .\objects\config.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\config.o: .\src\quad\config\config_profile.h
