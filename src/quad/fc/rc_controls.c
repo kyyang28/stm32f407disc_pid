@@ -24,6 +24,11 @@ bool isAntiGravityModeActive(void)
 	return (IS_RC_MODE_ACTIVE(BOXANTIGRAVITY) || feature(FEATURE_ANTI_GRAVITY));
 }
 
+bool isAirModeActive(void)
+{
+	return (IS_RC_MODE_ACTIVE(BOXAIRMODE) || feature(FEATURE_AIRMODE));
+}
+
 bool isModeActivationConditionPresent(modeActivationCondition_t *modeActivationConditions, boxId_e modeId)
 {
 	uint8_t index;
@@ -121,9 +126,81 @@ void useRcControlsConfig(modeActivationCondition_t *modeActivationConditions, mo
 	isUsingSticksToArm = !isModeActivationConditionPresent(modeActivationConditions, BOXARM);
 }
 
-void processRcStickPositions(void)
+void processRcStickPositions(rxConfig_t *rxConfig, throttleStatus_e throttleStatus, bool disarm_kill_switch)
 {
+	uint8_t tmp = 0;
+	
+	/* this hold sticks position for command combos. */
+	static uint8_t rcSticks;
+	
+	/* this indicates the number of time (multiple of RC measurement at 50 HZ), the sticks must be maintained to run or switch off motors */
+	static uint8_t rcDelayCommand;
+	
 //	printf("armingFlags: %u, %s, %d\r\n", armingFlags, __FUNCTION__, __LINE__);
+//	printf("mincheck: %u\r\n", rxConfig->mincheck);
+//	printf("maxcheck: %u\r\n", rxConfig->maxcheck);
+	
+	/* +----------------------- STICKS COMMAND HANDLER -----------------------+ */
+	/* Checking sticks positions for stick command combos using ROLL, PITCH, YAW and THROTTLE stick values
+	 *
+	 * ROL_LO			1 << 0
+	 * ROL_CE			3 << 0
+	 * ROL_HI			2 << 0
+	 * 
+	 * PIT_LO			1 << 2
+	 * PIT_CE			3 << 2
+	 * PIT_HI			2 << 2
+	 *
+	 * YAW_LO			1 << 4
+	 * YAW_CE			3 << 4
+	 * YAW_HI			2 << 4
+	 *
+	 * THR_LO			1 << 6
+	 * THR_CE			3 << 6
+	 * THR_HI			2 << 6
+	 *
+	 *     THR       YAW       PIT       ROL
+	 * -----------------------------------------
+	 * |  0 |  1 |  0 |  1 |  1	|  1 |  1 |  1 |
+	 * -----------------------------------------
+	 *
+	 * For example:
+	 * THR_LO + YAW_LO + ROL_CE + PIT_CE = (1 << 6 | 1 << 4 | 3 << 2 | 3 << 0) = (01011111)_2 = (95)_10
+	 */
+	for (int i = 0; i < 4; i++) {
+		tmp >>= 2;
+		
+		/*
+		 * rcData[0]: ROLL
+		 * rcData[1]: PITCH
+		 * rcData[2]: YAW
+		 * rcData[3]: THROTTLE
+		 *
+		 */
+//		printf("rcData[%d]: %u\r\n", i, rcData[i]);
+		
+		if (rcData[i] > rxConfig->mincheck) {
+			/* Check for MIN */
+			tmp |= 0x80;
+		}
+		
+		if (rcData[i] < rxConfig->maxcheck) {
+			/* Check for MAX */
+			tmp |= 0x40;
+		}
+	}
+	
+	if (tmp == rcSticks) {
+		if (rcDelayCommand < 250)
+			rcDelayCommand++;
+	} else {
+		rcDelayCommand = 0;
+	}
+	
+	rcSticks = tmp;
+	printf("rcSticks: %u\r\n", rcSticks);
+//	printf("rcDelayCommand: %u\r\n", rcDelayCommand);
+//	printf("stickARM: %u\r\n", THR_LO + YAW_LO + ROL_CE + PIT_CE);		// THR_LO (1<<6) + YAW_LO(1<<4) + ROL_CE(3<<0) + PIT_CE(3<<2) = 95 (01011111)
 	
 	if (CHECK_ARMING_FLAG(OK_TO_ARM)) {
 //		printf("OK_TO_ARM: %s, %d\r\n", __FUNCTION__, __LINE__);

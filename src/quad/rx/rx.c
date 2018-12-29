@@ -292,7 +292,6 @@ static void readRxChannelsApplyRanges(void)
 #endif
 
 #if 0
-#if 0		
 		if (channel == 0)		// Channel 1: Roll
 			printf("rcRaw[%d](Roll[Ail] stick): %u\r\n", channel, rcRaw[channel]);
 		else if (channel == 1)	// Channel 2: Pitch
@@ -302,6 +301,8 @@ static void readRxChannelsApplyRanges(void)
 		else if (channel == 3)	// Channel 3: Throttle
 			printf("rcRaw[%d](Throttle stick): %u\r\n", channel, rcRaw[channel]);
 #endif
+
+#if 0
 		if (channel == 4)	// Channel 5: BOXARM (L04, logical switch) AUX1
 			printf("rcRaw[%d](BOXARM switch (L04)): %u\r\n", channel, rcRaw[channel]);
 		else if (channel == 5)	// Channel 6: Switch SB for BEEPER	AUX2

@@ -210,6 +210,14 @@ bool isGyroCalibrationComplete(void)
 static uint16_t gyroCalculateCalibratingCycles(void)
 {
 //	printf("gyro.targetLooptime: %u, %s, %d\r\n", gyro.targetLooptime, __FUNCTION__, __LINE__);		// 125(1/8k)us * 4(gyro_sync_denom) = 500us for MPU6050, 8K gyro sampling freq
+	
+	/* CALIBRATING_GYRO_CYCLES = 1000; gyro.targetLooptime = 125
+	 *
+	 * gyroCalibrationCycles = (CALIBRATING_GYRO_CYCLES / gyro.targetLooptime) * CALIBRATING_GYRO_CYCLES
+	 *					     = (1000 / 125) * 1000
+	 *						 = 8 * 1000
+	 *						 = 8000
+	 */
 	return (CALIBRATING_GYRO_CYCLES / gyro.targetLooptime) * CALIBRATING_GYRO_CYCLES;
 }
 

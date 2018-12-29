@@ -10,6 +10,19 @@
 
 #define MAX_MODE_ACTIVATION_CONDITION_COUNT 				20
 
+#define ROL_LO						(1 << (2 * ROLL))			// 1 << 0
+#define ROL_CE						(3 << (2 * ROLL))			// 3 << 0
+#define ROL_HI						(2 << (2 * ROLL))			// 2 << 0
+#define PIT_LO						(1 << (2 * PITCH))			// 1 << 2
+#define PIT_CE						(3 << (2 * PITCH))			// 3 << 2
+#define PIT_HI						(2 << (2 * PITCH))			// 2 << 2
+#define YAW_LO						(1 << (2 * YAW))			// 1 << 4
+#define YAW_CE						(3 << (2 * YAW))			// 3 << 4
+#define YAW_HI						(2 << (2 * YAW))			// 2 << 4
+#define THR_LO						(1 << (2 * THROTTLE))		// 1 << 6
+#define THR_CE						(3 << (2 * THROTTLE))		// 3 << 6
+#define THR_HI						(2 << (2 * THROTTLE))		// 2 << 6
+
 typedef enum {
 	BOXARM = 0,			// 0
 	BOXANGLE,			// 1
@@ -139,8 +152,9 @@ typedef enum {
 }throttleStatus_e;
 
 bool isAntiGravityModeActive(void);
+bool isAirModeActive(void);
 void useRcControlsConfig(modeActivationCondition_t *modeActivationConditions, motorConfig_t *motorConfigToUse, pidProfile_t *pidProfileToUse);
-void processRcStickPositions(void);
+void processRcStickPositions(struct rxConfig_s *rxConfig, throttleStatus_e throttleStatus, bool disarm_kill_switch);
 
 throttleStatus_e calculateThrottleStatus(struct rxConfig_s *rxConfig);
 

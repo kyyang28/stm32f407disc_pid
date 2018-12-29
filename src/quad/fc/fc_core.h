@@ -8,6 +8,7 @@ extern bool isRXDataNew;
 
 void updateLEDs(void);
 void mwArm(void);
+void mwDisarm(void);
 
 void processRx(timeUs_t currentTimeUs);
 void taskMainPidLoop(timeUs_t currentTimeUs);

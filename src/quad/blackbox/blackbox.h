@@ -20,6 +20,7 @@ void handleBlackbox(timeUs_t currentTimeUs);
 
 void initBlackbox(void);
 void startBlackbox(void);
+void finishBlackbox(void);
 
 void validateBlackboxConfig(void);
 

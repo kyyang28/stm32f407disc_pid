@@ -94,7 +94,7 @@ void taskUpdateRxMain(timeUs_t currentTimeUs)
 	updateRcCommands();
 	
 	/* update LEDs */
-//	updateLEDs();
+	updateLEDs();
 }
 
 void fcTasksInit(void)

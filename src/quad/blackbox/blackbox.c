@@ -216,6 +216,12 @@ void startBlackbox(void)
 	}
 }
 
+/* TODO: Implement later */
+void finishBlackbox(void)
+{
+	
+}
+
 static bool canUseBlackboxWithCurrentConfiguration(void)
 {
 	return feature(FEATURE_BLACKBOX) && 

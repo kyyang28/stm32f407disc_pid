@@ -20,14 +20,19 @@ uint8_t motorControlEnable = false;
 
 bool isRXDataNew;
 
+static bool armingCalibrationWasInitialised;
+static uint32_t disarmAt;		// Time of automatic disarm when "Don't spin the motors when armed" is enabled and auto_disarm_delay is nonzero.
+
 void updateLEDs(void)
 {
 //	printf("armingFlags: %u, %s, %s, %d\r\n", armingFlags, __FILE__, __FUNCTION__, __LINE__);
 	
+//	printf("BOXARM: %u\r\n", IS_RC_MODE_ACTIVE(BOXARM));
+	
 	if (CHECK_ARMING_FLAG(ARMED)) {
 //		printf("ARMED, %s, %s, %d\r\n", __FILE__, __FUNCTION__, __LINE__);
-		LED3_ON; LED4_ON; LED5_ON; LED6_ON;
-	} else {
+//		LED3_ON; LED4_ON; LED5_ON; LED6_ON;
+	} else if (IS_RC_MODE_ACTIVE(BOXARM) == 0 || armingCalibrationWasInitialised) {
 //		printf("Not ARMED: %s, %d\r\n", __FUNCTION__, __LINE__);
 		ENABLE_ARMING_FLAG(OK_TO_ARM);
 	}
@@ -35,25 +40,77 @@ void updateLEDs(void)
 
 void mwArm(void)
 {
+	static bool firstArmingCalibrationWasCompleted;
+	
+	/* ArmingConfig()->gyro_cal_on_first_arm = 0 */
+	if (ArmingConfig()->gyro_cal_on_first_arm && !firstArmingCalibrationWasCompleted) {
+		gyroSetCalibrationCycles();		// set gyroCalibrationCycle to 8000 if gyro.targetLooptime = 125 us
+		armingCalibrationWasInitialised = true;
+		firstArmingCalibrationWasCompleted = true;
+	}
+	
+	/* Check gyro calibration before arming
+	 * 
+	 * Prevent arming before gyro is calibrated.
+	 */
+	if (!isGyroCalibrationComplete())
+		return;
+	
 	if (CHECK_ARMING_FLAG(OK_TO_ARM)) {
 		if (CHECK_ARMING_FLAG(ARMED)) {
 			return;
 		}
 		
-//        if (IS_RC_MODE_ACTIVE(BOXFAILSAFE)) {
-//            return;
-//        }
+        if (IS_RC_MODE_ACTIVE(BOXFAILSAFE)) {
+            return;
+        }
 		
 		if (!CHECK_ARMING_FLAG(PREVENT_ARMING)) {
 			ENABLE_ARMING_FLAG(ARMED);
 			ENABLE_ARMING_FLAG(WAS_EVER_ARMED);
+//			headFreeModeHold = DECIDEGREES_TO_DEGREES(attitude.values.yaw);
 			
 #ifdef BLACKBOX
 			if (feature(FEATURE_BLACKBOX)) {
 				startBlackbox();
 			}
 #endif
+			
+			/* ArmingConfig()->auto_disarm_delay = 5 seconds
+			 *
+			 * disarmAt = current time in miliseconds + disarm_delay time in miliseconds
+			 *			= millis() + 5 * 1000
+			 * 			= millis() + 5000 (ms)
+			 */
+			disarmAt = millis() + ArmingConfig()->auto_disarm_delay * 1000;
+			
+			/* Beep to indicate arming status */
+			// call beeper(BEEPER_ARMING)		// implement later
+			
+			return;
 		}
+	}
+
+	/* Implement beeperConfirmationBeeps(1) later */
+//	if (!CHECK_ARMING_FLAG(ARMED)) {
+//		beeperConfirmationBeeps(1);
+//	}
+}
+
+void mwDisarm(void)
+{
+	armingCalibrationWasInitialised = false;
+	
+	if (CHECK_ARMING_FLAG(ARMED)) {
+		DISABLE_ARMING_FLAG(ARMED);
+		
+#ifdef BLACKBOX
+		if (feature(FEATURE_BLACKBOX)) {
+			finishBlackbox();
+		}
+#endif
+		
+//		beeper(BEEPER_DISARMING);	TODO: implement later
 	}
 }
 
@@ -70,12 +127,19 @@ void processRx(timeUs_t currentTimeUs)
 	/* calculate throttle status */
 	throttleStatus_e throttleStatus = calculateThrottleStatus(&masterConfig.rxConfig);
 	
+//	printf("AirMode: %d\r\n", isAirModeActive());		// 1: airmode active, 0: airmode is not active
+//	printf("ARMED: %d\r\n", CHECK_ARMING_FLAG(ARMED));
+	
 	/* handle AirMode at LOW throttle */
+	if (isAirModeActive() && CHECK_ARMING_FLAG(ARMED)) {
+//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+	}
 	
-	
-	/* handle rc stick positions */
-	processRcStickPositions();
-//	processRcStickPositions(&masterConfig.rxConfig, throttleStatus, armingConfig()->disarm_kill_switch);
+	/* handle rc stick positions
+	 *
+	 * ArmingConfig()->disarm_kill_switch = 1
+	 */
+	processRcStickPositions(&masterConfig.rxConfig, throttleStatus, ArmingConfig()->disarm_kill_switch);
 	
 	/* update activated modes */
 	updateActivatedModes(ModeActivationProfile()->modeActivationConditions);
