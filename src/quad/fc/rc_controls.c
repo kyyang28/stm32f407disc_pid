@@ -143,21 +143,47 @@ void processRcStickPositions(rxConfig_t *rxConfig, throttleStatus_e throttleStat
 	/* +----------------------- STICKS COMMAND HANDLER -----------------------+ */
 	/* Checking sticks positions for stick command combos using ROLL, PITCH, YAW and THROTTLE stick values
 	 *
-	 * ROL_LO			1 << 0
-	 * ROL_CE			3 << 0
-	 * ROL_HI			2 << 0
+	 * ROL_LO			1 << 0		(01 << 0)
+	 * ROL_CE			3 << 0		(11 << 0)
+	 * ROL_HI			2 << 0		(10 << 0)
 	 * 
-	 * PIT_LO			1 << 2
-	 * PIT_CE			3 << 2
-	 * PIT_HI			2 << 2
+	 * PIT_LO			1 << 2		(01 << 2)
+	 * PIT_CE			3 << 2		(11 << 2)
+	 * PIT_HI			2 << 2		(10 << 2)
 	 *
-	 * YAW_LO			1 << 4
-	 * YAW_CE			3 << 4
-	 * YAW_HI			2 << 4
+	 * YAW_LO			1 << 4		(01 << 4)
+	 * YAW_CE			3 << 4		(11 << 4)
+	 * YAW_HI			2 << 4		(10 << 4)
 	 *
-	 * THR_LO			1 << 6
-	 * THR_CE			3 << 6
-	 * THR_HI			2 << 6
+	 * THR_LO			1 << 6		(01 << 6)
+	 * THR_CE			3 << 6		(11 << 6)
+	 * THR_HI			2 << 6		(10 << 6)
+	 *
+	 * Each RC channel occupies 2-bit of the whole 8-bit
+	 * 
+	 * Bits [7:6] THROTTLE positions
+	 * 				00: Reserved
+	 *				01: Throttle LOW
+	 *				10: Throttle HIGH
+	 *				11: Throttle CENTRE
+	 *
+	 * Bits [5:4] YAW positions
+	 * 				00: Reserved
+	 *				01: Yaw LOW
+	 *				10: Yaw HIGH
+	 *				11: Yaw CENTRE
+	 *
+	 * Bits [3:2] PITCH positions
+	 * 				00: Reserved
+	 *				01: Pitch LOW
+	 *				10: Pitch HIGH
+	 *				11: Pitch CENTRE
+	 *
+	 * Bits [1:0] ROLL positions
+	 * 				00: Reserved
+	 *				01: Roll LOW
+	 *				10: Roll HIGH
+	 *				11: Roll CENTRE
 	 *
 	 *     THR       YAW       PIT       ROL
 	 * -----------------------------------------
