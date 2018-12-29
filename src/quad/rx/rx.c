@@ -322,6 +322,11 @@ static bool isRxDataDriven(void)
 	return !feature(FEATURE_RX_PARALLEL_PWM);
 }
 
+bool rxIsReceivingSignal(void)
+{
+	return rxSignalReceived;
+}
+
 static bool isPulseValid(uint16_t pulseDuration)
 {
 	/* rx_min_usec = 885, rx_max_usec = 2115 */

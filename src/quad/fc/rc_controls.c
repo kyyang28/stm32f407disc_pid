@@ -7,6 +7,7 @@
 #include "rx.h"				// rcData[]
 #include "maths.h"			// constrain
 #include "sound_beeper.h"
+#include "gyro.h"
 
 static motorConfig_t *motorConfig;
 static pidProfile_t *pidProfile;
@@ -83,36 +84,35 @@ void updateActivatedModes(modeActivationCondition_t *modeActivationConditions)
 //			printf("modeId: %d\r\n", modeActivationCondition->modeId);
 			ACTIVATE_RC_MODE(modeActivationCondition->modeId);
 
-#if 0
-			if (IS_RC_MODE_ACTIVE(BOXARM)) {
-				printf("Motors are ARMed!\r\n");
-			}
-						
-			if (IS_RC_MODE_ACTIVE(BOXBEEPERON)) {
-				printf("Buzzer is ON!\r\n");
-				BEEP_ON;
-			}
-			
-			if (!IS_RC_MODE_ACTIVE(BOXBEEPERON)) {
-				BEEP_OFF;
-			}
-			
-			if (IS_RC_MODE_ACTIVE(BOXANGLE)) {
-				printf("Angle mode is ON!\r\n");
-			}
-
-			if (IS_RC_MODE_ACTIVE(BOXHORIZON)) {
-				printf("HORIZON mode is ON!\r\n");
-			}
-			
-//			if (!IS_RC_MODE_ACTIVE(BOXANGLE) && !IS_RC_MODE_ACTIVE(BOXHORIZON)) {
-//				printf("MANUAL mode is ON!\r\n");
+//			if (IS_RC_MODE_ACTIVE(BOXARM)) {
+//				printf("Motors are ARMed!\r\n");
 //			}
-			
-			if (IS_RC_MODE_ACTIVE(BOXAIRMODE)) {
-				printf("AIRMODE is ON!\r\n");
-			}
-#endif
+//						
+//			if (IS_RC_MODE_ACTIVE(BOXBEEPERON)) {
+//				printf("Buzzer is ON!\r\n");
+//				BEEP_ON;
+//			}
+//			
+//			if (!IS_RC_MODE_ACTIVE(BOXBEEPERON)) {
+//				BEEP_OFF;
+//			}
+//			
+//			if (IS_RC_MODE_ACTIVE(BOXANGLE)) {
+//				printf("Angle mode is ON!\r\n");
+//			}
+
+//			if (IS_RC_MODE_ACTIVE(BOXHORIZON)) {
+//				printf("HORIZON mode is ON!\r\n");
+//			}
+//			
+////			if (!IS_RC_MODE_ACTIVE(BOXANGLE) && !IS_RC_MODE_ACTIVE(BOXHORIZON)) {
+////				printf("MANUAL mode is ON!\r\n");
+////			}
+//			
+//			if (IS_RC_MODE_ACTIVE(BOXAIRMODE)) {
+//				printf("AIRMODE is ON!\r\n");
+//			}
+
 //			printf("rcModeActivationMask: %u\r\n", rcModeActivationMask);
 		}
 	}
@@ -135,6 +135,9 @@ void processRcStickPositions(rxConfig_t *rxConfig, throttleStatus_e throttleStat
 	
 	/* this indicates the number of time (multiple of RC measurement at 50 HZ), the sticks must be maintained to run or switch off motors */
 	static uint8_t rcDelayCommand;
+	
+	/* this is an extra guard for disarming through switch to prevent that one frame can disarm it */
+	static uint8_t rcDisarmTick;
 	
 //	printf("armingFlags: %u, %s, %d\r\n", armingFlags, __FUNCTION__, __LINE__);
 //	printf("mincheck: %u\r\n", rxConfig->mincheck);
@@ -236,10 +239,159 @@ void processRcStickPositions(rxConfig_t *rxConfig, throttleStatus_e throttleStat
 //	printf("rcDelayCommand: %u\r\n", rcDelayCommand);
 //	printf("stickARM: %u\r\n", THR_LO + YAW_LO + ROL_CE + PIT_CE);		// THR_LO (1<<6) + YAW_LO(1<<4) + ROL_CE(3<<0) + PIT_CE(3<<2) = 95 (01011111)
 	
-	if (CHECK_ARMING_FLAG(OK_TO_ARM)) {
-//		printf("OK_TO_ARM: %s, %d\r\n", __FUNCTION__, __LINE__);
-		mwArm();
+	/* Perform actions */
+	if (!isUsingSticksToArm) {
+//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+
+		if (IS_RC_MODE_ACTIVE(BOXARM)) {
+//			printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+			rcDisarmTick = 0;
+			
+			/* Arming via ARM BOX */
+			if (throttleStatus == THROTTLE_LOW) {
+				if (CHECK_ARMING_FLAG(OK_TO_ARM)) {
+					mwArm();
+//					printf("ARMED: %u, %s, %d\r\n", CHECK_ARMING_FLAG(ARMED), __FUNCTION__, __LINE__);
+				}				
+			}
+		} else {
+			/* Disarming via ARM BOX */
+			if (CHECK_ARMING_FLAG(ARMED) && rxIsReceivingSignal()) {
+//			if (CHECK_ARMING_FLAG(ARMED) && rxIsReceivingSignal() && !failsafeIsActive()) {
+//				printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+				rcDisarmTick++;
+//				printf("rcDisarmTick: %u\r\n", rcDisarmTick);
+				if (rcDisarmTick > 3) {
+					/* disarm_kill_switch = 1 */
+					if (disarm_kill_switch) {
+						mwDisarm();
+//						printf("DISARMED: %u, %s, %d\r\n", CHECK_ARMING_FLAG(ARMED), __FUNCTION__, __LINE__);
+					} else if (throttleStatus == THROTTLE_LOW) {
+						mwDisarm();
+//						printf("DISARMED: %u, %s, %d\r\n", CHECK_ARMING_FLAG(ARMED), __FUNCTION__, __LINE__);
+					}
+				}
+			}
+		}
 	}
+	
+//	printf("rcDelayCmd: %u\r\n", rcDelayCommand);		// rcDelayCommand = 250 when sticks are not moving around
+	
+	if (rcDelayCommand != 20) {
+		return;
+	}
+	
+	/* Handle stick arming case */
+	if (isUsingSticksToArm) {
+		/* TODO: implement later if necessary */
+	}
+	
+	if (CHECK_ARMING_FLAG(ARMED)) {
+		return;
+	}
+	
+	/* +------------------- Actions during not Armed -------------------+ */
+	/**
+	 *	Gyro Re-Calibration process: Throttle BOTTOM + Yaw to the LEFT + Pitch BOTTOM + Roll CENTRE
+	 *
+	 * THR_LO = 1 << 6	 	(01000000)
+	 * YAW_LO = 1 << 4		(00010000)
+	 * PIT_LO = 1 << 2		(00000100)
+	 * ROL_CE = 3 << 0		(00000011)
+	 *
+	 * THR_LO + YAW_LO + PIT_LO + ROL_CE = (1 << 6 | 1 << 4 | 1 << 2 | 3 << 0)
+	 *									 = (01010111)
+	 *									 = 87
+	 */
+	if (rcSticks == THR_LO + YAW_LO + PIT_LO + ROL_CE) {
+		/* Perform gyro calibration */
+//		printf("gyroCali: %u\r\n", rcSticks);
+		
+		/* calibratingG = gyroCalculateCalibratingCycles() = (CALIBRATING_GYRO_CYCLES / gyro.targetLooptime) * CALIBRATING_GYRO_CYCLES
+		 *												   = (1000 / 125) * 1000
+		 *												   = (8 * 1000)
+		 *												   = 8000
+		 */
+		gyroSetCalibrationCycles();
+
+#ifdef GPS
+		/* TODO: implementation later */
+		if (feature(FEATURE_GPS)) {
+			GPS_reset_home_position();
+		}
+#endif
+	
+#ifdef BARO
+		/* TODO: implementation later */
+		if (sensors(SENSOR_BARO)) {
+			baroSetCalibrationCycles(10);	// calibrate barometer to new ground level (10 * 25 ms = ~250 ms non-blocking)
+		}
+#endif
+		
+		return;
+	}
+	
+	/* Inflight ACC calibration */
+	
+	
+	/* Multiple profiles change */
+	
+	
+	/* Save configuration and notification */
+	
+	
+	if (isUsingSticksToArm) {
+		if (rcSticks == THR_LO + YAW_HI + PIT_CE + ROL_CE) {
+			/* Arming via yaw stick */
+			mwArm();
+			return;
+		}
+	}
+	
+	/* Calibrate ACC process: Throttle TOP + Yaw to the LEFT + Pitch BOTTOM + Roll CENTRE
+	 * 
+	 * THR_HI = 2 << 6	 	(10000000)
+	 * YAW_LO = 1 << 4		(00010000)
+	 * PIT_LO = 1 << 2		(00000100)
+	 * ROL_CE = 3 << 0		(00000011)
+	 *
+	 * THR_HI + YAW_LO + PIT_LO + ROL_CE = (2 << 6 | 1 << 4 | 1 << 2 | 3 << 0)
+	 *									 = (10010111)
+	 *									 = 151
+	 */
+	if (rcSticks == THR_HI + YAW_LO + PIT_LO + ROL_CE) {
+//		printf("ACC Cali: %u, %s, %d\r\n", rcSticks, __FUNCTION__, __LINE__);
+//		accSetCalibrationCycles(CALIBRATING_ACC_CYCLES);
+		return;
+	}
+	
+	/* Calibrate MAG process: Throttle TOP + Yaw to the RIGHT + Pitch BOTTOM + Roll CENTRE
+	 * 
+	 * THR_HI = 2 << 6	 	(10000000)
+	 * YAW_HI = 2 << 4		(00100000)
+	 * PIT_LO = 1 << 2		(00000100)
+	 * ROL_CE = 3 << 0		(00000011)
+	 *
+	 * THR_HI + YAW_HI + PIT_LO + ROL_CE = (2 << 6 | 2 << 4 | 1 << 2 | 3 << 0)
+	 *									 = (10100111)
+	 *									 = 167
+	 */
+	if (rcSticks == THR_HI + YAW_HI + PIT_LO + ROL_CE) {
+//		printf("MAG Cali: %u, %s, %d\r\n", rcSticks, __FUNCTION__, __LINE__);
+//		ENABLE_STATE(CALIBRATE_MAG);
+		return;
+	}
+	
+	/* Change accelerometer trims */
+	
+	
+	/* DASHBOARD */
+	
+	
+	/* VTX */
+	
+	
+	return;
 }
 
 //throttleStatus_e calculateThrottleStatus(rxConfig_t *rxConfig, uint16_t deadband3d_throttle)

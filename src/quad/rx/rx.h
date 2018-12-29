@@ -129,6 +129,8 @@ void calculateRxChannelsAndUpdateFailsafe(timeUs_t currentTimeUs);
 
 bool rxUpdateCheck(timeUs_t currentTimeUs, timeDelta_t currentDeltaTime);
 
+bool rxIsReceivingSignal(void);
+
 void parseRcChannels(const char *input, rxConfig_t *rxConfig);
 
 uint16_t rxGetRefreshRate(void);

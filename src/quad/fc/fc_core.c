@@ -109,7 +109,8 @@ void mwDisarm(void)
 			finishBlackbox();
 		}
 #endif
-		
+	
+//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 //		beeper(BEEPER_DISARMING);	TODO: implement later
 	}
 }

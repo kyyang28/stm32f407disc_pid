@@ -56,3 +56,4 @@
 .\objects\rc_controls.o: src\quad\fc\fc_core.h
 .\objects\rc_controls.o: src\quad\fc\runtime_config.h
 .\objects\rc_controls.o: .\src\quad\drivers\sound_beeper.h
+.\objects\rc_controls.o: .\src\quad\sensors\gyro.h
