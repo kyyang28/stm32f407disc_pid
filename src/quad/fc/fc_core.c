@@ -117,6 +117,9 @@ void mwDisarm(void)
 
 void processRx(timeUs_t currentTimeUs)
 {
+	static bool airmodeIsActivated;
+	static bool armedBeeperOn = false;
+	
 	calculateRxChannelsAndUpdateFailsafe(currentTimeUs);
 	
 	/* update RSSI, IMPLEMENTATION LATER */
@@ -133,11 +136,25 @@ void processRx(timeUs_t currentTimeUs)
 	
 	/* handle AirMode at LOW throttle */
 	if (isAirModeActive() && CHECK_ARMING_FLAG(ARMED)) {
-//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("rcCommand[THROTTLE]: %u\r\n", rcCommand[THROTTLE]);		// rcCommand[THROTTLE] ranges from 1000 to 2000 us
+		
+		/* airModeActivateThreshold = 1350 */
+		if (rcCommand[THROTTLE] >= RxConfig()->airModeActivateThreshold) {
+			
+			/* airmode is activated IF AND ONLY IF the quad is ARMED and airmode switch has been TURNED ON */
+			airmodeIsActivated = true;
+		}
+	} else {
+		
+		/* airmode is deactivated IF the quad is DISARMED or the airmode switch has been TURNED OFF */
+		airmodeIsActivated = false;
 	}
+	
+//	printf("airmodeIsActivated: %d\r\n", airmodeIsActivated);
 	
 	/* handle rc stick positions
 	 *
+	 * throttleStatus = THROTTLE_LOW (rcData[THROTTLE] < rxConfig->mincheck) or THROTTLE_HIGH (rcData[THROTTLE] >= rxConfig->mincheck)
 	 * ArmingConfig()->disarm_kill_switch = 1
 	 */
 	processRcStickPositions(&masterConfig.rxConfig, throttleStatus, ArmingConfig()->disarm_kill_switch);
