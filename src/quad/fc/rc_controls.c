@@ -216,15 +216,23 @@ void processRcStickPositions(rxConfig_t *rxConfig, throttleStatus_e throttleStat
 		}
 	}
 	
+	/* Check if the current sticks combo (tmp) is equal to the previous sticks combo (rcSticks)
+	 * If they are equal, meaning the sticks combo are not changing (all the sticks are not moving significantly)
+	 * then there is a rcDelay time till 250 * the looptime of rx task (50 Hz)
+	 */
 	if (tmp == rcSticks) {
 		if (rcDelayCommand < 250)
 			rcDelayCommand++;
 	} else {
+		/* If the current sticks combo (tmp) is NOT equal to the previous sticks combo (rcSticks), meaning the sticks have been moved.
+		 * reset the rcDelayCommand (rc delay time elapse), ready for the next delay count up.
+		 */
 		rcDelayCommand = 0;
 	}
 	
+	/* Assign the current sticks combos (tmp) to rcSticks */
 	rcSticks = tmp;
-	printf("rcSticks: %u\r\n", rcSticks);
+//	printf("rcSticks: %u\r\n", rcSticks);
 //	printf("rcDelayCommand: %u\r\n", rcDelayCommand);
 //	printf("stickARM: %u\r\n", THR_LO + YAW_LO + ROL_CE + PIT_CE);		// THR_LO (1<<6) + YAW_LO(1<<4) + ROL_CE(3<<0) + PIT_CE(3<<2) = 95 (01011111)
 	
