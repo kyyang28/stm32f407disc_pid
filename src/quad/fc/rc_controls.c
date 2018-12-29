@@ -30,6 +30,11 @@ bool isAirModeActive(void)
 	return (IS_RC_MODE_ACTIVE(BOXAIRMODE) || feature(FEATURE_AIRMODE));
 }
 
+bool isUsingSticksForArming(void)
+{
+	return isUsingSticksToArm;
+}
+
 bool isModeActivationConditionPresent(modeActivationCondition_t *modeActivationConditions, boxId_e modeId)
 {
 	uint8_t index;

@@ -153,6 +153,7 @@ typedef enum {
 
 bool isAntiGravityModeActive(void);
 bool isAirModeActive(void);
+bool isUsingSticksForArming(void);
 void useRcControlsConfig(modeActivationCondition_t *modeActivationConditions, motorConfig_t *motorConfigToUse, pidProfile_t *pidProfileToUse);
 void processRcStickPositions(struct rxConfig_s *rxConfig, throttleStatus_e throttleStatus, bool disarm_kill_switch);
 

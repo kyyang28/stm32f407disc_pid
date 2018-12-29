@@ -33,8 +33,8 @@ typedef enum {
 }pidIndex_e;
 
 typedef enum {
-	PID_STABILISATION_OFF = 0,
-	PID_STABILISATION_ON
+	PID_STABILISATION_OFF = 0,		// 0
+	PID_STABILISATION_ON			// 1
 }pidStabilisationState_e;
 
 typedef struct pidProfile_s {
@@ -73,6 +73,8 @@ typedef struct pidConfig_s {
 void pidSetTargetLooptime(uint32_t pidLooptime);
 void pidInitFilters(const pidProfile_t *pidProfile);
 void pidInitConfig(const pidProfile_t *pidProfile);
+void pidResetErrorGyroState(void);
+void pidStabilisationState(pidStabilisationState_e pidControllerState);
 
 /* PID control algorithms */
 void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim);

@@ -134,7 +134,7 @@ void processRx(timeUs_t currentTimeUs)
 //	printf("AirMode: %d\r\n", isAirModeActive());		// 1: airmode active, 0: airmode is not active
 //	printf("ARMED: %d\r\n", CHECK_ARMING_FLAG(ARMED));
 	
-	/* handle AirMode at LOW throttle */
+	/* +------------------------------ Handle AirMode ------------------------------+ */
 	if (isAirModeActive() && CHECK_ARMING_FLAG(ARMED)) {
 //		printf("rcCommand[THROTTLE]: %u\r\n", rcCommand[THROTTLE]);		// rcCommand[THROTTLE] ranges from 1000 to 2000 us
 		
@@ -152,7 +152,60 @@ void processRx(timeUs_t currentTimeUs)
 	
 //	printf("airmodeIsActivated: %d\r\n", airmodeIsActivated);
 	
-	/* handle rc stick positions
+	/*
+	 * In AirMode, I-term should not be grown when low throttle and roll, pitch sticks are at the centre position
+	 * This is needed to prevent I-term winding on the ground, but keep full stabilisation on 0 throttle while in air
+	 */
+	if (throttleStatus == THROTTLE_LOW && !airmodeIsActivated) {
+		pidResetErrorGyroState();
+		
+		/* currentProfile->pidProfile.pidAtMinThrottle = PID_STABILISATION_ON = 1 */
+		if (currentProfile->pidProfile.pidAtMinThrottle) {
+			/* PID stablisation is on */
+			pidStabilisationState(PID_STABILISATION_ON);
+		} else {
+			pidStabilisationState(PID_STABILISATION_OFF);
+		}
+	} else {
+		/* throttleStatus != THROTTLE_LOW or airmodeIsActivated is TRUE
+		 * Meaning throttle value is ABOVE mincheck (1100) or airmode is ON,
+		 * 
+		 * PID stabilisation should be switched on.
+		 */
+		pidStabilisationState(PID_STABILISATION_ON);
+	}
+	
+//	printf("ARMED: %d\r\n", CHECK_ARMING_FLAG(ARMED));
+//	printf("MOTOR STOP: %u\r\n", feature(FEATURE_MOTOR_STOP));
+//	printf("AirMode: %d\r\n", !isAirModeActive());
+	
+	/* When ARMed and motors are not spinning, perform beeps and then disarm flight controller board after delay
+	 * so users without using buzzer will not lose fingers
+	 *
+	 * mixTable() function contains motor commands, so checking throttleStatus is enough.
+	 *
+	 * ARMed && MOTOR is not spinning && AirMode is not activated.
+	 *
+	 * Normally, if AirMode is permanently ON, this if statement won't be executed even if it is ARMed and motors are not spinning.
+	 */
+	if (CHECK_ARMING_FLAG(ARMED) && feature(FEATURE_MOTOR_STOP) && !isAirModeActive()) {
+		if (isUsingSticksForArming()) {
+			/* TODO: implement later */
+		} else {
+			/* ARMing via AUX switch (ARM BOX), beep while throttle is low */
+			if (throttleStatus == THROTTLE_LOW) {
+//				beeper(BEEPER_ARMED);
+				armedBeeperOn = true;
+//				printf("armedBeeperOn: %d, %d\r\n", armedBeeperOn, __LINE__);
+			} else if (armedBeeperOn) {
+//				beeperSilence();
+				armedBeeperOn = false;
+//				printf("armedBeeperOn: %d, %d\r\n", armedBeeperOn, __LINE__);
+			}
+		}
+	}
+	
+	/* Handle RC stick positions
 	 *
 	 * throttleStatus = THROTTLE_LOW (rcData[THROTTLE] < rxConfig->mincheck) or THROTTLE_HIGH (rcData[THROTTLE] >= rxConfig->mincheck)
 	 * ArmingConfig()->disarm_kill_switch = 1

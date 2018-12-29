@@ -20,6 +20,10 @@ uint32_t targetPidLooptime;
 
 static float dT;
 
+float axisPID_P[3], axisPID_I[3], axisPID_D[3];
+
+static bool pidStabilisationEnabled;
+
 /* Declarations of PID related filters */
 static filterApplyFnPtr dtermNotchFilterApplyFn;
 static void *dtermFilterNotch[2];					// 2 means we are handling TWO axis which are ROLL and PITCH
@@ -240,6 +244,18 @@ void pidInitConfig(const pidProfile_t *pidProfile)
 	 */
 	ITermWindupPointInv = 1.0f / (1.0f - ITermWindupPoint);
 //	printf("ITermWindupPointInv: %f\r\n", ITermWindupPointInv);		// 2.000000
+}
+
+void pidResetErrorGyroState(void)
+{
+	for (int axis = 0; axis < 3; axis++) {
+		axisPID_I[axis] = 0.0f;
+	}
+}
+
+void pidStabilisationState(pidStabilisationState_e pidControllerState)
+{
+	pidStabilisationEnabled = (pidControllerState == PID_STABILISATION_ON) ? true : false;
 }
 
 /* 2-DOF PID controller based on MATLAB */
