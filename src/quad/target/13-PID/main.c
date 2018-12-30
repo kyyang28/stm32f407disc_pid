@@ -57,6 +57,8 @@
 
 #include "pid.h"
 
+#include "runtime_config.h"
+
 //#define GPIO_PA1_PIN				PA1
 //#define GPIO_PB8_PIN				PB8
 
@@ -291,10 +293,11 @@ int main(void)
 	/* Initialise the ESC endpoints */
 	mixerInit(MixerConfig()->mixerMode, masterConfig.customMotorMixer);
 	
+	uint16_t bldcMotoridlePulse = MotorConfig()->mincommand;
+
 	/* Configurate the quadcopter mixer */
 	mixerConfigurationOutput();				// motorCount = QUAD_MOTOR_COUNT, reset disarmed motor output to mincommand(1000)
-	
-	uint16_t bldcMotoridlePulse = MotorConfig()->mincommand;
+
 	motorInit(MotorConfig(), bldcMotoridlePulse, getMotorCount());
 	
 #if defined(USE_PWM)			// USE_PWM is defined in target.h
@@ -461,7 +464,8 @@ int main(void)
 	
 	/* Initialise PID configurations */
 	pidInitConfig(&currentProfile->pidProfile);
-
+	
+//	imuInit();
 	
 	/* MCU Support Package(MSP) initialisation */
 	mspFcInit();
@@ -503,14 +507,19 @@ int main(void)
 	gyroSetCalibrationCycles();
 #endif
 
+	DISABLE_ARMING_FLAG(PREVENT_ARMING);
+	
 //	const timeUs_t currentTimeUsAfter = micros();
 //	printf("currentTimeUsAfter processRx: %u, %s, %d\r\n", currentTimeUsAfter, __FUNCTION__, __LINE__);
 
+	/* Latch active features again as some of them are modified by init() */
+	latchActiveFeatures();
+	
 	/* Set the motorControlEnable flag to be TRUE to control the motors */
 	motorControlEnable = true;
 
-	uint16_t ledpwmval = 1500;
-	uint8_t dir = 1;
+//	uint16_t ledpwmval = 1500;
+//	uint8_t dir = 1;
 	
 //	printf("sizeof(master_t): %u\r\n", sizeof(master_t));			// sizeof(master_t): 868 so far
 
@@ -518,6 +527,8 @@ int main(void)
 
     /* Initialise all the RTOS tasks */
     fcTasksInit();
+	
+	systemState |= SYSTEM_STATE_ALL_READY;
     
 //    printf("taskQueueArray[0]->taskName = %s\r\n", taskQueueArray[0]->taskName);                        // taskName = "SYSTEM"
 //    printf("taskQueueArray[0]->desiredPeriod = %u\r\n", taskQueueArray[0]->desiredPeriod);              // desiredPeriod = 100000

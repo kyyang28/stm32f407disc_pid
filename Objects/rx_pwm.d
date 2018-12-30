@@ -47,3 +47,11 @@
 .\objects\rx_pwm.o: src\quad\drivers\ledTimer.h
 .\objects\rx_pwm.o: .\src\quad\io\motors.h
 .\objects\rx_pwm.o: .\src\quad\flight\mixer.h
+.\objects\rx_pwm.o: .\src\quad\flight\pid.h
+.\objects\rx_pwm.o: .\src\quad\sensors\acceleration.h
+.\objects\rx_pwm.o: .\src\quad\drivers\sensor.h
+.\objects\rx_pwm.o: .\src\quad\sensors\sensors.h
+.\objects\rx_pwm.o: .\src\quad\drivers\accgyro.h
+.\objects\rx_pwm.o: .\src\quad\drivers\exti.h
+.\objects\rx_pwm.o: .\src\quad\common\axis.h
+.\objects\rx_pwm.o: .\src\quad\drivers\accgyro_mpu.h

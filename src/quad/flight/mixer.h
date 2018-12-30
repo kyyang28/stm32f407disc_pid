@@ -2,6 +2,7 @@
 #define __MIXER_H
 
 #include <stdint.h>
+#include "pid.h"
 
 //#define MAX_SUPPORTED_MOTORS		14		// due to the MAX TIMER COUNT = 14, change MAX SUPPORTED MOTORS to be 14 as well for ResetMotorConfig() function
 #define MAX_SUPPORTED_MOTORS		12
@@ -66,8 +67,7 @@ struct rxConfig_s;				// cheat on compiler
 uint8_t getMotorCount(void);
 float getMotorMixRange(void);
 void writeMotors(void);
-void mixTable(void);
-//void mixTable(pidProfile_t *pidProfile);		// TODO: add pidProfile_t *pidProfile parameter later
+void mixTable(struct pidProfile_s *pidProfile);
 void mixerInit(mixerMode_e mixerMode, motorMixer_t *initialCustomMixers);
 void mixerConfigurationOutput(void);
 void mixerUseConfigs(struct motorConfig_s *motorConfigToUse, mixerConfig_t *mixerConfigToUse, struct rxConfig_s *rxConfigToUse);

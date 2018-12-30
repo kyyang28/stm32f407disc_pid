@@ -6,14 +6,14 @@
 #include "debug.h"
 #include "system.h"
 #include "pwm_output.h"
-#include "mixer.h"
+#include "mixer.h"				// including pid.h
 #include "asyncfatfs.h"
 #include "blackbox.h"
 #include "runtime_config.h"
 #include "led.h"
 #include "gyro.h"
 #include "configMaster.h"
-#include "pid.h"
+//#include "pid.h"
 #include "fc_rc.h"
 
 uint8_t motorControlEnable = false;
@@ -214,6 +214,66 @@ void processRx(timeUs_t currentTimeUs)
 	
 	/* update activated modes */
 	updateActivatedModes(ModeActivationProfile()->modeActivationConditions);
+	
+	/* TODO: Implement later */
+//	if (!cliMode) {
+//		updateAdjustmentStates(adjustmentProfile()->adjustmentRanges);
+//		processRcAdjustments(currentControlRateProfile, RxConfig());
+//	}
+	
+	/* Flight mode initialisations */
+	bool canUseHorizonMode = true;
+	
+	/* Angle mode */
+	if ((IS_RC_MODE_ACTIVE(BOXANGLE) || (feature(FEATURE_FAILSAFE) /* && failsafeIsActive() */)) && (sensors(SENSOR_ACC))) {
+		canUseHorizonMode = false;
+		
+		if (!FLIGHT_MODE(ANGLE_MODE)) {
+			ENABLE_FLIGHT_MODE(ANGLE_MODE);
+		}
+	} else {
+		DISABLE_FLIGHT_MODE(ANGLE_MODE);
+	}
+	
+	/* Horizon mode */
+	if (IS_RC_MODE_ACTIVE(BOXHORIZON) && canUseHorizonMode) {
+		DISABLE_FLIGHT_MODE(ANGLE_MODE);
+		
+		if (!FLIGHT_MODE(HORIZON_MODE)) {
+			ENABLE_FLIGHT_MODE(HORIZON_MODE);
+		}
+	} else {
+		DISABLE_FLIGHT_MODE(HORIZON_MODE);
+	}
+	
+	if (FLIGHT_MODE(ANGLE_MODE) || FLIGHT_MODE(HORIZON_MODE)) {
+		LED3_ON;
+	} else {
+		LED3_OFF;
+	}
+	
+#if defined(ACC) || defined(MAG)
+	if (sensors(SENSOR_ACC) || sensors(SENSOR_MAG)) {
+		/* TODO: Implement later */
+	}
+#endif
+	
+#ifdef GPS
+	if (sensors(SENSOR_GPS)) {
+		/* TODO: Implement later */
+		updateGPSWaypointsAndMode();
+	}
+#endif
+	
+	/* TODO: BOXPASSTHRU mode and FIX WING, AIRPLANE handler should be implemented here */
+
+#ifdef TELEMETRY
+	/* TODO: Implement later */
+#endif
+	
+#ifdef VTX
+	/* TODO: Implement later */
+#endif
 }
 
 static void subTaskMotorUpdate(void)
@@ -241,8 +301,7 @@ static void subTaskMotorUpdate(void)
      * 6. Adjust throttle value during airmode condition
      * 7. Update motor[i] values for writeMotors() function to control four motors
      */
-	mixTable();			// TODO: add &currentProfile->pidProfile later
-//	mixTable(&currentProfile->pidProfile);
+	mixTable(&currentProfile->pidProfile);
 	
 	if (motorControlEnable) {
 //		printf("motorControlEnable: %s, %d\r\n", __FUNCTION__, __LINE__);

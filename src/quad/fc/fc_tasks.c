@@ -8,6 +8,8 @@
 #include "rx.h"
 #include "led.h"
 
+//#define TASKS_LEDS_TESTING
+
 #define TASK_PERIOD_HZ(hz)              (1000000 / (hz))            // units in microseconds (us)
 #define TASK_PERIOD_MS(ms)              ((ms) * 1000)
 #define TASK_PERIOD_US(us)              (us)
@@ -46,7 +48,7 @@ cfTask_t cfTasks[TASK_COUNT] = {
     },
 #endif
     
-#if 1
+#ifdef TASKS_LEDS_TESTING
     [TASK_LED3] = {
         .taskName = "LED3",
         .taskFunc = taskLed3,
@@ -107,12 +109,10 @@ void fcTasksInit(void)
 //    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(2000));       	// 2Khz for racing quadcopter using oneshot125, oneshot42 or multishot motor protocols
     setTaskEnabled(TASK_GYROPID, true);
 
-#if 1
-    /* Add Receiver RX TASK to the queue */
+    /* Add Receiver RX TASK to tthe queue */
     setTaskEnabled(TASK_RX, true);
-#endif
     
-#if 1
+#ifdef TASKS_LEDS_TESTING
     /* Add LED3 TASK to the queue (JUST for TESTING) */
     setTaskEnabled(TASK_LED3, true);
 

@@ -158,8 +158,7 @@ void mixerInit(mixerMode_e mixerMode, motorMixer_t *initialCustomMixers)
 	initEscEndpoints();
 }
 
-void mixTable(void)
-//void mixTable(pidProfile_t *pidProfile)		// TODO: add pidProfile_t *pidProfile parameter later
+void mixTable(pidProfile_t *pidProfile)
 {
 	/* Scale roll/pitch/yaw uniformly to fit within throttle range */
 	float throttle, currentThrottleInputRange = 0;

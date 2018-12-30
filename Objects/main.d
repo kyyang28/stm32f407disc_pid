@@ -93,3 +93,4 @@
 .\objects\main.o: .\src\quad\io\asyncfatfs\asyncfatfs.h
 .\objects\main.o: .\src\quad\io\asyncfatfs\fat_standard.h
 .\objects\main.o: .\src\quad\blackbox\blackbox_io.h
+.\objects\main.o: .\src\quad\fc\runtime_config.h
