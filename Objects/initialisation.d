@@ -1,4 +1,5 @@
 .\objects\initialisation.o: src\quad\sensors\initialisation.c
+.\objects\initialisation.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\initialisation.o: src\quad\sensors\initialisation.h
 .\objects\initialisation.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\initialisation.o: src\quad\sensors\gyro.h
@@ -47,4 +48,3 @@
 .\objects\initialisation.o: src\quad\sensors\sensors.h
 .\objects\initialisation.o: src\quad\sensors\barometer.h
 .\objects\initialisation.o: src\quad\sensors\compass.h
-.\objects\initialisation.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

@@ -447,6 +447,10 @@ int main(void)
 		}
 	}
 #endif
+
+#if defined(F450_QUAD_30A_1000KVMOTOR)	
+	gyro.targetLooptime = 1000;					// F450 1000KV Motor utilises 1000 us of gyro.targetLooptime
+#endif
 	
 	systemState |= SYSTEM_STATE_SENSORS_READY;
 
@@ -456,8 +460,12 @@ int main(void)
 //	printf("gyro.targetLooptime: %u\r\n", gyro.targetLooptime);								// 125
 //	printf("PidConfig()->pid_process_denom: %u\r\n", PidConfig()->pid_process_denom);		// 4
 	
-	/* Initialise PID looptime */
-	pidSetTargetLooptime(gyro.targetLooptime * PidConfig()->pid_process_denom);		// PID looptime = 125 * 4 = 500 us (2 KHz)
+	/* Initialise PID looptime
+	 * 
+	 * PID looptime = 125 * 4 = 500 us (2 KHz) for F210 racing quad
+	 * PID looptime = 1000 * 4 = 4000 us (250 Hz) for F450 racing quad
+	 */
+	pidSetTargetLooptime(gyro.targetLooptime * PidConfig()->pid_process_denom);
 	
 	/* Initialise PID filters */
 	pidInitFilters(&currentProfile->pidProfile);

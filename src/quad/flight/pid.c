@@ -46,8 +46,11 @@ void pidSetTargetLooptime(uint32_t pidLooptime)
 	
 	/* set dt in seconds (targetPidLooptime (in microseconds) to seconds)
 	 *
-	 * For example, targetPidLooptime = 125.
-	 * dt = targetPidLooptime * 0.000001 = 125 * 0.000001f = 0.000125
+	 * For example, targetPidLooptime = 500.
+	 * dt = targetPidLooptime * 0.000001 = 500 * 0.000001f = 0.0005 (for F210 racing quad)
+     *
+ 	 * For example, targetPidLooptime = 4000.
+	 * dt = targetPidLooptime * 0.000001 = 4000 * 0.000001f = 0.004 (for F450 normal quad)
 	 */
 	dT = targetPidLooptime * 0.000001f;
 }
@@ -223,10 +226,12 @@ void pidInitConfig(const pidProfile_t *pidProfile)
 	 * 
 	 * dT = 500 * 0.000001f = 0.0005
 	 *
-	 * maxVelocity[FD_YAW] = 10.0f * 1000 * dT = 10.0f * 1000 * dT = 10.0f * 1000 * 0.0005 = 5.0
+	 * maxVelocity[FD_YAW] = 10.0f * 1000 * dT = 10.0f * 1000 * dT = 10.0f * 1000 * 0.0005 = 5.0 (For F210 racing quad)
+	 *
+	 * maxVelocity[FD_YAW] = 10.0f * 1000 * dT = 10.0f * 1000 * dT = 10.0f * 1000 * 0.004 = 40.0 (For F450 normal quad)
 	 */
 	maxVelocity[FD_YAW] = pidProfile->yawRateAccelLimit * 1000 * dT;
-//	printf("maxVelocity[FD_YAW]: %f\r\n", maxVelocity[FD_YAW]);		// 5.000000
+//	printf("maxVelocity[FD_YAW]: %f\r\n", maxVelocity[FD_YAW]);		// 5.000000	for F210 quad, 40.0 for F450 quad
 	
 	/*
 	 * pidProfile->itermWindupPointPercent = 50
@@ -258,6 +263,20 @@ void pidStabilisationState(pidStabilisationState_e pidControllerState)
 	pidStabilisationEnabled = (pidControllerState == PID_STABILISATION_ON) ? true : false;
 }
 
+static float accelerationLimit(int axis, float currentPidSetpoint)
+{
+	static float previousSetpoint[3];
+	const float currentVelocity = currentPidSetpoint - previousSetpoint[axis];
+//	printf("curr[%d]: %f\r\n", axis, currentPidSetpoint);
+//	printf("prev[%d]: %f\r\n", axis, previousSetpoint[axis]);
+//	printf("vel[%d]: %f\r\n", axis, currentVelocity);
+//	printf("maxVel[%d]: %f\r\n", axis, maxVelocity[axis]);
+	
+	if (ABS(currentVelocity) > maxVelocity[axis]) {
+		
+	}
+}
+
 /* 2-DOF PID controller based on MATLAB */
 void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *angleTrim)
 {
@@ -276,6 +295,10 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 	/* The actual PID controller algorithms */
 	for (int axis = FD_ROLL; axis <= FD_YAW; axis++) {
 		float currentPidSetpoint = getSetpointRate(axis);
+//		printf("setpoint: %f\r\n", currentPidSetpoint);
 		
+		if (maxVelocity[axis]) {
+			currentPidSetpoint = accelerationLimit(axis, currentPidSetpoint);
+		}
 	}
 }

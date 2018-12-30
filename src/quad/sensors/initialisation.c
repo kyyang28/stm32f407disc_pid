@@ -1,9 +1,10 @@
 
+#include <stdio.h>
+
 #include "initialisation.h"		// includes gyro.h, acceleration.h, barometer.h, compass.h
 //#include "gyro.h"
 //#include "acceleration.h"
 #include "sensors.h"
-#include <stdio.h>
 
 uint8_t detectedSensors[SENSOR_INDEX_COUNT] = { GYRO_NONE, ACC_NONE, BARO_NONE, MAG_NONE };
 

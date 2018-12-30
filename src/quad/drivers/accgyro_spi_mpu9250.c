@@ -212,7 +212,7 @@ bool mpu9250SpiDetect(void)
 		delay(150);
 		
 		mpu9250ReadRegister(MPU_RA_WHO_AM_I, 1, &in);
-		printf("WHO_AM_I reg value: 0x%x\r\n", in);
+//		printf("WHO_AM_I reg value: 0x%x\r\n", in);
 		/* MPU9250_WHO_AM_I_CONST = 0x71
 		 * MPU9250_WHO_AM_I_CONST_ALT = 0x73
 		 */
