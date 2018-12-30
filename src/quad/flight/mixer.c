@@ -165,6 +165,10 @@ void mixTable(pidProfile_t *pidProfile)
 	float throttle, currentThrottleInputRange = 0;
 	uint16_t motorOutputMin, motorOutputMax;
 	static uint16_t throttlePrevious = 0;			// store the last throttle direction for deadband transitions
+
+	/* +-------------------------------------------------------------------------------------------------+ */
+	/* +------------------ Find Min and Max throttle values based on current condition ------------------+ */
+	/* +-------------------------------------------------------------------------------------------------+ */
 	
 //	printf("rcCommand[THROTTLE]: %d, %s, %d\r\n", rcCommand[THROTTLE], __FUNCTION__, __LINE__);
 	throttle = rcCommand[THROTTLE] - rxConfig->mincheck;	// current rcCommand[THROTTLE] value - 1100 (mincheck)
@@ -186,34 +190,43 @@ void mixTable(pidProfile_t *pidProfile)
 //	printf("throttle after constrainf: %f, %s, %d\r\n", throttle, __FUNCTION__, __LINE__);
 	
 	const float motorOutputRange = motorOutputMax - motorOutputMin;		// motorOutputMax - motorOutputMin = 2000 - 1070 = 930
+
+	/* +----------------------------------------------------------------------------------------------------+ */
+	/* +---------------------------------- Calculate and limit the PIDsum ----------------------------------+ */
+	/* +----------------------------------------------------------------------------------------------------+ */
 	
-	/* Calculate and Limit the PIDsum */
+	
+	/* +----------------------------------------------------------------------------------------------------+ */
+	/* +---------------------------------- Calculate voltage compensation ----------------------------------+ */
+	/* +----------------------------------------------------------------------------------------------------+ */
 	
 	
-	/* Calculate voltage compensation */
+	/* +----------------------------------------------------------------------------------------------------+ */
+	/* +-------------------------------- Find Roll/Pitch/Yaw desired outputs -------------------------------+ */
+	/* +----------------------------------------------------------------------------------------------------+ */
 	
 
-#if 0
-	/* For motor calibration of F450 quadcopter */
-	for (uint32_t i = 0; i < motorCount; i++) {
-//		motor[i] = motorOutputMin;
-//		printf("motor[%d]: %d\r\n", i, motor[i]);
-		motor[i] = rcCommand[THROTTLE];
-	}
-#endif
+	/* TODO: DELETE later, for motor calibration of F450 quadcopter */
+//	for (uint32_t i = 0; i < motorCount; i++) {
+////		motor[i] = motorOutputMin;
+////		printf("motor[%d]: %d\r\n", i, motor[i]);
+//		motor[i] = rcCommand[THROTTLE];
+//	}
 	
 	uint32_t i = 0;
 	
-	/* Calculate the desired motors' output values when ARMed. */
+	/* +----------------------------------------------------------------------------------------------------+ */
+	/* +----------------------- Calculate the desired motors' output values when ARMed ---------------------+ */
+	/* +----------------------------------------------------------------------------------------------------+ */
 	for (uint32_t i = 0; i < motorCount; i++) {
 //		motor[i] = motorOutputMin;
 //		printf("motor[%d]: %d\r\n", i, motor[i]);
 		motor[i] = rcCommand[THROTTLE];
 	}
 	
-	/** +-----------------------------------------------------------------------------------+ 
-	 *  +---------------------------------- DISARMed mode ----------------------------------+
-	 *  +-----------------------------------------------------------------------------------+ 
+	/** +---------------------------------------------------------------------------------------------------+
+	 *  +----------------------------------------- DISARMed mode -------------------------------------------+
+	 *  +---------------------------------------------------------------------------------------------------+
 	 * Assign the motors' output values to disarmMotorOutput(1000) when DISARMed.
 	 *
 	 * If ARMING_FLAG is NOT set to ARMED, meaning DISARMED, no matter what value assigned to
