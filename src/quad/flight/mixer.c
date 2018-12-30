@@ -4,6 +4,7 @@
 #include "pwm_output.h"
 #include "rx.h"
 #include "maths.h"
+#include "runtime_config.h"
 
 static uint8_t motorCount;
 static float motorMixRange;
@@ -201,20 +202,39 @@ void mixTable(pidProfile_t *pidProfile)
 	}
 #endif
 	
-#if 1
-	if (IS_RC_MODE_ACTIVE(BOXARM)) {
-		/* TODO: modify this when finishing PID controllers */
-		for (uint32_t i = 0; i < motorCount; i++) {
-	//		motor[i] = motorOutputMin;
-	//		printf("motor[%d]: %d\r\n", i, motor[i]);
-			motor[i] = rcCommand[THROTTLE];
-		}
-	} else {
-		for (uint32_t i = 0; i < motorCount; i++) {
-	//		motor[i] = motorOutputMin;
-	//		printf("motor[%d]: %d\r\n", i, motor[i]);
-			motor[i] = 1000;
+	uint32_t i = 0;
+	
+	/* Calculate the desired motors' output values when ARMed. */
+	for (uint32_t i = 0; i < motorCount; i++) {
+//		motor[i] = motorOutputMin;
+//		printf("motor[%d]: %d\r\n", i, motor[i]);
+		motor[i] = rcCommand[THROTTLE];
+	}
+	
+	/** +-----------------------------------------------------------------------------------+ 
+	 *  +---------------------------------- DISARMed mode ----------------------------------+
+	 *  +-----------------------------------------------------------------------------------+ 
+	 * Assign the motors' output values to disarmMotorOutput(1000) when DISARMed.
+	 */
+	if (!CHECK_ARMING_FLAG(ARMED)) {
+//		printf("disarmMotorOutput: %u\r\n", disarmMotorOutput);
+		for (i = 0; i < motorCount; i++) {
+			motor[i] = disarmMotorOutput;		// disarmMotorOutput = MotorConfig()->mincommand = 1000
 		}
 	}
-#endif	
+	
+//	if (IS_RC_MODE_ACTIVE(BOXARM)) {
+//		/* TODO: modify this when finishing PID controllers */
+//		for (uint32_t i = 0; i < motorCount; i++) {
+//	//		motor[i] = motorOutputMin;
+//	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+//			motor[i] = rcCommand[THROTTLE];
+//		}
+//	} else {
+//		for (uint32_t i = 0; i < motorCount; i++) {
+//	//		motor[i] = motorOutputMin;
+//	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+//			motor[i] = 1000;
+//		}
+//	}
 }

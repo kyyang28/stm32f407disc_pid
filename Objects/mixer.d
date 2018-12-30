@@ -60,3 +60,4 @@
 .\objects\mixer.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\mixer.o: .\src\quad\rx\rx.h
 .\objects\mixer.o: .\src\quad\common\time.h
+.\objects\mixer.o: .\src\quad\fc\runtime_config.h
