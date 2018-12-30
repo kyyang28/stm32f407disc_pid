@@ -426,7 +426,7 @@ static void detectAndApplySignalLossBehaviour(timeUs_t currentTimeUs)
 	/* 0 when the receiver does not receive anything, 1 when the receiver is linked to the transmitter and retrieve the sticks and switches data */
 //	printf("useValueFromRx: %d, %s, %d\r\n", useValueFromRx, __FUNCTION__, __LINE__);
 	
-	/* reset flight channel status to be valid (0x0F), lower 4 bits are roll, pitch, throttle and yaw stick indicators.
+	/* Reset flight channel status to be valid (0x0F), lower 4 bits are roll, pitch, throttle and yaw stick indicators.
 	 * 0x0F (00001111), 4 one's means roll, pitch, throttle and yaw contain the valid stick values
 	 */
 	rxResetFlightChannelStatus();

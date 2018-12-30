@@ -311,6 +311,7 @@ void gyroUpdate(void)
 //		printf("gyro calibration completed!, %s, %d\r\n", __FUNCTION__, __LINE__);
 
 		gyro.dev.calibrationFlag = true;        // For testing only
+		LED4_ON;
 
 #if defined(GYRO_USES_SPI) && defined(USE_MPU_DATA_READY_SIGNAL)
 		/* SPI-based gyro so can read and update in ISR */
@@ -322,6 +323,7 @@ void gyroUpdate(void)
 	} else {
 		/* Toggle LED3 (Orange LED) when GYRO calibration process is started */
 //		LED3_TOGGLE;
+		LED4_OFF;
 		performGyroCalibration(gyroConfig->gyroMovementCalibrationThreshold);
 	}
 

@@ -32,9 +32,11 @@ void updateLEDs(void)
 	if (CHECK_ARMING_FLAG(ARMED)) {
 //		printf("ARMED, %s, %s, %d\r\n", __FILE__, __FUNCTION__, __LINE__);
 //		LED3_ON; LED4_ON; LED5_ON; LED6_ON;
+		LED6_ON;
 	} else if (IS_RC_MODE_ACTIVE(BOXARM) == 0 || armingCalibrationWasInitialised) {
 //		printf("Not ARMED: %s, %d\r\n", __FUNCTION__, __LINE__);
 		ENABLE_ARMING_FLAG(OK_TO_ARM);
+		LED6_OFF;
 	}
 }
 

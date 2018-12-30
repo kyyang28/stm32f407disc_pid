@@ -205,7 +205,7 @@ void mixTable(pidProfile_t *pidProfile)
 	/* +-------------------------------- Find Roll/Pitch/Yaw desired outputs -------------------------------+ */
 	/* +----------------------------------------------------------------------------------------------------+ */
 	
-
+	
 	/* TODO: DELETE later, for motor calibration of F450 quadcopter */
 //	for (uint32_t i = 0; i < motorCount; i++) {
 ////		motor[i] = motorOutputMin;
