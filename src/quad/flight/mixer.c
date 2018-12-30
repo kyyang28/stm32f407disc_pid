@@ -215,6 +215,10 @@ void mixTable(pidProfile_t *pidProfile)
 	 *  +---------------------------------- DISARMed mode ----------------------------------+
 	 *  +-----------------------------------------------------------------------------------+ 
 	 * Assign the motors' output values to disarmMotorOutput(1000) when DISARMed.
+	 *
+	 * If ARMING_FLAG is NOT set to ARMED, meaning DISARMED, no matter what value assigned to
+	 * the motor[i] output previously, it will be replaced by disarmMotorOutput value (1000)
+     * in this case.	
 	 */
 	if (!CHECK_ARMING_FLAG(ARMED)) {
 //		printf("disarmMotorOutput: %u\r\n", disarmMotorOutput);
