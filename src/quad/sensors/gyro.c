@@ -130,7 +130,11 @@ bool gyroInit(const gyroConfig_t *gyroConfigToUse)
 			break;
 	}
 	
-	/* Must set gyro sample rate before initialisation */
+	/* Must set gyro sample rate before initialisation
+	 *
+	 * gyroConfig->gyro_lpf = GYRO_LPF_256HZ = 0
+	 * gyroConfig->gyro_sync_denom = 1
+	 */
 	gyro.targetLooptime = gyroSetSampleRate(&gyro.dev, gyroConfig->gyro_lpf, gyroConfig->gyro_sync_denom, gyroConfig->gyro_use_32khz);
 	//	printf("gyro.targetLooptime: %u, %s, %d\r\n", gyro.targetLooptime, __FUNCTION__, __LINE__);		// gyro.targetLooptime = 500 us
 	gyro.dev.lpf = gyroConfig->gyro_lpf;

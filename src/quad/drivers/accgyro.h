@@ -16,9 +16,9 @@
 #define GYRO_LPF_NONE       7
 
 typedef enum {
-	GYRO_RATE_1_kHz,
-	GYRO_RATE_8_kHz,
-	GYRO_RATE_32_kHz,
+	GYRO_RATE_1_kHz,		// 0
+	GYRO_RATE_8_kHz,		// 1
+	GYRO_RATE_32_kHz,		// 2
 }gyroRateKHz_e;
 
 typedef struct gyroDev_s {
