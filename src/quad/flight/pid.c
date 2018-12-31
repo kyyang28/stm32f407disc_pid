@@ -39,6 +39,7 @@ static float Kp[3], Ki[3], Kd[3], maxVelocity[3];
 static float relaxFactor;
 static float dtermSetpointWeight;
 static float levelGain, horizonGain, horizonTransition, ITermWindupPoint, ITermWindupPointInv;
+static float itermAccelerator = 1.0f;
 /* Declarations of PID related configurations */
 
 void pidSetTargetLooptime(uint32_t pidLooptime)
@@ -54,6 +55,11 @@ void pidSetTargetLooptime(uint32_t pidLooptime)
 	 * dt = targetPidLooptime * 0.000001 = 4000 * 0.000001f = 0.004 (for F450 normal quad)
 	 */
 	dT = targetPidLooptime * 0.000001f;
+}
+
+void pidSetItermAccelerator(float newItermAccelerator)
+{
+	itermAccelerator = newItermAccelerator;
 }
 
 void pidInitFilters(const pidProfile_t *pidProfile)
@@ -134,6 +140,7 @@ void pidInitFilters(const pidProfile_t *pidProfile)
 	
 	/* 4. yaw lowpass filter initialisation */
 	if (pidProfile->yaw_lpf_hz == 0 || pidProfile->yaw_lpf_hz > pidNyquistFrequency) {
+//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 		ptermYawFilterApplyFn = nullFilterApply;
 	} else {
 		ptermYawFilterApplyFn = (filterApplyFnPtr)pt1FilterApply;
@@ -305,6 +312,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 	
 	/* The actual PID controller algorithms */
 	for (int axis = FD_ROLL; axis <= FD_YAW; axis++) {
+		
 		float currentPidSetpoint = getSetpointRate(axis);
 //		printf("setpoint[%d]: %f\r\n", axis, currentPidSetpoint);
 		
@@ -342,5 +350,55 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		/* +--------------------------------------------------------------------------------------------------+ */
 		/* +-------------------------------------- Calculate error rate --------------------------------------+ */
 		/* +--------------------------------------------------------------------------------------------------+ */
+		const float errorRate = currentPidSetpoint - gyroRate;			// ref - output i.e. r - y
+//		printf("errorRate[%d]: %f\r\n", axis, errorRate);
+
+		/* +--------------------------------------------------------------------------------------------------+ */
+		/* +-----------------  Calculate P parameter and add dynamic part based on stick input ---------------+ */
+		/* +--------------------------------------------------------------------------------------------------+
+		 *
+		 * #define PTERM_SCALE						0.032029f
+		 * #define DTERM_SCALE						0.000529f
+		 *
+		 * Kp[FD_ROLL] = Kp[0] = PTERM_SCALE * pidProfile->P8[FD_ROLL] = 0.032029f * 44 = 1.409276
+		 * Kp[FD_PITCH] = Kp[1] = PTERM_SCALE * pidProfile->P8[FD_PITCH] = 0.032029f * 58 = 1.857682
+		 * Kp[FD_YAW] = Kp[2] = PTERM_SCALE * pidProfile->P8[FD_YAW] = 0.032029f * 70 = 2.24203
+		 *
+		 * tpaFactor = throttlePIDAttenuation ranges between 0.0f to 1.0f
+		 */
+//		printf("Kp[%d]: %f\r\n", axis, Kp[axis]);
+//		printf("tpaFactor: %f\r\n", tpaFactor);
+		axisPID_P[axis] = Kp[axis] * errorRate * tpaFactor;
+//		if (axis == 0)
+//			printf("P[%d]: %f\r\n", axis, axisPID_P[axis]);
+	
+		if (axis == FD_YAW) {
+//			printf("P1: %f\r\n", axisPID_P[axis]);
+			axisPID_P[axis] = ptermYawFilterApplyFn(ptermYawFilter, axisPID_P[axis]);
+//			printf("P2: %f\r\n", axisPID_P[axis]);
+		}
+
+		/* +--------------------------------------------------------------------------------------------------+ */
+		/* +------------------------------------- Calculate I parameter --------------------------------------+ */
+		/* +--------------------------------------------------------------------------------------------------+
+		 *
+		 * #define ITERM_SCALE						0.244381f
+		 *
+ 		 * Ki[FD_ROLL] = Ki[0] = ITERM_SCALE * pidProfile->I8[FD_ROLL] = 0.244381f * 40 = 9.77524
+		 * Ki[FD_PITCH] = Ki[1] = ITERM_SCALE * pidProfile->I8[FD_PITCH] = 0.244381f * 50 = 12.21905
+		 * Ki[FD_YAW] = Ki[2] = ITERM_SCALE * pidProfile->I8[FD_YAW] = 0.244381f * 45 = 10.997145
+		 *
+		 * Only increase I-term if motors' outputs are not saturated to prevent I-term windup
+		 * 
+		 * motorMixRange < 1.0f means motors are not saturated.
+		 * motorMixRange >= 1.0f means motors ARE saturated.
+		 * 
+		 * motorMixRange initial value is 0.0f, which is less than 1.0f, calculate the axisPID_I[axis]
+		 *
+		 * dT = 0.004 for F450 normal quad
+		 */
+		if (motorMixRange < 1.0f) {
+			axisPID_I[axis] += Ki[axis] * errorRate * dT * dynKi * itermAccelerator;
+		}
 	}
 }

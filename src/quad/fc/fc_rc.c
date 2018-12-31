@@ -15,6 +15,9 @@
 #define RC_RATE_INCREMENTAL				14.54f
 #define SETPOINT_RATE_LIMIT				1998.0f
 
+#define THROTTLE_BUFFER_MAX				20
+#define THROTTLE_DELTA_MS				100
+
 static float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
 static float throttlePIDAttenuation;
 
@@ -98,7 +101,7 @@ void updateRcCommands(void)
 		prop = 100;
 		throttlePIDAttenuation = 1.0f;
 //		printf("Current throttle value is less than TPA (utilising 100%% PID values): %.2f\r\n\r\n", throttlePIDAttenuation);
-	}else {
+	} else {
 		if (rcData[THROTTLE] < 2000) {		// tpa_breakpoint <= rcData[THROTTLE] <= 2000
 			prop = 100 - (uint16_t)currentControlRateProfile->dynThrPID * (rcData[THROTTLE] - currentControlRateProfile->tpa_breakpoint) / (2000 - currentControlRateProfile->tpa_breakpoint);
 //			printf("%u%% PID values are attenuated!!\r\n", 100 - prop);
@@ -187,10 +190,16 @@ void updateRcCommands(void)
 	/* Handle FLIGHT_MODE(HEADFREE_MODE) if necessary */
 }
 
-/* Implement later for ANTI-GRAVITY mode */
+/* Set ITermAcceleratorGain and ANTI-GRAVITY mode */
 static void checkForThrottleErrorResetState(uint16_t rxRefreshRate)
 {
+	static int index;
+	static int16_t rcCommandThrottlePrevious[THROTTLE_BUFFER_MAX];									// THROTTLE_BUFFER_MAX = 20
 	
+	printf("rxRefreshRate: %u\r\n", rxRefreshRate);
+	
+	const int rxRefreshRateMs = rxRefreshRate / 1000;												// convert rxRefreshRate in millisconds
+	const int indexMax = constrain(THROTTLE_DELTA_MS / rxRefreshRateMs, 1, THROTTLE_BUFFER_MAX);	// THROTTLE_DELTA_MS = 100
 }
 
 /* Calculate the setpoint rate for each axis (ROLL, PITCH and YAW) */
@@ -315,11 +324,14 @@ void processRcCommand(void)
 	if (isRXDataNew) {
 		/* Get the task runtime difference between the current time and last time
 		 *
-		 * currentRxRefreshRate is between 50Hz and 1KHz
+		 * currentRxRefreshRate is between 50Hz and 1KHz or in microseconds
 		 */
 		currentRxRefreshRate = constrain(getTaskDeltaTime(TASK_RX), 1000, 20000);		// units in microseconds (us)
+
+//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 		
 		if (isAntiGravityModeActive()) {
+			printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 			checkForThrottleErrorResetState(currentRxRefreshRate);
 		}
 	}

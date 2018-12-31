@@ -71,6 +71,7 @@ typedef struct pidConfig_s {
 
 /* Initialisations */
 void pidSetTargetLooptime(uint32_t pidLooptime);
+void pidSetItermAccelerator(float newItermAccelerator);
 void pidInitFilters(const pidProfile_t *pidProfile);
 void pidInitConfig(const pidProfile_t *pidProfile);
 void pidResetErrorGyroState(void);
