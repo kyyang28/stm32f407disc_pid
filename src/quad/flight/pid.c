@@ -326,8 +326,21 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		
 		/* +------------------------------ Low-level gyro-based 2DOF PID controller ------------------------------+
 		 *
+		 * Referenced by 2-DOF PID controller of MATLAB
+		 * https://uk.mathworks.com/help/control/ug/two-degree-of-freedom-2-dof-pid-controllers.html
+		 * https://uk.mathworks.com/help/control/ug/tune-2-dof-pid-controller-pid-tuner.html
+		 *
+		 * In essence, using 2-DOF control can improve disturbance rejection without sacrificing as much reference 
+		 * tracking performance as 1-DOF control. These effects on system performance depend strongly on the properties 
+		 * of your plant and the speed of your controller. For some plants and some control bandwidths, using 2-DOF 
+		 * control or changing the design focus has less or no impact on the tuned result.
 		 * 
+		 * 2-DOF PID controller with optional filter on derivative term.
+		 * coefficient b = 1 and only c (setpoint weight on derivative term) can be tuned (amount derivative on measurement or error).
 		 */
 		
+		/* +--------------------------------------------------------------------------------------------------+ */
+		/* +-------------------------------------- Calculate error rate --------------------------------------+ */
+		/* +--------------------------------------------------------------------------------------------------+ */
 	}
 }
