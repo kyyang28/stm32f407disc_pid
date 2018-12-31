@@ -196,10 +196,32 @@ static void checkForThrottleErrorResetState(uint16_t rxRefreshRate)
 	static int index;
 	static int16_t rcCommandThrottlePrevious[THROTTLE_BUFFER_MAX];									// THROTTLE_BUFFER_MAX = 20
 	
-	printf("rxRefreshRate: %u\r\n", rxRefreshRate);
+//	printf("rxRefreshRate: %u\r\n", rxRefreshRate);													// rxRefreshRate = 9000
 	
-	const int rxRefreshRateMs = rxRefreshRate / 1000;												// convert rxRefreshRate in millisconds
-	const int indexMax = constrain(THROTTLE_DELTA_MS / rxRefreshRateMs, 1, THROTTLE_BUFFER_MAX);	// THROTTLE_DELTA_MS = 100
+	const int rxRefreshRateMs = rxRefreshRate / 1000;												// convert rxRefreshRate in millisconds, 9000 / 1000 = 9
+//	printf("rxRefreshRateMs: %u\r\n", rxRefreshRateMs);
+	const int indexMax = constrain(THROTTLE_DELTA_MS / rxRefreshRateMs, 1, THROTTLE_BUFFER_MAX);	// THROTTLE_DELTA_MS = 100, indexMax = 100 / 9 = 11
+
+	/* throttleVelocityThreshold = currentProfile->pidProfile.itermThrottleThreshold = 350 */
+	const int16_t throttleVelocityThreshold = currentProfile->pidProfile.itermThrottleThreshold;
+	
+	rcCommandThrottlePrevious[index++] = rcCommand[THROTTLE];
+	
+	if (index >= indexMax) {
+		index = 0;
+	}
+	
+	/* Calculate the difference between the current throttle value and the previous throttle value (instantaneous throttle value change) */
+	const int16_t rcCommandSpeedDelta = rcCommand[THROTTLE] - rcCommandThrottlePrevious[index];
+//	printf("rcCommandSpeedDelta: %d\r\n", rcCommandSpeedDelta);
+	
+	/* throttleVelocityThreshold = 350 */
+	if (ABS(rcCommandSpeedDelta) > throttleVelocityThreshold) {
+//		printf("ANTI-GRAVITY is activated!\r\n");
+		pidSetItermAccelerator(currentProfile->pidProfile.itermAcceleratorGain);	// currentProfile->pidProfile.itermAcceleratorGain = 3.0f
+	} else {
+		pidSetItermAccelerator(1.0f);
+	}
 }
 
 /* Calculate the setpoint rate for each axis (ROLL, PITCH and YAW) */
@@ -328,10 +350,10 @@ void processRcCommand(void)
 		 */
 		currentRxRefreshRate = constrain(getTaskDeltaTime(TASK_RX), 1000, 20000);		// units in microseconds (us)
 
-//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("feature(FEATURE_ANTI_GRAVITY): %u\r\n", feature(FEATURE_ANTI_GRAVITY));
 		
 		if (isAntiGravityModeActive()) {
-			printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+//			printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 			checkForThrottleErrorResetState(currentRxRefreshRate);
 		}
 	}

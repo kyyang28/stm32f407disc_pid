@@ -207,7 +207,7 @@
 /* Declare the default features */
 #ifndef DEFAULT_FEATURES
 //#define DEFAULT_FEATURES		0							// could be members of features_e
-#define DEFAULT_FEATURES		(FEATURE_MOTOR_STOP)			// could be members of features_e
+#define DEFAULT_FEATURES		(FEATURE_MOTOR_STOP | FEATURE_ANTI_GRAVITY)			// could be members of features_e
 //#define DEFAULT_FEATURES		(FEATURE_AIRMODE | FEATURE_MOTOR_STOP)			// could be members of features_e
 //#define DEFAULT_FEATURES		(FEATURE_AIRMODE | FEATURE_SDCARD | FEATURE_BLACKBOX)			// could be members of features_e
 #endif
