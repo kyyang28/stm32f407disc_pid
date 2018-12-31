@@ -388,14 +388,17 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		 * Ki[FD_PITCH] = Ki[1] = ITERM_SCALE * pidProfile->I8[FD_PITCH] = 0.244381f * 50 = 12.21905
 		 * Ki[FD_YAW] = Ki[2] = ITERM_SCALE * pidProfile->I8[FD_YAW] = 0.244381f * 45 = 10.997145
 		 *
-		 * Only increase I-term if motors' outputs are not saturated to prevent I-term windup
-		 * 
 		 * motorMixRange < 1.0f means motors are not saturated.
 		 * motorMixRange >= 1.0f means motors ARE saturated.
 		 * 
 		 * motorMixRange initial value is 0.0f, which is less than 1.0f, calculate the axisPID_I[axis]
 		 *
 		 * dT = 0.004 for F450 normal quad
+		 *
+		 * itermAccelerator is 3.0f if ANTI-GRAVITY feature is enabled, otherwise 1.0f (default value)
+		 * 
+		 * Anti-WINDUP process (checking motorMixRange value): Only increase I-term if motors' outputs are not saturated
+		 * 													   to prevent I-term windup
 		 */
 		if (motorMixRange < 1.0f) {
 			axisPID_I[axis] += Ki[axis] * errorRate * dT * dynKi * itermAccelerator;
