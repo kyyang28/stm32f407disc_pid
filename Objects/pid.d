@@ -50,6 +50,7 @@
 .\objects\pid.o: .\src\quad\common\filter.h
 .\objects\pid.o: .\src\quad\common\maths.h
 .\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\pid.o: .\src\quad\fc\runtime_config.h
 .\objects\pid.o: .\src\quad\config\configMaster.h
 .\objects\pid.o: .\src\quad\drivers\led.h
 .\objects\pid.o: .\src\quad\common\time.h

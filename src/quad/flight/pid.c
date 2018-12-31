@@ -1,13 +1,14 @@
 
-#include <stdio.h>          // just for debugging purposes
+#include <stdio.h>          	// just for debugging purposes
 
 #include "pid.h"
 #include "fc_rc.h"
 #include "mixer.h"
 #include "filter.h"
-#include "maths.h"			// MIN, MAX
+#include "maths.h"				// MIN, MAX
+#include "runtime_config.h"
 
-#include "configMaster.h"   // just for testing purposes
+#include "configMaster.h"   	// just for testing purposes
 
 //#define TESTING_TPA
 
@@ -272,9 +273,19 @@ static float accelerationLimit(int axis, float currentPidSetpoint)
 //	printf("vel[%d]: %f\r\n", axis, currentVelocity);
 //	printf("maxVel[%d]: %f\r\n", axis, maxVelocity[axis]);
 	
+	/* 
+	 * axis = YAW
+	 * maxVelocity[YAW] = pidProfile->yawRateAccelLimit * 1000 * dT = 10.0 * 1000 * 0.004 = 40.0f
+	 * maxVelocity[ROLL] = maxVelocity[PITCH] = 0.0f
+	 */
 	if (ABS(currentVelocity) > maxVelocity[axis]) {
-		
+		currentPidSetpoint = (currentVelocity > 0) ? previousSetpoint[axis] + maxVelocity[axis] : previousSetpoint[axis] - maxVelocity[axis];
+//		printf("currentPidSetpoint: %f\r\n", currentPidSetpoint);
 	}
+	
+	previousSetpoint[axis] = currentPidSetpoint;
+	
+	return currentPidSetpoint;
 }
 
 /* 2-DOF PID controller based on MATLAB */
@@ -295,10 +306,28 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 	/* The actual PID controller algorithms */
 	for (int axis = FD_ROLL; axis <= FD_YAW; axis++) {
 		float currentPidSetpoint = getSetpointRate(axis);
-//		printf("setpoint: %f\r\n", currentPidSetpoint);
+//		printf("setpoint[%d]: %f\r\n", axis, currentPidSetpoint);
 		
 		if (maxVelocity[axis]) {
 			currentPidSetpoint = accelerationLimit(axis, currentPidSetpoint);
+//			printf("currentPidSetpoint: %f\r\n", currentPidSetpoint);
 		}
+		
+		/* YAW control is GYRO-based, direct sticks control is applied to rate PID */
+		if ((FLIGHT_MODE(ANGLE_MODE) || FLIGHT_MODE(HORIZON_MODE)) && axis != YAW) {
+//			currentPidSetpoint = pidLevel(axis, pidProfile, angleTrim, currentPidSetpoint);		// Implement pidLevel later
+		}
+		
+		/* process variable from gyro output in deg/sec */
+		const float gyroRate = gyro.gyroADCf[axis];
+		
+//		if (axis == 2)
+//			printf("gyroRate[%d]: %f\r\n", axis, gyroRate);
+		
+		/* +------------------------------ Low-level gyro-based 2DOF PID controller ------------------------------+
+		 *
+		 * 
+		 */
+		
 	}
 }
