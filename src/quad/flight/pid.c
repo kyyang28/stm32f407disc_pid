@@ -310,6 +310,19 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 	/* Dynamic Ki component to gradually scale back integration when above windup point */
     const float dynKi = MIN((1.0f - motorMixRange) * ITermWindupPointInv, 1.0f);
 	
+	/*
+	 * previous_error = 0
+	 * integral = 0
+	 * loop:
+	 *	  error = setpoint - measured_value
+	 *	  integral = integral + error * dt
+	 *	  derivative = (error - previous_error) / dt
+	 *	  output = Kp * error + Ki * integral + Kd * derivative
+	 *	  previous_error = error
+	 *	  wait(dt)
+	 *	  goto loop	
+	 */
+	
 	/* The actual PID controller algorithms */
 	for (int axis = FD_ROLL; axis <= FD_YAW; axis++) {
 		
@@ -354,11 +367,10 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 //		printf("errorRate[%d]: %f\r\n", axis, errorRate);
 
 		/* +--------------------------------------------------------------------------------------------------+ */
-		/* +-----------------  Calculate P parameter and add dynamic part based on stick input ---------------+ */
+		/* +-----------------  Calculate P component and add dynamic part based on stick input ---------------+ */
 		/* +--------------------------------------------------------------------------------------------------+
 		 *
 		 * #define PTERM_SCALE						0.032029f
-		 * #define DTERM_SCALE						0.000529f
 		 *
 		 * Kp[FD_ROLL] = Kp[0] = PTERM_SCALE * pidProfile->P8[FD_ROLL] = 0.032029f * 44 = 1.409276
 		 * Kp[FD_PITCH] = Kp[1] = PTERM_SCALE * pidProfile->P8[FD_PITCH] = 0.032029f * 58 = 1.857682
@@ -379,7 +391,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		}
 
 		/* +--------------------------------------------------------------------------------------------------+ */
-		/* +------------------------------------- Calculate I parameter --------------------------------------+ */
+		/* +------------------------------------- Calculate I component --------------------------------------+ */
 		/* +--------------------------------------------------------------------------------------------------+
 		 *
 		 * #define ITERM_SCALE						0.244381f
@@ -402,6 +414,18 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		 */
 		if (motorMixRange < 1.0f) {
 			axisPID_I[axis] += Ki[axis] * errorRate * dT * dynKi * itermAccelerator;
+		}
+
+		/* +--------------------------------------------------------------------------------------------------+ */
+		/* +------------------------------------- Calculate D component --------------------------------------+ */
+		/* +--------------------------------------------------------------------------------------------------+
+		 *
+		 * #define DTERM_SCALE						0.000529f
+		 *
+		 * As YAW axis does not need the D term component
+		 */
+		if (axis != FD_YAW) {
+			
 		}
 	}
 }
