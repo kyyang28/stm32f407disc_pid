@@ -70,12 +70,19 @@ void pidInitFilters(const pidProfile_t *pidProfile)
 	static pt1Filter_t pt1FilterYaw;
 //	static firFilterDenoise_t denoisingFilter[2];		// TODO: FIR filter might be implemented later
 	
-	/* 1. PID Nyquist frequency, no rounding needed */
-	uint32_t pidNyquistFrequency = (1.0f / dT) / 2;		// pidNyquistFrequency unit in hz, dT = (1.0f / 0.0005) / 2 = 2000 / 2 = 1000
+	/* 1. PID Nyquist frequency, no rounding needed
+	 *
+	 * pidNyquistFrequency unit in hz, dT = (1.0f / 0.0005) / 2 = 2000 / 2 = 1000 for F210 racing quad
+	 * pidNyquistFrequency unit in hz, dT = (1.0f / 0.004) / 2 = 250 / 2 = 125 for F450 normal quad
+	 */
+	uint32_t pidNyquistFrequency = (1.0f / dT) / 2;
 	
 //	BUILD_BUG_ON(FD_YAW != 2); // only setting up Dterm filters on roll and pitch axes, so ensure yaw axis is 2
 	
-	/* 2. dterm notch filter initialisation */
+	/* 2. dterm notch filter initialisation
+	 *
+	 * pidProfile->dterm_notch_hz = 260
+	 */
 	if (pidProfile->dterm_notch_hz == 0 || pidProfile->dterm_notch_hz > pidNyquistFrequency) {
 		dtermNotchFilterApplyFn = nullFilterApply;
 	} else {
@@ -94,10 +101,16 @@ void pidInitFilters(const pidProfile_t *pidProfile)
 		}
 	}
 	
-	/* 3. dterm lowpass filter initialisation */
+	/* 3. dterm lowpass filter initialisation
+	 *
+	 * pidProfile->dterm_lpf_hz = 100
+	 * pidNyquistFrequency = 125 for F450 normal quad
+	 * pidNyquistFrequency = 1000 for F210 racing quad
+	 */
 	if (pidProfile->dterm_lpf_hz == 0 || pidProfile->dterm_lpf_hz > pidNyquistFrequency) {
 		dtermLpfApplyFn = nullFilterApply;
 	} else {
+		/* pidProfile->dterm_filter_type = FILTER_BIQUAD */
 		switch (pidProfile->dterm_filter_type) {
 			case FILTER_PT1:
 				dtermLpfApplyFn = (filterApplyFnPtr)pt1FilterApply;
@@ -192,7 +205,7 @@ void pidInitConfig(const pidProfile_t *pidProfile)
 	dtermSetpointWeight = pidProfile->dtermSetpointWeight / 127.0f;
 //	printf("dtermSetpointWeight: %f\r\n", dtermSetpointWeight);				// 0.472441
 	
-	/* pidProfile->setpointRelaxRatio = 100
+	/* pidProfile->setpointRelaxRatio = 100 (aka setpoint transition)
 	 * 
 	 * relaxFactor = (1.0f / (pidProfile->setpointRelaxRatio / 100.0f)) = 1.0f / (100 / 100.0f) = 1.0
 	 */	
@@ -320,7 +333,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 	 *	  output = Kp * error + Ki * integral + Kd * derivative
 	 *	  previous_error = error
 	 *	  wait(dt)
-	 *	  goto loop	
+	 *	  goto loop
 	 */
 	
 	/* The actual PID controller algorithms */
@@ -420,12 +433,43 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		/* +------------------------------------- Calculate D component --------------------------------------+ */
 		/* +--------------------------------------------------------------------------------------------------+
 		 *
-		 * #define DTERM_SCALE						0.000529f
-		 *
-		 * As YAW axis does not need the D term component
+ 		 * As YAW axis does not need the D term component
 		 */
 		if (axis != FD_YAW) {
+			float dynC = dtermSetpointWeight;
 			
+			if (pidProfile->setpointRelaxRatio < 100) {
+				dynC *= MIN(getRcDeflectionAbs(axis) * relaxFactor, 1.0f);
+			}
+			
+			const float rD = dynC * currentPidSetpoint - gyroRate;			// cr - y
+			
+			/* Divide rate change by dT to get differential (i.e. dr/dt)
+			 *
+			 * dt = targetPidLooptime * 0.000001 = 4000 * 0.000001f = 0.004 (for F450 normal quad)
+			 */
+			const float delta = (rD - previousRateError[axis]) / dT;
+			previousRateError[axis] = rD;
+			
+			/*
+			 * #define DTERM_SCALE						0.000529f
+			 *
+			 * Kd[FD_ROLL] = Kd[0] = DTERM_SCALE * pidProfile->D8[FD_ROLL] = 0.000529f * 30 = 0.01587
+			 * Kd[FD_PITCH] = Kd[1] = DTERM_SCALE * pidProfile->D8[FD_PITCH] = 0.000529f * 35 = 0.018515
+			 * Kd[FD_YAW] = Kd[2] = DTERM_SCALE * pidProfile->D8[FD_YAW] = 0.000529f * 20 = 0.01058
+			 */
+			axisPID_D[axis] = Kd[axis] * delta * tpaFactor;
+			
+			/* Apply D-term filters */
+			axisPID_D[axis] = dtermNotchFilterApplyFn(dtermFilterNotch[axis], axisPID_D[axis]);
+			axisPID_D[axis] = dtermLpfApplyFn(dtermFilterLpf[axis], axisPID_D[axis]);
+		}
+		
+		/* Disable PID control at zero throttle */
+		if (!pidStabilisationEnabled) {
+			axisPID_P[axis] = 0.0f;
+			axisPID_I[axis] = 0.0f;
+			axisPID_D[axis] = 0.0f;
 		}
 	}
 }
