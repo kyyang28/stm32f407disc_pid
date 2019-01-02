@@ -173,12 +173,12 @@ void mixTable(pidProfile_t *pidProfile)
 //	printf("rcCommand[THROTTLE]: %d, %s, %d\r\n", rcCommand[THROTTLE], __FUNCTION__, __LINE__);
 	throttle = rcCommand[THROTTLE] - rxConfig->mincheck;	// current rcCommand[THROTTLE] value - 1100 (mincheck)
 	currentThrottleInputRange = rcCommandThrottleRange;		// rcCommandThrottleRange = 2000 - 1100 = 900
-//	printf("throttle: %f, %s, %d\r\n", throttle, __FUNCTION__, __LINE__);		// throttle = [-100.000;892]
+//	printf("throttle: %f\r\n", throttle);		// throttle = [-100.000;892]
 //	printf("currentThrottleInputRange: %f, %s, %d\r\n", currentThrottleInputRange, __FUNCTION__, __LINE__);
 	
 	/* Find min and max throttle based on condition */
 	motorOutputMax = motorOutputHigh;		// motorOutputMax = motorOutputHigh = 2000 (max throttle)
-	motorOutputMin = motorOutputMin;		// motorOutputMin = motorOutputMin = 1070 (min throttle)
+	motorOutputMin = motorOutputLow;		// motorOutputMin = motorOutputMin = 1070 (min throttle)
 	
 	/* throttle / currentThrottleInputRange = [-0.1111;0.992222] */
 //	printf("throttle / currentThrottleInputRange: %f, %s, %d\r\n", throttle / currentThrottleInputRange, __FUNCTION__, __LINE__);
@@ -186,10 +186,11 @@ void mixTable(pidProfile_t *pidProfile)
     /* throttle / currentThrottleInputRange is between -0.111111(-100/900) and 0.986667( (1990-1100)/900 )
      * throttle is between 0.0 and 1.0
      */
-	throttle = constrainf(throttle / currentThrottleInputRange, 0.0f, 1.0f);
+	throttle = constrainf(throttle / currentThrottleInputRange, 0.0f, 1.0f);	// currentThrottleInputRange = 2000 - 1100 = 900
 //	printf("throttle after constrainf: %f\r\n", throttle);
 	
 	const float motorOutputRange = motorOutputMax - motorOutputMin;		// motorOutputMax - motorOutputMin = 2000 - 1070 = 930
+//	printf("motorOutputRange: %f\r\n", motorOutputRange);				// 930
 
 	/* +----------------------------------------------------------------------------------------------------+ */
 	/* +---------------------------------- Calculate and limit the PIDsum ----------------------------------+ */
@@ -214,7 +215,7 @@ void mixTable(pidProfile_t *pidProfile)
 	/* +---------------------------------- Calculate voltage compensation ----------------------------------+ */
 	/* +----------------------------------------------------------------------------------------------------+ */
 //	const float vbatCompensationFactor = (BatteryConfig && pidProfile->vbatPidCompensation) ? calculateVbatPidCompensation() : 1.0f;
-	const float vbatCompensationFactor = 1.0f;
+	const float vbatCompensationFactor = 1.0f;					// TODO: implement later
 	
 	/* +----------------------------------------------------------------------------------------------------+ */
 	/* +-------------------------------- Find Roll/Pitch/Yaw desired outputs -------------------------------+ */
@@ -233,7 +234,30 @@ void mixTable(pidProfile_t *pidProfile)
 //		printf("currentMixer[%d]: [%f, %f, %f, %f]\r\n", i, currentMixer[i].throttle, currentMixer[i].roll, currentMixer[i].pitch, currentMixer[i].yaw);
 		motorMix[i] = scaledAxisPIDf[PITCH] * currentMixer[i].pitch + scaledAxisPIDf[ROLL] * currentMixer[i].roll + 
 					  scaledAxisPIDf[YAW] * currentMixer[i].yaw * (-mixerConfig->yaw_motor_direction);
+		
+//		printf("motor[%d]: %f\r\n\r\n", i, motorMix[i]);
+		
+		/* Add voltage compensation */
+		if (vbatCompensationFactor > 1.0f) {
+			motorMix[i] *= vbatCompensationFactor;
+		}
+		
+//		printf("motorMix[%d]: %f\r\n", i, motorMix[i]);
+//		printf("motorMixMax: %f\r\n", motorMixMax);
+		
+		if (motorMix[i] > motorMixMax) {
+			motorMixMax = motorMix[i];
+//			printf("motorMixMax: %f\r\n", motorMixMax);
+		} else if (motorMix[i] < motorMixMin) {
+			motorMixMin = motorMix[i];
+//			printf("motorMixMin: %f\r\n", motorMixMin);
+		}
 	}
+	
+//	printf("(min,max): (%f,%f)\r\n", motorMixMin, motorMixMax);
+	/* Calculate the motorMixRange to check if motors are saturated or not */
+	motorMixRange = motorMixMax - motorMixMin;
+//	printf("motorMixRange: %f\r\n", motorMixRange);
 	
 	/* TODO: DELETE later, for motor calibration of F450 quadcopter */
 //	for (uint32_t i = 0; i < motorCount; i++) {
@@ -241,6 +265,29 @@ void mixTable(pidProfile_t *pidProfile)
 ////		printf("motor[%d]: %d\r\n", i, motor[i]);
 //		motor[i] = rcCommand[THROTTLE];
 //	}
+	
+	if (motorMixRange > 1.0f) {
+		for (int i = 0; i < motorCount; i++) {
+			motorMix[i] /= motorMixRange;
+//			printf("motorMix[%d]: %f\r\n", i, motorMix[i]);
+		}
+		
+		/* Get the maximum correction by setting offset to centre when airmode is enabled */
+		if (isAirModeActive()) {
+			throttle = 0.5f;
+		}
+	} else {
+		/* Only automatically adjust throttle during airmode scenario */
+		if (isAirModeActive()) {
+//			printf("motorMixRange: %f\r\n", motorMixRange);
+			float throttleLimitOffset = motorMixRange / 2.0f;
+//			printf("throttle1: %f\r\n", throttle);
+//			printf("throttleLimitOffset: %f\r\n", throttleLimitOffset);
+			throttle = constrainf(throttle, 0.0f + throttleLimitOffset, 1.0f - throttleLimitOffset);
+		}
+	}
+
+//	printf("throttle2: %f\r\n", throttle);
 	
 	uint32_t i = 0;
 	
@@ -250,7 +297,22 @@ void mixTable(pidProfile_t *pidProfile)
 	for (uint32_t i = 0; i < motorCount; i++) {
 //		motor[i] = motorOutputMin;
 //		printf("motor[%d]: %d\r\n", i, motor[i]);
-		motor[i] = rcCommand[THROTTLE];
+//		motor[i] = rcCommand[THROTTLE];
+//		printf("motorOutputMin: %u\r\n", motorOutputMin);				// motorOutputMin = minthrottle = 1070
+//		printf("motorOutputRange: %f\r\n", motorOutputRange);			// motorOutputRange = motorOutputMax - motorOutputMin = 2000 - 1070 = 930
+//		printf("motorMix[%d]: %f\r\n", i, motorMix[i]);					// see motor output notes
+
+		/*
+		 * THREE scenarios when testing on the bench WITHOUT props on:
+		 * Case 1: When throttle stick at the lowest position, the throttle value is close to 0.00 (0.00xxx or something)
+		 * Case 2: When moving throttle stick up a little bit or any position other than the lowest one, the throttle value
+		 *         will be gradually increasing. The reason for this is because the PID controller is trying to compensate
+		 *         the random vibrations coming from the motors, since the motors don't have props on, the PID controller doesn't
+		 *		   have any effect, therefore, it (PID controller) keeps trying harder and harder (i.e. drive the motors spin faster and faster) to 
+		 *         feedback to the controller to get rid of the vibration, which results in the motor spinning faster and faster.
+		 */
+//		printf("throttle: %f\r\n", throttle);
+		motor[i] = motorOutputMin + lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle)));
 	}
 	
 	/** +---------------------------------------------------------------------------------------------------+

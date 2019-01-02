@@ -314,6 +314,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
     static float previousRateError[2];
     const float tpaFactor = getThrottlePIDAttenuation();
     const float motorMixRange = getMotorMixRange();
+//	printf("motorMixRange2: %f\r\n", motorMixRange);
 
 //#if defined(TESTING_TPA)    
 //    /* Throttle PID Attenuation (in %): 88%            Throttle value: 1617            TPA threshold: 1350 */
@@ -322,6 +323,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
     
 	/* Dynamic Ki component to gradually scale back integration when above windup point */
     const float dynKi = MIN((1.0f - motorMixRange) * ITermWindupPointInv, 1.0f);
+//	printf("dynKi: %f\r\n", dynKi);
 	
 	/*
 	 * previous_error = 0
@@ -424,6 +426,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 		 * Anti-WINDUP process (checking motorMixRange value): Only increase I-term if motors' outputs are not saturated
 		 * 													   to prevent I-term windup
 		 */
+//		printf("motorMixRange: %f\r\n", motorMixRange);
 		if (motorMixRange < 1.0f) {
 			axisPID_I[axis] += Ki[axis] * errorRate * dT * dynKi * itermAccelerator;
 		}
