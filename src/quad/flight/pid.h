@@ -7,6 +7,7 @@
 #define MAX_PID_PROCESS_DENOM			16
 #define PIDSUM_LIMIT					0.5f
 #define PIDSUM_LIMIT_YAW				0.5f
+#define PID_MIXER_SCALING				1000.0f
 
 /* 
  * Scaling factors for Pids for better tunable range in configurator 2DOF PID controller. 
@@ -17,6 +18,7 @@
 #define DTERM_SCALE						0.000529f
 
 extern uint32_t targetPidLooptime;
+extern float axisPID_P[3], axisPID_I[3], axisPID_D[3];
 
 typedef enum {
 	PIDROLL,				// 0

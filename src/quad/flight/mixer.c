@@ -187,24 +187,53 @@ void mixTable(pidProfile_t *pidProfile)
      * throttle is between 0.0 and 1.0
      */
 	throttle = constrainf(throttle / currentThrottleInputRange, 0.0f, 1.0f);
-//	printf("throttle after constrainf: %f, %s, %d\r\n", throttle, __FUNCTION__, __LINE__);
+//	printf("throttle after constrainf: %f\r\n", throttle);
 	
 	const float motorOutputRange = motorOutputMax - motorOutputMin;		// motorOutputMax - motorOutputMin = 2000 - 1070 = 930
 
 	/* +----------------------------------------------------------------------------------------------------+ */
 	/* +---------------------------------- Calculate and limit the PIDsum ----------------------------------+ */
 	/* +----------------------------------------------------------------------------------------------------+ */
+	float scaledAxisPIDf[3];
 	
+//	printf("ROLLSum: %f\r\n", axisPID_P[FD_ROLL] + axisPID_I[FD_ROLL] + axisPID_D[FD_ROLL]);
+//	printf("PITCHSum: %f\r\n", axisPID_P[FD_PITCH] + axisPID_I[FD_PITCH] + axisPID_D[FD_PITCH]);
+//	printf("YAWSum: %f\r\n", axisPID_P[FD_YAW] + axisPID_I[FD_YAW] + axisPID_D[FD_YAW]);
+	
+	/* pidProfile->pidSumLimit = 0.5f */
+	scaledAxisPIDf[FD_ROLL] = 
+		constrainf((axisPID_P[FD_ROLL] + axisPID_I[FD_ROLL] + axisPID_D[FD_ROLL]) / PID_MIXER_SCALING, -pidProfile->pidSumLimit, pidProfile->pidSumLimit);
+	
+	scaledAxisPIDf[FD_PITCH] = 
+		constrainf((axisPID_P[FD_PITCH] + axisPID_I[FD_PITCH] + axisPID_D[FD_PITCH]) / PID_MIXER_SCALING, -pidProfile->pidSumLimit, pidProfile->pidSumLimit);
+		
+	scaledAxisPIDf[FD_YAW] = 
+		constrainf((axisPID_P[FD_YAW] + axisPID_I[FD_YAW] + axisPID_D[FD_YAW]) / PID_MIXER_SCALING, -pidProfile->pidSumLimit, pidProfile->pidSumLimitYaw);
 	
 	/* +----------------------------------------------------------------------------------------------------+ */
 	/* +---------------------------------- Calculate voltage compensation ----------------------------------+ */
 	/* +----------------------------------------------------------------------------------------------------+ */
-	
+//	const float vbatCompensationFactor = (BatteryConfig && pidProfile->vbatPidCompensation) ? calculateVbatPidCompensation() : 1.0f;
+	const float vbatCompensationFactor = 1.0f;
 	
 	/* +----------------------------------------------------------------------------------------------------+ */
 	/* +-------------------------------- Find Roll/Pitch/Yaw desired outputs -------------------------------+ */
 	/* +----------------------------------------------------------------------------------------------------+ */
+	float motorMix[MAX_SUPPORTED_MOTORS];
+	float motorMixMax = 0, motorMixMin = 0;
 	
+	/* mixerConfig->yaw_motor_direction = 1
+	 *     thr   rol    pit    yaw
+	 * 	{ 1.0f, -1.0f, 1.0f, -1.0f },				// REAR_RIGHT MOTOR 	(MOTOR 1)
+	 *  { 1.0f, -1.0f, -1.0f, 1.0f },				// FRONT_RIGHT MOTOR	(MOTOR 2)
+	 *  { 1.0f, 1.0f, 1.0f, 1.0f },					// REAR_LEFT MOTOR		(MOTOR 3)
+	 *  { 1.0f, 1.0f, -1.0f, -1.0f },				// FRONT_LEFT MOTOR		(MOTOR 4)
+	 */
+	for (int i = 0; i < motorCount; i++) {
+//		printf("currentMixer[%d]: [%f, %f, %f, %f]\r\n", i, currentMixer[i].throttle, currentMixer[i].roll, currentMixer[i].pitch, currentMixer[i].yaw);
+		motorMix[i] = scaledAxisPIDf[PITCH] * currentMixer[i].pitch + scaledAxisPIDf[ROLL] * currentMixer[i].roll + 
+					  scaledAxisPIDf[YAW] * currentMixer[i].yaw * (-mixerConfig->yaw_motor_direction);
+	}
 	
 	/* TODO: DELETE later, for motor calibration of F450 quadcopter */
 //	for (uint32_t i = 0; i < motorCount; i++) {

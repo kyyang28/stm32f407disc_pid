@@ -394,8 +394,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 //		printf("Kp[%d]: %f\r\n", axis, Kp[axis]);
 //		printf("tpaFactor: %f\r\n", tpaFactor);
 		axisPID_P[axis] = Kp[axis] * errorRate * tpaFactor;
-//		if (axis == 0)
-//			printf("P[%d]: %f\r\n", axis, axisPID_P[axis]);
+//		printf("P-term[%d]: %f\r\n", axis, axisPID_P[axis]);
 	
 		if (axis == FD_YAW) {
 //			printf("P1: %f\r\n", axisPID_P[axis]);
@@ -460,9 +459,12 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 			 */
 			axisPID_D[axis] = Kd[axis] * delta * tpaFactor;
 			
+//			printf("D-termPreFilter[%d]: %f\r\n", axis, axisPID_D[axis]);
+			
 			/* Apply D-term filters */
 			axisPID_D[axis] = dtermNotchFilterApplyFn(dtermFilterNotch[axis], axisPID_D[axis]);
 			axisPID_D[axis] = dtermLpfApplyFn(dtermFilterLpf[axis], axisPID_D[axis]);
+//			printf("D-termPostFilter[%d]: %f\r\n", axis, axisPID_D[axis]);
 		}
 		
 		/* Disable PID control at zero throttle */
