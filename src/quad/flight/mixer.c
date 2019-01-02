@@ -256,6 +256,11 @@ void mixTable(pidProfile_t *pidProfile)
 	
 //	printf("(min,max): (%f,%f)\r\n", motorMixMin, motorMixMax);
 	/* Calculate the motorMixRange to check if motors are saturated or not */
+	/* motorMixRange ranges from 0.00xxx to 2.00000
+	 * 2.0000 when moving roll, pitch stick ONLY to the top-left, top-right, bottom-left and bottom-right corners, 
+	 * 1.0000 when moving throttle, yaw stick ONLY to the top-left, top-right, bottom-left and bottom-right corners
+	 * 0.00xx when roll, pitch stick at the centre position, yaw at the centre position and throttle at the lowest position.
+	 */
 	motorMixRange = motorMixMax - motorMixMin;
 //	printf("motorMixRange: %f\r\n", motorMixRange);
 	
@@ -310,6 +315,7 @@ void mixTable(pidProfile_t *pidProfile)
 		 *         the random vibrations coming from the motors, since the motors don't have props on, the PID controller doesn't
 		 *		   have any effect, therefore, it (PID controller) keeps trying harder and harder (i.e. drive the motors spin faster and faster) to 
 		 *         feedback to the controller to get rid of the vibration, which results in the motor spinning faster and faster.
+		 * Case 3: The maximum throttle value while moving Throttle, Roll, Pitch and Yaw sticks is 0.5 
 		 */
 //		printf("throttle: %f\r\n", throttle);
 		motor[i] = motorOutputMin + lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle)));
