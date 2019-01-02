@@ -325,8 +325,7 @@ void mixTable(pidProfile_t *pidProfile)
 //		printf("lrintf(range*(thr+mix[%d])): %ld\r\n", i, lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle))));
 		/* lrintf rounds the floating-point number to an integer value according to the current round mode */
 		motor[i] = motorOutputMin + lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle)));	// motorOutputMin = 1070 (minthrottle)
-		printf("motorNew[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c
-		
+
 		/* DSHOT works exactly opposite in lower 3D section */
 		if (mixerInversion) {
 			motor[i] = motorOutputMin + (motorOutputMax - motor[i]);
@@ -355,7 +354,12 @@ void mixTable(pidProfile_t *pidProfile)
 		if (feature(FEATURE_MOTOR_STOP) && CHECK_ARMING_FLAG(ARMED) && !isAirModeActive()) {
 			if (rcData[THROTTLE] < rxConfig->mincheck) {
 				motor[i] = disarmMotorOutput;		// disarmMotorOutput = mincommand = 1000
+//				printf("motorStopped[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are mincommand value (1000), motors are stopped
 			}
+		}
+
+		if (CHECK_ARMING_FLAG(ARMED)) {
+			printf("motorARMed[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c				
 		}
 	}
 	
@@ -372,6 +376,7 @@ void mixTable(pidProfile_t *pidProfile)
 //		printf("disarmMotorOutput: %u\r\n", disarmMotorOutput);
 		for (i = 0; i < motorCount; i++) {
 			motor[i] = disarmMotorOutput;		// disarmMotorOutput = MotorConfig()->mincommand = 1000
+			printf("motorDISARMed[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c		
 		}
 	}
 	
