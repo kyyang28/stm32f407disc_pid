@@ -141,7 +141,7 @@ void initEscEndpoints(void)
 #endif
 	{
 		disarmMotorOutput = motorConfig->mincommand;				// motorConfig->mincommand = 1000
-		motorOutputLow = motorConfig->minthrottle;					// motorConfig->minthrottle = 1070
+		motorOutputLow = motorConfig->minthrottle;					// motorConfig->minthrottle = 1045 or 1070
 		motorOutputHigh = motorConfig->maxthrottle;					// motorConfig->maxthrottle = 2000
 //		printf("disarmMotorOutput: %u\r\n", disarmMotorOutput);		// disarmMotorOutput = 1000
 //		printf("motorOutputLow: %u\r\n", motorOutputLow);			// motorOutputLow = 1070
@@ -165,6 +165,7 @@ void mixTable(pidProfile_t *pidProfile)
 	float throttle, currentThrottleInputRange = 0;
 	uint16_t motorOutputMin, motorOutputMax;
 	static uint16_t throttlePrevious = 0;			// store the last throttle direction for deadband transitions
+	bool mixerInversion = false;					// ONLY use this variable in 3D flight and DSHOT motor protocols
 
 	/* +-------------------------------------------------------------------------------------------------+ */
 	/* +------------------ Find Min and Max throttle values based on current condition ------------------+ */
@@ -318,7 +319,44 @@ void mixTable(pidProfile_t *pidProfile)
 		 * Case 3: The maximum throttle value while moving Throttle, Roll, Pitch and Yaw sticks is 0.5 
 		 */
 //		printf("throttle: %f\r\n", throttle);
-		motor[i] = motorOutputMin + lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle)));
+//		printf("currentMixer[%d].throttle: %f\r\n", i, currentMixer[i].throttle);		// all 1.0f
+//		printf("thr+mix[%d]: %f\r\n", i, motorMix[i] + (throttle * currentMixer[i].throttle));
+//		printf("range*(thr+mix[%d]): %f\r\n", i, motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle)));
+//		printf("lrintf(range*(thr+mix[%d])): %ld\r\n", i, lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle))));
+		/* lrintf rounds the floating-point number to an integer value according to the current round mode */
+		motor[i] = motorOutputMin + lrintf(motorOutputRange * (motorMix[i] + (throttle * currentMixer[i].throttle)));	// motorOutputMin = 1070 (minthrottle)
+		printf("motorNew[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c
+		
+		/* DSHOT works exactly opposite in lower 3D section */
+		if (mixerInversion) {
+			motor[i] = motorOutputMin + (motorOutputMax - motor[i]);
+		}
+
+		/* TODO: Implement failsafe feature later */
+//		if (failsafeIsActive()) {
+//			if (isMotorProtocolDshot()) {
+//				/* Prevent getting into special reserved range */
+//				motor[i] = (motor[i] < motorOutputMin) ? disarmMotorOutput : motor[i];
+//			}
+//			
+//			motor[i] = constrain(motor[i], disarmMotorOutput, motorOutputMax);
+//		} else
+		{
+			/*
+			 * motorOutputMin = minthrottle = 1045 in current case.
+			 * motorOutputMax = maxthrottle = 2000
+			 *
+			 * minthrottle(1045) <= motor[i] <= 2000
+			 */
+			motor[i] = constrain(motor[i], motorOutputMin, motorOutputMax);
+		}
+		
+		/* Motor stop handler */
+		if (feature(FEATURE_MOTOR_STOP) && CHECK_ARMING_FLAG(ARMED) && !isAirModeActive()) {
+			if (rcData[THROTTLE] < rxConfig->mincheck) {
+				motor[i] = disarmMotorOutput;		// disarmMotorOutput = mincommand = 1000
+			}
+		}
 	}
 	
 	/** +---------------------------------------------------------------------------------------------------+

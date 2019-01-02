@@ -248,7 +248,7 @@ void ResetMixerConfig(mixerConfig_t *mixerConfig)
 
 void ResetMotorConfig(motorConfig_t *motorConfig)
 {
-	motorConfig->minthrottle = 1070;
+	motorConfig->minthrottle = 1045;
 	motorConfig->motorPwmRate = BRUSHLESS_MOTORS_PWM_RATE;		// BRUSHLESS_MOTORS_PWM_RATE = 480 (could be 1K, 2K, 4K, and 8K depending on the PID looptime)
 	motorConfig->motorPwmProtocol = PWM_TYPE_STANDARD;			// could be starting with PWM_TYPE_ONESHOT125
 	motorConfig->maxthrottle = 2000;
