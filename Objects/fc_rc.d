@@ -59,6 +59,7 @@
 .\objects\fc_rc.o: .\src\quad\drivers\sound_beeper.h
 .\objects\fc_rc.o: .\src\quad\drivers\serial.h
 .\objects\fc_rc.o: .\src\quad\sensors\gyro.h
+.\objects\fc_rc.o: .\src\quad\sensors\boardAlignment.h
 .\objects\fc_rc.o: .\src\quad\drivers\rx_pwm.h
 .\objects\fc_rc.o: .\src\quad\build\platform.h
 .\objects\fc_rc.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h

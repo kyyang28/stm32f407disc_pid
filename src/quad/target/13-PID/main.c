@@ -8,7 +8,7 @@
 #include "led.h"
 #include "sound_beeper.h"
 #include "config.h"
-#include "configMaster.h"
+#include "configMaster.h"	// including gyro.h, acceleration.h, boardAlignment.h
 #include "config_eeprom.h"
 #include "exti.h"
 #include "button.h"
@@ -25,8 +25,9 @@
 #include "bus_spi.h"
 #include "initialisation.h"
 #include "accgyro_spi_mpu9250.h"
-#include "gyro.h"
-#include "acceleration.h"
+//#include "gyro.h"
+//#include "acceleration.h"
+//#include "boardAlignment.h"
 #include "maths.h"
 
 //#include "mpu6050.h"
@@ -393,46 +394,40 @@ int main(void)
 //	IOConfigGPIO(mpuSpi9250CsPin, SPI_IO_CS_CFG);
 //	printf("%s, %d\r\n", __FUNCTION__, __LINE__);		// ok
 
-#if 0
-	short gyro_x, gyro_y, gyro_z;
-	short acc_x, acc_y, acc_z;
-	float temp = 0.0;
-	float roll, pitch, yaw;				// Euler angles
-#endif
 	
-#if 0
-	uint8_t res = MPU_Init();
-	printf("MPU_Init result: %u, %s, %d\r\n", res, __FUNCTION__, __LINE__);
-#endif
-
-#if 0
-	while (mpu_dmp_init()) {
-		printf("MPU6050 initialisation error!, %s, %d\r\n", __FUNCTION__, __LINE__);
-		delay(200);
-	}
+//	short gyro_x, gyro_y, gyro_z;
+//	short acc_x, acc_y, acc_z;
+//	float temp = 0.0;
+//	float roll, pitch, yaw;				// Euler angles
 	
-	printf("MPU6050 initialisation is done using mpu_dmp_init @%s, %d\r\n", __FUNCTION__, __LINE__);
-#endif
+//	uint8_t res = MPU_Init();
+//	printf("MPU_Init result: %u, %s, %d\r\n", res, __FUNCTION__, __LINE__);
 
-#if 0
-	if (!MPU6050_Soft_I2C_Init()) {
-		printf("MPU6050 initialisation is done @%s, %d\r\n", __FUNCTION__, __LINE__);
-	}else {
-		printf("Failed to initialise MPU6050 @%s, %d\r\n", __FUNCTION__, __LINE__);
-		return -1;
-	}
-#endif
+//	while (mpu_dmp_init()) {
+//		printf("MPU6050 initialisation error!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//		delay(200);
+//	}
+//	
+//	printf("MPU6050 initialisation is done using mpu_dmp_init @%s, %d\r\n", __FUNCTION__, __LINE__);
 
-#if 0
-	if (!MPU9250_Soft_I2C_Init()) {
-		printf("MPU9250 initialisation is done @%s, %d\r\n", __FUNCTION__, __LINE__);
-	}else {
-		printf("Failed to initialise MPU9250 @%s, %d\r\n", __FUNCTION__, __LINE__);
-		return -1;
-	}
-#endif
+//	if (!MPU6050_Soft_I2C_Init()) {
+//		printf("MPU6050 initialisation is done @%s, %d\r\n", __FUNCTION__, __LINE__);
+//	}else {
+//		printf("Failed to initialise MPU6050 @%s, %d\r\n", __FUNCTION__, __LINE__);
+//		return -1;
+//	}
+
+//	if (!MPU9250_Soft_I2C_Init()) {
+//		printf("MPU9250 initialisation is done @%s, %d\r\n", __FUNCTION__, __LINE__);
+//	}else {
+//		printf("Failed to initialise MPU9250 @%s, %d\r\n", __FUNCTION__, __LINE__);
+//		return -1;
+//	}
 	
 //	bool flag = false;
+
+	/* board alignment */
+	initBoardAlignment(BoardAlignment());
 
 #if defined(USE_IMU)			// USE_IMU is defined in target.h
 	if (!sensorsAutodetect(GyroConfig(), AccelerometerConfig())) {

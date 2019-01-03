@@ -52,6 +52,7 @@
 .\objects\config.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\config.o: .\src\quad\sensors\acceleration.h
 .\objects\config.o: .\src\quad\sensors\sensors.h
+.\objects\config.o: .\src\quad\sensors\boardAlignment.h
 .\objects\config.o: .\src\quad\drivers\rx_pwm.h
 .\objects\config.o: .\src\quad\rx\rx.h
 .\objects\config.o: .\src\quad\fc\rc_controls.h

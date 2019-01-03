@@ -58,6 +58,7 @@
 .\objects\pid.o: .\src\quad\drivers\sound_beeper.h
 .\objects\pid.o: .\src\quad\drivers\serial.h
 .\objects\pid.o: .\src\quad\sensors\gyro.h
+.\objects\pid.o: .\src\quad\sensors\boardAlignment.h
 .\objects\pid.o: .\src\quad\drivers\rx_pwm.h
 .\objects\pid.o: .\src\quad\rx\rx.h
 .\objects\pid.o: .\src\quad\fc\rc_controls.h

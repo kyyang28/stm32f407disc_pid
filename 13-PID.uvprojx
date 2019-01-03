@@ -705,6 +705,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\quad\sensors\initialisation.c</FilePath>
             </File>
+            <File>
+              <FileName>boardAlignment.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\quad\sensors\boardAlignment.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

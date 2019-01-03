@@ -1,7 +1,7 @@
 
 #include <stdio.h>				// debugging purposes
 #include <string.h>
-#include "configMaster.h"		// including led.h, ledTimer.h, motors.h, sound_beeper.h, target.h, serial.h
+#include "configMaster.h"		// including led.h, ledTimer.h, motors.h, sound_beeper.h, target.h, serial.h, boardAlignment.h
 #include "config_profile.h"
 #include "config_eeprom.h"
 //#include "led.h"
@@ -15,6 +15,7 @@
 #include "feature.h"
 #include "accgyro.h"
 #include "acceleration.h"
+//#include "boardAlignment.h"
 #include "filter.h"
 #include "rc_controls.h"
 #include "rx.h"
@@ -441,6 +442,11 @@ void createDefaultConfig(master_t *config)
 	
 	config->gyroConfig.gyro_align = ALIGN_DEFAULT;
 	config->accelerometerConfig.acc_align = ALIGN_DEFAULT;
+	
+	/* Board alignment */
+	config->boardAlignment.rollDegrees = 0;
+	config->boardAlignment.pitchDegrees = 0;
+	config->boardAlignment.yawDegrees = 0;
 	
 	/* This threshold means how much average gyro reading could differ before re-calibration is triggered */
 	config->gyroConfig.gyroMovementCalibrationThreshold = 48;		// moron_threshold of CLI, range from 0 to 200

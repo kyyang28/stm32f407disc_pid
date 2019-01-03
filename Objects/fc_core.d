@@ -69,6 +69,7 @@
 .\objects\fc_core.o: .\src\quad\config\configMaster.h
 .\objects\fc_core.o: .\src\quad\drivers\sound_beeper.h
 .\objects\fc_core.o: .\src\quad\drivers\serial.h
+.\objects\fc_core.o: .\src\quad\sensors\boardAlignment.h
 .\objects\fc_core.o: .\src\quad\drivers\rx_pwm.h
 .\objects\fc_core.o: .\src\quad\config\config_profile.h
 .\objects\fc_core.o: .\src\quad\fc\config.h

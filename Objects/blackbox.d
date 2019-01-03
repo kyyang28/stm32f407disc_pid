@@ -51,6 +51,7 @@
 .\objects\blackbox.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\blackbox.o: .\src\quad\sensors\acceleration.h
 .\objects\blackbox.o: .\src\quad\sensors\sensors.h
+.\objects\blackbox.o: .\src\quad\sensors\boardAlignment.h
 .\objects\blackbox.o: .\src\quad\drivers\rx_pwm.h
 .\objects\blackbox.o: .\src\quad\rx\rx.h
 .\objects\blackbox.o: .\src\quad\fc\rc_controls.h

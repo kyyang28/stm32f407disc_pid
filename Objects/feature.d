@@ -50,6 +50,7 @@
 .\objects\feature.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\feature.o: .\src\quad\sensors\acceleration.h
 .\objects\feature.o: .\src\quad\sensors\sensors.h
+.\objects\feature.o: .\src\quad\sensors\boardAlignment.h
 .\objects\feature.o: .\src\quad\drivers\rx_pwm.h
 .\objects\feature.o: .\src\quad\rx\rx.h
 .\objects\feature.o: .\src\quad\fc\rc_controls.h

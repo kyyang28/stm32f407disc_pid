@@ -7,6 +7,7 @@
 #include "serial.h"
 #include "gyro.h"
 #include "acceleration.h"
+#include "boardAlignment.h"
 #include "rx_pwm.h"
 #include "rx.h"
 #include "rc_controls.h"
@@ -37,6 +38,9 @@ typedef struct master_s {
 	/* IMU related configuration */
 	gyroConfig_t gyroConfig;
 	accelerometerConfig_t accelerometerConfig;
+	
+	/* Board alignment configuration */
+	boardAlignment_t boardAlignment;
 	
     /* PID related configuration */
 	pidConfig_t pidConfig;
@@ -112,5 +116,6 @@ extern controlRateConfig_t *currentControlRateProfile;
 #define SdcardConfig(x)						(&masterConfig.sdcardConfig)
 #define BlackboxConfig(x)					(&masterConfig.blackboxConfig)
 #define PidConfig(x)                        (&masterConfig.pidConfig)
+#define BoardAlignment(x)					(&masterConfig.boardAlignment)
 
 #endif	// __CONFIGMASTER_H
