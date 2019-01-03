@@ -94,8 +94,8 @@ static void resetPidProfile(pidProfile_t *pidProfile)
 
 static void resetControlRateConfig(controlRateConfig_t *controlRateConfig)
 {
-	controlRateConfig->rcRate8 = 100;
-	controlRateConfig->rcYawRate8 = 100;
+	controlRateConfig->rcRate8 = 100;					// 100 / 100.0f = 1.0f
+	controlRateConfig->rcYawRate8 = 100;				// 100 / 100.0f = 1.0f
 //	controlRateConfig->rcExpo8 = 20;					// Just for testing
 	controlRateConfig->rcExpo8 = 0;
 	controlRateConfig->thrMid8 = 50;
@@ -106,7 +106,7 @@ static void resetControlRateConfig(controlRateConfig_t *controlRateConfig)
 	controlRateConfig->tpa_breakpoint = 1650;
 	
 	for (uint8_t axis = 0; axis < FLIGHT_DYNAMICS_INDEX_COUNT; axis++) {
-		controlRateConfig->rates[axis] = 70;
+		controlRateConfig->rates[axis] = 70;			// 70 / 100 = 0.7f for ROLL, PITCH, YAW axis
 	}
 }
 
@@ -248,7 +248,7 @@ void ResetMixerConfig(mixerConfig_t *mixerConfig)
 
 void ResetMotorConfig(motorConfig_t *motorConfig)
 {
-	motorConfig->minthrottle = 1055;
+	motorConfig->minthrottle = 1050;
 	motorConfig->motorPwmRate = BRUSHLESS_MOTORS_PWM_RATE;		// BRUSHLESS_MOTORS_PWM_RATE = 480 (could be 1K, 2K, 4K, and 8K depending on the PID looptime)
 	motorConfig->motorPwmProtocol = PWM_TYPE_STANDARD;			// could be starting with PWM_TYPE_ONESHOT125
 	motorConfig->maxthrottle = 2000;
@@ -426,7 +426,8 @@ void createDefaultConfig(master_t *config)
 	config->pidConfig.pid_process_denom = 1;
 #elif defined(USE_GYRO_SPI_MPU6000) || defined(USE_GYRO_SPI_MPU6500) || defined(USE_GYRO_SPI_MPU9250)
 	config->gyroConfig.gyro_sync_denom = 1;
-    config->pidConfig.pid_process_denom = 4;
+    config->pidConfig.pid_process_denom = 2;				// for F450 normal quad
+//    config->pidConfig.pid_process_denom = 4;				// for F210 racing quad
 #else
 	config->gyroConfig.gyro_sync_denom = 4;
 	config->pidConfig.pid_process_denom = 2;

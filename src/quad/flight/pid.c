@@ -429,6 +429,7 @@ void pidController(const pidProfile_t *pidProfile, const rollAndPitchTrims_t *an
 //		printf("motorMixRange: %f\r\n", motorMixRange);
 		if (motorMixRange < 1.0f) {
 			axisPID_I[axis] += Ki[axis] * errorRate * dT * dynKi * itermAccelerator;
+//			printf("I-term[%d]: %f\r\n", axis, axisPID_I[axis]);
 		}
 
 		/* +--------------------------------------------------------------------------------------------------+ */

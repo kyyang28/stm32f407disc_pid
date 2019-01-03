@@ -6,6 +6,8 @@
 #include "maths.h"
 #include "runtime_config.h"
 
+//#define MOTOR_CALIBRATION
+
 static uint8_t motorCount;
 static float motorMixRange;
 
@@ -161,6 +163,7 @@ void mixerInit(mixerMode_e mixerMode, motorMixer_t *initialCustomMixers)
 
 void mixTable(pidProfile_t *pidProfile)
 {
+#if !defined(MOTOR_CALIBRATION)
 	/* Scale roll/pitch/yaw uniformly to fit within throttle range */
 	float throttle, currentThrottleInputRange = 0;
 	uint16_t motorOutputMin, motorOutputMax;
@@ -358,9 +361,11 @@ void mixTable(pidProfile_t *pidProfile)
 			}
 		}
 
+#if 0
 		if (CHECK_ARMING_FLAG(ARMED)) {
 			printf("motorARMed[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c				
 		}
+#endif
 	}
 	
 	/** +---------------------------------------------------------------------------------------------------+
@@ -376,22 +381,32 @@ void mixTable(pidProfile_t *pidProfile)
 //		printf("disarmMotorOutput: %u\r\n", disarmMotorOutput);
 		for (i = 0; i < motorCount; i++) {
 			motor[i] = disarmMotorOutput;		// disarmMotorOutput = MotorConfig()->mincommand = 1000
-			printf("motorDISARMed[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c		
+//			printf("motorDISARMed[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c		
 		}
 	}
-	
-//	if (IS_RC_MODE_ACTIVE(BOXARM)) {
-//		/* TODO: modify this when finishing PID controllers */
-//		for (uint32_t i = 0; i < motorCount; i++) {
-//	//		motor[i] = motorOutputMin;
-//	//		printf("motor[%d]: %d\r\n", i, motor[i]);
-//			motor[i] = rcCommand[THROTTLE];
-//		}
-//	} else {
-//		for (uint32_t i = 0; i < motorCount; i++) {
-//	//		motor[i] = motorOutputMin;
-//	//		printf("motor[%d]: %d\r\n", i, motor[i]);
-//			motor[i] = 1000;
-//		}
-//	}
+#else	
+
+	for (uint32_t i = 0; i < motorCount; i++) {
+//		motor[i] = motorOutputMin;
+//		printf("motor[%d]: %d\r\n", i, motor[i]);
+		motor[i] = rcCommand[THROTTLE];
+	}
+		
+#if 0
+	if (IS_RC_MODE_ACTIVE(BOXARM)) {
+		/* TODO: modify this when finishing PID controllers */
+		for (uint32_t i = 0; i < motorCount; i++) {
+	//		motor[i] = motorOutputMin;
+	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+			motor[i] = rcCommand[THROTTLE];
+		}
+	} else {
+		for (uint32_t i = 0; i < motorCount; i++) {
+	//		motor[i] = motorOutputMin;
+	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+			motor[i] = 1000;
+		}
+	}
+#endif	
+#endif
 }
