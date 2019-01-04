@@ -446,7 +446,7 @@ void createDefaultConfig(master_t *config)
 	/* Board alignment */
 	config->boardAlignment.rollDegrees = 0;
 	config->boardAlignment.pitchDegrees = 0;
-	config->boardAlignment.yawDegrees = 0;
+	config->boardAlignment.yawDegrees = 90;
 	
 	/* This threshold means how much average gyro reading could differ before re-calibration is triggered */
 	config->gyroConfig.gyroMovementCalibrationThreshold = 48;		// moron_threshold of CLI, range from 0 to 200

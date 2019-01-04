@@ -37,7 +37,6 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .staticPriority = TASK_PRIORITY_REALTIME,           // TASK_PRIORITY_REALTIME = 6
     },
 
-#if 1
     [TASK_RX] = {
         .taskName = "RX",
         .checkFunc = rxUpdateCheck,
@@ -46,7 +45,6 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .desiredPeriod = TASK_PERIOD_HZ(50),            // 1000000 / 50 = 20000 us = 20 ms
         .staticPriority = TASK_PRIORITY_HIGH,
     },
-#endif
     
 #ifdef TASKS_LEDS_TESTING
     [TASK_LED3] = {

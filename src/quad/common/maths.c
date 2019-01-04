@@ -1,4 +1,6 @@
 
+#include <stdio.h>
+
 #include "maths.h"
 
 /* +-------------------------- Standard Deviation helper functions --------------------------+ */
@@ -37,4 +39,19 @@ int scaleRange(int x, int srcMin, int srcMax, int destMin, int destMax)
 	long int a = ((long int) destMax - (long int) destMin) * ((long int) x - (long int) srcMin);
 	long int b = (long int) srcMax - (long int) srcMin;
 	return ((a / b) - (destMax - destMin)) + destMax;
+}
+
+float degreesToRadians(int16_t degrees)
+{
+	return degrees * RAD;			// RAD = ((M_PIf) / 180.0f), M_PIf = 3.14159265358979323846f
+}
+
+void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
+{
+//	printf("rollRad: %f\r\n", delta->angles.roll);
+//	printf("pitchRad: %f\r\n", delta->angles.pitch);
+//	printf("yawRad: %f\r\n", delta->angles.yaw);
+	
+//	float cosx, sinx, cosy, siny, cosz, sinz;
+//	float coszcosx
 }

@@ -2,11 +2,12 @@
 #define __MATHS_H
 
 #include <math.h>
+#include <stdint.h>
 
 // Use floating point M_PI instead explicitly.
-#define M_PIf       		3.14159265358979323846f
+#define M_PIf       		(3.14159265358979323846f)
 
-#define RAD    				(M_PIf / 180.0f)
+#define RAD    				((M_PIf) / 180.0f)
 
 #define MIN(a, b) 			((a) < (b) ? (a) : (b))
 #define MAX(a, b) 			((a) > (b) ? (a) : (b))
@@ -14,17 +15,21 @@
 
 #define POWER3(x)			((x) * (x) * (x))
 
+typedef struct fp_angles {
+	float roll;
+	float pitch;
+	float yaw;
+}fp_angles_def;
+
+typedef union {
+	float raw[3];
+	fp_angles_def angles;
+}fp_angles_t;
+
 typedef struct stdev_s {
 	float m_oldM, m_newM, m_oldS, m_newS;
 	int m_n;
 }stdev_t;
-
-void devClear(stdev_t *dev);
-void devPush(stdev_t *dev, float x);
-float devVariance(stdev_t *dev);
-float devStandardDeviation(stdev_t *dev);
-
-int scaleRange(int x, int srcMin, int srcMax, int destMin, int destMax);
 
 static inline int constrain(int amt, int low, int high)
 {
@@ -45,5 +50,15 @@ static inline float constrainf(float amt, float low, float high)
 	else
 		return amt;
 }
+
+void devClear(stdev_t *dev);
+void devPush(stdev_t *dev, float x);
+float devVariance(stdev_t *dev);
+float devStandardDeviation(stdev_t *dev);
+
+int scaleRange(int x, int srcMin, int srcMax, int destMin, int destMax);
+
+float degreesToRadians(int16_t degrees);
+void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3]);
 
 #endif	// __MATHS_H

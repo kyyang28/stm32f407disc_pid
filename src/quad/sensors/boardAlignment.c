@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include <stdbool.h>
+#include "maths.h"
 #include "boardAlignment.h"
 
 static bool isStandardBoardAlignment = true;			// board orientation correction
@@ -25,5 +26,11 @@ void initBoardAlignment(const boardAlignment_t *boardAlignment)
 	
 	isStandardBoardAlignment = false;
 	
-	printf("isStandardBoardAlignment: %d\r\n", isStandardBoardAlignment);
+//	printf("isStandardBoardAlignment: %d\r\n", isStandardBoardAlignment);
+	fp_angles_t rotationAngles;
+	rotationAngles.angles.roll = degreesToRadians(boardAlignment->rollDegrees);
+	rotationAngles.angles.pitch = degreesToRadians(boardAlignment->pitchDegrees);
+	rotationAngles.angles.yaw = degreesToRadians(boardAlignment->yawDegrees);
+	
+	buildRotationMatrix(&rotationAngles, boardRotation);
 }
