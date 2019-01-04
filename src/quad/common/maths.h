@@ -4,6 +4,12 @@
 #include <math.h>
 #include <stdint.h>
 
+/* comment these two lines to use glibc sinf and cosf.
+ * uncomment these to use fast and very fast sin and cos approximations
+ */
+#define FAST_MATH							// approximation under order 9
+#define VERY_FAST_MATH						// approximation under order 7
+
 // Use floating point M_PI instead explicitly.
 #define M_PIf       		(3.14159265358979323846f)
 
@@ -58,7 +64,21 @@ float devStandardDeviation(stdev_t *dev);
 
 int scaleRange(int x, int srcMin, int srcMax, int destMin, int destMax);
 
+#if defined(FAST_MATH) || defined(VERY_FAST_MATH)
+float sin_approx(float x);
+float cos_approx(float x);
+float atan2_approx(float y, float x);
+float acos_approx(float x);
+#else
+#define sin_approx(x)				sinf(x)
+#define cos_approx(x)				cosf(x)
+#define atan2_approx(y,x)			atan2f(y,x)
+#define acos_approx(x)				acosf(x)
+#define tan_approx(x)				tanf(x)
+#endif
+
 float degreesToRadians(int16_t degrees);
 void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3]);
+
 
 #endif	// __MATHS_H

@@ -3,6 +3,23 @@
 
 #include "maths.h"
 
+#if defined(FAST_MATH) || defined(VERY_FAST_MATH)
+#if defined(VERY_FAST_MATH)
+/* VERY_FAST_MATH: order 7 approximation using Remez Algorithm
+ * Remez algorithm seeks the minimax polynomial that approximates a given function in a given interval
+ */
+#define sinPolyCoef3			
+#define sinPolyCoef5			
+#define sinPolyCoef7			
+#define sinPolyCoef9			
+#endif
+/* FAST_MATH: order 9 approximation using Remez Algorithm */
+#define sinPolyCoef3			
+#define sinPolyCoef5			
+#define sinPolyCoef7			
+#define sinPolyCoef9			
+#endif
+
 /* +-------------------------- Standard Deviation helper functions --------------------------+ */
 void devClear(stdev_t *dev)
 {
@@ -46,12 +63,66 @@ float degreesToRadians(int16_t degrees)
 	return degrees * RAD;			// RAD = ((M_PIf) / 180.0f), M_PIf = 3.14159265358979323846f
 }
 
+float sin_approx(float x)
+{
+//	printf("xsin: %f\r\n", x);
+	int32_t x_int = x;
+	
+	/* return 0.0f if x_int is approximately 5 * 360 deg = 1800 */
+	if (x_int < -32 || x_int > 32) {
+		return 0.0f;
+	}
+	
+	/* Clamp input float value x into -PI ~ +PI */
+	while (x > M_PIf) {
+		x -= (2.0f * M_PIf);
+	}
+	
+	while (x < -M_PIf) {
+		x += (2.0f * M_PIf);
+	}
+	
+	/* Clamp input float value further into -90 ~ +90 degree */
+	if (x > (0.5f * M_PIf)) {
+		x = (0.5f * M_PIf) - (x - (0.5f * M_PIf));
+	} else if (x < -(0.5f * M_PIf)) {
+		x = -(0.5f * M_PIf) - (x + (0.5f * M_PIf));
+	}
+	
+	float x2 = x * x;
+	
+	return x + x * x2 * ()
+}
+
+float cos_approx(float x)
+{
+//	printf("xcos: %f\r\n", x + (0.5f * M_PIf));
+}
+
+float atan2_approx(float y, float x)
+{
+	
+}
+
+float acos_approx(float x)
+{
+	
+}
+
 void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 {
 //	printf("rollRad: %f\r\n", delta->angles.roll);
 //	printf("pitchRad: %f\r\n", delta->angles.pitch);
 //	printf("yawRad: %f\r\n", delta->angles.yaw);
 	
-//	float cosx, sinx, cosy, siny, cosz, sinz;
-//	float coszcosx
+	float cosx, sinx, cosy, siny, cosz, sinz;
+	float coszcosx, sinzcosx, coszsinx, sinzsinx;
+	
+	/* 
+	 * delta->angles.roll = 0
+	 * delta->angles.ptich = 0
+	 * delta->angles.yaw = 90
+	 */
+	cosx = cos_approx(delta->angles.roll);
+	sinx = sin_approx(delta->angles.roll);
 }
