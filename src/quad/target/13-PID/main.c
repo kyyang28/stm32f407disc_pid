@@ -60,6 +60,7 @@
 
 #include "runtime_config.h"
 
+
 //#define GPIO_PA1_PIN				PA1
 //#define GPIO_PB8_PIN				PB8
 
@@ -150,6 +151,39 @@ PUTCHAR_PROTOTYPE
 //extern uint8_t TIM_CAPTURE_STATUS;			// status of timer input capture
 
 extern uint8_t motorControlEnable;
+
+static void comparisonBetweenFastNormalInvSqrt(void)
+{
+	const uint32_t iterations = 90000;
+	const float num = M_PIf;
+	float fastInvSqrtRes, regularInvSqrtRes;
+	
+	uint32_t fastStartTime, fastEndTime, regStartTime, regEndTime;
+	fastStartTime = micros();
+	
+	for (uint32_t i = 0; i < iterations; i++) {
+		fastInvSqrtRes = fastInvSqrt(num + i);
+	}
+	
+	fastEndTime = micros();
+	printf("fastInvSqrt(x) runs in %u us under %u iterations\r\n", (fastEndTime - fastStartTime), iterations);
+	
+	regStartTime = micros();
+	
+	for (uint32_t i = 0; i < iterations; i++) {
+		regularInvSqrtRes = 1/sqrtf(num + i);
+	}
+	
+	regEndTime = micros();
+	printf("1/sqrtf(x) runs in %u us under %u iterations\r\n", (fastEndTime - fastStartTime), iterations);
+//	printf("Input: %f, regRes: %f under %u us\r\n", num, regularInvSqrtRes, (regEndTime - regStartTime));
+
+	if ((regEndTime - regStartTime) > (fastEndTime - fastStartTime)) {
+		printf("fastInvSqrt(x) is %d times faster than 1/sqrtf(x)\r\n", (regEndTime - regStartTime) / (fastEndTime - fastStartTime));
+	} else {
+		printf("1/sqrtf(x) is %d times faster than fastInvSqrt(x)\r\n", (fastEndTime - fastStartTime) / (regEndTime - regStartTime));
+	}	
+}
 
 void main_process(void)
 {
@@ -429,6 +463,9 @@ int main(void)
 	/* board alignment */
 	initBoardAlignment(BoardAlignment());
 
+	/* Compare FastInvSqrt(x) and 1/sqrtf(x) */
+//	comparisonBetweenFastNormalInvSqrt();
+	
 #if defined(USE_IMU)			// USE_IMU is defined in target.h
 	if (!sensorsAutodetect(GyroConfig(), AccelerometerConfig())) {
 		//failureMode();

@@ -23,6 +23,7 @@
 #define sinPolyCoef9			2.600054768e-6f                        // Double:  2.600054767890361277123254766503271638682e-6
 #endif
 
+/* fastInvSqrt does the same performance as built-in sqrtf */
 float fastInvSqrt(float x)
 {
 	float x_half = 0.5f * x;
@@ -98,6 +99,7 @@ float sin_approx(float x)
 float cos_approx(float x)
 {
 //	printf("xcos: %f\r\n", x + (0.5f * M_PIf));
+	return sin_approx(x + (0.5f * M_PIf));
 }
 
 float atan2_approx(float y, float x)
