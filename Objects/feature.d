@@ -1,14 +1,14 @@
 .\objects\feature.o: src\quad\config\feature.c
 .\objects\feature.o: src\quad\config\feature.h
-.\objects\feature.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\feature.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\objects\feature.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\feature.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\feature.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\feature.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\feature.o: src\quad\config\configMaster.h
 .\objects\feature.o: .\src\quad\drivers\led.h
 .\objects\feature.o: .\src\quad\drivers\io.h
 .\objects\feature.o: .\src\quad\drivers\iodef.h
 .\objects\feature.o: .\src\quad\common\utils.h
-.\objects\feature.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\feature.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\feature.o: .\src\quad\drivers\IOTypes.h
 .\objects\feature.o: .\src\quad\drivers\io.h
 .\objects\feature.o: .\src\quad\target\13-PID\target.h
@@ -58,7 +58,7 @@
 .\objects\feature.o: .\src\quad\flight\mixer.h
 .\objects\feature.o: .\src\quad\flight\pid.h
 .\objects\feature.o: .\src\quad\common\maths.h
-.\objects\feature.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\feature.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\feature.o: .\src\quad\rx\rx.h
 .\objects\feature.o: .\src\quad\build\platform.h
 .\objects\feature.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h

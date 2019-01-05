@@ -1,8 +1,8 @@
 .\objects\io.o: src\quad\drivers\io.c
-.\objects\io.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\io.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\io.o: src\quad\drivers\io.h
-.\objects\io.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\objects\io.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\io.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\io.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\io.o: src\quad\drivers\iodef.h
 .\objects\io.o: .\src\quad\common\utils.h
 .\objects\io.o: src\quad\drivers\IOTypes.h
@@ -31,7 +31,7 @@
 .\objects\io.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\io.o: .\src\quad\drivers\bus_i2c.h
 .\objects\io.o: .\src\quad\config\feature.h
-.\objects\io.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\io.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\io.o: src\quad\drivers\io_def_generated.h
 .\objects\io.o: src\quad\drivers\iodef.h
 .\objects\io.o: src\quad\drivers\ioImpl.h

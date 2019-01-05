@@ -1,12 +1,12 @@
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\serial_uart_stm32f4xx.c
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\serial_uart_impl.h
-.\objects\serial_uart_stm32f4xx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\serial_uart_stm32f4xx.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\serial.h
-.\objects\serial_uart_stm32f4xx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\serial_uart_stm32f4xx.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\io.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\iodef.h
 .\objects\serial_uart_stm32f4xx.o: .\src\quad\common\utils.h
-.\objects\serial_uart_stm32f4xx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\serial_uart_stm32f4xx.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\IOTypes.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\io.h
 .\objects\serial_uart_stm32f4xx.o: .\src\quad\target\13-PID\target.h
@@ -33,7 +33,7 @@
 .\objects\serial_uart_stm32f4xx.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\serial_uart_stm32f4xx.o: .\src\quad\drivers\bus_i2c.h
 .\objects\serial_uart_stm32f4xx.o: .\src\quad\config\feature.h
-.\objects\serial_uart_stm32f4xx.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\serial_uart_stm32f4xx.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\io_def_generated.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\iodef.h
 .\objects\serial_uart_stm32f4xx.o: src\quad\drivers\ioImpl.h

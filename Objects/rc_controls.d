@@ -1,13 +1,13 @@
 .\objects\rc_controls.o: src\quad\fc\rc_controls.c
-.\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\rc_controls.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\rc_controls.o: src\quad\fc\rc_controls.h
-.\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\rc_controls.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rc_controls.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\rc_controls.o: .\src\quad\io\motors.h
 .\objects\rc_controls.o: .\src\quad\drivers\io.h
 .\objects\rc_controls.o: .\src\quad\drivers\iodef.h
 .\objects\rc_controls.o: .\src\quad\common\utils.h
-.\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\rc_controls.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\rc_controls.o: .\src\quad\drivers\IOTypes.h
 .\objects\rc_controls.o: .\src\quad\drivers\io.h
 .\objects\rc_controls.o: .\src\quad\target\13-PID\target.h
@@ -34,7 +34,7 @@
 .\objects\rc_controls.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\rc_controls.o: .\src\quad\drivers\bus_i2c.h
 .\objects\rc_controls.o: .\src\quad\config\feature.h
-.\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\rc_controls.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\rc_controls.o: .\src\quad\drivers\io_def_generated.h
 .\objects\rc_controls.o: .\src\quad\drivers\iodef.h
 .\objects\rc_controls.o: .\src\quad\drivers\ioImpl.h
@@ -49,7 +49,7 @@
 .\objects\rc_controls.o: .\src\quad\common\axis.h
 .\objects\rc_controls.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\rc_controls.o: .\src\quad\common\maths.h
-.\objects\rc_controls.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\rc_controls.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\rc_controls.o: .\src\quad\rx\rx.h
 .\objects\rc_controls.o: .\src\quad\fc\rc_controls.h
 .\objects\rc_controls.o: .\src\quad\common\time.h

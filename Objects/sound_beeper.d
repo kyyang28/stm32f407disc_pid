@@ -1,11 +1,11 @@
 .\objects\sound_beeper.o: src\quad\drivers\sound_beeper.c
 .\objects\sound_beeper.o: src\quad\drivers\sound_beeper.h
 .\objects\sound_beeper.o: src\quad\drivers\io.h
-.\objects\sound_beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\objects\sound_beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\sound_beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\sound_beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\sound_beeper.o: src\quad\drivers\iodef.h
 .\objects\sound_beeper.o: .\src\quad\common\utils.h
-.\objects\sound_beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\sound_beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\sound_beeper.o: src\quad\drivers\IOTypes.h
 .\objects\sound_beeper.o: src\quad\drivers\io.h
 .\objects\sound_beeper.o: .\src\quad\target\13-PID\target.h
@@ -32,9 +32,9 @@
 .\objects\sound_beeper.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\sound_beeper.o: .\src\quad\drivers\bus_i2c.h
 .\objects\sound_beeper.o: .\src\quad\config\feature.h
-.\objects\sound_beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\sound_beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\sound_beeper.o: src\quad\drivers\io_def_generated.h
 .\objects\sound_beeper.o: src\quad\drivers\iodef.h
 .\objects\sound_beeper.o: src\quad\drivers\ioImpl.h
 .\objects\sound_beeper.o: src\quad\drivers\resource.h
-.\objects\sound_beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\sound_beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

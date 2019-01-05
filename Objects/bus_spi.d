@@ -1,7 +1,7 @@
 .\objects\bus_spi.o: src\quad\drivers\bus_spi.c
 .\objects\bus_spi.o: src\quad\drivers\bus_spi.h
-.\objects\bus_spi.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\bus_spi.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\bus_spi.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\bus_spi.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\bus_spi.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx.h
 .\objects\bus_spi.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\bus_spi.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cmInstr.h
@@ -25,13 +25,13 @@
 .\objects\bus_spi.o: src\quad\drivers\io.h
 .\objects\bus_spi.o: src\quad\drivers\iodef.h
 .\objects\bus_spi.o: .\src\quad\common\utils.h
-.\objects\bus_spi.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\bus_spi.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\bus_spi.o: src\quad\drivers\IOTypes.h
 .\objects\bus_spi.o: src\quad\drivers\io.h
 .\objects\bus_spi.o: .\src\quad\target\13-PID\target.h
 .\objects\bus_spi.o: .\src\quad\drivers\bus_i2c.h
 .\objects\bus_spi.o: .\src\quad\config\feature.h
-.\objects\bus_spi.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\bus_spi.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\bus_spi.o: src\quad\drivers\io_def_generated.h
 .\objects\bus_spi.o: src\quad\drivers\iodef.h
 .\objects\bus_spi.o: src\quad\drivers\ioImpl.h
@@ -40,4 +40,4 @@
 .\objects\bus_spi.o: .\src\quad\build\platform.h
 .\objects\bus_spi.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
 .\objects\bus_spi.o: src\quad\drivers\rcc.h
-.\objects\bus_spi.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\bus_spi.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

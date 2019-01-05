@@ -1,8 +1,8 @@
 .\objects\rcc.o: src\quad\drivers\rcc.c
 .\objects\rcc.o: src\quad\drivers\rcc.h
 .\objects\rcc.o: .\src\quad\common\utils.h
-.\objects\rcc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
-.\objects\rcc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\rcc.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\rcc.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\rcc.o: src\quad\drivers\RCCTypes.h
 .\objects\rcc.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx.h
 .\objects\rcc.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h
