@@ -440,7 +440,7 @@ __user_initial_stackheap
 ;				VMUL		R2, R1, #0.5		; R2 = 0.5f * R1 ==> x_half = 0.5f * x
 ;				LDR			R3, =0x5f3759df		; R3 = 0x5f3759df (magic number)
 ;				MOV			R4, R1
-;				SUB			R4, R3, R4, LSR #1	; R4 = 0x5f3759df - (int_x >> 1)
+;				SUB			R4, R3, R4, RSR #1	; R4 = 0x5f3759df - (int_x >> 1)
 ;				VMOV		R0, R4				; x = content of R4
 				
 				; x = x * (1.5f - x_half * x * x);		// 1st-order Newton's iteration
