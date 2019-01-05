@@ -185,6 +185,39 @@ static void comparisonBetweenFastNormalInvSqrt(void)
 	}	
 }
 
+static void comparisonBetweenSinApproxAndSinf(void)
+{	
+	const uint32_t iterations = 9000000;
+	const float num = M_PIf * 0.33333333333333f;
+	float sinApproxRes, sinfRes;
+	
+	uint32_t sinApproxStartTime, sinApproxEndTime, sinfStartTime, sinfEndTime;
+	
+	sinApproxStartTime = micros();
+	
+	for (uint32_t i = 0; i < iterations; i++) {
+		sinApproxRes = sinApprox(num);
+	}
+	
+	sinApproxEndTime = micros();
+	printf("sinApprox(x) runs in %u us under %u iterations, res: %f\r\n", (sinApproxEndTime - sinApproxStartTime), iterations, sinApproxRes);
+	
+	sinfStartTime = micros();
+	
+	for (uint32_t i = 0; i < iterations; i++) {
+		sinfRes = sinf(num);
+	}
+	
+	sinfEndTime = micros();
+	printf("sinf(x) runs in %u us under %u iterations, res: %f\r\n", (sinfEndTime - sinfStartTime), iterations, sinfRes);
+
+	if ((sinfEndTime - sinfStartTime) > (sinApproxEndTime - sinApproxStartTime)) {
+		printf("sinApprox(x) is %d times faster than sinf(x)\r\n", (sinfEndTime - sinfStartTime) / (sinApproxEndTime - sinApproxStartTime));
+	} else {
+		printf("sinf(x) is %d times faster than sinApprox(x)\r\n", (sinApproxEndTime - sinApproxStartTime) / (sinfEndTime - sinfStartTime));
+	}	
+}
+
 void main_process(void)
 {
     scheduler();
@@ -465,6 +498,7 @@ int main(void)
 
 	/* Compare FastInvSqrt(x) and 1/sqrtf(x) */
 //	comparisonBetweenFastNormalInvSqrt();
+//	comparisonBetweenSinApproxAndSinf();
 	
 #if defined(USE_IMU)			// USE_IMU is defined in target.h
 	if (!sensorsAutodetect(GyroConfig(), AccelerometerConfig())) {

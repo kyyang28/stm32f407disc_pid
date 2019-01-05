@@ -65,7 +65,7 @@ float fastInvSqrt(float x)
 //	};
 //}
 
-float sin_approx(float x)
+float sinApprox(float x)
 {
 //	printf("xsin: %f\r\n", x);
 	int32_t x_int = x;
@@ -96,20 +96,72 @@ float sin_approx(float x)
 	return x + x * x2 * (sinPolyCoef3 + x2 * (sinPolyCoef5 + x2 * (sinPolyCoef7 + x2 * sinPolyCoef9)));
 }
 
-float cos_approx(float x)
+float cosApprox(float x)
 {
 //	printf("xcos: %f\r\n", x + (0.5f * M_PIf));
-	return sin_approx(x + (0.5f * M_PIf));
+	return sinApprox(x + (0.5f * M_PIf));
 }
 
-float atan2_approx(float y, float x)
+/* Max absolute error 0,000027 degree
+ * atan2Approx maximum absolute error = 7.152557e-07 rads (4.098114e-05 degree)
+ *
+ * http://www.dsprelated.com/showthread/comp.dsp/21872-1.php
+ */
+float atan2Approx(float y, float x)
 {
+	#define atanPolyCoef1  3.14551665884836e-07f
+	#define atanPolyCoef2  0.99997356613987f
+	#define atanPolyCoef3  0.14744007058297684f
+	#define atanPolyCoef4  0.3099814292351353f
+	#define atanPolyCoef5  0.05030176425872175f
+	#define atanPolyCoef6  0.1471039133652469f
+	#define atanPolyCoef7  0.6444640676891548f
+
+    float res, absX, absY;
+    absX = fabsf(x);
+    absY = fabsf(y);
+
+    res  = MAX(absX, absY);
+
+    if (res) {
+		res = MIN(absX, absY) / res;
+	} else {
+		res = 0.0f;
+	}
 	
+    res = -((((atanPolyCoef5 * res - atanPolyCoef4) * res - atanPolyCoef3) * res - atanPolyCoef2) * res - atanPolyCoef1) / ((atanPolyCoef7 * res + atanPolyCoef6) * res + 1.0f);
+    
+	if (absY > absX) {
+		res = (M_PIf / 2.0f) - res;
+	}
+	
+    if (x < 0) {
+		res = M_PIf - res;
+	}
+	
+    if (y < 0) {
+		res = -res;
+	}
+	
+    return res;
 }
 
-float acos_approx(float x)
+/* http://developer.download.nvidia.com/cg/acos.html
+ * Handbook of Mathematical Functions
+ * M. Abramowitz and I.A. Stegun, Ed.
+ * acos_approx maximum absolute error = 6.760856e-05 rads (3.873685e-03 degree)
+ */
+float acosApprox(float x)
 {
+	float xTmp = fabsf(x);
 	
+	float result = sqrtf(1.0f - xTmp) * (1.5707288f + xTmp * (-0.2121144f + xTmp * (0.0742610f + (-0.0187293f * xTmp))));
+	
+	if (x < 0.0f) {
+		return M_PIf - result;
+	} else {
+		return result;
+	}
 }
 #endif
 
@@ -171,8 +223,8 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	 * delta->angles.ptich = 0
 	 * delta->angles.yaw = 90
 	 */
-	cosx = cos_approx(delta->angles.roll);
-	sinx = sin_approx(delta->angles.roll);
+	cosx = cosApprox(delta->angles.roll);
+	sinx = sinApprox(delta->angles.roll);
 
 	
 }

@@ -65,16 +65,16 @@ float devStandardDeviation(stdev_t *dev);
 int scaleRange(int x, int srcMin, int srcMax, int destMin, int destMax);
 
 #if defined(FAST_MATH) || defined(VERY_FAST_MATH)
-float sin_approx(float x);
-float cos_approx(float x);
-float atan2_approx(float y, float x);
-float acos_approx(float x);
+float sinApprox(float x);
+float cosApprox(float x);
+float atan2Approx(float y, float x);
+float acosApprox(float x);
 #else
-#define sin_approx(x)				sinf(x)
-#define cos_approx(x)				cosf(x)
-#define atan2_approx(y,x)			atan2f(y,x)
-#define acos_approx(x)				acosf(x)
-#define tan_approx(x)				tanf(x)
+#define sinApprox(x)				sinf(x)
+#define cosApprox(x)				cosf(x)
+#define atan2Approx(y,x)			atan2f(y,x)
+#define acosApprox(x)				acosf(x)
+#define tanApprox(x)				tanf(x)
 #endif
 
 float fastInvSqrt(float x);
