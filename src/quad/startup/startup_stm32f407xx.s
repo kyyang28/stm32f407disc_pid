@@ -191,7 +191,6 @@ Reset_Handler    PROC
                  BX      R0
                  ENDP
 
-
 ; Dummy Exception Handlers (infinite loops which can be modified)
 
 NMI_Handler     PROC
@@ -435,5 +434,21 @@ __user_initial_stackheap
                  ENDIF
 
                  END
+					 
+;FastInvSqrt
+;				VMOV		R1, R0				; R0 stores the x value, which is a floating-point number
+;				VMUL		R2, R1, #0.5		; R2 = 0.5f * R1 ==> x_half = 0.5f * x
+;				LDR			R3, =0x5f3759df		; R3 = 0x5f3759df (magic number)
+;				MOV			R4, R1
+;				SUB			R4, R3, R4, LSR #1	; R4 = 0x5f3759df - (int_x >> 1)
+;				VMOV		R0, R4				; x = content of R4
+				
+				; x = x * (1.5f - x_half * x * x);		// 1st-order Newton's iteration
+;				VMUL		R5, R2, R0			; R5 = x_half * x
+;				VMUL		R5, R5, R0			; R5 = x_half * x * x
+;				VSUB		R6, #1.5, R5		; R6 = 1.5f - R5 = 1.5f - x_half * x * x
+;				VMUL		R0, R0, R6			; R0 = R0 * R6 ==> x = x * (1.5f - x_half * x * x)
+;				BX 			LR
+				
 
 ;************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE*****

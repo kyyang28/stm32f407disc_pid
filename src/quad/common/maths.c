@@ -8,7 +8,7 @@
 /* VERY_FAST_MATH: order 7 approximation using Remez Algorithm
  * Remez algorithm seeks the minimax polynomial that approximates a given function in a given interval
  */
-#define sinPolyCoef3			
+#define sinPolyCoef3				
 #define sinPolyCoef5			
 #define sinPolyCoef7			
 #define sinPolyCoef9			
@@ -132,7 +132,8 @@ float sin_approx(float x)
 	
 	float x2 = x * x;
 	
-	return x + x * x2 * (sinPolyCoef3 + x2 * (sinPolyCoef5 + x2 * (sinPolyCoef7 + x2 * sinPolyCoef9)));
+	return 0.0;
+//	return x + x * x2 * (sinPolyCoef3 + x2 * (sinPolyCoef5 + x2 * (sinPolyCoef7 + x2 * sinPolyCoef9)));
 }
 
 float cos_approx(float x)

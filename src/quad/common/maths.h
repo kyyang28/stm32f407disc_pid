@@ -77,6 +77,8 @@ float acos_approx(float x);
 #define tan_approx(x)				tanf(x)
 #endif
 
+float fastInvSqrt(float x);
+
 float degreesToRadians(int16_t degrees);
 void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3]);
 
