@@ -1,0 +1,104 @@
+1597463007
+
+This is the decimal value of the hexadecimal integer constant 0x5f3759df that comprises the central mystery to the following bit of code, which is mildly famous among bit-bummers and purports to compute the function f(x) = 1/√x:
+
+
+  /* Note: This assumes "int" and "float" are both 32 bits */
+  float InvSqrt (float x)
+  {
+    float xhalf = 0.5f * x;
+    int i = *(int*)&x;         // evil floating point bit level hacking
+    i = 0x5f3759df - (i>>1);   // First approximation (WTF ?!?)
+    x = *(float*)&i;
+    x = x*(1.5f - xhalf*x*x);  // Newton iteration
+ // x = x*(1.5f - xhalf*x*x);  // Iterate again if you need full accuracy
+    return x;
+  }
+  
+This code actually works. It performs four floating-point multiplys, one floating-point add, an integer shift, an integer subtract, and two register moves (FP to Int and Int back to FP). It generates the correct answer for the function to within three decimal places for all valid (non-negative) inputs except infinity and denormals.
+
+The hex value 0x5f3759df is best understood as an IEEE floating-point number, in binary it is 0.10111110.01101110101100111011111. The exponent is 101111102, which is 190 in decimal, representing 2(190-127) which is 263. The mantissa (after adding the hidden or implied leading 1 bit) is 1.011011101011001110111112, which is 1.43243014812469482421875 in decimal. So the magic constant 0x5f3759df is 1.43243014812469482421875×263, which works out to the integer 13211836172961054720, or about 1.3211...×1019. This is (to a first-order approximation) close to the square root of 2127, which is about 1.3043...×1019. The reason that is significant is that exponents in 32-bit IEEE representation are "excess-127". This, combined with the fact that the "exponent.mantissa" floating-point representation crudely approximates a fixed-point representation of the logarithm of the number (with an added offset), means that you can approximate multiplication and division just by adding and subtracting the integer form of floating-point numbers, and take a square root by dividing by two (which is just a right-shift). This only works when the sign is 0 (i.e. for positive floating-point values).
+
+Here are some example values of numbers from 1.0 to 4.0 in IEEE single-precision:
+
+0.10000001.00000000000000000000000 = 4.0 
+0.10000000.10000000000000000000000 = 3.0 
+0.10000000.00000000000000000000000 = 2.0 
+0.01111111.10000000000000000000000 = 1.5 
+0.01111111.00000000000000000000000 = 1.0
+
+Here I have shown the sign, exponent and mantissa separated by dots. Since the logarithm of 1 is zero, the value for 1.0 (0.01111111.00000000000000000000000) can be treated as the "offset". If you subtract this offset you get these values, which approximate the logarithm of each number:
+
+0.00000010.00000000000000000000000 = 10.02 = 2.0; log2(4)=2 
+0.00000001.10000000000000000000000 = 1.12 = 1.5; log2(3)≈1.585 
+0.00000001.00000000000000000000000 = 1.02 = 1.0; log2(2)=1 
+0.00000000.10000000000000000000000 = 0.12 = 0.5; log2(1.5)≈0.585 
+0.00000000.00000000000000000000000 = 0.02 = 0.0; log2(1)=0
+
+From this it is easy to see how a right-shift of the value for 4 yields the value for 2, which is exactly the square root of 4, and a right shift of the value for 2 gives the value for 1.5, which is a bit higher than the square root of 2. Over a full range of input values, the right-shift and addition of the magic constant gives a "piecewise linear" approximation of 1/√x.
+
+The constant "0x5f3759df" is most commonly cited as being found in the Qrsqrt function of "game/code/qmath.c" in the source code of thevideogame Quake III. It is attributed to John Carmack, but the same hack appears in several earlier sources going as far back as 1974 PDP-11 UNIX.
+
+David Eberly wrote a paper[175] describing how and why the approximation works.
+
+Chris Lomont[178] followed up with investigation into its origins, getting as far as a claimed credit to Gary Tarolli of Nvidia. He thoroughly analyzes the piecewise linear approximation for odd and even exponents and proposes 0x5f375a86 as being slightly better, and a similar constant 0x5fe6ec85e7de30da for use with 64-bit IEEE double precision.
+
+David Eberly then wrote a longer explanation[205] analyzing the constant 0x5f3759df along with some other candidates (like 0x5f375a86 and 0x5f37642f). It describes efforts to discover why and how this value originally got chosen; with inconclusive results.
+
+An earlier example of code calculating the square root in this way (approximation via a single shift, possibly with an add or subtract, no conditional testing, and Newton iteration) was described by Jim Blinn in 1997, where we find the following code: (see [163]).
+
+
+  inline long int AsInteger(float f) { return * (long int *)&f; }
+  inline float AsFloat(long int i) { return *(float *)&i; }
+  const long int OneAsInteger = AsInteger(1.0f); // 0x3F800000
+  float ASqrt(float x) /* Approximate Square Root */
+  {
+    int i = (AsInteger(x)>>1) + (OneAsInteger>>1);
+    return AsFloat(i);
+  }
+  
+with the comment:
+
+This is actually pretty weird. We are shifting the floating-point parameter — exponent and fraction — right one bit. The low-order bit of the exponent shifts into the high-order bit of the fraction. But it works. 
+    - Jim Blinn ([163] page 83)
+
+The same article discusses several similar functions including ones that include one iteration of Newton's method. Here are his inverse square root functions:
+
+
+  float AInverseSqrt(float f)
+  {
+    int i = (OneAsInteger + (OneAsInteger>>1)) - (AsInteger(f)>>1);
+    return AsFloat(i);
+  }
+  float BInverseSqrt(float x)
+  {
+    float y = AInverseSqrt(x);
+    return y*(1.5-.5*x*y*y);
+  }
+  
+If these are combined together into a single function with the inlines expanded, we get:
+
+
+  // OneAsInteger defined as above, equals 0x3F800000
+  const long int Magic = OneAsInteger + (OneAsInteger>>1); // 0x5F400000
+  float BInverseSqrt(float x)
+  {
+    int i = Magic - ((*(long int *)&f) >> 1);
+    float y = *(float *)&i;
+    return y*(1.5-.5*x*y*y);
+  }
+  
+A much older example is found in the UNIX library sqrt function for the PDP-11, dating back to June 1974 (see [141]):
+
+
+  / sqrt replaces the f.p. number in fr0 by its square root. newton's method
+  / ...
+  movf   fr0,-(sp)
+  asr    (sp)
+  add    $20100,(sp)
+  movf   (sp)+,fr0     /initial guess
+  / ...
+  
+which is effectively performing an integer right-shift on the 16 high bits of the input value, then adding a constant similar to the constants in the above examples, and putting the result back into a floating-point register before proceeding with the Newton's method calculations. Only the upper part of the mantissa is being shifted, but that's good enough. A man page from Feb 1973 (Third Edition UNIX) suggests that the routine existed as early as then.
+
+See also 573, 9001, and 73735963.

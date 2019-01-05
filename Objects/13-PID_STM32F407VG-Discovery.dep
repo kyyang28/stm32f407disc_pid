@@ -1,5 +1,5 @@
 Dependencies for Project '13-PID', Target 'STM32F407VG-Discovery': (DO NOT MODIFY !)
-F (.\src\quad\startup\startup_stm32f407xx.s)(0x5C1ECCFD)(--cpu Cortex-M4.fp -g --apcs=interwork -I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f407xx.lst --xref -o .\objects\startup_stm32f407xx.o --depend .\objects\startup_stm32f407xx.d)
+F (.\src\quad\startup\startup_stm32f407xx.s)(0x5C2FF255)(--cpu Cortex-M4.fp -g --apcs=interwork -I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 524" --pd "STM32F407xx SETA 1"--list .\listings\startup_stm32f407xx.lst --xref -o .\objects\startup_stm32f407xx.o --depend .\objects\startup_stm32f407xx.d)
 F (.\src\lib\STM32F4xx_StdPeriph_Drivers\src\misc.c)(0x5C1ECCFD)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\misc.o --omf_browse .\objects\misc.crf --depend .\objects\misc.d)
 I (.\src\lib\STM32F4xx_StdPeriph_Drivers\inc\misc.h)(0x5C1ECCFD)
 I (.\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx.h)(0x5C1ECCFD)
@@ -277,7 +277,7 @@ I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\flight\pid.h)(0x5C2CC034)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
 I (.\src\quad\config\config_profile.h)(0x5C29257F)
@@ -1265,7 +1265,7 @@ I (src\quad\drivers\resource.h)(0x5C1ECCFD)
 I (src\quad\drivers\rcc.h)(0x5C1ECCFD)
 I (src\quad\drivers\RCCTypes.h)(0x5C1ECCFD)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
-F (.\src\quad\fc\config.c)(0x5C2F4C0F)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\config.o --omf_browse .\objects\config.crf --depend .\objects\config.d)
+F (.\src\quad\fc\config.c)(0x5C2F85AA)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\config.o --omf_browse .\objects\config.crf --depend .\objects\config.d)
 I (F:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588BF3C4)
 I (F:\Keil_v5\ARM\ARMCC\include\string.h)(0x588BF3C4)
 I (.\src\quad\config\configMaster.h)(0x5C2E2DB1)
@@ -1321,7 +1321,7 @@ I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\flight\pid.h)(0x5C2CC034)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
 I (.\src\quad\config\config_profile.h)(0x5C29257F)
@@ -1384,7 +1384,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
@@ -1457,7 +1457,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\common\time.h)(0x5C1ECCFD)
 I (.\src\quad\config\configMaster.h)(0x5C2E2DB1)
@@ -1530,11 +1530,11 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\debug.h)(0x5C1ECCFD)
 I (.\src\quad\drivers\led.h)(0x5C1ECCFD)
-F (.\src\quad\fc\rc_controls.c)(0x5C2F4C13)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\rc_controls.o --omf_browse .\objects\rc_controls.crf --depend .\objects\rc_controls.d)
+F (.\src\quad\fc\rc_controls.c)(0x5C2FF0A2)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\rc_controls.o --omf_browse .\objects\rc_controls.crf --depend .\objects\rc_controls.d)
 I (F:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588BF3C4)
 I (src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BF3C4)
@@ -1579,7 +1579,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
@@ -1639,7 +1639,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
@@ -1690,7 +1690,7 @@ I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BF3C4)
 I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BF3C4)
 I (src\quad\io\asyncfatfs\asyncfatfs.h)(0x5C1ECCFD)
 I (src\quad\io\asyncfatfs\fat_standard.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 F (.\src\quad\io\asyncfatfs\fat_standard.c)(0x5C1ECCFD)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\fat_standard.o --omf_browse .\objects\fat_standard.crf --depend .\objects\fat_standard.d)
 I (F:\Keil_v5\ARM\ARMCC\include\ctype.h)(0x588BF3C4)
@@ -1749,7 +1749,7 @@ I (.\src\quad\drivers\ledTimer.h)(0x5C1ECCFD)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\common\time.h)(0x5C1ECCFD)
 I (.\src\quad\fc\runtime_config.h)(0x5C269641)
@@ -1798,7 +1798,7 @@ I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
 I (.\src\quad\fc\fc_rc.h)(0x5C25512C)
 I (src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\common\filter.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\fc\runtime_config.h)(0x5C269641)
 I (.\src\quad\config\configMaster.h)(0x5C2E2DB1)
@@ -1874,7 +1874,7 @@ I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\flight\pid.h)(0x5C2CC034)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
 I (src\quad\config\config_profile.h)(0x5C29257F)
@@ -1936,7 +1936,7 @@ I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\flight\pid.h)(0x5C2CC034)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
 I (src\quad\config\config_profile.h)(0x5C29257F)
@@ -2034,7 +2034,7 @@ I (.\src\quad\drivers\accgyro_spi_mpu9250.h)(0x5C1ECCFD)
 I (.\src\quad\drivers\gyro_sync.h)(0x5C1ECCFD)
 I (src\quad\sensors\sensors.h)(0x5C1ECCFD)
 I (.\src\quad\fc\runtime_config.h)(0x5C269641)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\drivers\led.h)(0x5C1ECCFD)
 I (.\src\quad\common\time.h)(0x5C1ECCFD)
@@ -2088,7 +2088,7 @@ I (src\quad\sensors\compass.h)(0x5C1ECCFD)
 F (.\src\quad\sensors\boardAlignment.c)(0x5C2E5ACB)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\boardalignment.o --omf_browse .\objects\boardalignment.crf --depend .\objects\boardalignment.d)
 I (F:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588BF3C4)
 I (F:\Keil_v5\ARM\ARMCC\include\stdbool.h)(0x588BF3C4)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BF3C4)
 I (src\quad\sensors\boardAlignment.h)(0x5C2E2882)
@@ -2098,9 +2098,9 @@ I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BF3C4)
 I (src\quad\common\utils.h)(0x5C1ECCFD)
 I (F:\Keil_v5\ARM\ARMCC\include\stddef.h)(0x588BF3C4)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
-F (.\src\quad\common\maths.c)(0x5C2F8543)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\maths.o --omf_browse .\objects\maths.crf --depend .\objects\maths.d)
+F (.\src\quad\common\maths.c)(0x5C2FF959)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\maths.o --omf_browse .\objects\maths.crf --depend .\objects\maths.d)
 I (F:\Keil_v5\ARM\ARMCC\include\stdio.h)(0x588BF3C4)
-I (src\quad\common\maths.h)(0x5C2F815B)
+I (src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (F:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x588BF3C4)
 F (.\src\quad\rx\pwm.c)(0x5C1ECCFD)(--c99 -c --cpu Cortex-M4.fp -g -O3 --apcs=interwork --split_sections -I .\src\lib\CMSIS\CM4\CoreSupport -I .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx -I .\src\lib\STM32F4xx_StdPeriph_Drivers\inc -I .\src\quad\build -I .\src\quad\common -I .\src\quad\config -I .\src\quad\drivers -I .\src\quad\fc -I .\src\quad\io -I .\src\quad\flight -I .\src\quad\sensors -I .\src\quad\rx -I .\src\quad\io\asyncfatfs -I .\src\quad\blackbox -I .\src\quad\scheduler -I .\src\quad\target\13-PID-I.\RTE\_STM32F407VG-Discovery-IF:\Keil_v5\ARM\PACK\Keil\STM32F4xx_DFP\2.13.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include-IF:\Keil_v5\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F407xx -DSTM32F40_41xxx -DUSE_STDPERIPH_DRIVER-o .\objects\pwm.o --omf_browse .\objects\pwm.crf --depend .\objects\pwm.d)
@@ -2150,7 +2150,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\common\time.h)(0x5C1ECCFD)
@@ -2202,7 +2202,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\common\time.h)(0x5C1ECCFD)
@@ -2256,7 +2256,7 @@ I (.\src\quad\drivers\accgyro.h)(0x5C2917F9)
 I (.\src\quad\drivers\exti.h)(0x5C1ECCFD)
 I (.\src\quad\common\axis.h)(0x5C2418D2)
 I (.\src\quad\drivers\accgyro_mpu.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)
 I (.\src\quad\common\time.h)(0x5C1ECCFD)
@@ -2320,7 +2320,7 @@ I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\flight\pid.h)(0x5C2CC034)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
 I (.\src\quad\config\config_profile.h)(0x5C29257F)
@@ -2385,7 +2385,7 @@ I (.\src\quad\fc\rc_controls.h)(0x5C27F7BF)
 I (.\src\quad\io\motors.h)(0x5C1ECCFD)
 I (.\src\quad\flight\mixer.h)(0x5C2801E4)
 I (.\src\quad\flight\pid.h)(0x5C2CC034)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\build\platform.h)(0x5C1ECCFD)
 I (.\src\quad\config\config_profile.h)(0x5C29257F)
@@ -2427,7 +2427,7 @@ I (.\src\quad\drivers\bus_i2c.h)(0x5C1ECCFD)
 I (.\src\quad\config\feature.h)(0x5C223198)
 I (F:\Keil_v5\ARM\ARMCC\include\stdlib.h)(0x588BF3C4)
 I (.\src\quad\drivers\system.h)(0x5C1ECCFD)
-I (.\src\quad\common\maths.h)(0x5C2F815B)
+I (.\src\quad\common\maths.h)(0x5C2FBB26)
 I (F:\Keil_v5\ARM\ARMCC\include\math.h)(0x588BF3C4)
 I (.\src\quad\target\13-PID\common.h)(0x5C1ECCFD)
 I (.\src\quad\rx\rx.h)(0x5C27CF2D)

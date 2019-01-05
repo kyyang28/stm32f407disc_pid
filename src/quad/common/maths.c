@@ -63,6 +63,47 @@ float degreesToRadians(int16_t degrees)
 	return degrees * RAD;			// RAD = ((M_PIf) / 180.0f), M_PIf = 3.14159265358979323846f
 }
 
+float fastInvSqrt(float x)
+{
+	float x_half = 0.5f * x;
+	int intF = *(int *)&x;
+	
+	intF = 0x5f3759df - (intF >> 1);		// Magic happens here!!!!!!
+	
+	x = *(float *)&intF;
+	
+	x = x * (1.5f - x_half * x * x);		// 1st-order Newton's iteration
+//	x = x * (1.5f - x_half * x * x);		// 2nd-order Newton's iteration
+	
+	return x;
+}
+
+//int add(int i, int j)
+//{
+//  int res = 0;
+//  __asm ("ADD %[result], %[input_i], %[input_j]"
+//    : [result] "=r" (res)
+//    : [input_i] "r" (i), [input_j] "r" (j)
+//  );
+//  return res;
+//	
+//	__asm ("ADD R0, %[input_i], %[input_j]"
+//    :  /* This is an empty output operand list */
+//    : [input_i] "r" (i), [input_j] "r" (j)
+//    : "r5","r6","cc","memory" /*Use "r5" instead of "R5" */
+//  );
+//}
+
+//float invSqrtAsm(float x)
+//{
+//	__asm {
+//		"MOVF R0, %[input_x]"
+//		: /* empty output operand list */
+//		: [input_x] "r" (x)
+//		
+//	};
+//}
+
 float sin_approx(float x)
 {
 //	printf("xsin: %f\r\n", x);
@@ -91,7 +132,7 @@ float sin_approx(float x)
 	
 	float x2 = x * x;
 	
-	return x + x * x2 * ()
+	return x + x * x2 * (sinPolyCoef3 + x2 * (sinPolyCoef5 + x2 * (sinPolyCoef7 + x2 * sinPolyCoef9)));
 }
 
 float cos_approx(float x)
@@ -125,4 +166,6 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	 */
 	cosx = cos_approx(delta->angles.roll);
 	sinx = sin_approx(delta->angles.roll);
+
+	
 }
