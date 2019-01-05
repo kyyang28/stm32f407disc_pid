@@ -222,9 +222,17 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	 * delta->angles.roll = 0
 	 * delta->angles.ptich = 0
 	 * delta->angles.yaw = 90
+	 *
+	 * Roll resides along the X-axis
+	 * Pitch resides along the Y-axis
+	 * Yaw resides along the Z-axis
 	 */
 	cosx = cosApprox(delta->angles.roll);
 	sinx = sinApprox(delta->angles.roll);
-
+	cosy = cosApprox(delta->angles.pitch);
+	siny = sinApprox(delta->angles.pitch);
+	cosz = cosApprox(delta->angles.yaw);
+	sinz = sinApprox(delta->angles.yaw);
+	
 	
 }
