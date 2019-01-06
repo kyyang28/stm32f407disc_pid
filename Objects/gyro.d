@@ -54,4 +54,5 @@
 .\objects\gyro.o: .\src\quad\drivers\led.h
 .\objects\gyro.o: .\src\quad\common\time.h
 .\objects\gyro.o: .\src\quad\common\filter.h
+.\objects\gyro.o: src\quad\sensors\boardAlignment.h
 .\objects\gyro.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h

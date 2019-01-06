@@ -12,6 +12,7 @@
 #include "maths.h"
 #include "led.h"
 #include "filter.h"
+#include "boardAlignment.h"
 
 #include <stdio.h>			// printf
 
@@ -307,7 +308,7 @@ void gyroUpdate(void)
 	gyroADC[Z] = gyro.dev.gyroADCRaw[Z];
 //	printf("MPU9250 (SPI) data - gyroADCRaw[X]: %d, gyroADCRaw[Y]: %d, gyroADCRaw[Z]: %d\r\n", gyroADC[X], gyroADC[Y], gyroADC[Z]);
 
-//	alignSensors(gyroADC, gyro.dev.gyroAlign);			// TODO: implement this function later
+	alignSensors(gyroADC, gyro.dev.gyroAlign);
 
 	const bool calibrationComplete = isGyroCalibrationComplete();
 //	printf("calibrationComplete: %d, %s, %d\r\n", calibrationComplete, __FUNCTION__, __LINE__);

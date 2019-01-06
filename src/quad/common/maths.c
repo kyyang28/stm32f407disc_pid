@@ -236,10 +236,21 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	cosz = cosApprox(delta->angles.yaw);
 	sinz = sinApprox(delta->angles.yaw);
 	
+//	printf("cosx: %f\r\n", cosx);
+//	printf("sinx: %f\r\n", sinx);
+//	printf("cosy: %f\r\n", cosy);
+//	printf("siny: %f\r\n", siny);
+//	printf("cosz: %f\r\n", cosz);
+//	printf("sinz: %f\r\n", sinz);
+	
 	coszcosx = cosz * cosx;
 	sinzcosx = sinz * cosx;
 	coszsinx = sinx * cosz;
 	sinzsinx = sinx * sinz;
+//	printf("coszcosx: %f\r\n", coszcosx);
+//	printf("sinzcosx: %f\r\n", sinzcosx);
+//	printf("coszsinx: %f\r\n", coszsinx);
+//	printf("sinzsinx: %f\r\n", sinzsinx);
 		
 	matrix[0][X] = cosz * cosy;
 	matrix[0][Y] = -cosy * sinz;
@@ -250,4 +261,13 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	matrix[2][X] = (sinzsinx) - (coszcosx * siny);
 	matrix[2][Y] = (coszsinx) + (sinzcosx * siny);
 	matrix[2][Z] = cosy * cosx;
+//	printf("matrix[0][X]: %f\r\n", matrix[0][X]);
+//	printf("matrix[0][Y]: %f\r\n", matrix[0][Y]);
+//	printf("matrix[0][Z]: %f\r\n", matrix[0][Z]);
+//	printf("matrix[1][X]: %f\r\n", matrix[1][X]);
+//	printf("matrix[1][Y]: %f\r\n", matrix[1][Y]);
+//	printf("matrix[1][Z]: %f\r\n", matrix[1][Z]);
+//	printf("matrix[2][X]: %f\r\n", matrix[2][X]);
+//	printf("matrix[2][Y]: %f\r\n", matrix[2][Y]);
+//	printf("matrix[2][Z]: %f\r\n", matrix[2][Z]);
 }
