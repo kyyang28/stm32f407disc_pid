@@ -2,6 +2,7 @@
 #include <stdio.h>
 
 #include "maths.h"
+#include "axis.h"
 
 #if defined(FAST_MATH) || defined(VERY_FAST_MATH)
 #if defined(VERY_FAST_MATH)
@@ -234,5 +235,18 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	cosz = cosApprox(delta->angles.yaw);
 	sinz = sinApprox(delta->angles.yaw);
 	
-	
+	coszcosx = cosz * cosx;
+	sinzcosx = sinz * cosx;
+	coszsinx = sinx * cosz;
+	sinzsinx = sinx * sinz;
+		
+	matrix[0][X] = cosz * cosy;
+	matrix[0][Y] = -cosy * sinz;
+	matrix[0][Z] = siny;
+	matrix[1][X] = (sinzcosx) + (coszsinx * siny);
+	matrix[1][Y] = (coszcosx) - (sinzsinx * siny);
+	matrix[1][Z] = -sinx * cosy;
+	matrix[2][X] = (sinzsinx) - (coszcosx * siny);
+	matrix[2][Y] = (coszsinx) + (sinzcosx * siny);
+	matrix[2][Z] = cosy * cosx;
 }

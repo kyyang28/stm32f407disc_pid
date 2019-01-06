@@ -13,9 +13,9 @@ typedef enum {
 }flight_dynamics_index_t;
 
 typedef enum {
-	X = 0,
-	Y,
-	Z
+	X = 0,				// X = 0
+	Y,					// Y = 1
+	Z					// Z = 2
 }axis_e;
 
 #endif	// __AXIS_H
