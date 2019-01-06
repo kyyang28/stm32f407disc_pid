@@ -1,14 +1,14 @@
 .\objects\gyro_sync.o: src\quad\drivers\gyro_sync.c
 .\objects\gyro_sync.o: src\quad\drivers\gyro_sync.h
-.\objects\gyro_sync.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
-.\objects\gyro_sync.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\gyro_sync.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\gyro_sync.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\gyro_sync.o: src\quad\drivers\accgyro.h
 .\objects\gyro_sync.o: src\quad\drivers\exti.h
 .\objects\gyro_sync.o: src\quad\drivers\IOTypes.h
 .\objects\gyro_sync.o: src\quad\drivers\io.h
 .\objects\gyro_sync.o: src\quad\drivers\iodef.h
 .\objects\gyro_sync.o: .\src\quad\common\utils.h
-.\objects\gyro_sync.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\gyro_sync.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\gyro_sync.o: src\quad\drivers\IOTypes.h
 .\objects\gyro_sync.o: .\src\quad\target\13-PID\target.h
 .\objects\gyro_sync.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\stm32f4xx_exti.h
@@ -34,7 +34,7 @@
 .\objects\gyro_sync.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\gyro_sync.o: .\src\quad\drivers\bus_i2c.h
 .\objects\gyro_sync.o: .\src\quad\config\feature.h
-.\objects\gyro_sync.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\gyro_sync.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\gyro_sync.o: src\quad\drivers\io_def_generated.h
 .\objects\gyro_sync.o: src\quad\drivers\iodef.h
 .\objects\gyro_sync.o: src\quad\drivers\ioImpl.h

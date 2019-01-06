@@ -1,14 +1,14 @@
 .\objects\config_eeprom.o: src\quad\config\config_eeprom.c
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\config_eeprom.o: src\quad\config\configMaster.h
 .\objects\config_eeprom.o: .\src\quad\drivers\led.h
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\config_eeprom.o: .\src\quad\drivers\io.h
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\config_eeprom.o: .\src\quad\drivers\iodef.h
 .\objects\config_eeprom.o: .\src\quad\common\utils.h
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\config_eeprom.o: .\src\quad\drivers\IOTypes.h
 .\objects\config_eeprom.o: .\src\quad\drivers\io.h
 .\objects\config_eeprom.o: .\src\quad\target\13-PID\target.h
@@ -35,7 +35,7 @@
 .\objects\config_eeprom.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\config_eeprom.o: .\src\quad\drivers\bus_i2c.h
 .\objects\config_eeprom.o: .\src\quad\config\feature.h
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\config_eeprom.o: .\src\quad\drivers\io_def_generated.h
 .\objects\config_eeprom.o: .\src\quad\drivers\iodef.h
 .\objects\config_eeprom.o: .\src\quad\drivers\ioImpl.h
@@ -60,7 +60,7 @@
 .\objects\config_eeprom.o: .\src\quad\flight\mixer.h
 .\objects\config_eeprom.o: .\src\quad\flight\pid.h
 .\objects\config_eeprom.o: .\src\quad\common\maths.h
-.\objects\config_eeprom.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\config_eeprom.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\config_eeprom.o: .\src\quad\rx\rx.h
 .\objects\config_eeprom.o: .\src\quad\build\platform.h
 .\objects\config_eeprom.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h

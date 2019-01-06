@@ -210,6 +210,7 @@ float degreesToRadians(int16_t degrees)
 	return degrees * RAD;			// RAD = ((M_PIf) / 180.0f), M_PIf = 3.14159265358979323846f
 }
 
+/* Build Rotation Matrix, order: M_roll * M_pitch * M_yaw */
 void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 {
 //	printf("rollRad: %f\r\n", delta->angles.roll);

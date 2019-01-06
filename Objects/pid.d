@@ -1,10 +1,10 @@
 .\objects\pid.o: src\quad\flight\pid.c
-.\objects\pid.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\pid.o: src\quad\flight\pid.h
-.\objects\pid.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\pid.o: .\src\quad\sensors\acceleration.h
 .\objects\pid.o: .\src\quad\drivers\sensor.h
-.\objects\pid.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\pid.o: .\src\quad\sensors\sensors.h
 .\objects\pid.o: .\src\quad\drivers\accgyro.h
 .\objects\pid.o: .\src\quad\drivers\exti.h
@@ -12,7 +12,7 @@
 .\objects\pid.o: .\src\quad\drivers\io.h
 .\objects\pid.o: .\src\quad\drivers\iodef.h
 .\objects\pid.o: .\src\quad\common\utils.h
-.\objects\pid.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\pid.o: .\src\quad\drivers\IOTypes.h
 .\objects\pid.o: .\src\quad\target\13-PID\target.h
 .\objects\pid.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\stm32f4xx_exti.h
@@ -38,7 +38,7 @@
 .\objects\pid.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\pid.o: .\src\quad\drivers\bus_i2c.h
 .\objects\pid.o: .\src\quad\config\feature.h
-.\objects\pid.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\pid.o: .\src\quad\drivers\io_def_generated.h
 .\objects\pid.o: .\src\quad\drivers\iodef.h
 .\objects\pid.o: .\src\quad\drivers\ioImpl.h
@@ -49,7 +49,7 @@
 .\objects\pid.o: src\quad\flight\mixer.h
 .\objects\pid.o: .\src\quad\common\filter.h
 .\objects\pid.o: .\src\quad\common\maths.h
-.\objects\pid.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\pid.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\pid.o: .\src\quad\fc\runtime_config.h
 .\objects\pid.o: .\src\quad\config\configMaster.h
 .\objects\pid.o: .\src\quad\drivers\led.h

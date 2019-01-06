@@ -1,6 +1,6 @@
 .\objects\beeper.o: src\quad\io\beeper.c
 .\objects\beeper.o: src\quad\io\beeper.h
-.\objects\beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\beeper.o: .\src\quad\common\time.h
 .\objects\beeper.o: .\src\quad\target\13-PID\target.h
 .\objects\beeper.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\stm32f4xx_exti.h
@@ -25,11 +25,11 @@
 .\objects\beeper.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\misc.h
 .\objects\beeper.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\beeper.o: .\src\quad\drivers\bus_i2c.h
-.\objects\beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\beeper.o: .\src\quad\config\feature.h
-.\objects\beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\beeper.o: .\src\quad\common\utils.h
-.\objects\beeper.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\beeper.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\beeper.o: .\src\quad\fc\config.h
 .\objects\beeper.o: .\src\quad\drivers\led.h
 .\objects\beeper.o: .\src\quad\drivers\io.h

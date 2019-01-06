@@ -1,6 +1,6 @@
 .\objects\blackbox.o: src\quad\blackbox\blackbox.c
-.\objects\blackbox.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\blackbox.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\blackbox.o: .\src\quad\target\13-PID\target.h
 .\objects\blackbox.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\stm32f4xx_exti.h
 .\objects\blackbox.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx.h
@@ -24,15 +24,15 @@
 .\objects\blackbox.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\misc.h
 .\objects\blackbox.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\blackbox.o: .\src\quad\drivers\bus_i2c.h
-.\objects\blackbox.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\blackbox.o: .\src\quad\config\feature.h
-.\objects\blackbox.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\blackbox.o: .\src\quad\config\configMaster.h
 .\objects\blackbox.o: .\src\quad\drivers\led.h
 .\objects\blackbox.o: .\src\quad\drivers\io.h
 .\objects\blackbox.o: .\src\quad\drivers\iodef.h
 .\objects\blackbox.o: .\src\quad\common\utils.h
-.\objects\blackbox.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\blackbox.o: .\src\quad\drivers\IOTypes.h
 .\objects\blackbox.o: .\src\quad\drivers\io.h
 .\objects\blackbox.o: .\src\quad\drivers\io_def_generated.h
@@ -59,7 +59,7 @@
 .\objects\blackbox.o: .\src\quad\flight\mixer.h
 .\objects\blackbox.o: .\src\quad\flight\pid.h
 .\objects\blackbox.o: .\src\quad\common\maths.h
-.\objects\blackbox.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\blackbox.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\blackbox.o: .\src\quad\rx\rx.h
 .\objects\blackbox.o: .\src\quad\build\platform.h
 .\objects\blackbox.o: .\src\lib\CMSIS\CM4\CoreSupport\core_cm4.h

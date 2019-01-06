@@ -1,13 +1,13 @@
 .\objects\fc_tasks.o: src\quad\fc\fc_tasks.c
 .\objects\fc_tasks.o: src\quad\fc\fc_tasks.h
 .\objects\fc_tasks.o: .\src\quad\common\time.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\fc_tasks.o: src\quad\fc\fc_core.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\fc_tasks.o: src\quad\fc\fc_rc.h
 .\objects\fc_tasks.o: .\src\quad\scheduler\scheduler.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\fc_tasks.o: .\src\quad\target\13-PID\target.h
 .\objects\fc_tasks.o: .\src\lib\STM32F4xx_StdPeriph_Drivers\inc\stm32f4xx_exti.h
 .\objects\fc_tasks.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx.h
@@ -32,7 +32,7 @@
 .\objects\fc_tasks.o: .\src\lib\CMSIS\CM4\DeviceSupport\ST\STM32F4xx\stm32f4xx_conf.h
 .\objects\fc_tasks.o: .\src\quad\drivers\bus_i2c.h
 .\objects\fc_tasks.o: .\src\quad\config\feature.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\fc_tasks.o: .\src\quad\target\13-PID\common.h
 .\objects\fc_tasks.o: .\src\quad\rx\rx.h
 .\objects\fc_tasks.o: .\src\quad\fc\rc_controls.h
@@ -40,7 +40,7 @@
 .\objects\fc_tasks.o: .\src\quad\drivers\io.h
 .\objects\fc_tasks.o: .\src\quad\drivers\iodef.h
 .\objects\fc_tasks.o: .\src\quad\common\utils.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
 .\objects\fc_tasks.o: .\src\quad\drivers\IOTypes.h
 .\objects\fc_tasks.o: .\src\quad\drivers\io.h
 .\objects\fc_tasks.o: .\src\quad\drivers\io_def_generated.h
@@ -57,7 +57,7 @@
 .\objects\fc_tasks.o: .\src\quad\common\axis.h
 .\objects\fc_tasks.o: .\src\quad\drivers\accgyro_mpu.h
 .\objects\fc_tasks.o: .\src\quad\common\maths.h
-.\objects\fc_tasks.o: E:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\fc_tasks.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\fc_tasks.o: .\src\quad\rx\rx.h
 .\objects\fc_tasks.o: .\src\quad\build\debug.h
 .\objects\fc_tasks.o: .\src\quad\drivers\led.h
