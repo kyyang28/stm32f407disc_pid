@@ -151,8 +151,8 @@ void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims)
 	
 	for (int axis = 0; axis < XYZ_AXIS_COUNT; axis++) {
 		acc.accSmooth[axis] = acc.dev.ADCRaw[axis];
-//		printf("%u\t", acc.accSmooth[axis]);
-//		if (axis == 2) printf("\r\n");
+		printf("%u\t", acc.accSmooth[axis]);
+		if (axis == 2) printf("\r\n");
 	}
 }
 

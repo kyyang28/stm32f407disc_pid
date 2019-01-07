@@ -148,6 +148,7 @@ static void mpu9250AccAndGyroInit(gyroDev_t *gyro)
 	
 	/* Config Accelerometer Configuration register (Reg 28), +/- 8g */
 	if (!verifyMPU9250WriteRegister(MPU_RA_ACCEL_CONFIG, INV_FSR_8G << 3)) {
+//	if (!verifyMPU9250WriteRegister(MPU_RA_ACCEL_CONFIG, INV_FSR_16G << 3)) {
 //		printf("Failed to config Accelerometer Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
 	}
 	
