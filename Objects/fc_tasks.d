@@ -61,3 +61,4 @@
 .\objects\fc_tasks.o: .\src\quad\rx\rx.h
 .\objects\fc_tasks.o: .\src\quad\build\debug.h
 .\objects\fc_tasks.o: .\src\quad\drivers\led.h
+.\objects\fc_tasks.o: .\src\quad\flight\imu.h

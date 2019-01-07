@@ -19,12 +19,12 @@ typedef enum {
 
 typedef enum {
     /* Actual tasks */
-    TASK_SYSTEM = 0,
-    TASK_GYROPID,
-    TASK_ACCEL,
-    TASK_ATTITUDE,
-    TASK_RX,
-    TASK_SERIAL,
+    TASK_SYSTEM = 0,		// 0
+    TASK_GYROPID,			// 1
+    TASK_ACCEL,				// 2
+    TASK_ATTITUDE,			// 3
+    TASK_RX,				// 4
+    TASK_SERIAL,			// 5
     TASK_LED3,
     TASK_LED4,
     TASK_LED5,

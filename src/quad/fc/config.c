@@ -440,6 +440,7 @@ void createDefaultConfig(master_t *config)
 	config->gyroConfig.gyro_soft_notch_hz_2 = 200;
 	config->gyroConfig.gyro_soft_notch_cutoff_2 = 100;
 	
+//	config->gyroConfig.gyro_align = CW90_DEG;
 	config->gyroConfig.gyro_align = ALIGN_DEFAULT;
 	config->accelerometerConfig.acc_align = ALIGN_DEFAULT;
 	

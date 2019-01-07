@@ -181,7 +181,7 @@ void mpu9250SpiGyroInit(gyroDev_t *gyro)
 
 	if ((((int8_t)gyro->gyroADCRaw[1]) == -1 && ((int8_t)gyro->gyroADCRaw[0]) == -1) || spiGetErrorCounter(MPU9250_SPI_INSTANCE) != 0) {
 		spiResetErrorCounter(MPU9250_SPI_INSTANCE);
-		printf("mpuGyroRead data is failed!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("mpuGyroRead data is failed!, %s, %d\r\n", __FUNCTION__, __LINE__);
 	}
 }
 

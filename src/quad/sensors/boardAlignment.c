@@ -5,6 +5,7 @@
 #include "maths.h"
 #include "boardAlignment.h"
 #include "axis.h"
+#include "sensor.h"
 
 static bool isStandardBoardAlignment = true;			// board orientation correction
 static float boardRotation[3][3];					// matrix
@@ -53,11 +54,11 @@ void alignBoard(int32_t *vec)
 
 //	for (int i = 0; i < 3; i++) {
 //		for (int j = 0; j < 3; j++) {
-//			printf("%f ", boardRotation[i][j]);
+//			printf("(%d,%d): %f ", i, j, boardRotation[i][j]);
 //			if (j == 2) printf("\r\n");
 //		}
 //	}
-	
+		
 	vec[X] = lrintf(boardRotation[0][X] * x + boardRotation[1][X] * y + boardRotation[2][X] * z);
 	vec[Y] = lrintf(boardRotation[0][Y] * x + boardRotation[1][Y] * y + boardRotation[2][Y] * z);
 	vec[Z] = lrintf(boardRotation[0][Z] * x + boardRotation[1][Z] * y + boardRotation[2][Z] * z);
@@ -66,7 +67,64 @@ void alignBoard(int32_t *vec)
 /* dest = gyroADC or acc.accSmooth or mag.magADC */
 void alignSensors(int32_t *dest, uint8_t rotation)
 {
+	const int32_t x = dest[X];
+	const int32_t y = dest[Y];
+	const int32_t z = dest[Z];
+	
+//	printf("x: %i\ty: %i\tz: %i\r\n", x, y, z);
+	
+	switch (rotation) {
+		default:
+		case CW0_DEG:
+			dest[X] = x;
+			dest[Y] = y;
+			dest[Z] = z;
+			break;
+		
+		case CW90_DEG:
+			dest[X] = y;
+			dest[Y] = -x;
+			dest[Z] = z;
+			break;
+		
+		case CW180_DEG:
+			dest[X] = -x;
+			dest[Y] = -y;
+			dest[Z] = z;
+			break;
+		
+		case CW270_DEG:
+			dest[X] = -y;
+			dest[Y] = x;
+			dest[Z] = z;
+			break;
+		
+		case CW0_DEG_FLIP:
+			dest[X] = -x;
+			dest[Y] = y;
+			dest[Z] = -z;
+			break;
+		
+		case CW90_DEG_FLIP:
+			dest[X] = y;
+			dest[Y] = x;
+			dest[Z] = -z;
+			break;
+		
+		case CW180_DEG_FLIP:
+			dest[X] = x;
+			dest[Y] = -y;
+			dest[Z] = -z;
+			break;
+		
+		case CW270_DEG_FLIP:
+			dest[X] = -y;
+			dest[Y] = -x;
+			dest[Z] = -z;
+			break;
+	}
+	
 	if (!isStandardBoardAlignment) {
-//		alignBoard(dest);
+		alignBoard(dest);
 	}
 }

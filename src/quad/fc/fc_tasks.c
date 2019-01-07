@@ -7,6 +7,7 @@
 #include "common.h"
 #include "rx.h"
 #include "led.h"
+#include "imu.h"		// including time.h
 
 //#define TASKS_LEDS_TESTING
 
@@ -36,6 +37,13 @@ cfTask_t cfTasks[TASK_COUNT] = {
         .desiredPeriod = TASK_GYROPID_DESIRED_PERIOD,       // desiredPeriod = TASK_GYROPID_DESIRED_PERIOD = 125 us using STM32F4
         .staticPriority = TASK_PRIORITY_REALTIME,           // TASK_PRIORITY_REALTIME = 6
     },
+	
+	[TASK_ATTITUDE] = {
+		.taskName = "ATTITUDE",
+		.taskFunc = taskIMUUpdateAttitude,
+		.desiredPeriod = TASK_PERIOD_HZ(100),				// 1000000 / 100 = 10000 us = 10 ms
+		.staticPriority = TASK_PRIORITY_MEDIUM,				// 3
+	},
 
     [TASK_RX] = {
         .taskName = "RX",

@@ -51,6 +51,7 @@
 ".\objects\fat_standard.o"
 ".\objects\mixer.o"
 ".\objects\pid.o"
+".\objects\imu.o"
 ".\objects\config_eeprom.o"
 ".\objects\feature.o"
 ".\objects\acceleration.o"

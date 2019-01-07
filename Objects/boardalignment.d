@@ -6,3 +6,4 @@
 .\objects\boardalignment.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\boardalignment.o: src\quad\sensors\boardAlignment.h
 .\objects\boardalignment.o: .\src\quad\common\axis.h
+.\objects\boardalignment.o: .\src\quad\drivers\sensor.h

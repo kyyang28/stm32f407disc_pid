@@ -670,6 +670,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\quad\flight\pid.c</FilePath>
             </File>
+            <File>
+              <FileName>imu.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\quad\flight\imu.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
