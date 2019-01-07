@@ -283,6 +283,13 @@ void ResetPwmConfig(pwmConfig_t *pwmConfig)
 }
 #endif
 
+static void ResetAccelerometerTrims(flightDynamicsTrims_t *accelerometerTrims)
+{
+	accelerometerTrims->values.roll = 0;
+	accelerometerTrims->values.pitch = 0;
+	accelerometerTrims->values.yaw = 0;
+}
+
 /*
  * serialPortIdentifiers[0] = USB_VCP
  * serialPortIdentifiers[1] = USART1
@@ -443,7 +450,14 @@ void createDefaultConfig(master_t *config)
 //	config->gyroConfig.gyro_align = CW90_DEG;
 	config->gyroConfig.gyro_align = ALIGN_DEFAULT;
 	config->accelerometerConfig.acc_align = ALIGN_DEFAULT;
-	
+	config->accelerometerConfig.acc_hardware = ACC_MPU9250;		// could use ACC_DEFAULT as well
+
+	ResetAccelerometerTrims(&config->accelerometerConfig.accZero);
+    ResetRollAndPitchTrims(&config->accelerometerConfig.accelerometerTrims);
+	config->accelerometerConfig.acc_lpf_hz = 10.0f;
+	setAccelerationTrims(&AccelerometerConfig()->accZero);
+	setAccelerationFilter(AccelerometerConfig()->acc_lpf_hz);
+
 	/* Board alignment */
 	config->boardAlignment.rollDegrees = 0;
 	config->boardAlignment.pitchDegrees = 0;
@@ -466,8 +480,6 @@ void createDefaultConfig(master_t *config)
 		config->customMotorMixer[i].throttle = 0.0f;
 	}
     
-    ResetRollAndPitchTrims(&config->accelerometerConfig.accelerometerTrims);
-
 #ifdef USE_PWM
 	ResetPwmConfig(&config->pwmConfig);
 	config->pwmConfig.inputFilteringMode = INPUT_FILTERING_DISABLED;

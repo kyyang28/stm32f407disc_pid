@@ -105,10 +105,10 @@
 #define MPU_RA_WHO_AM_I         	0x75
 
 typedef enum {
-	MPU_NONE,
-	MPU_60x0,
-	MPU_9250_I2C,
-	MPU_9250_SPI
+	MPU_NONE,					// 0
+	MPU_60x0,					// 1
+	MPU_9250_I2C,				// 2
+	MPU_9250_SPI				// 3
 }detectedMPUSensor_e;
 
 typedef enum {
@@ -157,11 +157,11 @@ enum clock_sel_e {
 };
 
 enum accel_fsr_e {
-	INV_FSR_2G = 0,
-	INV_FSR_4G,
-	INV_FSR_8G,
-	INV_FSR_16G,
-	NUM_ACCEL_FSR
+	INV_FSR_2G = 0,			// 0
+	INV_FSR_4G,				// 1
+	INV_FSR_8G,				// 2
+	INV_FSR_16G,			// 3
+	NUM_ACCEL_FSR			// 4
 };
 
 struct gyroDev_s;

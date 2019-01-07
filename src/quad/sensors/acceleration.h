@@ -7,12 +7,12 @@
 
 /* Type of accelerometer used/detected */
 typedef enum {
-	ACC_DEFAULT,
-	ACC_NONE,
-	ACC_MPU6050,
-	ACC_MPU6500,
-	ACC_MPU9250,
-	ACC_FAKE
+	ACC_DEFAULT,			// 0
+	ACC_NONE,				// 1
+	ACC_MPU6050,			// 2
+	ACC_MPU6500,			// 3
+	ACC_MPU9250,			// 4
+	ACC_FAKE				// 5
 }accelerationSensor_e;
 
 typedef struct acc_s {
@@ -46,5 +46,7 @@ bool accInit(const accelerometerConfig_t *accelerometerConfig, uint32_t gyroSamp
 void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims);
 
 void ResetRollAndPitchTrims(rollAndPitchTrims_t *rollAndPitchTrims);
+void setAccelerationTrims(flightDynamicsTrims_t *accelerationTrimsToUse);
+void setAccelerationFilter(uint16_t initialAccLpfCutHz);
 
 #endif	// __ACCELERATION_H

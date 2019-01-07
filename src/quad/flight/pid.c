@@ -72,8 +72,8 @@ void pidInitFilters(const pidProfile_t *pidProfile)
 	
 	/* 1. PID Nyquist frequency, no rounding needed
 	 *
-	 * pidNyquistFrequency unit in hz, dT = (1.0f / 0.0005) / 2 = 2000 / 2 = 1000 for F210 racing quad
-	 * pidNyquistFrequency unit in hz, dT = (1.0f / 0.004) / 2 = 250 / 2 = 125 for F450 normal quad
+	 * pidNyquistFrequency unit in hz, pidNyquistFrequency = (1.0f / 0.0005) / 2 = 2000 / 2 = 1000 for F210 racing quad
+	 * pidNyquistFrequency unit in hz, pidNyquistFrequency = (1.0f / 0.004) / 2 = 250 / 2 = 125 for F450 normal quad
 	 */
 	uint32_t pidNyquistFrequency = (1.0f / dT) / 2;
 	

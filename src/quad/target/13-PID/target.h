@@ -122,9 +122,12 @@
 /* +--------------------------------------- SPI ---------------------------------------+ */
 /* +-----------------------------------------------------------------------------------+ */
 
-#define USE_GYRO_SPI_MPU9250
+
+#define USE_GYRO_SPI_MPU9250				/* Gyro configuration */
+#define USE_ACC_SPI_MPU9250					/* Acc configuration */
 #define MPU9250_SPI_INSTANCE	SPI1
 #define MPU9250_CS_PIN          PC4			// NCS on MPU9250
+
 #endif
 
 

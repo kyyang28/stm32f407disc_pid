@@ -15,6 +15,7 @@
 
 bool mpu9250SpiDetect(void);
 bool mpu9250SpiGyroDetect(gyroDev_t *gyro);
+bool mpu9250SpiAccDetect(accDev_t *acc);
 bool mpu9250WriteRegister(uint8_t reg, uint8_t data);
 bool mpu9250ReadRegister(uint8_t reg, uint8_t length, uint8_t *data);
 bool mpu9250SlowReadRegister(uint8_t reg, uint8_t length, uint8_t *data);

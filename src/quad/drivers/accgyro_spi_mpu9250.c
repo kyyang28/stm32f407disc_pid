@@ -15,6 +15,8 @@ static IO_t mpuSpi9250CsPin = IO_NONE;
 
 static bool mpuSpi9250InitDone = false;
 
+static uint8_t mpuDetected = MPU_NONE;
+
 #define ENABLE_MPU9250			IOLo(mpuSpi9250CsPin);
 #define DISABLE_MPU9250			IOHi(mpuSpi9250CsPin);
 
@@ -102,7 +104,7 @@ static void mpu9250AccAndGyroInit(gyroDev_t *gyro)
 	
 	/* Config Power Management 1 register (Reg 107) */
 	if (!verifyMPU9250WriteRegister(MPU_RA_PWR_MGMT_1, INV_CLK_PLL)) {
-		printf("Failed to config CLK SOURCE of IMU!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("Failed to config CLK SOURCE of IMU!, %s, %d\r\n", __FUNCTION__, __LINE__);
 	}
 
 #if 1
@@ -126,7 +128,7 @@ static void mpu9250AccAndGyroInit(gyroDev_t *gyro)
 	/* Config Configuration register (Reg 26) */
 	if (gyro->lpf == 4) {
 		if (!verifyMPU9250WriteRegister(MPU_RA_CONFIG, 1)) {		// 1 kHz, 184 DLPF
-			printf("Failed to config Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//			printf("Failed to config Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
 		}
 	}else if (gyro->lpf < 4) {
 		if (!verifyMPU9250WriteRegister(MPU_RA_CONFIG, 7)) {		// 8 kHz, 3600 Hz (bandwidth) DLPF
@@ -135,16 +137,16 @@ static void mpu9250AccAndGyroInit(gyroDev_t *gyro)
 //		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 	}else if (gyro->lpf > 4) {
 		if (!verifyMPU9250WriteRegister(MPU_RA_CONFIG, 0)) {		// 8 kHz, 250 Hz (bandwidth) DLPF
-			printf("Failed to config Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//			printf("Failed to config Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
 		}
 	}
 	
 	/* Config Sample Rate Divider register (Reg 25) */
 	if (!verifyMPU9250WriteRegister(MPU_RA_SMPLRT_DIV, gyroMPU6xxxGetDividerDrops(gyro))) {
-		printf("Failed to config Sample Rate Divider register!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("Failed to config Sample Rate Divider register!, %s, %d\r\n", __FUNCTION__, __LINE__);
 	}
 	
-	/* Config Accelerometer Configuration register (Reg 28) */
+	/* Config Accelerometer Configuration register (Reg 28), +/- 8g */
 	if (!verifyMPU9250WriteRegister(MPU_RA_ACCEL_CONFIG, INV_FSR_8G << 3)) {
 //		printf("Failed to config Accelerometer Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
 	}
@@ -185,6 +187,16 @@ void mpu9250SpiGyroInit(gyroDev_t *gyro)
 	}
 }
 
+static void mpu9250AccInit(accDev_t *acc)
+{
+	acc->acc_1G = 512 * 8;		// acc->acc_1G = 4096 (AFS_SEL = 2, i.e. +/-8 g)
+}
+
+void mpu9250SpiAccInit(accDev_t *acc)
+{
+	mpu9250AccInit(acc);
+}
+
 bool mpu9250SpiDetect(void)
 {
 	uint8_t in;
@@ -217,6 +229,7 @@ bool mpu9250SpiDetect(void)
 		 * MPU9250_WHO_AM_I_CONST_ALT = 0x73
 		 */
 		if ((in == MPU9250_WHO_AM_I_CONST) || (in == MPU9250_WHO_AM_I_CONST_ALT)) {
+			mpuDetected = MPU_9250_SPI;
 			break;
 		}
 		
@@ -243,6 +256,21 @@ bool mpu9250SpiGyroDetect(gyroDev_t *gyro)
 	
 	/* 16.4 dps/lsb scale factor */
 	gyro->scale = 1.0f / 16.4f;
+	
+	return true;
+}
+
+bool mpu9250SpiAccDetect(accDev_t *acc)
+{
+//	printf("mpuDetected: %u\r\n", mpuDetected);
+	if (acc->mpuDetectionResult.sensor != mpuDetected || !mpuDetected) {
+		return false;
+	}
+	
+//	printf("%s, %d\r\n", __FUNCTION__, __LINE__);		// executed this line
+	
+	acc->init = mpu9250SpiAccInit;
+	acc->read = mpuAccRead;
 	
 	return true;
 }

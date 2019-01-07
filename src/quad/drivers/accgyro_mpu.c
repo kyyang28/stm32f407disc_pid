@@ -78,7 +78,7 @@ mpuDetectionResult_t *mpuDetect(gyroDev_t *gyro)
 #ifdef USE_I2C
 		gyro->mpuConfiguration.read = mpuReadRegisterI2C;
 		gyro->mpuConfiguration.write = mpuWriteRegisterI2C;
-		printf("MPU9250 I2C read and write initialisation done, %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("MPU9250 I2C read and write initialisation done, %s, %d\r\n", __FUNCTION__, __LINE__);
 #endif
 	}else {
 #ifdef USE_SPI
@@ -101,11 +101,11 @@ mpuDetectionResult_t *mpuDetect(gyroDev_t *gyro)
 //	printf("sig after mask: 0x%x, %s, %d\r\n", sig, __FUNCTION__, __LINE__);			// sig = 0x72 after masking
 	
 	if (sig == MPUx0x0_WHO_AM_I_CONST) {
-		printf("MPU6050 I2C is detected! %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("MPU6050 I2C is detected! %s, %d\r\n", __FUNCTION__, __LINE__);
 		gyro->mpuDetectionResult.sensor = MPU_60x0;
 //		mpu6050FindRevision(gyro);
 	}else if ((sig == MPU9250_WHO_AM_I_CONST) || (sig == MPU9250_WHO_AM_I_CONST_ALT)) {
-		printf("MPU9250 I2C is detected! %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("MPU9250 I2C is detected! %s, %d\r\n", __FUNCTION__, __LINE__);
 		gyro->mpuDetectionResult.sensor = MPU_9250_I2C;
 	}
 	

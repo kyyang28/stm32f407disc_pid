@@ -506,19 +506,15 @@ int main(void)
 #if defined(USE_IMU)			// USE_IMU is defined in target.h
 	if (!sensorsAutodetect(GyroConfig(), AccelerometerConfig())) {
 		//failureMode();
-		printf("Failed to initialise IMU!, %s, %d\r\n", __FUNCTION__, __LINE__);
+//		printf("Failed to initialise IMU!, %s, %d\r\n", __FUNCTION__, __LINE__);
 		while (1) {
 			/* BLUE LED */
-			LED6_ON;
+			LED5_ON;
 			delay(100);
-			LED6_OFF;
+			LED5_OFF;
 			delay(100);
 		}
 	}
-#endif
-
-#if defined(F450_QUAD_30A_1000KVMOTOR)	
-	gyro.targetLooptime = 1000;					// F450 1000KV Motor utilises 1000 us of gyro.targetLooptime
 #endif
 	
 	systemState |= SYSTEM_STATE_SENSORS_READY;

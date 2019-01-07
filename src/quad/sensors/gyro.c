@@ -308,6 +308,7 @@ void gyroUpdate(void)
 	gyroADC[Z] = gyro.dev.gyroADCRaw[Z];
 //	printf("MPU9250 (SPI) data - gyroADCRaw[X]: %d, gyroADCRaw[Y]: %d, gyroADCRaw[Z]: %d\r\n", gyroADC[X], gyroADC[Y], gyroADC[Z]);
 
+//	printf("gyroAlign: %d\r\n", gyro.dev.gyroAlign);
 	alignSensors(gyroADC, gyro.dev.gyroAlign);
 
 	const bool calibrationComplete = isGyroCalibrationComplete();
