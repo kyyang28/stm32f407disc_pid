@@ -156,7 +156,7 @@ static void mpu9250AccAndGyroInit(gyroDev_t *gyro)
 	if (!verifyMPU9250WriteRegister(MPU_RA_INT_PIN_CFG, 0 << 7 | 0 << 6 | 0 << 5 | 1 << 4 | 0 << 3 | 0 << 2 | 1 << 1 | 0 << 0)) {	// INT_ANYRD_2CLEAR, BYPASS_EN
 //		printf("Failed to config INT Pin / Bypass Enable Configuration register!, %s, %d\r\n", __FUNCTION__, __LINE__);
 	}
-
+	
 #if defined(USE_MPU_DATA_READY_SIGNAL)
 	/* Config Interrupt Enable register (Reg 56) */
 	if (!verifyMPU9250WriteRegister(MPU_RA_INT_ENABLE, 0x01)) {	// this resets register MPU_RA_PWR_MGMT_1 and won't read back correctly.

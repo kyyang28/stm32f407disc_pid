@@ -44,6 +44,7 @@ typedef struct accelerometerConfig_s {
 
 bool accInit(const accelerometerConfig_t *accelerometerConfig, uint32_t gyroSamplingInverval);
 void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims);
+bool isAccelerationCalibrationComplete(void);
 
 void ResetRollAndPitchTrims(rollAndPitchTrims_t *rollAndPitchTrims);
 void setAccelerationTrims(flightDynamicsTrims_t *accelerationTrimsToUse);

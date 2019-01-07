@@ -1,5 +1,6 @@
 .\objects\acceleration.o: src\quad\sensors\acceleration.c
 .\objects\acceleration.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\acceleration.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\acceleration.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 .\objects\acceleration.o: src\quad\sensors\gyro.h
 .\objects\acceleration.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
@@ -50,3 +51,4 @@
 .\objects\acceleration.o: src\quad\sensors\sensors.h
 .\objects\acceleration.o: .\src\quad\fc\runtime_config.h
 .\objects\acceleration.o: .\src\quad\common\filter.h
+.\objects\acceleration.o: src\quad\sensors\boardAlignment.h

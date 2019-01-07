@@ -1,6 +1,6 @@
 
 #include <stdio.h>
-
+#include <math.h>
 #include <string.h>
 #include "gyro.h"
 #include "accgyro_mpu6050.h"
@@ -12,12 +12,97 @@
 #include "target.h"
 #include "filter.h"
 #include "axis.h"
+#include "boardAlignment.h"
 
 acc_t acc;				// acc access functions
 
 static flightDynamicsTrims_t *accelerationTrims;
 static uint16_t accLpfCutHz = 0;
 static biquadFilter_t accFilter[XYZ_AXIS_COUNT];
+
+/* Calibration is processed in the main loop, which decreases at each cycle down to 0, then we step into the normal mode */
+static uint16_t calibratingA = 0;
+
+bool isAccelerationCalibrationComplete(void)
+{
+	return calibratingA == 0;
+}
+
+static bool isOnFirstAccelerationCalibrationCycle(void)
+{
+	return calibratingA == CALIBRATING_ACC_CYCLES;
+}
+
+static bool isOnFinalAccelerationCalibrationCycle(void)
+{
+	return calibratingA == 1;
+}
+
+void ResetRollAndPitchTrims(rollAndPitchTrims_t *rollAndPitchTrims)
+{
+    rollAndPitchTrims->values.roll = 0;
+    rollAndPitchTrims->values.pitch = 0;
+}
+
+void setAccelerationTrims(flightDynamicsTrims_t *accelerationTrimsToUse)
+{
+	accelerationTrims = accelerationTrimsToUse;
+}
+
+void setAccelerationFilter(uint16_t initialAccLpfCutHz)
+{
+	accLpfCutHz = initialAccLpfCutHz;
+	
+	if (acc.accSamplingInterval) {
+//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+		for (int axis = 0; axis < XYZ_AXIS_COUNT; axis++) {
+			biquadFilterInitLPF(&accFilter[axis], accLpfCutHz, acc.accSamplingInterval);
+		}
+	}
+}
+
+static void performAccelerationCalibration(rollAndPitchTrims_t *rollAndPitchTrims)
+{
+	static int32_t a[3];
+	
+	for (int axis = 0; axis < 3; axis++) {
+		/* Reset a[axis] at start of calibration */
+		if (isOnFirstAccelerationCalibrationCycle()) {
+			a[axis] = 0;
+		}
+		
+		/* Sum up CALIBRATING_ACC_CYCLES readings */
+		a[axis] += acc.accSmooth[axis];
+		
+		/* Reset global variables to prevent other code from using un-calibrated data */
+		acc.accSmooth[axis] = 0;
+		accelerationTrims->raw[axis] = 0;
+	}
+	
+	if (isOnFinalAccelerationCalibrationCycle()) {
+		/* Calculate average, shift Z down by acc_1G and store values in EEPROM at the end of calibration */
+		accelerationTrims->raw[X] = (a[X] + (CALIBRATING_ACC_CYCLES / 2)) / CALIBRATING_ACC_CYCLES;
+		accelerationTrims->raw[Y] = (a[Y] + (CALIBRATING_ACC_CYCLES / 2)) / CALIBRATING_ACC_CYCLES;
+		accelerationTrims->raw[Z] = (a[Z] + (CALIBRATING_ACC_CYCLES / 2)) / CALIBRATING_ACC_CYCLES - acc.dev.acc_1G;	// acc.dev.acc_1G = 4096 (AFS_SEL = 2, +/- 8g)
+
+		/* Reset roll and pitch trims */
+		ResetRollAndPitchTrims(rollAndPitchTrims);
+		
+		/* Write contents to EEPROM and beep to notify */
+//		saveConfigAndNotify();
+	}
+	
+	/* ACC calibration decreasing counter */
+	calibratingA--;
+}
+
+static void applyAccelerationTrims(const flightDynamicsTrims_t *accelerationTrims)
+{
+	/* raw[X-Y-Z] share the same memory space as accelerationTrims->values->roll, pitch, yaw */
+	acc.accSmooth[X] -= accelerationTrims->raw[X];
+	acc.accSmooth[Y] -= accelerationTrims->raw[Y];
+	acc.accSmooth[Z] -= accelerationTrims->raw[Z];
+}
 
 bool accDetect(accDev_t *dev, accelerationSensor_e accHardwareToUse)
 {
@@ -131,6 +216,7 @@ bool accInit(const accelerometerConfig_t *accelerometerConfig, uint32_t gyroSamp
 	
 //	printf("accSamplingInterval: %u\r\n", acc.accSamplingInterval);		// acc.accSamplingInterval = 1000
 	
+	/* Initialise ACC biquad LPF */
 	if (accLpfCutHz) {
 //		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 		for (int axis = 0; axis < XYZ_AXIS_COUNT; axis++) {
@@ -151,30 +237,37 @@ void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims)
 	
 	for (int axis = 0; axis < XYZ_AXIS_COUNT; axis++) {
 		acc.accSmooth[axis] = acc.dev.ADCRaw[axis];
-		printf("%u\t", acc.accSmooth[axis]);
-		if (axis == 2) printf("\r\n");
+//		printf("%u\t", acc.accSmooth[axis]);
+//		if (axis == 2) printf("\r\n");
 	}
-}
-
-void ResetRollAndPitchTrims(rollAndPitchTrims_t *rollAndPitchTrims)
-{
-    rollAndPitchTrims->values.roll = 0;
-    rollAndPitchTrims->values.pitch = 0;
-}
-
-void setAccelerationTrims(flightDynamicsTrims_t *accelerationTrimsToUse)
-{
-	accelerationTrims = accelerationTrimsToUse;
-}
-
-void setAccelerationFilter(uint16_t initialAccLpfCutHz)
-{
-	accLpfCutHz = initialAccLpfCutHz;
 	
-	if (acc.accSamplingInterval) {
-//		printf("%s, %d\r\n", __FUNCTION__, __LINE__);
+//	printf("accLpfCutHz: %u\r\n", accLpfCutHz);
+	
+	/* accLpfCutHz = 10.0 Hz */
+	if (accLpfCutHz) {
 		for (int axis = 0; axis < XYZ_AXIS_COUNT; axis++) {
-			biquadFilterInitLPF(&accFilter[axis], accLpfCutHz, acc.accSamplingInterval);
+			acc.accSmooth[axis] = lrintf(biquadFilterApply(&accFilter[axis], (float)acc.accSmooth[axis]));
 		}
 	}
+	
+//	printf("accAlign: %u\r\n", acc.dev.accAlign);		// accAlign = ALIGN_DEFAULT
+	
+	/* Align accelerometer sensor */
+	alignSensors(acc.accSmooth, acc.dev.accAlign);
+	
+	/* Calibrate ACC */
+	if (!isAccelerationCalibrationComplete()) {
+		performAccelerationCalibration(rollAndPitchTrims);
+	}
+	
+	/* TODO: Might need to implement inflight acc calibration */
+	
+	
+	/* Adjust acc.accSmooth[X,Y,Z] by subtracting acceleration trims */
+	applyAccelerationTrims(accelerationTrims);
+	
+//	for (int axis = 0; axis < 3; axis++) {
+//		printf("%d\t", acc.accSmooth[axis]);
+//		if (axis == 2) printf("\r\n");
+//	}
 }
