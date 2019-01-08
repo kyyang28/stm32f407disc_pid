@@ -251,7 +251,8 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 //	printf("sinzcosx: %f\r\n", sinzcosx);
 //	printf("coszsinx: %f\r\n", coszsinx);
 //	printf("sinzsinx: %f\r\n", sinzsinx);
-		
+	
+	/* Coordinate-based rotation matrix, RzRyRx, first Roll axis, then Pitch axis, lastly Yaw axis */
 	matrix[0][X] = cosz * cosy;
 	matrix[0][Y] = -cosy * sinz;
 	matrix[0][Z] = siny;

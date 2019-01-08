@@ -58,7 +58,8 @@ void alignBoard(int32_t *vec)
 //			if (j == 2) printf("\r\n");
 //		}
 //	}
-		
+	
+	
 	vec[X] = lrintf(boardRotation[0][X] * x + boardRotation[1][X] * y + boardRotation[2][X] * z);
 	vec[Y] = lrintf(boardRotation[0][Y] * x + boardRotation[1][Y] * y + boardRotation[2][Y] * z);
 	vec[Z] = lrintf(boardRotation[0][Z] * x + boardRotation[1][Z] * y + boardRotation[2][Z] * z);
