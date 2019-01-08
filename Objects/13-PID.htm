@@ -3,7 +3,7 @@
 <title>Static Call Graph - [.\Objects\13-PID.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image .\Objects\13-PID.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jan 08 01:18:14 2019
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060528: Last Updated: Tue Jan 08 09:32:12 2019
 <BR><P>
 <H3>Maximum Stack Usage =        552 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -1924,14 +1924,6 @@ Global Symbols
 <LI><a href="#[13b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;afatfs_fileOperationContinue
 </UL>
 <BR>[Called By]<UL><LI><a href="#[4]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;taskMainPidLoop
-</UL>
-
-<P><STRONG><a name="[14d]"></a>alignBoard</STRONG> (Thumb, 150 bytes, Stack size 32 bytes, boardalignment.o(i.alignBoard))
-<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = alignBoard &rArr; __hardfp_lrintf &rArr; _frnd &rArr; __fpl_fnaninf
-</UL>
-<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_lrintf
-</UL>
-<BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alignSensors
 </UL>
 
 <P><STRONG><a name="[103]"></a>alignSensors</STRONG> (Thumb, 104 bytes, Stack size 8 bytes, boardalignment.o(i.alignSensors))
@@ -4448,6 +4440,14 @@ Local Symbols
 <LI><a href="#[19a]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyroCalculateCalibratingCycles
 </UL>
 <BR>[Called By]<UL><LI><a href="#[19b]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;gyroUpdate
+</UL>
+
+<P><STRONG><a name="[14d]"></a>alignBoard</STRONG> (Thumb, 150 bytes, Stack size 32 bytes, boardalignment.o(i.alignBoard))
+<BR><BR>[Stack]<UL><LI>Max Depth = 64<LI>Call Chain = alignBoard &rArr; __hardfp_lrintf &rArr; _frnd &rArr; __fpl_fnaninf
+</UL>
+<BR>[Calls]<UL><LI><a href="#[f3]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__hardfp_lrintf
+</UL>
+<BR>[Called By]<UL><LI><a href="#[103]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;alignSensors
 </UL>
 
 <P><STRONG><a name="[185]"></a>calculateNonDataDrivenChannel</STRONG> (Thumb, 88 bytes, Stack size 20 bytes, rx.o(i.calculateNonDataDrivenChannel))

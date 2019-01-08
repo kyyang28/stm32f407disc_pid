@@ -45,8 +45,7 @@ void initBoardAlignment(const boardAlignment_t *boardAlignment)
 //	}
 }
 
-//static void alignBoard(int32_t *vec)
-void alignBoard(int32_t *vec)
+static void alignBoard(int32_t *vec)
 {
 	int32_t x = vec[X];
 	int32_t y = vec[Y];
@@ -59,7 +58,13 @@ void alignBoard(int32_t *vec)
 //		}
 //	}
 	
-	
+	/*
+	                +-																		    -+ +-   -+
+			        |	cosycosz		cosxsinz + coszsinysinx			sinxsinz - cosxcoszsiny  | |  x  |
+	(RzRyRx)vec  =  |  -cosysinz		cosycosz - sinxsinysinz			coszsinx + cosxsinysinz  | |  y  |
+			        |	  siny				   -cosysinx					   cosycosx          | |  z  |
+	                +-																		    -+ +-   -+
+	 */
 	vec[X] = lrintf(boardRotation[0][X] * x + boardRotation[1][X] * y + boardRotation[2][X] * z);
 	vec[Y] = lrintf(boardRotation[0][Y] * x + boardRotation[1][Y] * y + boardRotation[2][Y] * z);
 	vec[Z] = lrintf(boardRotation[0][Z] * x + boardRotation[1][Z] * y + boardRotation[2][Z] * z);
