@@ -525,13 +525,13 @@ int main(void)
 	/* PID configurations
 	 * As gyro.targetLooptime is returned from gyroSetSampleRate() function of gyro_sync.c, so we can safely call pidSetTargetLooptime() function now
 	 */
-//	printf("gyro.targetLooptime: %u\r\n", gyro.targetLooptime);								// 125
-//	printf("PidConfig()->pid_process_denom: %u\r\n", PidConfig()->pid_process_denom);		// 4
+//	printf("gyro.targetLooptime: %u\r\n", gyro.targetLooptime);								// 1000 for F450
+//	printf("PidConfig()->pid_process_denom: %u\r\n", PidConfig()->pid_process_denom);		// 2 for F450
 	
 	/* Initialise PID looptime
 	 * 
 	 * PID looptime = 125 * 4 = 500 us (2 KHz) for F210 racing quad
-	 * PID looptime = 1000 * 4 = 4000 us (250 Hz) for F450 racing quad
+	 * PID looptime = 1000 * 2 = 2000 us (500 Hz) for F450 racing quad
 	 */
 	pidSetTargetLooptime(gyro.targetLooptime * PidConfig()->pid_process_denom);
 	

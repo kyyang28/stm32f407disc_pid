@@ -626,8 +626,58 @@ void validateAndFixGyroConfig(void)
 	
 	float samplingTime = 0.000125f;			// 1 / 8000 (gyro sampling frequency 8K) = 0.000125 
 	
-	// TODO: implement rest of the gyroConfig stuffs
-    
+//	printf("gyro_lpf: %u\r\n", GyroConfig()->gyro_lpf);
+	
+	if (GyroConfig()->gyro_lpf != GYRO_LPF_256HZ && GyroConfig()->gyro_lpf != GYRO_LPF_NONE) {
+		/* When gyro set to 1Khz, always set pid looptime 1:1 to sampling time */
+		PidConfig()->pid_process_denom = 1;
+		GyroConfig()->gyro_sync_denom = 1;
+		GyroConfig()->gyro_use_32khz = false;
+		samplingTime = 0.001f;
+	}
+	
+//	if (GyroConfig()->gyro_use_32khz) {
+//		samplingTime = 0.00003125;
+//	} else {
+//		
+//	}
+	
+	/* Check for looptime restrictions based on motor protocol.
+	 * Motor times have safety margin
+  	 */
+//	printf("samplingTime: %f\r\n", samplingTime);
+//	printf("gyro_sync_denom: %u\r\n", GyroConfig()->gyro_sync_denom);
+//	printf("pid_process_denom: %u\r\n", PidConfig()->pid_process_denom);
+	const float pidLooptime = samplingTime * GyroConfig()->gyro_sync_denom * PidConfig()->pid_process_denom;
+//	printf("pidLooptime: %f\r\n", pidLooptime);
+	float motorUpdateRestriction;
+	
+	switch (MotorConfig()->motorPwmProtocol) {
+		case PWM_TYPE_STANDARD:
+			motorUpdateRestriction = 1.0f / BRUSHLESS_MOTORS_PWM_RATE;
+			break;
+		
+		default:
+			motorUpdateRestriction = 0.00003125f;
+	}
+	
+//	printf("pidLooptime: %f\r\n", pidLooptime);
+//	printf("motorUpdateRestriction: %f\r\n", motorUpdateRestriction);
+	
+	if (pidLooptime < motorUpdateRestriction) {
+		/* MAX_PID_PROCESS_DENOM = 16 */
+		const uint8_t maxPidProcessDenom = constrain(motorUpdateRestriction / (samplingTime * GyroConfig()->gyro_sync_denom), 1, MAX_PID_PROCESS_DENOM);
+//		printf("maxPidProcessDenom: %u\r\n", maxPidProcessDenom);
+		PidConfig()->pid_process_denom = MIN(PidConfig()->pid_process_denom, maxPidProcessDenom);
+	}
+	
+//	printf("pid_process_denom: %u\r\n", PidConfig()->pid_process_denom);
+	
+	/* Prevent overriding the max rate of motors 
+	 * ONLY when MotorConfig()->useUnsyncedPwm = true && motorPwmProtocol <= PWM_TYPE_BRUSHED && motorPwmProtocol != PWM_TYPE_STANDARD 
+	 * 
+	 * TODO: Implement this when using UnsyncedPwm and motorProtocol = PWM_TYPE_ONESHOT125, PWM_TYPE_ONESHOT42 and PWM_TYPE_MULTISHOT
+	 */
 }
 
 void validateAndFixConfig(void)
