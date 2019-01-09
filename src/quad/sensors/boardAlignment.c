@@ -66,7 +66,7 @@ void alignBoard(int32_t *vec)
 			        |	  siny				   -cosysinx					   cosycosx          | |  z  |
 	                +-																		    -+ +-   -+
 	 */
-#if defined(MYMETHOD)
+#if defined(RzRyRx)
 	/* Rotation matrix initialisation */
 //	matrix[0][0] = cosz * cosy;
 //	matrix[0][1] = (sinzcosx) + (coszsinx * siny);

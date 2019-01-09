@@ -459,9 +459,9 @@ void createDefaultConfig(master_t *config)
 	setAccelerationFilter(AccelerometerConfig()->acc_lpf_hz);
 
 	/* Board alignment */
-	config->boardAlignment.rollDegrees = 130;
-	config->boardAlignment.pitchDegrees = 13;
-	config->boardAlignment.yawDegrees = 175;
+	config->boardAlignment.rollDegrees = 0;
+	config->boardAlignment.pitchDegrees = 0;
+	config->boardAlignment.yawDegrees = 0;
 	
 	/* This threshold means how much average gyro reading could differ before re-calibration is triggered */
 	config->gyroConfig.gyroMovementCalibrationThreshold = 48;		// moron_threshold of CLI, range from 0 to 200

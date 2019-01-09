@@ -252,6 +252,7 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 //	printf("coszsinx: %f\r\n", coszsinx);
 //	printf("sinzsinx: %f\r\n", sinzsinx);
 	
+#if defined(RzRyRx)
 	/* Coordinate-based rotation matrix, RzRyRx, first Roll axis, then Pitch axis, lastly Yaw axis */
 
 	/*
@@ -261,7 +262,6 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 						|	  siny				   -cosysinx					   cosycosx          | |  z  |
 						+-																		    -+ +-   -+	
 	*/
-#if defined(MYMETHOD)
 	matrix[0][X] = cosz * cosy;
 	matrix[0][Y] = (sinzcosx) + (coszsinx * siny);
 	matrix[0][Z] = (sinzsinx) - (coszcosx * siny);
@@ -273,7 +273,7 @@ void buildRotationMatrix(fp_angles_t *delta, float matrix[3][3])
 	matrix[2][Z] = cosy * cosx;
 //	printf("%s, %d\r\n", __FUNCTION__, __LINE__);
 #else
-	/* BF-3.1.7 way */
+	/* BF-3.1.7 way, weired */
 	matrix[0][X] = cosz * cosy;
 	matrix[0][Y] = -cosy * sinz;
 	matrix[0][Z] = siny;
