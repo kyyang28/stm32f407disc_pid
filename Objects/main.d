@@ -68,6 +68,7 @@
 .\objects\main.o: .\src\quad\config\config_profile.h
 .\objects\main.o: .\src\quad\drivers\sdcard.h
 .\objects\main.o: .\src\quad\blackbox\blackbox.h
+.\objects\main.o: .\src\quad\flight\imu.h
 .\objects\main.o: .\src\quad\config\config_eeprom.h
 .\objects\main.o: .\src\quad\drivers\button.h
 .\objects\main.o: .\src\quad\drivers\gps.h

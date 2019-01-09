@@ -492,6 +492,7 @@ void calculateRxChannelsAndUpdateFailsafe(timeUs_t currentTimeUs)
 	
 	/* only proceed when no more samples to skip and suspend period is over */
 	if (skipRxSamples) {
+		/* suspendRxSignalUntil is something to do with suspendRxSignal and resumeRxSignal */
 		if (currentTimeUs > suspendRxSignalUntil) {
 			skipRxSamples--;
 		}

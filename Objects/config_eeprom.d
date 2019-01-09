@@ -68,4 +68,5 @@
 .\objects\config_eeprom.o: .\src\quad\fc\config.h
 .\objects\config_eeprom.o: .\src\quad\drivers\sdcard.h
 .\objects\config_eeprom.o: .\src\quad\blackbox\blackbox.h
+.\objects\config_eeprom.o: .\src\quad\flight\imu.h
 .\objects\config_eeprom.o: src\quad\config\config_eeprom.h

@@ -70,3 +70,4 @@
 .\objects\pid.o: .\src\quad\fc\config.h
 .\objects\pid.o: .\src\quad\drivers\sdcard.h
 .\objects\pid.o: .\src\quad\blackbox\blackbox.h
+.\objects\pid.o: .\src\quad\flight\imu.h

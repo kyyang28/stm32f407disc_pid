@@ -68,6 +68,7 @@
 .\objects\blackbox_io.o: .\src\quad\fc\config.h
 .\objects\blackbox_io.o: .\src\quad\drivers\sdcard.h
 .\objects\blackbox_io.o: .\src\quad\blackbox\blackbox.h
+.\objects\blackbox_io.o: .\src\quad\flight\imu.h
 .\objects\blackbox_io.o: src\quad\blackbox\blackbox_io.h
 .\objects\blackbox_io.o: .\src\quad\io\asyncfatfs\asyncfatfs.h
 .\objects\blackbox_io.o: .\src\quad\io\asyncfatfs\fat_standard.h

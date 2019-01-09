@@ -241,9 +241,7 @@ void readEEPROM(void)
 //	printf("g_masterConfig.motorConfig.mincommand: %u\r\n", g_masterConfig.motorConfig.mincommand);			// g_masterConfig.motorConfig.minthrottle = 1000
 //	printf("g_masterConfig.motorConfig.motorPwmProtocol: %u\r\n", g_masterConfig.motorConfig.motorPwmProtocol);	// g_masterConfig.motorConfig.minthrottle = 0
 //	printf("g_masterConfig.motorConfig.motorPwmRate: %u\r\n\r\n", g_masterConfig.motorConfig.motorPwmRate);	// g_masterConfig.motorConfig.minthrottle = 480
-	
-//	if ()
-	
+		
 	/* set profile to the first one */
 	setProfile(masterConfig.current_profile_index);
 	

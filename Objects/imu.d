@@ -3,11 +3,11 @@
 .\objects\imu.o: src\quad\flight\imu.h
 .\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
 .\objects\imu.o: .\src\quad\common\time.h
-.\objects\imu.o: .\src\quad\fc\runtime_config.h
-.\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
-.\objects\imu.o: .\src\quad\sensors\sensors.h
+.\objects\imu.o: src\quad\flight\pid.h
 .\objects\imu.o: .\src\quad\sensors\acceleration.h
 .\objects\imu.o: .\src\quad\drivers\sensor.h
+.\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\imu.o: .\src\quad\sensors\sensors.h
 .\objects\imu.o: .\src\quad\drivers\accgyro.h
 .\objects\imu.o: .\src\quad\drivers\exti.h
 .\objects\imu.o: .\src\quad\drivers\IOTypes.h
@@ -47,5 +47,6 @@
 .\objects\imu.o: .\src\quad\drivers\resource.h
 .\objects\imu.o: .\src\quad\common\axis.h
 .\objects\imu.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\imu.o: .\src\quad\fc\runtime_config.h
 .\objects\imu.o: .\src\quad\common\maths.h
 .\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

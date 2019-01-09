@@ -16,7 +16,8 @@
 #include "config_profile.h"
 #include "sdcard.h"
 #include "blackbox.h"
-#include "pid.h"
+//#include "pid.h"
+#include "imu.h"				// including pid.h
 
 typedef struct master_s {
 	uint8_t version;
@@ -38,6 +39,7 @@ typedef struct master_s {
 	/* IMU related configuration */
 	gyroConfig_t gyroConfig;
 	accelerometerConfig_t accelerometerConfig;
+	imuConfig_t imuConfig;
 	
 	/* Board alignment configuration */
 	boardAlignment_t boardAlignment;
@@ -45,7 +47,11 @@ typedef struct master_s {
     /* PID related configuration */
 	pidConfig_t pidConfig;
 
+	/* Remote control related configuration */
 	rcControlsConfig_t rcControlsConfig;
+	
+	/* Throttle related configuration */
+	throttleCorrectionConfig_t throttleCorrectionConfig;
 	
 	armingConfig_t armingConfig;
 	
@@ -109,6 +115,7 @@ extern controlRateConfig_t *currentControlRateProfile;
 #define PwmConfig(x)						(&masterConfig.pwmConfig)
 #define GyroConfig(x)						(&masterConfig.gyroConfig)
 #define AccelerometerConfig(x)				(&masterConfig.accelerometerConfig)
+#define ImuConfig(x)						(&masterConfig.imuConfig)
 #define RxConfig(x)							(&masterConfig.rxConfig)
 #define RcControlsConfig(x)					(&masterConfig.rcControlsConfig)
 #define ArmingConfig(x)						(&masterConfig.armingConfig)
@@ -117,5 +124,6 @@ extern controlRateConfig_t *currentControlRateProfile;
 #define BlackboxConfig(x)					(&masterConfig.blackboxConfig)
 #define PidConfig(x)                        (&masterConfig.pidConfig)
 #define BoardAlignment(x)					(&masterConfig.boardAlignment)
+#define ThrottleCorrectionConfig(x)			(&masterConfig.throttleCorrectionConfig)
 
 #endif	// __CONFIGMASTER_H

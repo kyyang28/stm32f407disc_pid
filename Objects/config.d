@@ -68,6 +68,7 @@
 .\objects\config.o: .\src\quad\fc\config.h
 .\objects\config.o: .\src\quad\drivers\sdcard.h
 .\objects\config.o: .\src\quad\blackbox\blackbox.h
+.\objects\config.o: .\src\quad\flight\imu.h
 .\objects\config.o: .\src\quad\config\config_eeprom.h
 .\objects\config.o: .\src\quad\drivers\pwm_output.h
 .\objects\config.o: .\src\quad\drivers\timer.h

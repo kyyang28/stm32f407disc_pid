@@ -66,3 +66,4 @@
 .\objects\feature.o: .\src\quad\fc\config.h
 .\objects\feature.o: .\src\quad\drivers\sdcard.h
 .\objects\feature.o: .\src\quad\blackbox\blackbox.h
+.\objects\feature.o: .\src\quad\flight\imu.h

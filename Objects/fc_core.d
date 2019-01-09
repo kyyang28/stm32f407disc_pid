@@ -74,4 +74,5 @@
 .\objects\fc_core.o: .\src\quad\config\config_profile.h
 .\objects\fc_core.o: .\src\quad\fc\config.h
 .\objects\fc_core.o: .\src\quad\drivers\sdcard.h
+.\objects\fc_core.o: .\src\quad\flight\imu.h
 .\objects\fc_core.o: src\quad\fc\fc_rc.h

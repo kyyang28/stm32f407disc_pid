@@ -67,6 +67,7 @@
 .\objects\fc_rc.o: .\src\quad\fc\config.h
 .\objects\fc_rc.o: .\src\quad\drivers\sdcard.h
 .\objects\fc_rc.o: .\src\quad\blackbox\blackbox.h
+.\objects\fc_rc.o: .\src\quad\flight\imu.h
 .\objects\fc_rc.o: src\quad\fc\fc_core.h
 .\objects\fc_rc.o: .\src\quad\scheduler\scheduler.h
 .\objects\fc_rc.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h

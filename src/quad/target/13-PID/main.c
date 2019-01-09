@@ -60,6 +60,8 @@
 
 #include "runtime_config.h"
 
+#include "imu.h"
+
 
 //#define GPIO_PA1_PIN				PA1
 //#define GPIO_PB8_PIN				PB8
@@ -539,7 +541,7 @@ int main(void)
 	/* Initialise PID configurations */
 	pidInitConfig(&currentProfile->pidProfile);
 	
-//	imuInit();
+	imuInit();
 	
 	/* MCU Support Package(MSP) initialisation */
 	mspFcInit();

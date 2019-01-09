@@ -15,6 +15,7 @@
 #include "feature.h"
 #include "accgyro.h"
 #include "acceleration.h"
+#include "imu.h"
 //#include "boardAlignment.h"
 #include "filter.h"
 #include "rc_controls.h"
@@ -425,9 +426,10 @@ void createDefaultConfig(master_t *config)
 	config->debug_mode = DEBUG_MODE;		// DEBUG_MODE default is DEBUG_NONE
 	config->task_statistics = true;
 	
-	config->current_profile_index = 0;		// default profile number
-	
 	/* Global settings */
+	config->current_profile_index = 0;		// default profile number
+	config->imuConfig.dcm_kp = 2500;		// 1.0 * 10000
+	config->imuConfig.dcm_ki = 0;
 	config->gyroConfig.gyro_lpf = GYRO_LPF_256HZ;			// 256Hz default
 #ifdef STM32F10X
 	config->gyroConfig.gyro_sync_denom = 8;
@@ -439,7 +441,7 @@ void createDefaultConfig(master_t *config)
 #else
 	config->gyroConfig.gyro_sync_denom = 4;
 	config->pidConfig.pid_process_denom = 2;
-#endif	
+#endif
 	config->gyroConfig.gyro_soft_lpf_type = FILTER_PT1;
 	config->gyroConfig.gyro_soft_lpf_hz = 90;
 	config->gyroConfig.gyro_soft_notch_hz_1 = 400;
@@ -455,8 +457,6 @@ void createDefaultConfig(master_t *config)
 	ResetAccelerometerTrims(&config->accelerometerConfig.accZero);
     ResetRollAndPitchTrims(&config->accelerometerConfig.accelerometerTrims);
 	config->accelerometerConfig.acc_lpf_hz = 10.0f;
-	setAccelerationTrims(&AccelerometerConfig()->accZero);
-	setAccelerationFilter(AccelerometerConfig()->acc_lpf_hz);
 
 	/* Board alignment */
 	config->boardAlignment.rollDegrees = 0;
@@ -525,6 +525,8 @@ void createDefaultConfig(master_t *config)
 	config->armingConfig.disarm_kill_switch = 1;				// allow disarm via AUX switch regardless of throttle value
 	config->armingConfig.auto_disarm_delay = 5;					// 5 seconds (allow automatically disarming multicopters after auto_disarm_delay seconds of zero throttle. Disabled when 0.)
 
+	config->imuConfig.smallAngle = 25;							// setup the arming angle to 25 deg, so if the quadcopter is tilted above 25 deg, it won't arm.
+	
 //#ifdef RX_CHANNELS_TAER
 //	parseRcChannels("TAER1234", &config->rxConfig);
 //#else
@@ -532,6 +534,9 @@ void createDefaultConfig(master_t *config)
 //	parseRcChannels("AETR12", &config->rxConfig);		// 6 channels mapping, A: Roll, E: Pitch, T: Throttle, R: Yaw
 	parseRcChannels("AETR1234", &config->rxConfig);		// 8 channels mapping, A: Roll, E: Pitch, T: Throttle, R: Yaw
 //#endif
+
+	config->throttleCorrectionConfig.throttleCorrectionAngle = 800;			// 80.0 deg with althold or 45.0 for FPV
+	config->throttleCorrectionConfig.throttleCorrectionValue = 0;			// 10 with althold or 40 for FPV
 
 #ifdef USE_SDCARD
 	intFeatureSet(FEATURE_SDCARD, featuresPtr);
@@ -595,8 +600,17 @@ void activateConfig(void)
 	
 	useRcControlsConfig(ModeActivationProfile()->modeActivationConditions, &masterConfig.motorConfig, &currentProfile->pidProfile);
 	
+	setAccelerationTrims(&AccelerometerConfig()->accZero);
+	
+	setAccelerationFilter(AccelerometerConfig()->acc_lpf_hz);
+	
 	/* Assign masterConfig.motorConfig, masterConfig.mixerConfig and masterConfig.rxConfig to internal motorConfig, mixerConfig and rxConfig in mixer.c */
 	mixerUseConfigs(&masterConfig.motorConfig, &masterConfig.mixerConfig, &masterConfig.rxConfig);
+	
+	/* IMU Configuration */
+//	printf("throttleCorrectionAngle: %u\r\n", ThrottleCorrectionConfig()->throttleCorrectionAngle);
+//	printf("throttleCorrectionValue: %u\r\n", ThrottleCorrectionConfig()->throttleCorrectionValue);
+	imuConfigure(&masterConfig.imuConfig, &currentProfile->pidProfile, ThrottleCorrectionConfig()->throttleCorrectionAngle);
 }
 
 void validateAndFixGyroConfig(void)
