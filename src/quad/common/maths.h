@@ -4,6 +4,8 @@
 #include <math.h>
 #include <stdint.h>
 
+#define MYMETHOD							// uncomment this line to use my way to BUILD and USE rotation matrix
+
 /* comment these two lines to use glibc sinf and cosf.
  * uncomment these to use fast and very fast sin and cos approximations
  */

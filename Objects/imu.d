@@ -1,8 +1,8 @@
 .\objects\imu.o: src\quad\flight\imu.c
 .\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 .\objects\imu.o: src\quad\flight\imu.h
-.\objects\imu.o: .\src\quad\common\time.h
 .\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\imu.o: .\src\quad\common\time.h
 .\objects\imu.o: .\src\quad\fc\runtime_config.h
 .\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\stdbool.h
 .\objects\imu.o: .\src\quad\sensors\sensors.h
@@ -47,3 +47,5 @@
 .\objects\imu.o: .\src\quad\drivers\resource.h
 .\objects\imu.o: .\src\quad\common\axis.h
 .\objects\imu.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\imu.o: .\src\quad\common\maths.h
+.\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

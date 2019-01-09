@@ -496,7 +496,8 @@ int main(void)
 	/* board alignment */
 	initBoardAlignment(BoardAlignment());
 	
-//	int32_t vec[3] = { 3, 12, -20 };
+	/* Testing alignBoard() */
+//	int32_t vec[3] = { 1, 2, 3 };
 //	alignBoard(vec);
 	
 	/* Compare FastInvSqrt(x) and 1/sqrtf(x) */
