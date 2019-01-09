@@ -615,7 +615,7 @@ void activateConfig(void)
 
 void validateAndFixGyroConfig(void)
 {
-	/* Prevent invalid notch cutoff */
+	/* Prevent invalid gyro notch cutoff */
 	if (GyroConfig()->gyro_soft_notch_cutoff_1 >= GyroConfig()->gyro_soft_notch_hz_1) {
 		GyroConfig()->gyro_soft_notch_hz_1 = 0;
 	}
@@ -644,7 +644,17 @@ void validateAndFixConfig(void)
 		featureClear(FEATURE_RX_SERIAL);
 	}
 	
-	validateAndFixGyroConfig();		// TODO
+	/* Prevent invalid dterm notch cutoff frequency
+	 *
+	 * currentProfile->pidProfile.dterm_notch_cutoff = 160
+	 * currentProfile->pidProfile.dterm_notch_hz = 260
+	 */
+	if (currentProfile->pidProfile.dterm_notch_cutoff >= currentProfile->pidProfile.dterm_notch_hz) {
+		currentProfile->pidProfile.dterm_notch_hz = 0;
+	}
+	
+	/* Validate Gyro configuration */
+	validateAndFixGyroConfig();
 }
 
 void beeperOffSet(uint32_t mask)
