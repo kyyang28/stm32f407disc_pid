@@ -45,8 +45,7 @@ void initBoardAlignment(const boardAlignment_t *boardAlignment)
 //	}
 }
 
-void alignBoard(int32_t *vec)
-//static void alignBoard(int32_t *vec)
+static void alignBoard(int32_t *vec)
 {
 	int32_t x = vec[X];
 	int32_t y = vec[Y];
