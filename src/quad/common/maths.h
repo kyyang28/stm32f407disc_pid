@@ -6,6 +6,12 @@
 
 #define RzRyRx							// uncomment this line to use my way (Coordinate-based RzRyRx) to BUILD and USE rotation matrix
 
+#ifndef sq
+#define sq(x)				((x)*(x))
+#endif
+
+#define power3(x)			((x)*(x)*(x))
+
 /* comment these two lines to use glibc sinf and cosf.
  * uncomment these to use fast and very fast sin and cos approximations
  */
