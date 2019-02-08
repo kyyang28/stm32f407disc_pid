@@ -105,7 +105,7 @@ static void taskUpdateAccelerometer(timeUs_t currentTimeUs)
 {
 	UNUSED(currentTimeUs);
 	
-	accUpdate(&AccelerometerConfig()->accelerometerTrims);
+	accUpdate(currentTimeUs, &AccelerometerConfig()->accelerometerTrims);
 }
 
 static void taskUpdateRxMain(timeUs_t currentTimeUs)			// TODO: make this function static for rtos tasks assignment
@@ -130,7 +130,8 @@ void fcTasksInit(void)
 
 	/* Enable PID TASK including, subprocessRx, gyroUpdate, PIDController, MotorUpdate */
 //	printf("gyro.targetLooptime: %u\r\n", gyro.targetLooptime);	// 1000 us
-    rescheduleTask(TASK_GYROPID, gyro.targetLooptime);       	// 1000Hz for standard ESC using PWM signals (on YQ450 quadcopter)
+    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(256));       	// JUST for testing in MATLAB, 256Hz
+//    rescheduleTask(TASK_GYROPID, gyro.targetLooptime);       	// 1000Hz for standard ESC using PWM signals (on YQ450 quadcopter)
 //    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(500));       	// 500Hz for standard ESC using PWM signals (on YQ450 quadcopter)
 //    rescheduleTask(TASK_GYROPID, TASK_PERIOD_HZ(2000));       	// 2Khz for racing quadcopter using oneshot125, oneshot42 or multishot motor protocols
     setTaskEnabled(TASK_GYROPID, true);

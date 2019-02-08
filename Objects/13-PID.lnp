@@ -58,6 +58,7 @@
 ".\objects\gyro.o"
 ".\objects\initialisation.o"
 ".\objects\boardalignment.o"
+".\objects\compass.o"
 ".\objects\filter.o"
 ".\objects\maths.o"
 ".\objects\pwm.o"

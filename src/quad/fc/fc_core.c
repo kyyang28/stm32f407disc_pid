@@ -1,12 +1,10 @@
 
 #include <stdio.h>			// testing purposes
 #include "platform.h"
-#include "rc_controls.h"	// including rx.h and time.h
 //#include "rx.h"				// including time.h
 #include "debug.h"
 #include "system.h"
 #include "pwm_output.h"
-#include "mixer.h"				// including pid.h
 #include "asyncfatfs.h"
 #include "blackbox.h"
 #include "runtime_config.h"
@@ -14,7 +12,11 @@
 #include "gyro.h"
 #include "configMaster.h"
 //#include "pid.h"
-#include "fc_rc.h"
+
+/*  */
+#include "rc_controls.h"	// including rx.h and time.h; print data (int16_t rcCommand[0-3])
+#include "fc_rc.h"			// print data (float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3])
+#include "mixer.h"			// including pid.h, print data (int16_t motor[MAX_SUPPORTED_MOTORS])
 
 uint8_t motorControlEnable = false;
 
@@ -371,11 +373,11 @@ void taskMainPidLoop(timeUs_t currentTimeUs)
 	 */
 	
 	/* gyroUpdate */
-	gyroUpdate();
+	gyroUpdate(currentTimeUs);
     
-//    if (gyro.dev.mpuDetectionResult.sensor == MPU_9250_SPI && gyro.dev.calibrationFlag) {
-//        printf("gyroADC[X]: %.4f, gyroADC[Y]: %.4f, gyroADC[Z]: %.4f\r\n", gyro.gyroADCf[X], gyro.gyroADCf[Y], gyro.gyroADCf[Z]);
-//    }
+    if (gyro.dev.mpuDetectionResult.sensor == MPU_9250_SPI && gyro.dev.calibrationFlag) {
+//        printf("%u,%.4f,%.4f,%.4f\r\n", currentTimeUs, gyro.gyroADCf[X], gyro.gyroADCf[Y], gyro.gyroADCf[Z]);
+    }
     
 //    printf("pidUpdateProcessCountDown: %u\r\n", pidUpdateProcessCountDown);
     
@@ -416,6 +418,17 @@ void taskMainPidLoop(timeUs_t currentTimeUs)
          * frequencies when undersampled. Even when GYRO runs faster than PID it is still in sync, but every (pid_process_denom)th sample.
          */
         subTaskMotorUpdate();
-        runTaskMainSubprocesses = true;        
+        runTaskMainSubprocesses = true;
+		
+		/* Display data via SecureCRT (which logs the data at the same time) for MATLAB data analysis
+		 *
+		 * 0: ROLL, 1: PITCH, 2: YAW, 3: THROTTLE
+		 *
+		 * 1. int16_t rcCommand[0-3];			// rcCommandf[0-3] = rcCommand[0-3] / 500;
+		 * 2. float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
+		 * 3. int16_t motor[MAX_SUPPORTED_MOTORS];
+		 */
+		printf("%.4f,%d,%d,%d,%d,%.4f,%.4f,%.4f,%d,%d,%d,%d\r\n", currentTimeUs/1000000.0f, rcCommand[0], rcCommand[1], rcCommand[2], rcCommand[3], 
+								setpointRate[0], setpointRate[1], setpointRate[2], motor[0], motor[1], motor[2], motor[3]);
     }
 }

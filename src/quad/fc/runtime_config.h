@@ -6,6 +6,7 @@
 
 extern uint8_t armingFlags;
 extern uint16_t flightModeFlags;
+extern uint8_t stateFlags;
 
 typedef enum {
 	OK_TO_ARM			= (1 << 0),
@@ -35,6 +36,18 @@ typedef enum {
 #define ENABLE_FLIGHT_MODE(mask)			enableFlightMode(mask)
 #define DISABLE_FLIGHT_MODE(mask)			disableFlightMode(mask)
 #define FLIGHT_MODE(mask)					(flightModeFlags & (mask))
+
+typedef enum {
+	GPS_FIX_HOME		= (1 << 0),
+	GPS_FIX				= (1 << 1),
+	CALIBRATE_MAG		= (1 << 2),
+	SMALL_ANGLE			= (1 << 3),
+	FIXED_WING			= (1 << 4)
+}stateFlags_t;
+
+#define ENABLE_STATE(mask)					(stateFlags &= ~(mask))
+#define DISABLE_STATE(mask)					(stateFlags |= (mask))
+#define CHECK_STATE_FLAG(mask)				(stateFlags & (mask))
 
 bool sensors(uint32_t mask);
 void sensorSet(uint32_t mask);

@@ -233,6 +233,7 @@ bool mpuAccRead(accDev_t *acc)
 		return false;
 	}
 	
+	// ADCRaw (int16_t)
 	acc->ADCRaw[X] = (int16_t)((data[0] << 8) | data[1]);
 	acc->ADCRaw[Y] = (int16_t)((data[2] << 8) | data[3]);
 	acc->ADCRaw[Z] = (int16_t)((data[4] << 8) | data[5]);

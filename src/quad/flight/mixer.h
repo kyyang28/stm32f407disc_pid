@@ -3,6 +3,7 @@
 
 #include <stdint.h>
 #include "pid.h"
+#include "time.h"
 
 //#define MAX_SUPPORTED_MOTORS		14		// due to the MAX TIMER COUNT = 14, change MAX SUPPORTED MOTORS to be 14 as well for ResetMotorConfig() function
 #define MAX_SUPPORTED_MOTORS		12

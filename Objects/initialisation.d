@@ -44,7 +44,9 @@
 .\objects\initialisation.o: .\src\quad\drivers\ioImpl.h
 .\objects\initialisation.o: .\src\quad\drivers\resource.h
 .\objects\initialisation.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\initialisation.o: .\src\quad\common\time.h
 .\objects\initialisation.o: src\quad\sensors\acceleration.h
 .\objects\initialisation.o: src\quad\sensors\sensors.h
 .\objects\initialisation.o: src\quad\sensors\barometer.h
 .\objects\initialisation.o: src\quad\sensors\compass.h
+.\objects\initialisation.o: .\src\quad\drivers\compassDev.h

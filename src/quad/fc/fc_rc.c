@@ -18,7 +18,8 @@
 #define THROTTLE_BUFFER_MAX				20
 #define THROTTLE_DELTA_MS				100
 
-static float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
+float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
+//static float setpointRate[3], rcDeflection[3], rcDeflectionAbs[3];
 static float throttlePIDAttenuation;
 
 static int16_t lookupThrottleRC[THROTTLE_LOOKUP_LENGTH];		// lookup table for expo & mid THROTTLE

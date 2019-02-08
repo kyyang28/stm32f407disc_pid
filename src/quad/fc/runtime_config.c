@@ -3,6 +3,7 @@
 
 uint8_t armingFlags = 0;
 uint16_t flightModeFlags = 0;
+uint8_t stateFlags = 0;
 
 static uint32_t enabledSensors = 0;
 

@@ -55,3 +55,4 @@
 .\objects\pwm_output.o: .\src\quad\drivers\exti.h
 .\objects\pwm_output.o: .\src\quad\common\axis.h
 .\objects\pwm_output.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\pwm_output.o: .\src\quad\common\time.h

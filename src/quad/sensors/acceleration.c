@@ -211,7 +211,8 @@ bool accInit(const accelerometerConfig_t *accelerometerConfig, uint32_t gyroSamp
 		
 		case 1000:
 		default:
-			acc.accSamplingInterval = 1000;
+			acc.accSamplingInterval = 1000;			// this is used in the fc_tasks.c rescheduleTask(TASK_ACCEL, acc.accSamplingInterval);
+//			acc.accSamplingInterval = 3000;			// MATLAB testing for acc
 	}
 	
 //	printf("accSamplingInterval: %u\r\n", acc.accSamplingInterval);		// acc.accSamplingInterval = 1000
@@ -227,7 +228,7 @@ bool accInit(const accelerometerConfig_t *accelerometerConfig, uint32_t gyroSamp
 	return true;
 }
 
-void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims)
+void accUpdate(timeUs_t currentTimeUs, rollAndPitchTrims_t *rollAndPitchTrims)
 {
 	if (!acc.dev.read(&acc.dev)) {
 		return;
@@ -236,11 +237,11 @@ void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims)
 	acc.isAccelUpdatedAtLeastOnce = true;
 	
 	for (int axis = 0; axis < XYZ_AXIS_COUNT; axis++) {
-		acc.accSmooth[axis] = acc.dev.ADCRaw[axis];
+		acc.accSmooth[axis] = acc.dev.ADCRaw[axis];			// convert ADCRaw (int16_t) to accSmooth (int32_t)
 //		printf("%u\t", acc.accSmooth[axis]);
 //		if (axis == 2) printf("\r\n");
 	}
-	
+		
 //	printf("accLpfCutHz: %u\r\n", accLpfCutHz);
 	
 	/* accLpfCutHz = 10.0 Hz */
@@ -254,6 +255,8 @@ void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims)
 	
 	/* Align accelerometer sensor */
 	alignSensors(acc.accSmooth, acc.dev.accAlign);
+
+//	printf("%u,%.4f,%.4f,%.4f\r\n", currentTimeUs, acc.accSmooth[X] / 4096.0f, acc.accSmooth[Y] / 4096.0f, acc.accSmooth[Z] / 4096.0f);
 	
 	/* Calibrate ACC */
 	if (!isAccelerationCalibrationComplete()) {
@@ -262,9 +265,12 @@ void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims)
 	
 	/* TODO: Might need to implement inflight acc calibration */
 	
-	
+		
 	/* Adjust acc.accSmooth[X,Y,Z] by subtracting acceleration trims */
-	applyAccelerationTrims(accelerationTrims);
+	applyAccelerationTrims(accelerationTrims);				// subtract the bias term of acc data
+
+//	printf("%u,%.4f,%.4f,%.4f\r\n", currentTimeUs, acc.accSmooth[X] / 4096.0f, acc.accSmooth[Y] / 4096.0f, acc.accSmooth[Z] / 4096.0f);
+//	printf("%u,%d,%d,%d\r\n", currentTimeUs, acc.accSmooth[X], acc.accSmooth[Y], acc.accSmooth[Z]);
 	
 //	for (int axis = 0; axis < 3; axis++) {
 //		printf("%d\t", acc.accSmooth[axis]);

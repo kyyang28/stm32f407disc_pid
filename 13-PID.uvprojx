@@ -715,6 +715,11 @@
               <FileType>1</FileType>
               <FilePath>.\src\quad\sensors\boardAlignment.c</FilePath>
             </File>
+            <File>
+              <FileName>compass.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\src\quad\sensors\compass.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

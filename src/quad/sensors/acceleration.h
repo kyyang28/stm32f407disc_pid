@@ -4,6 +4,7 @@
 #include "sensor.h"
 #include "sensors.h"
 #include "accgyro.h"
+#include "time.h"
 
 /* Type of accelerometer used/detected */
 typedef enum {
@@ -43,7 +44,8 @@ typedef struct accelerometerConfig_s {
 }accelerometerConfig_t;
 
 bool accInit(const accelerometerConfig_t *accelerometerConfig, uint32_t gyroSamplingInverval);
-void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims);
+//void accUpdate(rollAndPitchTrims_t *rollAndPitchTrims);
+void accUpdate(timeUs_t currentTimeUs, rollAndPitchTrims_t *rollAndPitchTrims);
 bool isAccelerationCalibrationComplete(void);
 
 void ResetRollAndPitchTrims(rollAndPitchTrims_t *rollAndPitchTrims);

@@ -46,6 +46,7 @@
 .\objects\mixer.o: .\src\quad\drivers\resource.h
 .\objects\mixer.o: .\src\quad\common\axis.h
 .\objects\mixer.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\mixer.o: .\src\quad\common\time.h
 .\objects\mixer.o: .\src\quad\drivers\pwm_output.h
 .\objects\mixer.o: .\src\quad\drivers\timer.h
 .\objects\mixer.o: .\src\quad\drivers\rcc.h
@@ -59,5 +60,4 @@
 .\objects\mixer.o: .\src\quad\common\maths.h
 .\objects\mixer.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
 .\objects\mixer.o: .\src\quad\rx\rx.h
-.\objects\mixer.o: .\src\quad\common\time.h
 .\objects\mixer.o: .\src\quad\fc\runtime_config.h

@@ -288,8 +288,10 @@ static void performGyroCalibration(uint8_t gyroMovementCalibrationThreshold)
 	calibratingG--;
 }
 
-void gyroUpdate(void)
+void gyroUpdate(timeUs_t currentTimeUs)
 {
+//	UNUSED(currentTimeUs);
+	
 	/* range: +/- 2048 LSB/g; +/- 2000 deg/sec */
 	if (gyro.dev.update) {
 		/* if the gyro update function is set then return, since the gyro is read in gyroUpdateISR */
@@ -306,10 +308,11 @@ void gyroUpdate(void)
 	gyroADC[X] = gyro.dev.gyroADCRaw[X];
 	gyroADC[Y] = gyro.dev.gyroADCRaw[Y];
 	gyroADC[Z] = gyro.dev.gyroADCRaw[Z];
-//	printf("MPU9250 (SPI) data - gyroADCRaw[X]: %d, gyroADCRaw[Y]: %d, gyroADCRaw[Z]: %d\r\n", gyroADC[X], gyroADC[Y], gyroADC[Z]);
 
 //	printf("gyroAlign: %d\r\n", gyro.dev.gyroAlign);
 	alignSensors(gyroADC, gyro.dev.gyroAlign);
+
+//	printf("%u,%.4f,%.4f,%.4f\r\n", currentTimeUs, gyroADC[X] * gyro.dev.scale, gyroADC[Y] * gyro.dev.scale, gyroADC[Z] * gyro.dev.scale);
 
 	const bool calibrationComplete = isGyroCalibrationComplete();
 //	printf("calibrationComplete: %d, %s, %d\r\n", calibrationComplete, __FUNCTION__, __LINE__);
@@ -350,7 +353,7 @@ void gyroUpdate(void)
          * gyroADCf is in DEGREE PER SECOND
          */
 		float gyroADCf = (float)gyroADC[axis] * gyro.dev.scale;			// gyro.dev.scale = 1.0 / 16.4 for +/-2000 gyro configuration
-		
+
 		/* Apply LPF */
 		gyroADCf = softLpfFilterApplyFn(softLpfFilter[axis], gyroADCf);
 		

@@ -6,6 +6,7 @@
 #include "sensor.h"
 #include "axis.h"
 #include "accgyro.h"
+#include "time.h"
 
 typedef enum {
 	GYRO_NONE = 0,
@@ -43,6 +44,7 @@ bool gyroInit(const gyroConfig_t *gyroConfigToUse);
 void gyroSetCalibrationCycles(void);
 bool isGyroCalibrationComplete(void);
 void gyroInitFilters(void);
-void gyroUpdate(void);
+//void gyroUpdate(void);
+void gyroUpdate(timeUs_t currentTimeUs);
 
 #endif	// __GYRO_H

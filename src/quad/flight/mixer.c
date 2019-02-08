@@ -384,7 +384,11 @@ void mixTable(pidProfile_t *pidProfile)
 //			printf("motorDISARMed[%d]: %d\r\n", i, motor[i]);		// motor[i] outputs values are based on the minthrottle (1045 or 1070) setup in config.c		
 		}
 	}
-#else	
+	
+	/* printf MOVED TO taskMainPidLoop() function (Log motor[1-4] data into file for Matlab analysis) */
+//	printf("%u,%d,%d,%d,%d\r\n", currentTimeUs, motor[0], motor[1], motor[2], motor[3]);
+	
+#else
 
 	for (uint32_t i = 0; i < motorCount; i++) {
 //		motor[i] = motorOutputMin;
@@ -392,21 +396,19 @@ void mixTable(pidProfile_t *pidProfile)
 		motor[i] = rcCommand[THROTTLE];
 	}
 		
-#if 0
-	if (IS_RC_MODE_ACTIVE(BOXARM)) {
-		/* TODO: modify this when finishing PID controllers */
-		for (uint32_t i = 0; i < motorCount; i++) {
-	//		motor[i] = motorOutputMin;
-	//		printf("motor[%d]: %d\r\n", i, motor[i]);
-			motor[i] = rcCommand[THROTTLE];
-		}
-	} else {
-		for (uint32_t i = 0; i < motorCount; i++) {
-	//		motor[i] = motorOutputMin;
-	//		printf("motor[%d]: %d\r\n", i, motor[i]);
-			motor[i] = 1000;
-		}
-	}
-#endif	
+//	if (IS_RC_MODE_ACTIVE(BOXARM)) {
+//		/* TODO: modify this when finishing PID controllers */
+//		for (uint32_t i = 0; i < motorCount; i++) {
+//	//		motor[i] = motorOutputMin;
+//	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+//			motor[i] = rcCommand[THROTTLE];
+//		}
+//	} else {
+//		for (uint32_t i = 0; i < motorCount; i++) {
+//	//		motor[i] = motorOutputMin;
+//	//		printf("motor[%d]: %d\r\n", i, motor[i]);
+//			motor[i] = 1000;
+//		}
+//	}
 #endif
 }

@@ -82,6 +82,7 @@
 .\objects\main.o: .\src\quad\sensors\initialisation.h
 .\objects\main.o: .\src\quad\sensors\barometer.h
 .\objects\main.o: .\src\quad\sensors\compass.h
+.\objects\main.o: .\src\quad\drivers\compassDev.h
 .\objects\main.o: .\src\quad\drivers\accgyro_spi_mpu9250.h
 .\objects\main.o: .\src\quad\drivers\mpu9250_soft_i2c.h
 .\objects\main.o: .\src\quad\drivers\pwm_output.h

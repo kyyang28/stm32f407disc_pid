@@ -450,8 +450,10 @@ void createDefaultConfig(master_t *config)
 	config->gyroConfig.gyro_soft_notch_cutoff_2 = 100;
 	
 //	config->gyroConfig.gyro_align = CW90_DEG;
-	config->gyroConfig.gyro_align = ALIGN_DEFAULT;
-	config->accelerometerConfig.acc_align = ALIGN_DEFAULT;
+	config->gyroConfig.gyro_align = CW270_DEG;
+//	config->gyroConfig.gyro_align = ALIGN_DEFAULT;
+	config->accelerometerConfig.acc_align = CW270_DEG;
+//	config->accelerometerConfig.acc_align = ALIGN_DEFAULT;
 	config->accelerometerConfig.acc_hardware = ACC_MPU9250;		// could use ACC_DEFAULT as well
 
 	ResetAccelerometerTrims(&config->accelerometerConfig.accZero);
@@ -602,7 +604,7 @@ void activateConfig(void)
 	
 	setAccelerationTrims(&AccelerometerConfig()->accZero);
 	
-	setAccelerationFilter(AccelerometerConfig()->acc_lpf_hz);
+	setAccelerationFilter(AccelerometerConfig()->acc_lpf_hz);		// acc_lpf_hz = 10 Hz
 	
 	/* Assign masterConfig.motorConfig, masterConfig.mixerConfig and masterConfig.rxConfig to internal motorConfig, mixerConfig and rxConfig in mixer.c */
 	mixerUseConfigs(&masterConfig.motorConfig, &masterConfig.mixerConfig, &masterConfig.rxConfig);

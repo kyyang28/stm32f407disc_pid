@@ -45,6 +45,7 @@
 .\objects\acceleration.o: .\src\quad\drivers\ioImpl.h
 .\objects\acceleration.o: .\src\quad\drivers\resource.h
 .\objects\acceleration.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\acceleration.o: .\src\quad\common\time.h
 .\objects\acceleration.o: .\src\quad\drivers\accgyro_mpu6050.h
 .\objects\acceleration.o: .\src\quad\drivers\accgyro_spi_mpu9250.h
 .\objects\acceleration.o: src\quad\sensors\acceleration.h

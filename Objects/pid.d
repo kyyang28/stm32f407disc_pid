@@ -45,6 +45,7 @@
 .\objects\pid.o: .\src\quad\drivers\resource.h
 .\objects\pid.o: .\src\quad\common\axis.h
 .\objects\pid.o: .\src\quad\drivers\accgyro_mpu.h
+.\objects\pid.o: .\src\quad\common\time.h
 .\objects\pid.o: .\src\quad\fc\fc_rc.h
 .\objects\pid.o: src\quad\flight\mixer.h
 .\objects\pid.o: .\src\quad\common\filter.h
@@ -53,7 +54,6 @@
 .\objects\pid.o: .\src\quad\fc\runtime_config.h
 .\objects\pid.o: .\src\quad\config\configMaster.h
 .\objects\pid.o: .\src\quad\drivers\led.h
-.\objects\pid.o: .\src\quad\common\time.h
 .\objects\pid.o: .\src\quad\drivers\ledTimer.h
 .\objects\pid.o: .\src\quad\drivers\sound_beeper.h
 .\objects\pid.o: .\src\quad\drivers\serial.h

@@ -50,3 +50,7 @@
 .\objects\imu.o: .\src\quad\fc\runtime_config.h
 .\objects\imu.o: .\src\quad\common\maths.h
 .\objects\imu.o: F:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h
+.\objects\imu.o: .\src\quad\drivers\system.h
+.\objects\imu.o: .\src\quad\sensors\gyro.h
+.\objects\imu.o: .\src\quad\sensors\compass.h
+.\objects\imu.o: .\src\quad\drivers\compassDev.h

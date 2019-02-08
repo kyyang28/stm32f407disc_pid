@@ -5,6 +5,8 @@
 #include "time.h"
 #include "pid.h"
 
+#define DEGREES_TO_RADIANS(angle)				((angle) * 0.0174532925f)
+
 typedef struct accDeadband_s {
 	uint8_t xy;									// set the acc deadband for xy-axis
 	uint8_t z;									// set the acc deadband for z-axis, this ignores small accelerations
@@ -30,6 +32,16 @@ typedef struct throttleCorrectionConfig_s {
 	uint16_t throttleCorrectionAngle;			// the angle when the throttle correction is maximal in 0.1 degrees, e.g. 225 = 22.5; 450 = 45.0 deg
 	uint16_t throttleCorrectionValue;			// the correction that will be applied at throttleCorrectionAngle
 }throttleCorrectionConfig_t;
+
+typedef union {
+	int16_t raw[XYZ_AXIS_COUNT];
+	struct {
+		/* Absolute angle inclination in multiple of 0.1 degree 180 deg = 1800 */
+		int16_t roll;
+		int16_t pitch;
+		int16_t yaw;
+	}values;
+}attitudeEulerAngles_t;
 
 void imuInit(void);
 void imuConfigure(imuConfig_t *imuConfig, struct pidProfile_s *initialPidProfile, uint16_t throttleCorrectionAngle);
